@@ -30,6 +30,8 @@
     // Create the navigation controller
     navigationController = [[UINavigationController alloc] initWithRootViewController:projectBrowser];
     
+    // Set global appearance settings
+    [[UINavigationBar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
     return YES;
