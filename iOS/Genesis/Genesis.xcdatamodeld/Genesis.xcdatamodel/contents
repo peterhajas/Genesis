@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="GNFile" syncable="YES">
-        <attribute name="content" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="parentFolder" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GNFolder" inverseName="enclosedFiles" inverseEntity="GNFolder" syncable="YES"/>
-    </entity>
-    <entity name="GNFolder" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="enclosedFiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GNFile" inverseName="parentFolder" inverseEntity="GNFile" syncable="YES"/>
-        <relationship name="enclosedFolders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GNFolder" inverseName="parentFolder" inverseEntity="GNFolder" syncable="YES"/>
-        <relationship name="parentFolder" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GNFolder" inverseName="enclosedFolders" inverseEntity="GNFolder" syncable="YES"/>
-        <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GNProject" inverseName="rootFolder" inverseEntity="GNProject" syncable="YES"/>
-    </entity>
     <entity name="GNProject" representedClassName="GNProject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="rootFolder" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GNFolder" inverseName="project" inverseEntity="GNFolder" syncable="YES"/>
     </entity>
     <fetchRequest name="GNAllProjectsFetchRequest" entity="GNProject" predicateString="name != &quot;&quot;"/>
     <elements>
-        <element name="GNFile" positionX="153" positionY="-117" width="128" height="105"/>
-        <element name="GNFolder" positionX="144" positionY="123" width="128" height="135"/>
-        <element name="GNProject" positionX="-144" positionY="-54" width="128" height="75"/>
+        <element name="GNProject" positionX="-144" positionY="-54" width="128" height="60"/>
     </elements>
 </model>
