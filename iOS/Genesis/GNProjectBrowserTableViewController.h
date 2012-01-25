@@ -7,8 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GNProject.h"
+
+@protocol GNProjectBrowserTableViewControllerDelegate
+
+-(void)didSelectProject:(GNProject*)project;
+
+@end
 
 @interface GNProjectBrowserTableViewController : UITableViewController
+{
+    id<GNProjectBrowserTableViewControllerDelegate> delegate;
+}
+
+@property (nonatomic, retain) id<GNProjectBrowserTableViewControllerDelegate> delegate;
 
 -(void)toggleEditing;
 -(NSArray*)allProjects;

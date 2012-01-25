@@ -37,6 +37,11 @@
     }
 }
 
+-(void)didSelectProject:(GNProject*)project
+{
+    
+}
+
 #pragma mark - View transitions
 -(void)dismissModalViewControllerAnimated:(BOOL)animated
 {
@@ -52,6 +57,7 @@
     if(self)
     {
         tableViewController = [[GNProjectBrowserTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        [tableViewController setDelegate:self];
         
         [self setTitle:@"Projects"];        
     }

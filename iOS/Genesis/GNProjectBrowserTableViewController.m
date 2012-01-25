@@ -8,13 +8,17 @@
 
 #import "GNProjectBrowserTableViewController.h"
 #import "GNAppDelegate.h"
-#import "GNProject.h"
 
 @implementation GNProjectBrowserTableViewController
+
+@synthesize delegate;
 
 -(id)init
 {
     self = [super init];
+    {
+        delegate = nil;
+    }
     return self;
 }
 
@@ -27,7 +31,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"hi!");
+    if(delegate)
+    {
+        GNProject* project = [[self allProjects] objectAtIndex:indexPath.row];
+        [[self delegate] didSelectProject:project];
+    }
 }
 
 #pragma mark - Table View Data Source
