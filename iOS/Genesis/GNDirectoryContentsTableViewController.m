@@ -44,11 +44,15 @@
     NSMutableArray* allFiles = [[NSMutableArray alloc] init];
     
     NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
+    NSString* directoryPath = [documentPath stringByAppendingPathComponent:backingPath];
     
     for(NSString* directoryEntry in allContents)
     {
-        NSString* absoluteEntryPath = [documentPath stringByAppendingPathComponent:directoryEntry];
-        if([[NSFileManager defaultManager] fileExistsAtPath:absoluteEntryPath])
+        NSString* absoluteEntryPath = [directoryPath stringByAppendingPathComponent:directoryEntry];
+        BOOL isDirectory = NO;
+
+        [[NSFileManager defaultManager] fileExistsAtPath:absoluteEntryPath isDirectory:&isDirectory];
+        if(!isDirectory)
         {
             [allFiles addObject:directoryEntry];
         }
@@ -63,10 +67,11 @@
     NSMutableArray* allDirectories = [[NSMutableArray alloc] init];
     
     NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
+    NSString* directoryPath = [documentPath stringByAppendingPathComponent:backingPath];
     
     for(NSString* directoryEntry in allContents)
     {
-        NSString* absoluteEntryPath = [documentPath stringByAppendingPathComponent:directoryEntry];
+        NSString* absoluteEntryPath = [directoryPath stringByAppendingPathComponent:directoryEntry];
         BOOL isDirectory = NO;
         
         [[NSFileManager defaultManager] fileExistsAtPath:absoluteEntryPath isDirectory:&isDirectory];
