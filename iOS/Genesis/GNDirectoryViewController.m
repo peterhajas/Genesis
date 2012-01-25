@@ -7,7 +7,6 @@
 //
 
 #import "GNDirectoryViewController.h"
-#import "GNFileEditorViewController.h"
 
 @implementation GNDirectoryViewController
 
@@ -16,7 +15,7 @@
     self = [super initWithNibName:@"GNDirectoryViewController" bundle:[NSBundle mainBundle]];
     if(self)
     {
-        [self setTitle:path];
+        [self setTitle:[path lastPathComponent]];
         backingPath = [NSString stringWithString:path];
         directoryContentsTableViewController = [[GNDirectoryContentsTableViewController alloc] initWithBackingPath:path];
         [directoryContentsTableViewController setDelegate:self];
@@ -38,15 +37,6 @@
 
 -(void)didSelectFileWithRelativePath:(NSString*)relativePath
 {
-    // Create a new GNFileEditorViewController for this file, and then open it
-    
-    // We need an absolute path to the file
-    NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-    NSString* filePath = [[documentPath stringByAppendingPathComponent:backingPath] stringByAppendingPathComponent:relativePath];
-    
-    GNFileEditorViewController* fileEditorViewController = [[GNFileEditorViewController alloc] initWithAbsolutePath:filePath];
-    
-    [pushableNavigationController pushViewController:fileEditorViewController animated:YES];
 }
 
 #pragma mark - View lifecycle
