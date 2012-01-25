@@ -77,7 +77,7 @@
         [managedObjectContext deleteObject:project];
         
         // Reload data
-        [tableView reloadData];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
