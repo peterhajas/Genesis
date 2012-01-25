@@ -41,7 +41,8 @@
 -(void)didSelectProject:(GNProject*)project
 {
     // Create a new GNDirectoryViewController for this project, and push it onto the stack
-    GNDirectoryViewController* directoryViewController = [[GNDirectoryViewController alloc] initWithBackingPath:[project valueForKey:@"name"]];
+    GNDirectoryViewController* directoryViewController = [[GNDirectoryViewController alloc] initWithBackingPath:[project valueForKey:@"name"] 
+                                                                                        andNavigationController:[self navigationController]];
     [[self navigationController] pushViewController:directoryViewController animated:YES];
 }
 

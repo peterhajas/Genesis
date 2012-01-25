@@ -11,6 +11,8 @@
 
 @implementation GNDirectoryContentsTableViewController
 
+@synthesize delegate;
+
 -(id)initWithBackingPath:(NSString*)path
 {
     self = [super init];
@@ -25,7 +27,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString* relativePath = nil;
     
+    if(indexPath.section == 0)
+    {
+        // They selected a directory
+        relativePath = [[self directoriesForPath] objectAtIndex:indexPath.row];
+        [delegate didSelectDirectoryWithRelativePath:relativePath];
+    }
+    else if(indexPath.section == 1)
+    {
+        // They selected a file
+        relativePath = [[self filesForPath] objectAtIndex:indexPath.row];
+        [delegate didSelectFileWithRelativePath:relativePath];
+    }
+    else
+    {
+        NSLog(@"Undefined section for GNDirectoryContentsTableViewController, in directory %@", backingPath);
+    }
 }
 
 #pragma mark - Table View Data Source

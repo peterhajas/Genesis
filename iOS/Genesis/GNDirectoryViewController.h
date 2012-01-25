@@ -10,13 +10,14 @@
 #import "GNProject.h"
 #import "GNDirectoryContentsTableViewController.h"
 
-@interface GNDirectoryViewController : UIViewController
+@interface GNDirectoryViewController : UIViewController <GNDirectoryContentsTableViewControllerDelegate>
 {
     IBOutlet UITableView* tableView;
     GNDirectoryContentsTableViewController* directoryContentsTableViewController;
     NSString* backingPath;
+    UINavigationController* pushableNavigationController;
 }
 
--(id)initWithBackingPath:(NSString*)path;
+-(id)initWithBackingPath:(NSString*)path andNavigationController:(UINavigationController*)navigationController;
 
 @end
