@@ -6,18 +6,31 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "GNProjectBrowserTableViewDataSource.h"
+#import "GNProjectBrowserTableViewController.h"
 #import "GNAppDelegate.h"
+#import "GNProject.h"
 
-@implementation GNProjectBrowserTableViewDataSource
-
-#pragma mark - Table View Data Source
+@implementation GNProjectBrowserTableViewController
 
 -(id)init
 {
     self = [super init];
     return self;
 }
+
+-(void)toggleEditing
+{
+    [self setEditing:!self.editing animated:YES];
+}
+
+#pragma mark - Table View Delegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"hi!");
+}
+
+#pragma mark - Table View Data Source
 
 -(NSArray*)allProjects
 {
@@ -49,5 +62,24 @@
     // Return the number of projects in the managed object context
     return [[self allProjects] count];
 }
+
+-(void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        // They deleted a project
+    
+        // Find the matching project
+        GNProject* project = [[self allProjects] objectAtIndex:indexPath.row];
+        
+        // Remove the project from the managed object context
+        NSManagedObjectContext* managedObjectContext = [(GNAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        [managedObjectContext deleteObject:project];
+        
+        // Reload data
+        [tableView reloadData];
+    }
+}
+
 
 @end

@@ -18,6 +18,25 @@
     [self presentModalViewController:newProjectViewController animated:YES];
 }
 
+-(IBAction)editButtonPressed:(id)sender
+{
+    // Shift the table view into edit mode
+    [tableViewController toggleEditing];
+    
+    // Change the sender to the correct style for this context
+    
+    if(tableViewController.editing)
+    {
+        [sender setTitle:@"Done"];
+        [sender setStyle:UIBarButtonItemStyleDone];
+    }
+    else
+    {
+        [sender setTitle:@"Edit"];
+        [sender setStyle:UIBarButtonItemStylePlain];
+    }
+}
+
 #pragma mark - View transitions
 -(void)dismissModalViewControllerAnimated:(BOOL)animated
 {
@@ -32,7 +51,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self)
     {
-        dataSource = [[GNProjectBrowserTableViewDataSource alloc] init];
+        tableViewController = [[GNProjectBrowserTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        
         [self setTitle:@"Projects"];        
     }
     return self;
@@ -41,14 +61,17 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+        
+    // Create our "add" and "edit" buttons for projects
+    UIBarButtonItem* addButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addProjectButtonPressed:)];
+    UIBarButtonItem* editButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
     
-    [tableView setDataSource:dataSource];
+    [[self navigationItem] setRightBarButtonItem:addButtonItem animated:YES];
+    [[self navigationItem] setLeftBarButtonItem:editButtonItem animated:YES];
     
-    // Create our "add" button for creating a new project
-    UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addProjectButtonPressed:)];
+    // Set the table view controller tableview to our IBOutlet'd one
     
-    [[self navigationItem] setRightBarButtonItem:barButtonItem animated:YES];
-    
+    [tableViewController setTableView:tableView];
     [tableView reloadData];
 }
 

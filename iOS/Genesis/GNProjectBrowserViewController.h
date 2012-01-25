@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GNProjectBrowserTableViewDataSource.h"
+#import "GNProjectBrowserTableViewController.h"
 
 @interface GNProjectBrowserViewController : UIViewController
 {
     IBOutlet UITableView* tableView;
-    GNProjectBrowserTableViewDataSource* dataSource;
+    GNProjectBrowserTableViewController* tableViewController;
 }
 
 -(IBAction)addProjectButtonPressed:(id)sender;
+-(IBAction)editButtonPressed:(id)sender;
 
 @end

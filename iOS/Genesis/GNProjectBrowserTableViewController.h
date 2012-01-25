@@ -1,5 +1,5 @@
 //
-//  GNProjectBrowserTableViewDataSource.h
+//  GNProjectBrowserTableViewManager.h
 //  Genesis
 //
 //  Created by Peter Hajas on 1/22/12.
@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GNProjectBrowserTableViewDataSource : NSObject <UITableViewDataSource>
+@interface GNProjectBrowserTableViewController : UITableViewController
 
+-(void)toggleEditing;
 -(NSArray*)allProjects;
 
 @end

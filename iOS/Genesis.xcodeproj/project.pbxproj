@@ -24,7 +24,7 @@
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
-		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewDataSource.m */; };
+		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
 		4FFDA04414CCF2E300422FF5 /* GNNewProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA04214CCF2E300422FF5 /* GNNewProjectViewController.m */; };
 		4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA04314CCF2E300422FF5 /* GNNewProjectViewController.xib */; };
 /* End PBXBuildFile section */
@@ -63,8 +63,8 @@
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
 		4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNProjectBrowserViewController.xib; sourceTree = "<group>"; };
-		4FFDA03E14CCEC4500422FF5 /* GNProjectBrowserTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserTableViewDataSource.h; sourceTree = "<group>"; };
-		4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserTableViewDataSource.m; sourceTree = "<group>"; };
+		4FFDA03E14CCEC4500422FF5 /* GNProjectBrowserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GNProjectBrowserTableViewController.h; sourceTree = "<group>"; };
+		4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserTableViewController.m; sourceTree = "<group>"; };
 		4FFDA04114CCF2E300422FF5 /* GNNewProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewProjectViewController.h; sourceTree = "<group>"; };
 		4FFDA04214CCF2E300422FF5 /* GNNewProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewProjectViewController.m; sourceTree = "<group>"; };
 		4FFDA04314CCF2E300422FF5 /* GNNewProjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewProjectViewController.xib; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 				4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */,
 				4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */,
 				4FFDA04614CCF2EB00422FF5 /* New Project */,
-				4FFDA03E14CCEC4500422FF5 /* GNProjectBrowserTableViewDataSource.h */,
-				4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewDataSource.m */,
+				4FFDA03E14CCEC4500422FF5 /* GNProjectBrowserTableViewController.h */,
+				4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */,
 			);
 			name = "Project Browser";
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 				4F293B8E14CCE88100020A09 /* GNAppDelegate.m in Sources */,
 				4F293B9114CCE88100020A09 /* Genesis.xcdatamodeld in Sources */,
 				4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */,
-				4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewDataSource.m in Sources */,
+				4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */,
 				4FFDA04414CCF2E300422FF5 /* GNNewProjectViewController.m in Sources */,
 				4F73FA6E14CF293A00976824 /* GNProject.m in Sources */,
 			);
