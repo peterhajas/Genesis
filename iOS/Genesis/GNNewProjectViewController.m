@@ -36,6 +36,21 @@
         // Save the context
         [appDelegate saveContext];
         
+        // Create a new directory for this project
+        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
+        NSString* directoryPath = [documentPath stringByAppendingPathComponent:[textField text]];
+        [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath
+                                  withIntermediateDirectories:NO 
+                                                   attributes:nil 
+                                                        error:nil];
+        
+        // Create a demo file in that directory TEMP
+        NSString* filePath = [directoryPath stringByAppendingPathComponent:@"demo"];
+        NSData* fileData = [@"hello" dataUsingEncoding:NSUTF8StringEncoding];
+        [[NSFileManager defaultManager] createFileAtPath:filePath 
+                                                contents:fileData
+                                              attributes:nil];
+        
         // TODO: Switch to this new project in the project browser
         
         // Dismiss us
