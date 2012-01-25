@@ -21,6 +21,10 @@
 		4F293B9C14CCE88100020A09 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B8114CCE88100020A09 /* CoreData.framework */; };
 		4F293BA414CCE88100020A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F293BA214CCE88100020A09 /* InfoPlist.strings */; };
 		4F293BA714CCE88100020A09 /* GenesisTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F293BA614CCE88100020A09 /* GenesisTests.m */; };
+		4F3E372014CFA90D00E91A1A /* GNDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E371E14CFA90D00E91A1A /* GNDirectoryViewController.m */; };
+		4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E371F14CFA90D00E91A1A /* GNDirectoryViewController.xib */; };
+		4F3E372614CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */; };
+		4F3E372914CFB6BC00E91A1A /* GNDirectoryContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
@@ -58,12 +62,19 @@
 		4F293BA314CCE88100020A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F293BA514CCE88100020A09 /* GenesisTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenesisTests.h; sourceTree = "<group>"; };
 		4F293BA614CCE88100020A09 /* GenesisTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenesisTests.m; sourceTree = "<group>"; };
+		4F3E371D14CFA90D00E91A1A /* GNDirectoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNDirectoryViewController.h; sourceTree = "<group>"; };
+		4F3E371E14CFA90D00E91A1A /* GNDirectoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryViewController.m; sourceTree = "<group>"; };
+		4F3E371F14CFA90D00E91A1A /* GNDirectoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNDirectoryViewController.xib; sourceTree = "<group>"; };
+		4F3E372414CFAC1100E91A1A /* GNDirectoryContentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNDirectoryContentsTableViewController.h; sourceTree = "<group>"; };
+		4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewController.m; sourceTree = "<group>"; };
+		4F3E372714CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNDirectoryContentsTableViewCell.h; sourceTree = "<group>"; };
+		4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewCell.m; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
 		4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNProjectBrowserViewController.xib; sourceTree = "<group>"; };
-		4FFDA03E14CCEC4500422FF5 /* GNProjectBrowserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GNProjectBrowserTableViewController.h; sourceTree = "<group>"; };
+		4FFDA03E14CCEC4500422FF5 /* GNProjectBrowserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserTableViewController.h; sourceTree = "<group>"; };
 		4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserTableViewController.m; sourceTree = "<group>"; };
 		4FFDA04114CCF2E300422FF5 /* GNNewProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewProjectViewController.h; sourceTree = "<group>"; };
 		4FFDA04214CCF2E300422FF5 /* GNNewProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewProjectViewController.m; sourceTree = "<group>"; };
@@ -136,6 +147,7 @@
 				4F73FA7014CF294000976824 /* Model */,
 				4F293B8414CCE88100020A09 /* Supporting Files */,
 				4FFDA03D14CCEB3C00422FF5 /* Project Browser */,
+				4F3E372314CFA91000E91A1A /* Project Viewing */,
 			);
 			path = Genesis;
 			sourceTree = "<group>";
@@ -168,6 +180,20 @@
 				4F293BA214CCE88100020A09 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F3E372314CFA91000E91A1A /* Project Viewing */ = {
+			isa = PBXGroup;
+			children = (
+				4F3E371D14CFA90D00E91A1A /* GNDirectoryViewController.h */,
+				4F3E371E14CFA90D00E91A1A /* GNDirectoryViewController.m */,
+				4F3E371F14CFA90D00E91A1A /* GNDirectoryViewController.xib */,
+				4F3E372414CFAC1100E91A1A /* GNDirectoryContentsTableViewController.h */,
+				4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */,
+				4F3E372714CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.h */,
+				4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */,
+			);
+			name = "Project Viewing";
 			sourceTree = "<group>";
 		};
 		4F73FA7014CF294000976824 /* Model */ = {
@@ -275,6 +301,7 @@
 				4F293B8814CCE88100020A09 /* InfoPlist.strings in Resources */,
 				4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */,
 				4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */,
+				4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +343,9 @@
 				4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */,
 				4FFDA04414CCF2E300422FF5 /* GNNewProjectViewController.m in Sources */,
 				4F73FA6E14CF293A00976824 /* GNProject.m in Sources */,
+				4F3E372014CFA90D00E91A1A /* GNDirectoryViewController.m in Sources */,
+				4F3E372614CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m in Sources */,
+				4F3E372914CFB6BC00E91A1A /* GNDirectoryContentsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

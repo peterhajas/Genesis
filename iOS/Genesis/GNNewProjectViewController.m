@@ -18,6 +18,8 @@
     // If the text of the text field isn't blank
     if(![[textField text] isEqualToString:@""])
     {
+        // TODO: Make sure this isn't a project that's already been made! Check for unique names!
+        
         // Create the new project
         GNAppDelegate* appDelegate = (GNAppDelegate*)[[UIApplication sharedApplication] delegate];
         NSManagedObjectContext* managedObjectContext = [appDelegate managedObjectContext];

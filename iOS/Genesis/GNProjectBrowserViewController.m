@@ -8,6 +8,7 @@
 
 #import "GNProjectBrowserViewController.h"
 #import "GNNewProjectViewController.h"
+#import "GNDirectoryViewController.h"
 
 @implementation GNProjectBrowserViewController
 
@@ -39,7 +40,9 @@
 
 -(void)didSelectProject:(GNProject*)project
 {
-    
+    // Create a new GNDirectoryViewController for this project, and push it onto the stack
+    GNDirectoryViewController* directoryViewController = [[GNDirectoryViewController alloc] initWithBackingPath:[project valueForKey:@"name"]];
+    [[self navigationController] pushViewController:directoryViewController animated:YES];
 }
 
 #pragma mark - View transitions
