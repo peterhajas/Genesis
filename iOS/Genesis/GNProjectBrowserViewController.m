@@ -7,7 +7,6 @@
 //
 
 #import "GNProjectBrowserViewController.h"
-#import "GNNewProjectViewController.h"
 #import "GNDirectoryViewController.h"
 
 @implementation GNProjectBrowserViewController
@@ -16,6 +15,7 @@
 {
     GNNewProjectViewController* newProjectViewController = [[GNNewProjectViewController alloc] initWithNibName:@"GNNewProjectViewController"
                                                                                                         bundle:[NSBundle mainBundle]];
+    [newProjectViewController setDelegate:self];
     [self presentModalViewController:newProjectViewController animated:YES];
 }
 
@@ -44,6 +44,26 @@
     GNDirectoryViewController* directoryViewController = [[GNDirectoryViewController alloc] initWithBackingPath:[project valueForKey:@"name"] 
                                                                                         andNavigationController:[self navigationController]];
     [[self navigationController] pushViewController:directoryViewController animated:YES];
+}
+
+#pragma mark - GNNewProjectViewControllerDelegate methods
+-(void)didCreateProjectWithName:(NSString *)name
+{
+    NSArray* allProjects = [tableViewController allProjects];
+    NSMutableArray* allProjectNames = [[NSMutableArray alloc] init];
+    for(GNProject* project in allProjects)
+    {
+        [allProjectNames addObject:[project valueForKey:@"name"]];
+    }
+    
+    NSUInteger indexOfProjectName = [allProjectNames indexOfObject:name];
+    NSIndexPath* indexPathForProject = [NSIndexPath indexPathForRow:indexOfProjectName inSection:0];
+    
+    // Select this project in the tableview
+    [tableView selectRowAtIndexPath:indexPathForProject
+                           animated:YES
+                     scrollPosition:UITableViewScrollPositionMiddle];
+    [tableViewController tableView:tableView didSelectRowAtIndexPath:indexPathForProject];
 }
 
 #pragma mark - View transitions

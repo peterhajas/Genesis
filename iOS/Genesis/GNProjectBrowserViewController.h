@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GNProjectBrowserTableViewController.h"
+#import "GNNewProjectViewController.h"
 
-@interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate>
+@interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate,
+                                                              GNNewProjectViewControllerDelegate>
 {
     IBOutlet UITableView* tableView;
     GNProjectBrowserTableViewController* tableViewController;

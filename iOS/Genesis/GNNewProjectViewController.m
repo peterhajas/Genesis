@@ -13,6 +13,8 @@
 
 @implementation GNNewProjectViewController
 
+@synthesize delegate;
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     // If the text of the text field isn't blank
@@ -45,13 +47,11 @@
                                   withIntermediateDirectories:NO 
                                                    attributes:nil 
                                                         error:nil];
-        
-        // TODO: Switch to this new project in the project browser
-        
+                
         // Dismiss us
         GNProjectBrowserViewController* projectBrowserViewController = (GNProjectBrowserViewController*)[(UINavigationController*)[self presentingViewController] topViewController];
         [projectBrowserViewController dismissModalViewControllerAnimated:YES];
-        
+        [delegate didCreateProjectWithName:[textField text]];
     }
     
     return YES;
