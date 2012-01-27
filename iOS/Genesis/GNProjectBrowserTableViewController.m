@@ -82,10 +82,16 @@
         // Find the matching project
         GNProject* project = [[self allProjects] objectAtIndex:indexPath.row];
         
+        // Remove folder for project
+        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
+        NSString* projectDirectory = [documentPath stringByAppendingPathComponent:[project valueForKey:@"name"]];
+        
+        [[NSFileManager defaultManager] removeItemAtPath:projectDirectory error:nil]; //TODO: error checking on this!
+        
         // Remove the project from the managed object context
         NSManagedObjectContext* managedObjectContext = [(GNAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
         [managedObjectContext deleteObject:project];
-        
+                
         // Reload data
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
