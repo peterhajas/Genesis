@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "GNProject.h"
 #import "GNDirectoryContentsTableViewController.h"
+#import "GNNewFileEntryViewController.h"
 
-@interface GNDirectoryViewController : UIViewController <GNDirectoryContentsTableViewControllerDelegate>
+@interface GNDirectoryViewController : UIViewController <GNDirectoryContentsTableViewControllerDelegate,
+                                                         GNNewFileEntryViewControllerDelegate>
 {
     IBOutlet UITableView* tableView;
     GNDirectoryContentsTableViewController* directoryContentsTableViewController;
@@ -19,5 +21,6 @@
 }
 
 -(id)initWithBackingPath:(NSString*)path andNavigationController:(UINavigationController*)navigationController;
+-(IBAction)addFilesystemEntryButtonPressed:(id)sender;
 
 @end

@@ -24,6 +24,16 @@
     return self;
 }
 
+#pragma mark - Navigation bar buttons
+
+-(IBAction)addFilesystemEntryButtonPressed:(id)sender
+{
+    GNNewFileEntryViewController* newFileEntryViewController = [[GNNewFileEntryViewController alloc] initWithBackingPath:backingPath];
+    [newFileEntryViewController setDelegate:self];
+    [self presentModalViewController:newFileEntryViewController animated:YES];
+}
+
+
 #pragma mark - GNDirectoryContentsTableViewControllerDelegate methods
 
 -(void)didSelectDirectoryWithRelativePath:(NSString*)relativePath
@@ -48,11 +58,21 @@
     // Set the table view controller tableview to our IBOutlet'd one
     [directoryContentsTableViewController setTableView:tableView];
     [tableView reloadData];
+    
+    // Create our "add" button for files / folders
+    UIBarButtonItem* addButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFilesystemEntryButtonPressed:)];
+    
+    [[self navigationItem] setRightBarButtonItem:addButtonItem animated:YES];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+-(void)didCreateFileEntry
+{
+    [tableView reloadData];
 }
 
 @end
