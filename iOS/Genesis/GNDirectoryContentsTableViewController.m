@@ -151,7 +151,26 @@
 {
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
+        // Get the path of the item they deleted
         
+        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
+        NSString* directoryPath = [documentPath stringByAppendingPathComponent:backingPath];
+
+        NSString* entityPath = @"";
+        
+        if(indexPath.section == 0)
+        {
+            // It's a directory
+            entityPath = [directoryPath stringByAppendingPathComponent:[[self directoriesForPath] objectAtIndex:indexPath.row]];
+        }
+        else if(indexPath.section == 1)
+        {
+            // It's a file
+            entityPath = [directoryPath stringByAppendingPathComponent:[[self filesForPath] objectAtIndex:indexPath.row]];
+        }
+        
+        [[NSFileManager defaultManager] removeItemAtPath:entityPath error:nil]; //TODO: error checking on this!
+        [tableView reloadData];
     }
 }
 
