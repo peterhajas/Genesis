@@ -462,14 +462,16 @@
     NSString* beforeCaret = [shownText substringToIndex:textCaretIndex];
     NSString* afterCaret = [shownText substringFromIndex:textCaretIndex];
 
-    beforeCaret = [beforeCaret substringToIndex:[beforeCaret length] - 1];
-    
-    shownText = [beforeCaret stringByAppendingString:afterCaret];
-    
-    [self moveCaretToIndex:textCaretIndex-1];
-    
-    [self setNeedsDisplay];
-    [self fitFrameToText];
+    if ([beforeCaret length] > 0) {
+        beforeCaret = [beforeCaret substringToIndex:[beforeCaret length] - 1];
+        
+        shownText = [beforeCaret stringByAppendingString:afterCaret];
+        
+        [self moveCaretToIndex:textCaretIndex-1];
+        
+        [self setNeedsDisplay];
+        [self fitFrameToText];
+    }
 }
 
 #pragma mark User Interaction
