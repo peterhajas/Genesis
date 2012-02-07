@@ -21,7 +21,7 @@
 
 -(void)buildUpView
 {
-    shownText = @"asdf";
+    shownText = [[NSString alloc] initWithString:@"asdf"];
 
     attributedString = NULL;
     frameSetter = NULL;
