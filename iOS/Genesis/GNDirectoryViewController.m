@@ -14,6 +14,7 @@
  */
 
 #import "GNDirectoryViewController.h"
+#import "GNTextViewController.h"
 
 @implementation GNDirectoryViewController
 
@@ -54,6 +55,9 @@
 
 -(void)didSelectFileWithRelativePath:(NSString*)relativePath
 {
+    GNTextViewController* textViewController = [[GNTextViewController alloc] initWithBackingPath:[backingPath stringByAppendingPathComponent:relativePath]];
+    
+    [pushableNavigationController pushViewController:textViewController animated:YES];
 }
 
 #pragma mark - View lifecycle
