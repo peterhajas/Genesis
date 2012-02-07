@@ -15,13 +15,18 @@
 
 #import "GNTextInnerView.h"
 
+#define DEFAULT_FONT_FAMILY @"Courier"
+#define DEFAULT_SIZE 16
+
+static CTFontRef defaultFont = nil;
+
 @implementation GNTextInnerView
 
 @synthesize containerDelegate;
 
 -(void)buildUpView
 {
-    shownText = [[NSString alloc] initWithString:@"asdf"];
+    shownText = [[NSString alloc] initWithString:@""];
 
     attributedString = NULL;
     frameSetter = NULL;
@@ -219,7 +224,10 @@
     // Now that we have the closest line vertically, find the index for the point
     CFIndex indexIntoString = CTLineGetStringIndexForPosition(closestLineVerticallyToPoint, point);
     GNTextPosition* closestPosition = [[GNTextPosition alloc] init];
-    [closestPosition setPosition:indexIntoString];
+    if (indexIntoString < 0)
+        [closestPosition setPosition:0];
+    else
+        [closestPosition setPosition:indexIntoString];
         
     return closestPosition;
 }
@@ -342,7 +350,8 @@
 {
     return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor whiteColor],
                                                                          [UIColor blackColor],
-                                                                         [UIFont fontWithName:@"Courier" size:8.0],
+                                                                         [UIFont fontWithName:DEFAULT_FONT_FAMILY
+                                                                                         size:8.0],
                                                                           nil] 
                                        forKeys:[NSArray arrayWithObjects:UITextInputTextBackgroundColorKey,
                                                                          UITextInputTextColorKey,
@@ -462,14 +471,16 @@
     NSString* beforeCaret = [shownText substringToIndex:textCaretIndex];
     NSString* afterCaret = [shownText substringFromIndex:textCaretIndex];
 
-    beforeCaret = [beforeCaret substringToIndex:[beforeCaret length] - 1];
-    
-    shownText = [beforeCaret stringByAppendingString:afterCaret];
-    
-    [self moveCaretToIndex:textCaretIndex-1];
-    
-    [self setNeedsDisplay];
-    [self fitFrameToText];
+    if ([beforeCaret length] > 0) {
+        beforeCaret = [beforeCaret substringToIndex:[beforeCaret length] - 1];
+        
+        shownText = [beforeCaret stringByAppendingString:afterCaret];
+        
+        [self moveCaretToIndex:textCaretIndex-1];
+        
+        [self setNeedsDisplay];
+        [self fitFrameToText];
+    }
 }
 
 #pragma mark User Interaction
@@ -492,7 +503,7 @@
 -(void)moveCaretToIndex:(NSUInteger)index
 {
     textCaretIndex = index;
-    if([shownText characterAtIndex:index] == (unichar)'\n')
+    if([shownText length] > 0 && [shownText characterAtIndex:index - 1] == (unichar)'\n')
     {
         CGRect beforeCharacterRect = [self rectForCharacterAtIndex:index-1];
         CGRect newLineRect = CGRectMake(beforeCharacterRect.origin.x = beforeCharacterRect.size.width,
@@ -523,12 +534,18 @@
     }
     
     attributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
-    CFAttributedStringReplaceString (attributedString, CFRangeMake(0, 0), foundationString);
+    
+    // If we have text already, fill in the attributed string with the value of shownText
+    if (CFStringGetLength(foundationString) > 0)
+        CFAttributedStringReplaceString(attributedString, CFRangeMake(0, 0), foundationString);
     
     // What font do we want?
-    CTFontRef font = CTFontCreateWithName(CFSTR("Courier"), 16, NULL);
-    CFAttributedStringSetAttribute(attributedString, CFRangeMake(0, CFAttributedStringGetLength(attributedString)), kCTFontAttributeName, font);
-    CFRelease(font);
+    defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY, DEFAULT_SIZE, NULL);
+    
+    CFAttributedStringSetAttribute(attributedString, 
+                                   CFRangeMake(0, CFAttributedStringGetLength(attributedString)),
+                                   kCTFontAttributeName, 
+                                   defaultFont);
     
     // Create the framesetter with the attributed string.
     if(frameSetter != NULL)
@@ -578,8 +595,19 @@
 
 -(CGRect)rectForCharacterAtIndex:(NSUInteger)index
 {
-    CTFontRef fontForText = CFAttributedStringGetAttribute(attributedString, 0, kCTFontAttributeName, NULL);
-    CGFloat fontSize = CTFontGetSize(fontForText);
+    CTFontRef fontForText;
+    CGFloat   fontSizeForText;
+    
+    // If we have no attributed string, we can't get the attributes!
+    if (CFAttributedStringGetLength(attributedString) > 0) {
+        fontForText = CFAttributedStringGetAttribute(attributedString, 0, kCTFontAttributeName, NULL);
+        fontSizeForText = CTFontGetSize(fontForText);
+    } else { // ... so just use the default font.
+        fontForText = defaultFont;
+        fontSizeForText = DEFAULT_SIZE;
+    }
+    
+    // TODO: The default font should be read from something like NSUserDefaults
     
     // First, find what line the character at this index is in
     
@@ -663,9 +691,9 @@
     free(lineOriginsForFrame);
         
     return CGRectMake(glyphPosition.x,
-                      [self frame].size.height - lineOrigin.y - fontSize,
+                      [self frame].size.height - lineOrigin.y - fontSizeForText,
                       glyphAdvance.width,
-                      fontSize);
+                      fontSizeForText);
 }
 
 -(void)drawRect:(CGRect)rect
@@ -677,6 +705,12 @@
 
 -(void)fitFrameToText
 {    
+    /*
+     * This view doesn't need to ever be smaller than the GNTextView superview, does it?
+     * If the string is empty, this routine fails for some reason.
+     */
+    return; // temporarily disabled
+    
     // Find how large of a textarea we need
     CGSize sizeForText = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX), NULL);
     
