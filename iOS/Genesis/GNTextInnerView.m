@@ -494,7 +494,7 @@
 -(void)moveCaretToIndex:(NSUInteger)index
 {
     textCaretIndex = index;
-    if([shownText length] > 0 && [shownText characterAtIndex:index] == (unichar)'\n')
+    if([shownText length] > 0 && [shownText characterAtIndex:index - 1] == (unichar)'\n')
     {
         CGRect beforeCharacterRect = [self rectForCharacterAtIndex:index-1];
         CGRect newLineRect = CGRectMake(beforeCharacterRect.origin.x = beforeCharacterRect.size.width,
