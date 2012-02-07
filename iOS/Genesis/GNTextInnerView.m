@@ -15,6 +15,11 @@
 
 #import "GNTextInnerView.h"
 
+#define DEFAULT_FONT_FAMILY @"Courier"
+#define DEFAULT_SIZE 16
+
+static CTFontRef defaultFont = nil;
+
 @implementation GNTextInnerView
 
 @synthesize containerDelegate;
@@ -219,7 +224,10 @@
     // Now that we have the closest line vertically, find the index for the point
     CFIndex indexIntoString = CTLineGetStringIndexForPosition(closestLineVerticallyToPoint, point);
     GNTextPosition* closestPosition = [[GNTextPosition alloc] init];
-    [closestPosition setPosition:indexIntoString];
+    if (indexIntoString < 0)
+        [closestPosition setPosition:0];
+    else
+        [closestPosition setPosition:indexIntoString];
         
     return closestPosition;
 }
@@ -342,7 +350,8 @@
 {
     return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor whiteColor],
                                                                          [UIColor blackColor],
-                                                                         [UIFont fontWithName:@"Courier" size:8.0],
+                                                                         [UIFont fontWithName:DEFAULT_FONT_FAMILY
+                                                                                         size:8.0],
                                                                           nil] 
                                        forKeys:[NSArray arrayWithObjects:UITextInputTextBackgroundColorKey,
                                                                          UITextInputTextColorKey,
@@ -531,9 +540,12 @@
         CFAttributedStringReplaceString(attributedString, CFRangeMake(0, 0), foundationString);
     
     // What font do we want?
-    CTFontRef font = CTFontCreateWithName(CFSTR("Courier"), 16, NULL);
-    CFAttributedStringSetAttribute(attributedString, CFRangeMake(0, CFAttributedStringGetLength(attributedString)), kCTFontAttributeName, font);
-    CFRelease(font);
+    defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY, DEFAULT_SIZE, NULL);
+    
+    CFAttributedStringSetAttribute(attributedString, 
+                                   CFRangeMake(0, CFAttributedStringGetLength(attributedString)),
+                                   kCTFontAttributeName, 
+                                   defaultFont);
     
     // Create the framesetter with the attributed string.
     if(frameSetter != NULL)
@@ -583,8 +595,16 @@
 
 -(CGRect)rectForCharacterAtIndex:(NSUInteger)index
 {
-    CTFontRef fontForText = CFAttributedStringGetAttribute(attributedString, 0, kCTFontAttributeName, NULL);
-    CGFloat fontSize = CTFontGetSize(fontForText);
+    CTFontRef fontForText;
+    CGFloat   fontSizeForText;
+    
+    if (CFAttributedStringGetLength(attributedString) > 0) {
+        fontForText = CFAttributedStringGetAttribute(attributedString, 0, kCTFontAttributeName, NULL);
+        fontSizeForText = CTFontGetSize(fontForText);
+    } else {
+        fontForText = defaultFont;
+        fontSizeForText = DEFAULT_SIZE;
+    }
     
     // First, find what line the character at this index is in
     
@@ -668,9 +688,9 @@
     free(lineOriginsForFrame);
         
     return CGRectMake(glyphPosition.x,
-                      [self frame].size.height - lineOrigin.y - fontSize,
+                      [self frame].size.height - lineOrigin.y - fontSizeForText,
                       glyphAdvance.width,
-                      fontSize);
+                      fontSizeForText);
 }
 
 -(void)drawRect:(CGRect)rect
@@ -682,7 +702,12 @@
 
 -(void)fitFrameToText
 {    
-    return;
+    /*
+     * This view doesn't need to ever be smaller than the GNTextView superview, does it?
+     * If the string is empty, this routine fails for some reason.
+     */
+    return; // temporarily disabled
+    
     // Find how large of a textarea we need
     CGSize sizeForText = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX), NULL);
     

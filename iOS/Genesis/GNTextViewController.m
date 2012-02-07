@@ -37,14 +37,12 @@
     NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
     NSString* absolutePath = [documentPath stringByAppendingPathComponent:backingPath];
     
-    NSString *fileContents = nil;
+    NSMutableString *fileContents = [[NSMutableString alloc] initWithString:@""];
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     if ([fileManager fileExistsAtPath:absolutePath]) {
-        fileContents = [NSString stringWithContentsOfFile:absolutePath 
-                                                 encoding:NSUTF8StringEncoding 
-                                                    error:nil];
-    } else {
-        fileContents = [[NSString alloc] init];
+        [fileContents appendString:[NSString stringWithContentsOfFile:absolutePath
+                                                             encoding:NSUTF8StringEncoding
+                                                                error:nil]];
     }
     
     [textView setText:fileContents];
