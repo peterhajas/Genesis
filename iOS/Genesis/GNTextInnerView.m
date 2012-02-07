@@ -598,13 +598,16 @@ static CTFontRef defaultFont = nil;
     CTFontRef fontForText;
     CGFloat   fontSizeForText;
     
+    // If we have no attributed string, we can't get the attributes!
     if (CFAttributedStringGetLength(attributedString) > 0) {
         fontForText = CFAttributedStringGetAttribute(attributedString, 0, kCTFontAttributeName, NULL);
         fontSizeForText = CTFontGetSize(fontForText);
-    } else {
+    } else { // ... so just use the default font.
         fontForText = defaultFont;
         fontSizeForText = DEFAULT_SIZE;
     }
+    
+    // TODO: The default font should be read from something like NSUserDefaults
     
     // First, find what line the character at this index is in
     
