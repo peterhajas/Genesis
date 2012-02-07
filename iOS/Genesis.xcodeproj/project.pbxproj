@@ -181,13 +181,13 @@
 		4F21143114DCEF18001EE6C9 /* Text Editing */ = {
 			isa = PBXGroup;
 			children = (
+				4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */,
+				4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */,
+				4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */,
 				4F1F04A314E1B35D008619C0 /* Caret View */,
 				4F1F04A414E1B37E008619C0 /* Text Container View */,
 				4F1F04A514E1B3A8008619C0 /* Text Rendering / UITextInput */,
 				4F1F04A614E1B3B9008619C0 /* Text Geometry */,
-				4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */,
-				4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */,
-				4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */,
 			);
 			name = "Text Editing";
 			sourceTree = "<group>";
