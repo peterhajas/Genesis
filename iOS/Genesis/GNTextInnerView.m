@@ -21,7 +21,7 @@
 
 -(void)buildUpView
 {
-    shownText = [[NSString alloc] initWithString:@"asdf"];
+    shownText = [[NSString alloc] initWithString:@""];
 
     attributedString = NULL;
     frameSetter = NULL;
@@ -492,7 +492,7 @@
 -(void)moveCaretToIndex:(NSUInteger)index
 {
     textCaretIndex = index;
-    if([shownText characterAtIndex:index] == (unichar)'\n')
+    if([shownText length] > 0 && [shownText characterAtIndex:index] == (unichar)'\n')
     {
         CGRect beforeCharacterRect = [self rectForCharacterAtIndex:index-1];
         CGRect newLineRect = CGRectMake(beforeCharacterRect.origin.x = beforeCharacterRect.size.width,
@@ -523,7 +523,10 @@
     }
     
     attributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
-    CFAttributedStringReplaceString (attributedString, CFRangeMake(0, 0), foundationString);
+    
+    // If we have text already, fill in the attributed string with the value of shownText
+    if (CFStringGetLength(foundationString) > 0)
+        CFAttributedStringReplaceString(attributedString, CFRangeMake(0, 0), foundationString);
     
     // What font do we want?
     CTFontRef font = CTFontCreateWithName(CFSTR("Courier"), 16, NULL);
@@ -677,6 +680,7 @@
 
 -(void)fitFrameToText
 {    
+    return;
     // Find how large of a textarea we need
     CGSize sizeForText = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX), NULL);
     
