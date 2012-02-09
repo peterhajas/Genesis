@@ -590,10 +590,14 @@ static CTFontRef defaultFont = nil;
     CGFloat   fontSizeForText;
     
     // If we have no attributed string, we can't get the attributes!
-    if (CFAttributedStringGetLength(attributedString) > 0) {
+    if (CFAttributedStringGetLength(attributedString) > 0)
+    {
         fontForText = CFAttributedStringGetAttribute(attributedString, 0, kCTFontAttributeName, NULL);
         fontSizeForText = CTFontGetSize(fontForText);
-    } else { // ... so just use the default font.
+    } 
+    else
+    {
+        // ... so just use the default font.
         fontForText = defaultFont;
         fontSizeForText = DEFAULT_SIZE;
     }
