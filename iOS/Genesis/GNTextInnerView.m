@@ -682,12 +682,13 @@ static CTFontRef defaultFont = nil;
     }
 
     CTRunRef runForCaret = CFArrayGetValueAtIndex(CTLineGetGlyphRuns(lineAtCaret), runForCaretIndex);
+    CFRange caretRunStringRange = CTRunGetStringRange(runForCaret);
     
-    NSUInteger indexOfGlyph = index - CTRunGetStringRange(runForCaret).location;
+    NSUInteger indexOfGlyph = index - caretRunStringRange.location;
     
     CGPoint glyphPosition;
     
-    if(indexOfGlyph == [shownText length])
+    if(caretRunStringRange.location + caretRunStringRange.length == [shownText length])
     {
         glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph-1];
         if([shownText length] > 0)
