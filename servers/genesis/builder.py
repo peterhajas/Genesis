@@ -8,48 +8,88 @@ from tornado import gen
 
 from genesis.networking import Client, with_args, Communication
 from genesis.serializers import BackendProtocol, NetworkSerializer
+from genesis.data import NetOp
+from genesis.shell import ShellProxy, ProcessQuery
+
+
+
+class Builder(object):
+    "Handles the system commands to run"
+    def __init__(self, shell_proxy=None):
+        self.actions = {} # name => Action
+        self.shell = shell_proxy or ShellProxy()
+
+    def add_action(self, name, action):
+        self.actions[name] = action
+
+    def _send_op(self, ops, mclient, stream, callback):
+        mclient.send(stream, op.to_network(), callback)
+
+    def __call__(self, command, mclient, stream, callback):
+        try:
+            operation = ProcessQuery(self.shell.perform(self.actions[command.name]))
+            while not operation.has_terminated():
+                if operation.readable():
+                    op = NetOp('stream', contents=operation.read())
+                    mclient.send(stream, op.to_network(), callback)
+        except KeyError:
+            op = NetOp('bad_request')
+            mclient.send(stream, op.to_network(), callback)
 
 
 class MediatorClient(Communication):
-    def __init__(self, client, serializer):
+    "Handles the communication between the builder and mediator."
+    def __init__(self, client, serializer, delegate=None):
         super(MediatorClient, self).__init__(serializer)
         self.client = client
+        self.delegate = delegate
 
     def create(self, ioloop=None):
         self.client.create(self.handle_stream, ioloop)
 
+    def handle_task(self, stream):
+        pass
+
     @gen.engine
     def handle_stream(self, stream):
+        # read version
+        version = yield gen.Task(stream.read_until, ' ')
+        print "Protocol Version:", version
         # authenticate
-        #msg = Message(['LOGIN', 'MY_SYSTEM'])
-        #print msg
-        #yield gen.Task(msg, stream, self.serializer)
-        #response = yield gen.Task(self.serializer.deserialize, stream)
-        response = yield gen.Task(self.send_and_recv, stream, ['LOGIN', 'MYSYS'])
-        print repr(response)
+        cmd = NetOp('LOGIN', user='jeff', pwd='pass', machine='foobar', type='builder')
+        response = yield gen.Task(self.request, stream, cmd.to_network())
+        print 'login:', response
+        if not response.name == 'OK':
+            print 'Invalid login'
+            stream.close()
+            return
+
+        cmd = NetOp('CLIENTS')
+        clients = yield gen.Task(self.request, stream, cmd.to_network())
+        print 'clients:', clients
+
+        while 1:
+            data = yield gen.Task(self.recv, stream)
+            command = Command.create(data)
+            # invalid
+            if not command:
+                print "[IGNORE] invalid command:", repr(data)
+                continue
+
+            if not self.delegate:
+                print "[PASSIVE] no delegate:", command
+                continue
+
+            yield self.delegate(command, self, stream)
+
+        # terminate
         stream.close()
         IOLoop.instance().stop()
 
 
-def consume_result(data, stream):
-    print data
-    stream.close()
-    IOLoop.instance().stop()
-
-
-def read_response(stream):
-    print 'reading'
-    stream.read_until_close(with_args(consume_result, stream))
-
-
-def send_response(stream):
-    print 'starting response'
-    stream.write('there is no spoon\n', with_args(read_response, stream))
-
-
 if __name__ == '__main__':
-    client = Client(port=8080)
-    mclient = MediatorClient(client, BackendProtocol(NetworkSerializer(compress_level=0)))
+    client = Client(port=8080, host='localhost')
+    mclient = MediatorClient(client, BackendProtocol(NetworkSerializer()))
     mclient.create()
     #stream = client.create(send_response)
     IOLoop.instance().start()

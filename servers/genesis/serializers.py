@@ -11,23 +11,20 @@ from genesis.networking import with_args
 
 class NetworkSerializer(object):
     "Serializes data to and from basic python types."
-    def __init__(self, encoder=None, compress_level=9):
+    def __init__(self, encoder=None):
         self.encoder = encoder or json.JSONEncoder()
-        self.compress_level = compress_level
 
     def serialize(self, obj):
         data = self.encoder.encode(obj)
-        if self.compress_level <= 0:
-            return data
-        return zlib.compress(data, self.compress_level)
+        return zlib.compress(data)
 
     def deserialize(self, data):
-        if self.compress_level > 0:
-            data = zlib.decompress(data)
+        data = zlib.decompress(data)
         return json.loads(data)
 
 
 class BackendProtocol(object):
+    version = 1
     def __init__(self, serializer=None):
         self.serializer = serializer or NetworkSerializer()
 
