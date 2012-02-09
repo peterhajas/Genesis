@@ -685,7 +685,21 @@ static CTFontRef defaultFont = nil;
     
     NSUInteger indexOfGlyph = index - CTRunGetStringRange(runForCaret).location;
     
-    CGPoint glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
+    CGPoint glyphPosition;
+    
+    if(indexOfGlyph == [shownText length])
+    {
+        glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph-1];
+        if([shownText length] > 0)
+        {
+            double glyphWidth = CTRunGetTypographicBounds(runForCaret, CFRangeMake(0, 1), NULL, NULL, NULL);
+            glyphPosition.x += glyphWidth;
+        }
+    }
+    else
+    {
+        glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
+    }
     
     // Get the origin of lineAtCaret
     
