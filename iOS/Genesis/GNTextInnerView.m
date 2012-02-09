@@ -223,6 +223,11 @@ static CTFontRef defaultFont = nil;
     
     // Now that we have the closest line vertically, find the index for the point
     CFIndex indexIntoString = CTLineGetStringIndexForPosition(closestLineVerticallyToPoint, point);
+    if((indexIntoString > 0) && ((char)[shownText characterAtIndex:indexIntoString-1] == '\n'))
+    {
+        // Special case when the cursor is caught between two lines!
+        indexIntoString--;
+    }
     GNTextPosition* closestPosition = [[GNTextPosition alloc] init];
     if (indexIntoString < 0)
         [closestPosition setPosition:0];
@@ -628,7 +633,7 @@ static CTFontRef defaultFont = nil;
         CFRange lineStringRange = CTLineGetStringRange(currentLine);
         
         if((index >= lineStringRange.location) &&
-           (index <= lineStringRange.location + lineStringRange.length + 1))
+           (index <= lineStringRange.location + lineStringRange.length))
         {
             // We found the right line!
             indexLine = i;
@@ -663,7 +668,7 @@ static CTFontRef defaultFont = nil;
         CTRunRef run = CFArrayGetValueAtIndex(runs, i);
         CFRange runRange = CTRunGetStringRange(run);
         
-        if((index >= runRange.location) && (index <= runRange.location + runRange.length + 1))
+        if((index >= runRange.location) && (index <= runRange.location + runRange.length))
         {
             runForCaretIndex = i;
             break;
@@ -680,7 +685,7 @@ static CTFontRef defaultFont = nil;
     
     NSUInteger indexOfGlyph = index - CTRunGetStringRange(runForCaret).location;
     
-    CGPoint glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph-1];
+    CGPoint glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
     
     // Get the origin of lineAtCaret
     
