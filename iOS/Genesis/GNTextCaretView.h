@@ -14,6 +14,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#define kGNTextCaretViewWidth 3.0
 
 @interface GNTextCaretView : UIView
 

@@ -454,13 +454,14 @@ static CTFontRef defaultFont = nil;
 
 -(void)insertText:(NSString *)text
 {
+    NSLog(@"insert text");
     NSString* beforeCaret = [shownText substringToIndex:textCaretIndex];
     NSString* afterCaret = [shownText substringFromIndex:textCaretIndex];
     
     shownText = [beforeCaret stringByAppendingString:text];
     shownText = [shownText stringByAppendingString:afterCaret];
     
-    [self moveCaretToIndex:textCaretIndex+1];
+    textCaretIndex++;
     
     [self setNeedsDisplay];
     [self fitFrameToText];
@@ -476,8 +477,8 @@ static CTFontRef defaultFont = nil;
         
         shownText = [beforeCaret stringByAppendingString:afterCaret];
         
-        [self moveCaretToIndex:textCaretIndex-1];
-        
+        textCaretIndex--;
+                
         [self setNeedsDisplay];
         [self fitFrameToText];
     }
@@ -502,6 +503,7 @@ static CTFontRef defaultFont = nil;
 
 -(void)moveCaretToIndex:(NSUInteger)index
 {
+    NSLog(@"move caret");
     textCaretIndex = index;
     
     CGRect characterRect = [self rectForCharacterAtIndex:index];
@@ -609,6 +611,14 @@ static CTFontRef defaultFont = nil;
     CFArrayRef lines = CTFrameGetLines(frame);    
     NSUInteger indexLine = NSUIntegerMax;
     
+    // If there are zero lines in the frame, then this is an empty file.
+    // Return a rect corresponding to the first index.
+    
+    if(CFArrayGetCount(lines) == 0)
+    {
+        return CGRectMake(0, 0, kGNTextCaretViewWidth, fontSizeForText);
+    }
+    
     // Loop through the lines in our frame
     for(NSUInteger i = 0; i < CFArrayGetCount(lines); i++)
     {
@@ -618,15 +628,13 @@ static CTFontRef defaultFont = nil;
         CFRange lineStringRange = CTLineGetStringRange(currentLine);
         
         if((index >= lineStringRange.location) &&
-           (index < lineStringRange.location + lineStringRange.length))
+           (index <= lineStringRange.location + lineStringRange.length + 1))
         {
             // We found the right line!
             indexLine = i;
             break;
         }
     }
-    
-    NSLog(@"lines in frame: %ld", CFArrayGetCount(lines));
     
     if(indexLine == NSUIntegerMax)
     {
@@ -655,9 +663,10 @@ static CTFontRef defaultFont = nil;
         CTRunRef run = CFArrayGetValueAtIndex(runs, i);
         CFRange runRange = CTRunGetStringRange(run);
         
-        if((index >= runRange.location) && (index < runRange.location + runRange.length))
+        if((index >= runRange.location) && (index <= runRange.location + runRange.length + 1))
         {
             runForCaretIndex = i;
+            break;
         }
     }
     
@@ -670,9 +679,17 @@ static CTFontRef defaultFont = nil;
     CTRunRef runForCaret = CFArrayGetValueAtIndex(CTLineGetGlyphRuns(lineAtCaret), runForCaretIndex);
     
     NSUInteger indexOfGlyph = index - CTRunGetStringRange(runForCaret).location;
-        
-    CGPoint glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
-    CGSize glyphAdvance = CTRunGetAdvancesPtr(runForCaret)[indexOfGlyph];
+    
+    CGPoint glyphPosition;
+    
+    if(indexOfGlyph == [shownText length])
+    {
+        glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph-1];
+    }
+    else
+    {
+        glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
+    }
     
     // Get the origin of lineAtCaret
     
@@ -681,13 +698,22 @@ static CTFontRef defaultFont = nil;
     lineOriginsForFrame = calloc(CFArrayGetCount(lines), sizeof(CGPoint));
         
     CTFrameGetLineOrigins(frame, CFRangeMake(0,0), lineOriginsForFrame);
-        
-    CGPoint lineOrigin = lineOriginsForFrame[indexLine];
+    
+    CGPoint lineOrigin;
+    
+    lineOrigin = lineOriginsForFrame[indexLine];
+    
     free(lineOriginsForFrame);
-        
+    
+    NSLog(@"rect for character at index: %u is (%f,%f) @ %fx%f", index, 
+                                                                 glyphPosition.x,
+                                                                 [self frame].size.height - lineOrigin.y - fontSizeForText,
+                                                                 kGNTextCaretViewWidth,
+                                                                 fontSizeForText);
+    
     return CGRectMake(glyphPosition.x,
                       [self frame].size.height - lineOrigin.y - fontSizeForText,
-                      glyphAdvance.width,
+                      kGNTextCaretViewWidth,
                       fontSizeForText);
 }
 
