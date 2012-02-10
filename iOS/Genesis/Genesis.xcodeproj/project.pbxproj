@@ -35,6 +35,9 @@
 		4F3E372614CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */; };
 		4F3E372914CFB6BC00E91A1A /* GNDirectoryContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
+		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
+		4F77E8CE14E4BB53001A69E8 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */; };
+		4F77E8D114E4BB80001A69E8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8D014E4BB80001A69E8 /* libxml2.dylib */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
 		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
@@ -95,6 +98,48 @@
 		4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewCell.m; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
+		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libDTCoreText.a; path = "../DTCoreText/build/Release-iphoneos/libDTCoreText.a"; sourceTree = "<group>"; };
+		4F77E8D014E4BB80001A69E8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		4F77E8D214E4BBC7001A69E8 /* CGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGUtils.h; path = ../DTCoreText/Core/Source/CGUtils.h; sourceTree = "<group>"; };
+		4F77E8D314E4BBC7001A69E8 /* DTAttributedTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTAttributedTextCell.h; path = ../DTCoreText/Core/Source/DTAttributedTextCell.h; sourceTree = "<group>"; };
+		4F77E8D414E4BBC7001A69E8 /* DTAttributedTextContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTAttributedTextContentView.h; path = ../DTCoreText/Core/Source/DTAttributedTextContentView.h; sourceTree = "<group>"; };
+		4F77E8D514E4BBC7001A69E8 /* DTAttributedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTAttributedTextView.h; path = ../DTCoreText/Core/Source/DTAttributedTextView.h; sourceTree = "<group>"; };
+		4F77E8D614E4BBC7001A69E8 /* DTColor+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DTColor+HTML.h"; path = "../DTCoreText/Core/Source/DTColor+HTML.h"; sourceTree = "<group>"; };
+		4F77E8D714E4BBC7001A69E8 /* DTCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreText.h; path = ../DTCoreText/Core/Source/DTCoreText.h; sourceTree = "<group>"; };
+		4F77E8D814E4BBC7001A69E8 /* DTCoreTextConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextConstants.h; path = ../DTCoreText/Core/Source/DTCoreTextConstants.h; sourceTree = "<group>"; };
+		4F77E8D914E4BBC7001A69E8 /* DTCoreTextFontCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextFontCollection.h; path = ../DTCoreText/Core/Source/DTCoreTextFontCollection.h; sourceTree = "<group>"; };
+		4F77E8DA14E4BBC7001A69E8 /* DTCoreTextFontDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextFontDescriptor.h; path = ../DTCoreText/Core/Source/DTCoreTextFontDescriptor.h; sourceTree = "<group>"; };
+		4F77E8DB14E4BBC7001A69E8 /* DTCoreTextGlyphRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextGlyphRun.h; path = ../DTCoreText/Core/Source/DTCoreTextGlyphRun.h; sourceTree = "<group>"; };
+		4F77E8DC14E4BBC7001A69E8 /* DTCoreTextLayouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextLayouter.h; path = ../DTCoreText/Core/Source/DTCoreTextLayouter.h; sourceTree = "<group>"; };
+		4F77E8DD14E4BBC7001A69E8 /* DTCoreTextLayoutFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextLayoutFrame.h; path = ../DTCoreText/Core/Source/DTCoreTextLayoutFrame.h; sourceTree = "<group>"; };
+		4F77E8DE14E4BBC7001A69E8 /* DTCoreTextLayoutLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextLayoutLine.h; path = ../DTCoreText/Core/Source/DTCoreTextLayoutLine.h; sourceTree = "<group>"; };
+		4F77E8DF14E4BBC7001A69E8 /* DTCoreTextParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCoreTextParagraphStyle.h; path = ../DTCoreText/Core/Source/DTCoreTextParagraphStyle.h; sourceTree = "<group>"; };
+		4F77E8E014E4BBC7001A69E8 /* DTCSSListStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCSSListStyle.h; path = ../DTCoreText/Core/Source/DTCSSListStyle.h; sourceTree = "<group>"; };
+		4F77E8E114E4BBC7001A69E8 /* DTCSSStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCSSStylesheet.h; path = ../DTCoreText/Core/Source/DTCSSStylesheet.h; sourceTree = "<group>"; };
+		4F77E8E214E4BBC7001A69E8 /* DTHTMLAttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTHTMLAttributedStringBuilder.h; path = ../DTCoreText/Core/Source/DTHTMLAttributedStringBuilder.h; sourceTree = "<group>"; };
+		4F77E8E314E4BBC7001A69E8 /* DTHTMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTHTMLElement.h; path = ../DTCoreText/Core/Source/DTHTMLElement.h; sourceTree = "<group>"; };
+		4F77E8E414E4BBC7001A69E8 /* DTHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTHTMLParser.h; path = ../DTCoreText/Core/Source/DTHTMLParser.h; sourceTree = "<group>"; };
+		4F77E8E514E4BBC7001A69E8 /* DTImage+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DTImage+HTML.h"; path = "../DTCoreText/Core/Source/DTImage+HTML.h"; sourceTree = "<group>"; };
+		4F77E8E614E4BBC7001A69E8 /* DTLazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTLazyImageView.h; path = ../DTCoreText/Core/Source/DTLazyImageView.h; sourceTree = "<group>"; };
+		4F77E8E714E4BBC7001A69E8 /* DTLinkButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTLinkButton.h; path = ../DTCoreText/Core/Source/DTLinkButton.h; sourceTree = "<group>"; };
+		4F77E8E814E4BBC7001A69E8 /* DTTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTTextAttachment.h; path = ../DTCoreText/Core/Source/DTTextAttachment.h; sourceTree = "<group>"; };
+		4F77E8E914E4BBC7001A69E8 /* DTWebVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTWebVideoView.h; path = ../DTCoreText/Core/Source/DTWebVideoView.h; sourceTree = "<group>"; };
+		4F77E8EA14E4BBC7001A69E8 /* NSAttributedString+DTCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+DTCoreText.h"; path = "../DTCoreText/Core/Source/NSAttributedString+DTCoreText.h"; sourceTree = "<group>"; };
+		4F77E8EB14E4BBC7001A69E8 /* NSAttributedString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+HTML.h"; path = "../DTCoreText/Core/Source/NSAttributedString+HTML.h"; sourceTree = "<group>"; };
+		4F77E8EC14E4BBC7001A69E8 /* NSAttributedString+SmallCaps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+SmallCaps.h"; path = "../DTCoreText/Core/Source/NSAttributedString+SmallCaps.h"; sourceTree = "<group>"; };
+		4F77E8ED14E4BBC7001A69E8 /* NSAttributedStringRunDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSAttributedStringRunDelegates.h; path = ../DTCoreText/Core/Source/NSAttributedStringRunDelegates.h; sourceTree = "<group>"; };
+		4F77E8EE14E4BBC7001A69E8 /* NSCharacterSet+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCharacterSet+HTML.h"; path = "../DTCoreText/Core/Source/NSCharacterSet+HTML.h"; sourceTree = "<group>"; };
+		4F77E8EF14E4BBC7001A69E8 /* NSData+DTBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+DTBase64.h"; path = "../DTCoreText/Core/Source/NSData+DTBase64.h"; sourceTree = "<group>"; };
+		4F77E8F014E4BBC7001A69E8 /* NSMutableAttributedString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+HTML.h"; path = "../DTCoreText/Core/Source/NSMutableAttributedString+HTML.h"; sourceTree = "<group>"; };
+		4F77E8F114E4BBC7001A69E8 /* NSMutableString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableString+HTML.h"; path = "../DTCoreText/Core/Source/NSMutableString+HTML.h"; sourceTree = "<group>"; };
+		4F77E8F214E4BBC7001A69E8 /* NSScanner+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSScanner+HTML.h"; path = "../DTCoreText/Core/Source/NSScanner+HTML.h"; sourceTree = "<group>"; };
+		4F77E8F314E4BBC7001A69E8 /* NSString+CSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CSS.h"; path = "../DTCoreText/Core/Source/NSString+CSS.h"; sourceTree = "<group>"; };
+		4F77E8F414E4BBC7001A69E8 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+HTML.h"; path = "../DTCoreText/Core/Source/NSString+HTML.h"; sourceTree = "<group>"; };
+		4F77E8F514E4BBC7001A69E8 /* NSString+Paragraphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Paragraphs.h"; path = "../DTCoreText/Core/Source/NSString+Paragraphs.h"; sourceTree = "<group>"; };
+		4F77E8F614E4BBC7001A69E8 /* NSString+UTF8Cleaner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+UTF8Cleaner.h"; path = "../DTCoreText/Core/Source/NSString+UTF8Cleaner.h"; sourceTree = "<group>"; };
+		4F77E8F714E4BBC7001A69E8 /* NSURL+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+HTML.h"; path = "../DTCoreText/Core/Source/NSURL+HTML.h"; sourceTree = "<group>"; };
+		4F77E8F814E4BBC7001A69E8 /* UIDevice+DTVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+DTVersion.h"; path = "../DTCoreText/Core/Source/UIDevice+DTVersion.h"; sourceTree = "<group>"; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
 		4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNProjectBrowserViewController.xib; sourceTree = "<group>"; };
@@ -110,9 +155,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F77E8D114E4BB80001A69E8 /* libxml2.dylib in Frameworks */,
+				4F77E8CE14E4BB53001A69E8 /* libDTCoreText.a in Frameworks */,
+				4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */,
+				4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */,
 				4F293B7C14CCE88100020A09 /* UIKit.framework in Frameworks */,
 				4F293B7E14CCE88100020A09 /* Foundation.framework in Frameworks */,
-				4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */,
 				4F293B8214CCE88100020A09 /* CoreData.framework in Frameworks */,
 				4F21143614DCF097001EE6C9 /* CoreText.framework in Frameworks */,
 			);
@@ -195,7 +243,6 @@
 		4F293B6C14CCE88100020A09 = {
 			isa = PBXGroup;
 			children = (
-				4F21143514DCF096001EE6C9 /* CoreText.framework */,
 				4F293B8314CCE88100020A09 /* Genesis */,
 				4F293B9F14CCE88100020A09 /* GenesisTests */,
 				4F293B7A14CCE88100020A09 /* Frameworks */,
@@ -215,6 +262,11 @@
 		4F293B7A14CCE88100020A09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F77E8FA14E4BBCD001A69E8 /* DTCoreText */,
+				4F77E8D014E4BB80001A69E8 /* libxml2.dylib */,
+				4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */,
+				4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */,
+				4F21143514DCF096001EE6C9 /* CoreText.framework */,
 				4F293B7B14CCE88100020A09 /* UIKit.framework */,
 				4F293B7D14CCE88100020A09 /* Foundation.framework */,
 				4F293B7F14CCE88100020A09 /* CoreGraphics.framework */,
@@ -291,6 +343,52 @@
 				4F73FA6D14CF293A00976824 /* GNProject.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		4F77E8FA14E4BBCD001A69E8 /* DTCoreText */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E8D214E4BBC7001A69E8 /* CGUtils.h */,
+				4F77E8D314E4BBC7001A69E8 /* DTAttributedTextCell.h */,
+				4F77E8D414E4BBC7001A69E8 /* DTAttributedTextContentView.h */,
+				4F77E8D514E4BBC7001A69E8 /* DTAttributedTextView.h */,
+				4F77E8D614E4BBC7001A69E8 /* DTColor+HTML.h */,
+				4F77E8D714E4BBC7001A69E8 /* DTCoreText.h */,
+				4F77E8D814E4BBC7001A69E8 /* DTCoreTextConstants.h */,
+				4F77E8D914E4BBC7001A69E8 /* DTCoreTextFontCollection.h */,
+				4F77E8DA14E4BBC7001A69E8 /* DTCoreTextFontDescriptor.h */,
+				4F77E8DB14E4BBC7001A69E8 /* DTCoreTextGlyphRun.h */,
+				4F77E8DC14E4BBC7001A69E8 /* DTCoreTextLayouter.h */,
+				4F77E8DD14E4BBC7001A69E8 /* DTCoreTextLayoutFrame.h */,
+				4F77E8DE14E4BBC7001A69E8 /* DTCoreTextLayoutLine.h */,
+				4F77E8DF14E4BBC7001A69E8 /* DTCoreTextParagraphStyle.h */,
+				4F77E8E014E4BBC7001A69E8 /* DTCSSListStyle.h */,
+				4F77E8E114E4BBC7001A69E8 /* DTCSSStylesheet.h */,
+				4F77E8E214E4BBC7001A69E8 /* DTHTMLAttributedStringBuilder.h */,
+				4F77E8E314E4BBC7001A69E8 /* DTHTMLElement.h */,
+				4F77E8E414E4BBC7001A69E8 /* DTHTMLParser.h */,
+				4F77E8E514E4BBC7001A69E8 /* DTImage+HTML.h */,
+				4F77E8E614E4BBC7001A69E8 /* DTLazyImageView.h */,
+				4F77E8E714E4BBC7001A69E8 /* DTLinkButton.h */,
+				4F77E8E814E4BBC7001A69E8 /* DTTextAttachment.h */,
+				4F77E8E914E4BBC7001A69E8 /* DTWebVideoView.h */,
+				4F77E8EA14E4BBC7001A69E8 /* NSAttributedString+DTCoreText.h */,
+				4F77E8EB14E4BBC7001A69E8 /* NSAttributedString+HTML.h */,
+				4F77E8EC14E4BBC7001A69E8 /* NSAttributedString+SmallCaps.h */,
+				4F77E8ED14E4BBC7001A69E8 /* NSAttributedStringRunDelegates.h */,
+				4F77E8EE14E4BBC7001A69E8 /* NSCharacterSet+HTML.h */,
+				4F77E8EF14E4BBC7001A69E8 /* NSData+DTBase64.h */,
+				4F77E8F014E4BBC7001A69E8 /* NSMutableAttributedString+HTML.h */,
+				4F77E8F114E4BBC7001A69E8 /* NSMutableString+HTML.h */,
+				4F77E8F214E4BBC7001A69E8 /* NSScanner+HTML.h */,
+				4F77E8F314E4BBC7001A69E8 /* NSString+CSS.h */,
+				4F77E8F414E4BBC7001A69E8 /* NSString+HTML.h */,
+				4F77E8F514E4BBC7001A69E8 /* NSString+Paragraphs.h */,
+				4F77E8F614E4BBC7001A69E8 /* NSString+UTF8Cleaner.h */,
+				4F77E8F714E4BBC7001A69E8 /* NSURL+HTML.h */,
+				4F77E8F814E4BBC7001A69E8 /* UIDevice+DTVersion.h */,
+			);
+			name = DTCoreText;
 			sourceTree = "<group>";
 		};
 		4FFDA03D14CCEB3C00422FF5 /* Project Browser */ = {
@@ -535,7 +633,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Genesis/Genesis-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Genesis/Genesis-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -546,7 +649,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Genesis/Genesis-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Genesis/Genesis-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
