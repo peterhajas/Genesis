@@ -724,12 +724,6 @@ static CTFontRef defaultFont = nil;
     {
         glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
     }
-        
-    NSLog(@"rect for character at index: %u is (%f,%f) @ %fx%f", index, 
-                                                                 glyphPosition.x,
-                                                                 [self frame].size.height - lineOrigin.y - fontSizeForText,
-                                                                 kGNTextCaretViewWidth,
-                                                                 fontSizeForText);
     
     return CGRectMake(glyphPosition.x,
                       [self frame].size.height - lineOrigin.y - fontSizeForText,
