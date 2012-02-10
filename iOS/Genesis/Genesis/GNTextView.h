@@ -15,11 +15,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GNTextInnerView.h"
+#import "GNSyntaxHighlighter.h"
 
 @interface GNTextView : UIScrollView <GNTextInnerViewContainerProtocol>
 
 {
     GNTextInnerView* innerView;
+    GNSyntaxHighlighter* syntaxHighlighter;
 }
 
 @property(nonatomic,retain) NSString* text;

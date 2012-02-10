@@ -39,6 +39,78 @@
 		4F77E8CE14E4BB53001A69E8 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */; };
 		4F77E8D114E4BB80001A69E8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8D014E4BB80001A69E8 /* libxml2.dylib */; };
 		4F77E90014E4C30D001A69E8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8FF14E4C30D001A69E8 /* ImageIO.framework */; };
+		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
+		4F77E95314E4C5F2001A69E8 /* CHANGES.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90514E4C5F1001A69E8 /* CHANGES.html */; };
+		4F77E95514E4C5F2001A69E8 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90814E4C5F1001A69E8 /* COPYING */; };
+		4F77E95614E4C5F2001A69E8 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90914E4C5F1001A69E8 /* README */; };
+		4F77E95714E4C5F2001A69E8 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90A14E4C5F1001A69E8 /* COPYING */; };
+		4F77E96A14E4C5F2001A69E8 /* prettify.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91F14E4C5F2001A69E8 /* prettify.css */; };
+		4F77E96F14E4C5F2001A69E8 /* extractSourceSpans_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92514E4C5F2001A69E8 /* extractSourceSpans_test.html */; };
+		4F77E97114E4C5F2001A69E8 /* numberLines_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92714E4C5F2001A69E8 /* numberLines_test.html */; };
+		4F77E97414E4C5F2001A69E8 /* recombineTagsAndDecorations_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92A14E4C5F2001A69E8 /* recombineTagsAndDecorations_test.html */; };
+		4F77E97514E4C5F2001A69E8 /* regexpPrecederPatterns.pl in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92B14E4C5F2001A69E8 /* regexpPrecederPatterns.pl */; };
+		4F77E97614E4C5F2001A69E8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E92C14E4C5F2001A69E8 /* Makefile */; };
+		4F77E97714E4C5F2001A69E8 /* README-zh-Hans.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92D14E4C5F2001A69E8 /* README-zh-Hans.html */; };
+		4F77E97814E4C5F2001A69E8 /* README.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92E14E4C5F2001A69E8 /* README.html */; };
+		4F77E98B14E4C5F2001A69E8 /* prettify.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94214E4C5F2001A69E8 /* prettify.css */; };
+		4F77E98D14E4C5F2001A69E8 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94514E4C5F2001A69E8 /* demo.html */; };
+		4F77E98E14E4C5F2001A69E8 /* desert.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94614E4C5F2001A69E8 /* desert.css */; };
+		4F77E98F14E4C5F2001A69E8 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94714E4C5F2001A69E8 /* index.html */; };
+		4F77E99014E4C5F2001A69E8 /* sunburst.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94814E4C5F2001A69E8 /* sunburst.css */; };
+		4F77E99114E4C5F2001A69E8 /* ie-newline-copy-paste.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94A14E4C5F2001A69E8 /* ie-newline-copy-paste.html */; };
+		4F77E99214E4C5F2001A69E8 /* large_input_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94B14E4C5F2001A69E8 /* large_input_test.html */; };
+		4F77E99314E4C5F2001A69E8 /* prettify_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94C14E4C5F2001A69E8 /* prettify_test.html */; };
+		4F77E99414E4C5F2001A69E8 /* prettify_test_2.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94D14E4C5F2001A69E8 /* prettify_test_2.html */; };
+		4F77E99614E4C5F2001A69E8 /* test_styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94F14E4C5F2001A69E8 /* test_styles.css */; };
+		4F77E99714E4C5F2001A69E8 /* LICENSE.TXT in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E95114E4C5F2001A69E8 /* LICENSE.TXT */; };
+		4F77E99814E4C5F2001A69E8 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E95214E4C5F2001A69E8 /* README */; };
+		4F77E99B14E4C696001A69E8 /* base.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E99A14E4C696001A69E8 /* base.html */; };
+		4F77E99C14E4C86D001A69E8 /* console-externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90714E4C5F1001A69E8 /* console-externs.js */; };
+		4F77E99D14E4C86D001A69E8 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90D14E4C5F2001A69E8 /* lang-apollo.js */; };
+		4F77E99E14E4C86D001A69E8 /* lang-clj.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90E14E4C5F2001A69E8 /* lang-clj.js */; };
+		4F77E99F14E4C86D001A69E8 /* lang-css.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90F14E4C5F2001A69E8 /* lang-css.js */; };
+		4F77E9A014E4C86D001A69E8 /* lang-go.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91014E4C5F2001A69E8 /* lang-go.js */; };
+		4F77E9A114E4C86D001A69E8 /* lang-hs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91114E4C5F2001A69E8 /* lang-hs.js */; };
+		4F77E9A214E4C86D001A69E8 /* lang-lisp.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91214E4C5F2001A69E8 /* lang-lisp.js */; };
+		4F77E9A314E4C86D001A69E8 /* lang-lua.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91314E4C5F2001A69E8 /* lang-lua.js */; };
+		4F77E9A414E4C86D001A69E8 /* lang-ml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91414E4C5F2001A69E8 /* lang-ml.js */; };
+		4F77E9A514E4C86D001A69E8 /* lang-n.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91514E4C5F2001A69E8 /* lang-n.js */; };
+		4F77E9A614E4C86D001A69E8 /* lang-proto.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91614E4C5F2001A69E8 /* lang-proto.js */; };
+		4F77E9A714E4C86D001A69E8 /* lang-scala.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91714E4C5F2001A69E8 /* lang-scala.js */; };
+		4F77E9A814E4C86D001A69E8 /* lang-sql.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91814E4C5F2001A69E8 /* lang-sql.js */; };
+		4F77E9A914E4C86D001A69E8 /* lang-tex.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91914E4C5F2001A69E8 /* lang-tex.js */; };
+		4F77E9AA14E4C86D001A69E8 /* lang-vb.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91A14E4C5F2001A69E8 /* lang-vb.js */; };
+		4F77E9AB14E4C86D001A69E8 /* lang-vhdl.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91B14E4C5F2001A69E8 /* lang-vhdl.js */; };
+		4F77E9AC14E4C86D001A69E8 /* lang-wiki.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91C14E4C5F2001A69E8 /* lang-wiki.js */; };
+		4F77E9AD14E4C86D001A69E8 /* lang-xq.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91D14E4C5F2001A69E8 /* lang-xq.js */; };
+		4F77E9AE14E4C86D001A69E8 /* lang-yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E91E14E4C5F2001A69E8 /* lang-yaml.js */; };
+		4F77E9AF14E4C86D001A69E8 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92014E4C5F2001A69E8 /* prettify.js */; };
+		4F77E9B014E4C86D001A69E8 /* combinePrefixPatterns.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92214E4C5F2001A69E8 /* combinePrefixPatterns.js */; };
+		4F77E9B114E4C86D001A69E8 /* externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92314E4C5F2001A69E8 /* externs.js */; };
+		4F77E9B214E4C86D001A69E8 /* extractSourceSpans.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92414E4C5F2001A69E8 /* extractSourceSpans.js */; };
+		4F77E9B314E4C86D001A69E8 /* numberLines.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92614E4C5F2001A69E8 /* numberLines.js */; };
+		4F77E9B414E4C86D001A69E8 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92814E4C5F2001A69E8 /* prettify.js */; };
+		4F77E9B514E4C86D001A69E8 /* recombineTagsAndDecorations.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92914E4C5F2001A69E8 /* recombineTagsAndDecorations.js */; };
+		4F77E9B614E4C86D001A69E8 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93014E4C5F2001A69E8 /* lang-apollo.js */; };
+		4F77E9B714E4C86D001A69E8 /* lang-clj.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93114E4C5F2001A69E8 /* lang-clj.js */; };
+		4F77E9B814E4C86D001A69E8 /* lang-css.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93214E4C5F2001A69E8 /* lang-css.js */; };
+		4F77E9B914E4C86D001A69E8 /* lang-go.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93314E4C5F2001A69E8 /* lang-go.js */; };
+		4F77E9BA14E4C86D001A69E8 /* lang-hs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93414E4C5F2001A69E8 /* lang-hs.js */; };
+		4F77E9BB14E4C86D001A69E8 /* lang-lisp.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93514E4C5F2001A69E8 /* lang-lisp.js */; };
+		4F77E9BC14E4C86D001A69E8 /* lang-lua.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93614E4C5F2001A69E8 /* lang-lua.js */; };
+		4F77E9BD14E4C86D001A69E8 /* lang-ml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93714E4C5F2001A69E8 /* lang-ml.js */; };
+		4F77E9BE14E4C86D001A69E8 /* lang-n.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93814E4C5F2001A69E8 /* lang-n.js */; };
+		4F77E9BF14E4C86D001A69E8 /* lang-proto.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93914E4C5F2001A69E8 /* lang-proto.js */; };
+		4F77E9C014E4C86D001A69E8 /* lang-scala.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93A14E4C5F2001A69E8 /* lang-scala.js */; };
+		4F77E9C114E4C86D001A69E8 /* lang-sql.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93B14E4C5F2001A69E8 /* lang-sql.js */; };
+		4F77E9C214E4C86D001A69E8 /* lang-tex.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93C14E4C5F2001A69E8 /* lang-tex.js */; };
+		4F77E9C314E4C86D001A69E8 /* lang-vb.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93D14E4C5F2001A69E8 /* lang-vb.js */; };
+		4F77E9C414E4C86D001A69E8 /* lang-vhdl.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93E14E4C5F2001A69E8 /* lang-vhdl.js */; };
+		4F77E9C514E4C86D001A69E8 /* lang-wiki.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E93F14E4C5F2001A69E8 /* lang-wiki.js */; };
+		4F77E9C614E4C86D001A69E8 /* lang-xq.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94014E4C5F2001A69E8 /* lang-xq.js */; };
+		4F77E9C714E4C86D001A69E8 /* lang-yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94114E4C5F2001A69E8 /* lang-yaml.js */; };
+		4F77E9C814E4C86D001A69E8 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94314E4C5F2001A69E8 /* prettify.js */; };
+		4F77E9C914E4C86D001A69E8 /* test_base.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94E14E4C5F2001A69E8 /* test_base.js */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
 		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
@@ -103,6 +175,79 @@
 		4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libDTCoreText.a; path = "../DTCoreText/build/Release-iphoneos/libDTCoreText.a"; sourceTree = "<group>"; };
 		4F77E8D014E4BB80001A69E8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		4F77E8FF14E4C30D001A69E8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		4F77E90114E4C500001A69E8 /* GNSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSyntaxHighlighter.h; sourceTree = "<group>"; };
+		4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNSyntaxHighlighter.m; sourceTree = "<group>"; };
+		4F77E90514E4C5F1001A69E8 /* CHANGES.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CHANGES.html; sourceTree = "<group>"; };
+		4F77E90714E4C5F1001A69E8 /* console-externs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "console-externs.js"; sourceTree = "<group>"; };
+		4F77E90814E4C5F1001A69E8 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		4F77E90914E4C5F1001A69E8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		4F77E90A14E4C5F1001A69E8 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		4F77E90D14E4C5F2001A69E8 /* lang-apollo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-apollo.js"; sourceTree = "<group>"; };
+		4F77E90E14E4C5F2001A69E8 /* lang-clj.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-clj.js"; sourceTree = "<group>"; };
+		4F77E90F14E4C5F2001A69E8 /* lang-css.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-css.js"; sourceTree = "<group>"; };
+		4F77E91014E4C5F2001A69E8 /* lang-go.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-go.js"; sourceTree = "<group>"; };
+		4F77E91114E4C5F2001A69E8 /* lang-hs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-hs.js"; sourceTree = "<group>"; };
+		4F77E91214E4C5F2001A69E8 /* lang-lisp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lisp.js"; sourceTree = "<group>"; };
+		4F77E91314E4C5F2001A69E8 /* lang-lua.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lua.js"; sourceTree = "<group>"; };
+		4F77E91414E4C5F2001A69E8 /* lang-ml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-ml.js"; sourceTree = "<group>"; };
+		4F77E91514E4C5F2001A69E8 /* lang-n.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-n.js"; sourceTree = "<group>"; };
+		4F77E91614E4C5F2001A69E8 /* lang-proto.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-proto.js"; sourceTree = "<group>"; };
+		4F77E91714E4C5F2001A69E8 /* lang-scala.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-scala.js"; sourceTree = "<group>"; };
+		4F77E91814E4C5F2001A69E8 /* lang-sql.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-sql.js"; sourceTree = "<group>"; };
+		4F77E91914E4C5F2001A69E8 /* lang-tex.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-tex.js"; sourceTree = "<group>"; };
+		4F77E91A14E4C5F2001A69E8 /* lang-vb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vb.js"; sourceTree = "<group>"; };
+		4F77E91B14E4C5F2001A69E8 /* lang-vhdl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vhdl.js"; sourceTree = "<group>"; };
+		4F77E91C14E4C5F2001A69E8 /* lang-wiki.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-wiki.js"; sourceTree = "<group>"; };
+		4F77E91D14E4C5F2001A69E8 /* lang-xq.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-xq.js"; sourceTree = "<group>"; };
+		4F77E91E14E4C5F2001A69E8 /* lang-yaml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-yaml.js"; sourceTree = "<group>"; };
+		4F77E91F14E4C5F2001A69E8 /* prettify.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = prettify.css; sourceTree = "<group>"; };
+		4F77E92014E4C5F2001A69E8 /* prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prettify.js; sourceTree = "<group>"; };
+		4F77E92214E4C5F2001A69E8 /* combinePrefixPatterns.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = combinePrefixPatterns.js; sourceTree = "<group>"; };
+		4F77E92314E4C5F2001A69E8 /* externs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = externs.js; sourceTree = "<group>"; };
+		4F77E92414E4C5F2001A69E8 /* extractSourceSpans.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = extractSourceSpans.js; sourceTree = "<group>"; };
+		4F77E92514E4C5F2001A69E8 /* extractSourceSpans_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = extractSourceSpans_test.html; sourceTree = "<group>"; };
+		4F77E92614E4C5F2001A69E8 /* numberLines.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = numberLines.js; sourceTree = "<group>"; };
+		4F77E92714E4C5F2001A69E8 /* numberLines_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = numberLines_test.html; sourceTree = "<group>"; };
+		4F77E92814E4C5F2001A69E8 /* prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prettify.js; sourceTree = "<group>"; };
+		4F77E92914E4C5F2001A69E8 /* recombineTagsAndDecorations.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = recombineTagsAndDecorations.js; sourceTree = "<group>"; };
+		4F77E92A14E4C5F2001A69E8 /* recombineTagsAndDecorations_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = recombineTagsAndDecorations_test.html; sourceTree = "<group>"; };
+		4F77E92B14E4C5F2001A69E8 /* regexpPrecederPatterns.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = regexpPrecederPatterns.pl; sourceTree = "<group>"; };
+		4F77E92C14E4C5F2001A69E8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		4F77E92D14E4C5F2001A69E8 /* README-zh-Hans.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "README-zh-Hans.html"; sourceTree = "<group>"; };
+		4F77E92E14E4C5F2001A69E8 /* README.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = README.html; sourceTree = "<group>"; };
+		4F77E93014E4C5F2001A69E8 /* lang-apollo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-apollo.js"; sourceTree = "<group>"; };
+		4F77E93114E4C5F2001A69E8 /* lang-clj.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-clj.js"; sourceTree = "<group>"; };
+		4F77E93214E4C5F2001A69E8 /* lang-css.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-css.js"; sourceTree = "<group>"; };
+		4F77E93314E4C5F2001A69E8 /* lang-go.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-go.js"; sourceTree = "<group>"; };
+		4F77E93414E4C5F2001A69E8 /* lang-hs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-hs.js"; sourceTree = "<group>"; };
+		4F77E93514E4C5F2001A69E8 /* lang-lisp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lisp.js"; sourceTree = "<group>"; };
+		4F77E93614E4C5F2001A69E8 /* lang-lua.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lua.js"; sourceTree = "<group>"; };
+		4F77E93714E4C5F2001A69E8 /* lang-ml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-ml.js"; sourceTree = "<group>"; };
+		4F77E93814E4C5F2001A69E8 /* lang-n.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-n.js"; sourceTree = "<group>"; };
+		4F77E93914E4C5F2001A69E8 /* lang-proto.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-proto.js"; sourceTree = "<group>"; };
+		4F77E93A14E4C5F2001A69E8 /* lang-scala.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-scala.js"; sourceTree = "<group>"; };
+		4F77E93B14E4C5F2001A69E8 /* lang-sql.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-sql.js"; sourceTree = "<group>"; };
+		4F77E93C14E4C5F2001A69E8 /* lang-tex.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-tex.js"; sourceTree = "<group>"; };
+		4F77E93D14E4C5F2001A69E8 /* lang-vb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vb.js"; sourceTree = "<group>"; };
+		4F77E93E14E4C5F2001A69E8 /* lang-vhdl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vhdl.js"; sourceTree = "<group>"; };
+		4F77E93F14E4C5F2001A69E8 /* lang-wiki.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-wiki.js"; sourceTree = "<group>"; };
+		4F77E94014E4C5F2001A69E8 /* lang-xq.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-xq.js"; sourceTree = "<group>"; };
+		4F77E94114E4C5F2001A69E8 /* lang-yaml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-yaml.js"; sourceTree = "<group>"; };
+		4F77E94214E4C5F2001A69E8 /* prettify.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = prettify.css; sourceTree = "<group>"; };
+		4F77E94314E4C5F2001A69E8 /* prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prettify.js; sourceTree = "<group>"; };
+		4F77E94514E4C5F2001A69E8 /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
+		4F77E94614E4C5F2001A69E8 /* desert.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = desert.css; sourceTree = "<group>"; };
+		4F77E94714E4C5F2001A69E8 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		4F77E94814E4C5F2001A69E8 /* sunburst.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = sunburst.css; sourceTree = "<group>"; };
+		4F77E94A14E4C5F2001A69E8 /* ie-newline-copy-paste.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "ie-newline-copy-paste.html"; sourceTree = "<group>"; };
+		4F77E94B14E4C5F2001A69E8 /* large_input_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = large_input_test.html; sourceTree = "<group>"; };
+		4F77E94C14E4C5F2001A69E8 /* prettify_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = prettify_test.html; sourceTree = "<group>"; };
+		4F77E94D14E4C5F2001A69E8 /* prettify_test_2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = prettify_test_2.html; sourceTree = "<group>"; };
+		4F77E94E14E4C5F2001A69E8 /* test_base.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test_base.js; sourceTree = "<group>"; };
+		4F77E94F14E4C5F2001A69E8 /* test_styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = test_styles.css; sourceTree = "<group>"; };
+		4F77E95114E4C5F2001A69E8 /* LICENSE.TXT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.TXT; sourceTree = "<group>"; };
+		4F77E95214E4C5F2001A69E8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		4F77E99A14E4C696001A69E8 /* base.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = base.html; sourceTree = "<group>"; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
 		4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNProjectBrowserViewController.xib; sourceTree = "<group>"; };
@@ -200,6 +345,7 @@
 				4F1F04A414E1B37E008619C0 /* Text Container View */,
 				4F1F04A514E1B3A8008619C0 /* Text Rendering / UITextInput */,
 				4F1F04A614E1B3B9008619C0 /* Text Geometry */,
+				4F77E90414E4C503001A69E8 /* Syntax Highlighting */,
 			);
 			name = "Text Editing";
 			sourceTree = "<group>";
@@ -258,6 +404,7 @@
 		4F293B8414CCE88100020A09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4F77E99914E4C5F8001A69E8 /* google-code-prettify */,
 				4F293B8514CCE88100020A09 /* Genesis-Info.plist */,
 				4F293B8614CCE88100020A09 /* InfoPlist.strings */,
 				4F293B8914CCE88100020A09 /* main.m */,
@@ -307,6 +454,157 @@
 				4F73FA6D14CF293A00976824 /* GNProject.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		4F77E90414E4C503001A69E8 /* Syntax Highlighting */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E90114E4C500001A69E8 /* GNSyntaxHighlighter.h */,
+				4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */,
+				4F77E99A14E4C696001A69E8 /* base.html */,
+			);
+			name = "Syntax Highlighting";
+			sourceTree = "<group>";
+		};
+		4F77E90614E4C5F1001A69E8 /* closure-compiler */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E90714E4C5F1001A69E8 /* console-externs.js */,
+				4F77E90814E4C5F1001A69E8 /* COPYING */,
+				4F77E90914E4C5F1001A69E8 /* README */,
+			);
+			path = "closure-compiler";
+			sourceTree = "<group>";
+		};
+		4F77E90B14E4C5F1001A69E8 /* distrib */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E90C14E4C5F2001A69E8 /* google-code-prettify */,
+			);
+			path = distrib;
+			sourceTree = "<group>";
+		};
+		4F77E90C14E4C5F2001A69E8 /* google-code-prettify */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E90D14E4C5F2001A69E8 /* lang-apollo.js */,
+				4F77E90E14E4C5F2001A69E8 /* lang-clj.js */,
+				4F77E90F14E4C5F2001A69E8 /* lang-css.js */,
+				4F77E91014E4C5F2001A69E8 /* lang-go.js */,
+				4F77E91114E4C5F2001A69E8 /* lang-hs.js */,
+				4F77E91214E4C5F2001A69E8 /* lang-lisp.js */,
+				4F77E91314E4C5F2001A69E8 /* lang-lua.js */,
+				4F77E91414E4C5F2001A69E8 /* lang-ml.js */,
+				4F77E91514E4C5F2001A69E8 /* lang-n.js */,
+				4F77E91614E4C5F2001A69E8 /* lang-proto.js */,
+				4F77E91714E4C5F2001A69E8 /* lang-scala.js */,
+				4F77E91814E4C5F2001A69E8 /* lang-sql.js */,
+				4F77E91914E4C5F2001A69E8 /* lang-tex.js */,
+				4F77E91A14E4C5F2001A69E8 /* lang-vb.js */,
+				4F77E91B14E4C5F2001A69E8 /* lang-vhdl.js */,
+				4F77E91C14E4C5F2001A69E8 /* lang-wiki.js */,
+				4F77E91D14E4C5F2001A69E8 /* lang-xq.js */,
+				4F77E91E14E4C5F2001A69E8 /* lang-yaml.js */,
+				4F77E91F14E4C5F2001A69E8 /* prettify.css */,
+				4F77E92014E4C5F2001A69E8 /* prettify.js */,
+			);
+			path = "google-code-prettify";
+			sourceTree = "<group>";
+		};
+		4F77E92114E4C5F2001A69E8 /* js-modules */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E92214E4C5F2001A69E8 /* combinePrefixPatterns.js */,
+				4F77E92314E4C5F2001A69E8 /* externs.js */,
+				4F77E92414E4C5F2001A69E8 /* extractSourceSpans.js */,
+				4F77E92514E4C5F2001A69E8 /* extractSourceSpans_test.html */,
+				4F77E92614E4C5F2001A69E8 /* numberLines.js */,
+				4F77E92714E4C5F2001A69E8 /* numberLines_test.html */,
+				4F77E92814E4C5F2001A69E8 /* prettify.js */,
+				4F77E92914E4C5F2001A69E8 /* recombineTagsAndDecorations.js */,
+				4F77E92A14E4C5F2001A69E8 /* recombineTagsAndDecorations_test.html */,
+				4F77E92B14E4C5F2001A69E8 /* regexpPrecederPatterns.pl */,
+			);
+			path = "js-modules";
+			sourceTree = "<group>";
+		};
+		4F77E92F14E4C5F2001A69E8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E93014E4C5F2001A69E8 /* lang-apollo.js */,
+				4F77E93114E4C5F2001A69E8 /* lang-clj.js */,
+				4F77E93214E4C5F2001A69E8 /* lang-css.js */,
+				4F77E93314E4C5F2001A69E8 /* lang-go.js */,
+				4F77E93414E4C5F2001A69E8 /* lang-hs.js */,
+				4F77E93514E4C5F2001A69E8 /* lang-lisp.js */,
+				4F77E93614E4C5F2001A69E8 /* lang-lua.js */,
+				4F77E93714E4C5F2001A69E8 /* lang-ml.js */,
+				4F77E93814E4C5F2001A69E8 /* lang-n.js */,
+				4F77E93914E4C5F2001A69E8 /* lang-proto.js */,
+				4F77E93A14E4C5F2001A69E8 /* lang-scala.js */,
+				4F77E93B14E4C5F2001A69E8 /* lang-sql.js */,
+				4F77E93C14E4C5F2001A69E8 /* lang-tex.js */,
+				4F77E93D14E4C5F2001A69E8 /* lang-vb.js */,
+				4F77E93E14E4C5F2001A69E8 /* lang-vhdl.js */,
+				4F77E93F14E4C5F2001A69E8 /* lang-wiki.js */,
+				4F77E94014E4C5F2001A69E8 /* lang-xq.js */,
+				4F77E94114E4C5F2001A69E8 /* lang-yaml.js */,
+				4F77E94214E4C5F2001A69E8 /* prettify.css */,
+				4F77E94314E4C5F2001A69E8 /* prettify.js */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		4F77E94414E4C5F2001A69E8 /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E94514E4C5F2001A69E8 /* demo.html */,
+				4F77E94614E4C5F2001A69E8 /* desert.css */,
+				4F77E94714E4C5F2001A69E8 /* index.html */,
+				4F77E94814E4C5F2001A69E8 /* sunburst.css */,
+			);
+			path = styles;
+			sourceTree = "<group>";
+		};
+		4F77E94914E4C5F2001A69E8 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E94A14E4C5F2001A69E8 /* ie-newline-copy-paste.html */,
+				4F77E94B14E4C5F2001A69E8 /* large_input_test.html */,
+				4F77E94C14E4C5F2001A69E8 /* prettify_test.html */,
+				4F77E94D14E4C5F2001A69E8 /* prettify_test_2.html */,
+				4F77E94E14E4C5F2001A69E8 /* test_base.js */,
+				4F77E94F14E4C5F2001A69E8 /* test_styles.css */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		4F77E95014E4C5F2001A69E8 /* yui-compressor */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E95114E4C5F2001A69E8 /* LICENSE.TXT */,
+				4F77E95214E4C5F2001A69E8 /* README */,
+			);
+			path = "yui-compressor";
+			sourceTree = "<group>";
+		};
+		4F77E99914E4C5F8001A69E8 /* google-code-prettify */ = {
+			isa = PBXGroup;
+			children = (
+				4F77E90514E4C5F1001A69E8 /* CHANGES.html */,
+				4F77E90614E4C5F1001A69E8 /* closure-compiler */,
+				4F77E90A14E4C5F1001A69E8 /* COPYING */,
+				4F77E90B14E4C5F1001A69E8 /* distrib */,
+				4F77E92114E4C5F2001A69E8 /* js-modules */,
+				4F77E92C14E4C5F2001A69E8 /* Makefile */,
+				4F77E92D14E4C5F2001A69E8 /* README-zh-Hans.html */,
+				4F77E92E14E4C5F2001A69E8 /* README.html */,
+				4F77E92F14E4C5F2001A69E8 /* src */,
+				4F77E94414E4C5F2001A69E8 /* styles */,
+				4F77E94914E4C5F2001A69E8 /* tests */,
+				4F77E95014E4C5F2001A69E8 /* yui-compressor */,
+			);
+			name = "google-code-prettify";
 			sourceTree = "<group>";
 		};
 		4FFDA03D14CCEB3C00422FF5 /* Project Browser */ = {
@@ -402,12 +700,82 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F77E99C14E4C86D001A69E8 /* console-externs.js in Resources */,
+				4F77E99D14E4C86D001A69E8 /* lang-apollo.js in Resources */,
+				4F77E99E14E4C86D001A69E8 /* lang-clj.js in Resources */,
+				4F77E99F14E4C86D001A69E8 /* lang-css.js in Resources */,
+				4F77E9A014E4C86D001A69E8 /* lang-go.js in Resources */,
+				4F77E9A114E4C86D001A69E8 /* lang-hs.js in Resources */,
+				4F77E9A214E4C86D001A69E8 /* lang-lisp.js in Resources */,
+				4F77E9A314E4C86D001A69E8 /* lang-lua.js in Resources */,
+				4F77E9A414E4C86D001A69E8 /* lang-ml.js in Resources */,
+				4F77E9A514E4C86D001A69E8 /* lang-n.js in Resources */,
+				4F77E9A614E4C86D001A69E8 /* lang-proto.js in Resources */,
+				4F77E9A714E4C86D001A69E8 /* lang-scala.js in Resources */,
+				4F77E9A814E4C86D001A69E8 /* lang-sql.js in Resources */,
+				4F77E9A914E4C86D001A69E8 /* lang-tex.js in Resources */,
+				4F77E9AA14E4C86D001A69E8 /* lang-vb.js in Resources */,
+				4F77E9AB14E4C86D001A69E8 /* lang-vhdl.js in Resources */,
+				4F77E9AC14E4C86D001A69E8 /* lang-wiki.js in Resources */,
+				4F77E9AD14E4C86D001A69E8 /* lang-xq.js in Resources */,
+				4F77E9AE14E4C86D001A69E8 /* lang-yaml.js in Resources */,
+				4F77E9AF14E4C86D001A69E8 /* prettify.js in Resources */,
+				4F77E9B014E4C86D001A69E8 /* combinePrefixPatterns.js in Resources */,
+				4F77E9B114E4C86D001A69E8 /* externs.js in Resources */,
+				4F77E9B214E4C86D001A69E8 /* extractSourceSpans.js in Resources */,
+				4F77E9B314E4C86D001A69E8 /* numberLines.js in Resources */,
+				4F77E9B414E4C86D001A69E8 /* prettify.js in Resources */,
+				4F77E9B514E4C86D001A69E8 /* recombineTagsAndDecorations.js in Resources */,
+				4F77E9B614E4C86D001A69E8 /* lang-apollo.js in Resources */,
+				4F77E9B714E4C86D001A69E8 /* lang-clj.js in Resources */,
+				4F77E9B814E4C86D001A69E8 /* lang-css.js in Resources */,
+				4F77E9B914E4C86D001A69E8 /* lang-go.js in Resources */,
+				4F77E9BA14E4C86D001A69E8 /* lang-hs.js in Resources */,
+				4F77E9BB14E4C86D001A69E8 /* lang-lisp.js in Resources */,
+				4F77E9BC14E4C86D001A69E8 /* lang-lua.js in Resources */,
+				4F77E9BD14E4C86D001A69E8 /* lang-ml.js in Resources */,
+				4F77E9BE14E4C86D001A69E8 /* lang-n.js in Resources */,
+				4F77E9BF14E4C86D001A69E8 /* lang-proto.js in Resources */,
+				4F77E9C014E4C86D001A69E8 /* lang-scala.js in Resources */,
+				4F77E9C114E4C86D001A69E8 /* lang-sql.js in Resources */,
+				4F77E9C214E4C86D001A69E8 /* lang-tex.js in Resources */,
+				4F77E9C314E4C86D001A69E8 /* lang-vb.js in Resources */,
+				4F77E9C414E4C86D001A69E8 /* lang-vhdl.js in Resources */,
+				4F77E9C514E4C86D001A69E8 /* lang-wiki.js in Resources */,
+				4F77E9C614E4C86D001A69E8 /* lang-xq.js in Resources */,
+				4F77E9C714E4C86D001A69E8 /* lang-yaml.js in Resources */,
+				4F77E9C814E4C86D001A69E8 /* prettify.js in Resources */,
+				4F77E9C914E4C86D001A69E8 /* test_base.js in Resources */,
 				4F293B8814CCE88100020A09 /* InfoPlist.strings in Resources */,
 				4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */,
 				4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */,
 				4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */,
 				4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */,
 				4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */,
+				4F77E95314E4C5F2001A69E8 /* CHANGES.html in Resources */,
+				4F77E95514E4C5F2001A69E8 /* COPYING in Resources */,
+				4F77E95614E4C5F2001A69E8 /* README in Resources */,
+				4F77E95714E4C5F2001A69E8 /* COPYING in Resources */,
+				4F77E96A14E4C5F2001A69E8 /* prettify.css in Resources */,
+				4F77E96F14E4C5F2001A69E8 /* extractSourceSpans_test.html in Resources */,
+				4F77E97114E4C5F2001A69E8 /* numberLines_test.html in Resources */,
+				4F77E97414E4C5F2001A69E8 /* recombineTagsAndDecorations_test.html in Resources */,
+				4F77E97514E4C5F2001A69E8 /* regexpPrecederPatterns.pl in Resources */,
+				4F77E97714E4C5F2001A69E8 /* README-zh-Hans.html in Resources */,
+				4F77E97814E4C5F2001A69E8 /* README.html in Resources */,
+				4F77E98B14E4C5F2001A69E8 /* prettify.css in Resources */,
+				4F77E98D14E4C5F2001A69E8 /* demo.html in Resources */,
+				4F77E98E14E4C5F2001A69E8 /* desert.css in Resources */,
+				4F77E98F14E4C5F2001A69E8 /* index.html in Resources */,
+				4F77E99014E4C5F2001A69E8 /* sunburst.css in Resources */,
+				4F77E99114E4C5F2001A69E8 /* ie-newline-copy-paste.html in Resources */,
+				4F77E99214E4C5F2001A69E8 /* large_input_test.html in Resources */,
+				4F77E99314E4C5F2001A69E8 /* prettify_test.html in Resources */,
+				4F77E99414E4C5F2001A69E8 /* prettify_test_2.html in Resources */,
+				4F77E99614E4C5F2001A69E8 /* test_styles.css in Resources */,
+				4F77E99714E4C5F2001A69E8 /* LICENSE.TXT in Resources */,
+				4F77E99814E4C5F2001A69E8 /* README in Resources */,
+				4F77E99B14E4C696001A69E8 /* base.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +826,8 @@
 				4F1F04A014E1B128008619C0 /* GNTextInnerView.m in Sources */,
 				4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */,
 				4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */,
+				4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */,
+				4F77E97614E4C5F2001A69E8 /* Makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
