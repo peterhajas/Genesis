@@ -688,8 +688,31 @@ static CTFontRef defaultFont = nil;
     
     CGPoint glyphPosition;
     
+    // Get the origin of lineAtCaret
+    
+    CGPoint* lineOriginsForFrame;
+    
+    lineOriginsForFrame = calloc(CFArrayGetCount(lines), sizeof(CGPoint));
+    
+    CTFrameGetLineOrigins(frame, CFRangeMake(0,0), lineOriginsForFrame);
+    
+    CGPoint lineOrigin;
+    
+    lineOrigin = lineOriginsForFrame[indexLine];
+    
+    free(lineOriginsForFrame);
+    
     if(caretRunStringRange.location + caretRunStringRange.length == [shownText length])
     {
+        // If they've just typed a newline, move them to the next line
+        if((char)[shownText characterAtIndex:index-1] == '\n')
+        {
+            return CGRectMake(0,
+                              [self frame].size.height - lineOrigin.y,
+                              kGNTextCaretViewWidth,
+                              fontSizeForText);
+            
+        }
         glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph-1];
         if([shownText length] > 0)
         {
@@ -701,21 +724,7 @@ static CTFontRef defaultFont = nil;
     {
         glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
     }
-    
-    // Get the origin of lineAtCaret
-    
-    CGPoint* lineOriginsForFrame;
-    
-    lineOriginsForFrame = calloc(CFArrayGetCount(lines), sizeof(CGPoint));
         
-    CTFrameGetLineOrigins(frame, CFRangeMake(0,0), lineOriginsForFrame);
-    
-    CGPoint lineOrigin;
-    
-    lineOrigin = lineOriginsForFrame[indexLine];
-    
-    free(lineOriginsForFrame);
-    
     NSLog(@"rect for character at index: %u is (%f,%f) @ %fx%f", index, 
                                                                  glyphPosition.x,
                                                                  [self frame].size.height - lineOrigin.y - fontSizeForText,
