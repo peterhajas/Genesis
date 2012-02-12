@@ -7,7 +7,7 @@ from tornado import iostream, gen
 
 from genesis.networking import Server, Communication
 from genesis.serializers import BackendProtocol, NetworkSerializer
-from genesis.data import NetOp, ErrorCodes
+from genesis.data import NetOp, ErrorCodes, Account
 
 
 class ClientHandler(Communication):
@@ -19,6 +19,7 @@ class ClientHandler(Communication):
         self.stream = stream
         self.address = address
         self.tracker = tracker
+        self.account = None
 
     @property
     def id(self):
@@ -49,27 +50,29 @@ class ClientHandler(Communication):
             self.io_loop.remove_handler(self.stream.socket.fileno())
         self.stream.close()
 
+    @gen.engine
     def handle_register(self, request):
         "Register a new user account fo this client."
         # TODO: use real db?
         if request['user'] == 'jeff' and request['pwd'] == 'pass':
             pass
 
+    @gen.engine
     def handle_login(self, request):
         "Log this client in."
+        self.account = Account(request['user'], request['pwd'])
         # TODO: use real db?
-        if request['user'] == 'jeff' and request['pwd'] == 'pass':
+        if self.account == Account.create('jeff', 'password'):
             # TODO: verify machine & type values
             self.machine, self.type = request['machine'], request['type']
             self.namespace = request['user']
             print self.address_str(), "=>", self.id
             self.tracker.assign_namespace(self)
-            self.send(self.stream, NetOp('OK').to_network(), callback=None)
+            msg = NetOp('OK')
+            yield gen.Task(self.send, self.stream, msg.to_network())
+            print self.id, '<-', msg
             # add handler overwrites existing handlers
-            self.io_loop.add_handler(
-                    self.stream.socket.fileno(),
-                    self.process_request,
-                    IOLoop.READ)
+            self.allow_requests()
         else:
             self.fail(code=ErrorCodes.BAD_AUTH, close_stream=False)
 
@@ -85,12 +88,24 @@ class ClientHandler(Communication):
         if request.name == 'REGISTER':
             self.handle_register(request)
         elif request.name == 'LOGIN':
+            print "LOGIN"
             self.handle_login(request)
         else:
             self.fail(code=ErrorCodes.BAD_REQUEST)
 
+    def allow_requests(self):
+        self.io_loop.add_handler(
+                self.stream.socket.fileno(),
+                self.process_request,
+                IOLoop.READ)
+
+
+    def disallow_requests(self):
+        self.io_loop.remove_handler(self.stream.socket.fileno())
+
     @gen.engine
     def process_request(self, fd, events):
+        print 'incoming request from', self.id
         request = yield gen.Task(self.recv, self.stream)
         print self.id, '->', request
         method = getattr(self, 'do_' + request.name, None)
@@ -109,15 +124,24 @@ class ClientHandler(Communication):
     @gen.engine
     def do_SEND(self, request):
         # TODO: reject if from_machine or command is malformed
-        target = self.tracker.get_client_in_namespace(self.namespace, self.machine)
+        target = self.tracker.get_client_in_namespace(self.namespace, request['machine'])
         msg = NetOp.create(request['command'])
         msg['from'] = self.machine
-        print target.id, '<-', msg
-        response = yield gen.Task(target.request, target.stream, msg.to_network())
-        print target.id, '->', response
+        print target.id, '<-', msg, '[forwarding]'
+        response = yield gen.Task(target.foreign_request, target.stream, msg.to_network())
+        print '[forwarding]', target.id, '->', response
         response['from'] = target.machine
-        print self.id, '<-', response
+        print self.id, '<-', response, '[forwarding]'
         yield gen.Task(self.send, self.stream, response.to_network())
+
+    def foreign_request(self, stream, msg, callback=None):
+        def _callback(*args, **kwargs):
+            print 'hi'
+            self.allow_requests()
+            callback(*args, **kwargs)
+        self.disallow_requests()
+        print 'lol'
+        self.request(stream, msg, _callback)
 
 
 class ClientsTracker(object):
@@ -165,7 +189,7 @@ class ClientsTracker(object):
         self.namespaces[client.namespace][client.machine] = client
 
     def unassign_namespace(self, client):
-        if self.has_namespace(client.namespace): return
+        if not self.has_namespace(client.namespace): return
         if client.machine not in self.namespaces[client.namespace]: return
         if client != self.namespaces[client.namespace][client.machine]: return
         del self.namespaces[client.namespace][client.machine]
@@ -180,6 +204,9 @@ class Mediator(Communication):
 
     def on_close(self, address):
         self.tracker.remove_by_addr(address)
+
+    def send_version(self, stream, callback):
+        stream.write(self.serializer.offer_handshake(), callback)
 
     @gen.engine
     def handle_stream(self, stream, address, server):

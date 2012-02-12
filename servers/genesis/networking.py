@@ -25,9 +25,10 @@ class Client(object):
         self.kind = kind
         self.sock = None
         self.stream = None
+        self.io_loop = None
 
     def create(self, callback=None, ioloop=None):
-        ioloop = ioloop or IOLoop.instance()
+        self.io_loop = ioloop = ioloop or IOLoop.instance()
         self.sock, self.stream = self._create_socket_and_stream()
 
         callback_partial = None
@@ -136,9 +137,10 @@ class Server(object):
 
 
 class Communication(object):
-    def __init__(self, serializer, autoconvert=True):
+    def __init__(self, serializer, autoconvert=True, drop_bad_messages=True):
         self.serializer = serializer
         self.autoconvert = autoconvert
+        self.ignore_invalid_messages = drop_bad_messages
 
     def send(self, stream, data, callback):
         "Sends the given message"
@@ -147,7 +149,11 @@ class Communication(object):
 
     def _to_netop(self, callback):
         def handler(raw_msg):
-            callback(NetOp.create(raw_msg))
+            op = NetOp.create(raw_msg)
+            if op or not self.ignore_invalid_messages:
+                callback(op)
+            else:
+                "Invalid message:", repr(raw_msg)
         return handler
 
     def recv(self, stream, callback):
@@ -160,7 +166,9 @@ class Communication(object):
     def request(self, stream, data, callback):
         "Sends a message and expects a response."
         def recieve():
+            print 'recv'
             self.recv(stream, callback)
+        print 'send'
         self.send(stream, data, recieve)
 
 

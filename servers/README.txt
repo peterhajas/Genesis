@@ -25,12 +25,13 @@ Version
 When connecting to the socket server, the first number returned is always the
 version:
 
-    <version>_
+    <version>
 
-Where version is an integer as a string and the underscore represents a space.
+Where version is an unsigned 32-bit integer.
 
 It is the client's job to check if it supports the given version and close if
-the version is invalid.
+the version is invalid. The mediator and other clients may return errors back
+to the client with an invalid version.
 
 Message
 -------
@@ -39,7 +40,7 @@ Each message is in the form:
 
     <len> <data>
 
-Where len is the number of bytes of data, represented as a string. Data is 
+Where len is the number of bytes of data, represented as an uint64. Data is 
 GZipped JSON data. Messages are in the JSON format of:
 
     [name, properties]
@@ -52,30 +53,33 @@ Commands
 Commands Supported by Build Server
 ----------------------------------
 
-* PROJECTS(from_machine) - Lists all available projects on the system.
+* PROJECTS() - Lists all available projects on the system.
 ** ["OK", {"projects": [{"name": "MyProject"}]}]
 ** ["FAIL", {"reason": "...", "code": 1] where error codes:
 *** 0 - Internal Server Error
 *** 1 - Bad Request
 
-* FILES(from_machine, project) - Lists all files & metadata for the project
-** ["OK", {"projects": [{"name": "MyProject"}]}]
+* FILES(project) - Lists all files & metadata for the project
+** ["OK", {"files": [{"myfile.py": {"size": 123, "kind": "code"}]}]
 ** ["FAIL", {"reason": "...", "code": 1] where error codes:
 *** 0 - Internal Server Error
 *** 1 - Bad Request
 
-* DOWNLOAD(from_machine, project, filepath) - Downloads the given files
+* DOWNLOAD(project, filepath) - Downloads the given file
 * STATS() - Gives current stats of the build server. Currently only supports
     one property right now:
 ** activity - Indicates the task being performed. Dictionary of project => name,
         where name is the value given in PERFORM or just 'GIT*' if running a
         GIT command.
-* PERFORM(from_machine, project, name) - Perform action on project. Usually is
+
+* PERFORM(stream_to, project, name) - Perform action on project. Usually is
     BUILD, RUN, and TEST. Name can only be alphanumeric.
+    stream_to should be a machine to stream stdout and stderr data to.
+
 * UPLOAD(from_machine, project, rel_filepath, data) - Uploads file to build server
 * GIT(from_machine, command?) - Runs a git command ? (TODO: be more specific)
 * CANCEL(from_machine, project) - Cancels operation from last command
-* INPUT(from_machine, input_string) - Sends std
+* INPUT(from_machine, project, input_string) - Sends std
 
 Commands Supported by Mediator
 ------------------------------

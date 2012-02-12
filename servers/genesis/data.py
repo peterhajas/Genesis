@@ -1,4 +1,5 @@
 import os
+import hashlib
 
 
 class Action(object):
@@ -42,6 +43,27 @@ class ErrorCodes(object):
     INVALID_TYPE = 103
 
 
+class Account(object):
+    "Represents a username and hashed password."
+    HASH = hashlib.sha512
+    def __init__(self, username, password_hash):
+        self.username = username
+        self.password_hash = password_hash
+
+    @classmethod
+    def create(cls, username, password):
+        "Creates an instance with a raw password, hashing it in the process."
+        hasher = cls.HASH()
+        hasher.update(password)
+        return cls(username, hasher.hexdigest())
+
+    def __hash__(self):
+        return hash(self.username) ^ (self.password_hash)
+
+    def __eq__(self, account):
+        return (self.username, self.password_hash) == (
+                account.username, account.password_hash)
+
 
 class NetOp(object):
     "Generate request or response used by either mediator or builder."
@@ -66,6 +88,7 @@ class NetOp(object):
         "Creates an instance of NetOp from a tuple or array. Returns None on failure."
         try:
             name, kwargs = obj
+            assert isinstance(name, str) or isinstance(name, unicode)
             return cls(name, **kwargs)
         except:
             return None
