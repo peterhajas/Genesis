@@ -65,7 +65,7 @@ class Account(object):
                 account.username, account.password_hash)
 
 
-class NetOp(object):
+class Message(object):
     "Generate request or response used by either mediator or builder."
     def __init__(self, name,  **kwargs):
         self.name = name

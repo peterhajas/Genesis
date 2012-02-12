@@ -6,15 +6,8 @@ from functools import partial
 from tornado.ioloop import IOLoop
 from tornado import iostream, gen
 
-from genesis.data import NetOp
-
-
-def with_args(callback, *args, **kwargs):
-    def handler(*a, **k):
-        a += args
-        kwargs.update(k)
-        callback(*a, **kwargs)
-    return handler
+from genesis.data import Message
+from genesis.serializers import ProtocolSerializer, NetworkSerializer
 
 
 class Client(object):
@@ -136,39 +129,79 @@ class Server(object):
         return sock
 
 
-class Communication(object):
-    def __init__(self, serializer, autoconvert=True, drop_bad_messages=True):
-        self.serializer = serializer
-        self.autoconvert = autoconvert
-        self.ignore_invalid_messages = drop_bad_messages
+class MessageStream(object):
+    def __init__(self, iostrm, serializer=None, io_loop=None):
+        self.stream = iostrm
+        self.serializer = serializer or ProtocolSerializer(NetworkSerializer())
+        self.bad_message = None
+        self.io_loop = io_loop or IOLoop.instance()
 
-    def send(self, stream, data, callback):
-        "Sends the given message"
-        data = self.serializer.serialize(data)
-        stream.write(data, callback)
+    def iostream(self):
+        return self.stream
 
-    def _to_netop(self, callback):
+    def __repr__(self):
+        return "<%s(%r, %r, %r)>" % (
+            self.__class__.__name__,
+            self.stream, self.serializer, self.io_loop
+        )
+
+    def write(self, message, callback=None):
+        data = self.serializer.serialize(message)
+        self.stream.write(data, callback=callback)
+
+    def read(self, callback=None):
+        self.serializer.deserialize(
+                self.stream, callback=self.__to_message(callback))
+
+    def reading(self):
+        return self.stream.reading()
+
+    def writing(self):
+        return self.stream.writing()
+
+    def write_and_read(self, data, callback=None):
+        "Sends a message and expects a response."
+        def recieve():
+            self.read(callback=callback)
+        self.write(data, callback=recieve)
+
+    def close(self):
+        if not self.stream.closed():
+            self.stream.close()
+
+    def closed(self):
+        return self.stream.closed()
+
+    def remove_callbacks(self):
+        if not self.stream.closed():
+            self.io_loop.remove_handler(self.stream.socket.fileno())
+
+    def set_read_callback(self, callback):
+        if callable(callback):
+            _callback = lambda fd, e: callback(self)
+        else:
+            _callback = lambda fd, e: None
+        self.io_loop.add_handler(
+                self.stream.socket.fileno(), _callback, IOLoop.READ)
+
+    def set_write_callback(self, callback):
+        if callable(callback):
+            _callback = lambda fd, e: callback(self)
+        else:
+            _callback = lambda fd, e: None
+        self.io_loop.add_handler(
+                self.stream.socket.fileno(), _callback, IOLoop.WRITE)
+
+    def __to_message(self, callback):
         def handler(raw_msg):
-            op = NetOp.create(raw_msg)
+            op = Message.create(raw_msg)
             if op or not self.ignore_invalid_messages:
                 callback(op)
             else:
-                "Invalid message:", repr(raw_msg)
+                if callable(self.bad_message):
+                    self.bad_message(raw_msg)
+                else:
+                    print "Bad Message", repr(raw_msg)
         return handler
-
-    def recv(self, stream, callback):
-        "Receives a given message."
-        if self.autoconvert:
-            self.serializer.deserialize(stream, self._to_netop(callback))
-        else:
-            self.serializer.deserialize(stream, callback)
-
-    def request(self, stream, data, callback):
-        "Sends a message and expects a response."
-        def recieve():
-            print 'recv'
-            self.recv(stream, callback)
-        print 'send'
-        self.send(stream, data, recieve)
 
 

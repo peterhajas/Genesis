@@ -7,7 +7,7 @@ import zlib
 import json
 import struct
 
-from genesis.networking import with_args
+from genesis.utils import with_args
 
 
 class NetworkSerializer(object):
@@ -16,8 +16,14 @@ class NetworkSerializer(object):
         self.encoder = encoder or json.JSONEncoder()
         self.compress_level = compress_level
 
+    def serialize_obj(self, obj):
+        method = getattr(obj, 'to_network', None)
+        if callable(method):
+            return method()
+        return obj
+
     def serialize(self, obj):
-        data = self.encoder.encode(obj)
+        data = self.encoder.encode(self.serialize_obj(obj))
         return zlib.compress(data, self.compress_level)
 
     def deserialize(self, data):
@@ -25,7 +31,7 @@ class NetworkSerializer(object):
         return json.loads(data)
 
 
-class BackendProtocol(object):
+class ProtocolSerializer(object):
     version = 1
     def __init__(self, serializer=None):
         self.serializer = serializer or NetworkSerializer()
@@ -55,14 +61,17 @@ class BackendProtocol(object):
 
     def deserialize(self, stream, callback):
         def _consume_data(data, length):
+            print 'data'
             raw_data = ''.join(struct.unpack('!%dc' % length, data))
             callback(self.serializer.deserialize(raw_data))
 
         def _consume_length(data):
             length = struct.unpack('!Q', data)[0]
+            print 'length', length
             stream.read_bytes(length, with_args(_consume_data, length))
 
         # 8 bytes => 64-bit
+        print 'read_bytes'
         stream.read_bytes(8, _consume_length)
 
 
