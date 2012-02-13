@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:DTCoreText/DTCoreText.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Genesis/Genesis.xcodeproj">
    </FileRef>
 </Workspace>

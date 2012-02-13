@@ -36,9 +36,6 @@
 		4F3E372914CFB6BC00E91A1A /* GNDirectoryContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
-		4F77E8CE14E4BB53001A69E8 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */; };
-		4F77E8D114E4BB80001A69E8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8D014E4BB80001A69E8 /* libxml2.dylib */; };
-		4F77E90014E4C30D001A69E8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8FF14E4C30D001A69E8 /* ImageIO.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
 		4F77E95314E4C5F2001A69E8 /* CHANGES.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90514E4C5F1001A69E8 /* CHANGES.html */; };
 		4F77E95514E4C5F2001A69E8 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E90814E4C5F1001A69E8 /* COPYING */; };
@@ -172,9 +169,6 @@
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
 		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libDTCoreText.a; path = "../DTCoreText/build/Release-iphoneos/libDTCoreText.a"; sourceTree = "<group>"; };
-		4F77E8D014E4BB80001A69E8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		4F77E8FF14E4C30D001A69E8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		4F77E90114E4C500001A69E8 /* GNSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSyntaxHighlighter.h; sourceTree = "<group>"; };
 		4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNSyntaxHighlighter.m; sourceTree = "<group>"; };
 		4F77E90514E4C5F1001A69E8 /* CHANGES.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CHANGES.html; sourceTree = "<group>"; };
@@ -263,9 +257,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F77E90014E4C30D001A69E8 /* ImageIO.framework in Frameworks */,
-				4F77E8D114E4BB80001A69E8 /* libxml2.dylib in Frameworks */,
-				4F77E8CE14E4BB53001A69E8 /* libDTCoreText.a in Frameworks */,
 				4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */,
 				4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */,
 				4F293B7C14CCE88100020A09 /* UIKit.framework in Frameworks */,
@@ -372,9 +363,6 @@
 		4F293B7A14CCE88100020A09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4F77E8D014E4BB80001A69E8 /* libxml2.dylib */,
-				4F77E8CD14E4BB53001A69E8 /* libDTCoreText.a */,
-				4F77E8FF14E4C30D001A69E8 /* ImageIO.framework */,
 				4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */,
 				4F21143514DCF096001EE6C9 /* CoreText.framework */,
 				4F293B7B14CCE88100020A09 /* UIKit.framework */,
