@@ -18,68 +18,102 @@ from Queue import Queue
 
 @gen.engine
 def sample_handler(ios, mediator):
+    # get clients
     response = yield gen.Task(mediator.clients)
     if response.name != 'OK':
         print "Failed to get clients connected."
-        return mediator.close()
+        mediator.close()
+        raise StopIteration
 
     if not response['clients'] or len(response['clients']) < 2:
         print "No other clients. Can't do anything."
-        return mediator.close()
+        mediator.close()
+        raise StopIteration
 
-    builder = response['clients'].keys()[0]
+    # get a builder
+    builders = [name for name, kind in response['clients'].items() if kind == 'builder']
+    non_self_builders = [name for name in builders if name != ios.machine]
+    builder = non_self_builders[0]
 
-    response = yield gen.Task(mediator.send, builder, Message('PROJECTS'))
+    # get builder's projects
+    response = yield gen.Task(mediator.request, builder, Message('PROJECTS'))
     print 'mediator ->', response
     if not response['projects']:
         print "No projects found... quitting."
-        return mediator.close()
+        mediator.close()
+        raise StopIteration
 
     # just use the first project
     project_name = response['projects'][0]
 
-    # get files
+    # get files for that project
     response = yield gen.Task(
-            mediator.send, builder, Message('FILES', project=project_name))
+            mediator.request, builder, Message('FILES', project=project_name))
     print 'mediator ->', response
-    if not response['files'] or len(response['files']) < 2:
+    if not response['files'] or len(response['files']) < 1:
         print "No files. Can't download anything."
-        return mediator.close()
+        mediator.close()
+        raise StopIteration
 
-    filepath = response['files'].keys()[0]
+    # use first file in the project
+    filepath = response['files'][0]['name']
 
-    # download a file
+    # download it
     response = yield gen.Task(
-            mediator.send, builder, Message('DOWNLOAD', filepath=filepath))
+            mediator.request, builder, Message('DOWNLOAD', filepath=filepath))
     print 'mediator ->', response
     if response.name != 'OK':
         print "Failed to download file!"
 
-    # upload file???
+    # upload changes
     response = yield gen.Task(
-            mediator.send, builder,
-            Message('UPLOAD', filepath=filepath, data="print 'hello'"))
+            mediator.request, builder,
+            Message('UPLOAD',
+                filepath=filepath,
+                data="print 'hello'",
+                mimetype="plain/text"))
     print 'mediator ->', response
     if response.name != 'OK':
         print "Failed to upload file!"
 
-    # perform action
+    # run it
     response = yield gen.Task(
-            mediator.send, builder,
+            mediator.request, builder,
             Message('PERFORM', stream_to=ios.machine, project=project_name,
                 action="run"))
     if response.name != 'OK':
         print "Failed to perform action 'run'..."
         mediator.close()
+        raise StopIteration
 
-    yield gen.Task(mediator.
+    # get the stream results
+    def on_stream(message):
+        sys.stdout.write(message['contents'].replace('\n', '\n%s: ' % message['project']))
+        sys.stdout.flush()
+
+    def on_eof(message):
+        sys.stdout.write('\nEOF')
+        sys.stdout.flush()
+
+    def on_return(message):
+        sys.stdout.write('%s return Code: %d' % (message['project'], message['code']))
+        sys.stdout.flush()
+
+    response = yield gen.Task(ios.new_read_stream, mclient, on_stream, on_eof, on_return)
+    print "mediator ->", response
+
+    # TODO: git push
+
+    # done
+    mediator.close()
 
 
 class MediatorClientDelegateBase(object):
-    def __init__(self, account, machine, autoregister=False):
+    def __init__(self, account, machine, autoregister=False, kind='builder'):
         self.account = account
         self.machine = machine
         self.should_register = autoregister
+        self.kind = kind
 
     @gen.engine
     def handshake(self, mclient):
@@ -94,7 +128,7 @@ class MediatorClientDelegateBase(object):
                 raise StopIteration
 
         # login
-        response = yield gen.Task(mclient.login, self.account, self.machine, type='builder')
+        response = yield gen.Task(mclient.login, self.account, self.machine, type=self.kind)
         print 'mediator ->', response
         if response.name != 'OK':
             print "Failed to login:", response['reason']
@@ -109,7 +143,7 @@ class MediatorClientDelegateBase(object):
 class iOSHandler(MediatorClientDelegateBase):
     "Simulates the protocol that the iOS client would use."
     def __init__(self, account, machine, autoregister=False, io_loop=None, delegate=None):
-        super(iOSHandler, self).__init__(account, machine, autoregister)
+        super(iOSHandler, self).__init__(account, machine, autoregister, kind='editor.ios')
         self.io_loop = io_loop
         self.delegate = delegate
 
@@ -120,38 +154,58 @@ class iOSHandler(MediatorClientDelegateBase):
         fn = lambda: callback(*args, **kwargs)
         self.io_loop.add_callback(fn)
 
-    def get_builder(self, mclient, callback=None):
-        def _handler(response):
-            builder_name = None
-            for name, kind in response['clients'].items():
-                if kind == 'builder':
-                    builder_name = name
-                    break
-            callback(name)
-        mclient.clients(_handler)
+    @gen.engine
+    def new_read_stream(self, mclient, on_stream=None, on_eof=None, on_return=None, on_error=None, callback=None):
+        print 'waiting for stream ...'
+        def invoke(fn, message):
+            if callable(fn):
+                fn(message)
+        while 1:
+            message = yield gen.Task(mclient.read)
+            if message.name == 'STREAM':
+                invoke(on_stream, message)
+            elif message.name == 'STREAM_EOF':
+                invoke(on_eof, message)
+            elif message.name == 'RETURN':
+                invoke(on_return, message)
+                invoke(callback, message)
+                raise StopIteration
+            else:
+                invoke(on_error, message)
+                invoke(callback, message)
+                if not callable(on_error) and not callable(callback):
+                    raise TypeError("Unknown message to handle: " + repr(message))
 
-    def read_stream(self, mclient, on_stream, on_eof, on_return):
+
+    def read_stream(self, mclient, on_stream=None, on_eof=None, on_return=None, on_error=None, callback=None):
+        "callback = on_return and on_error"
         print 'waiting for stream...'
         # then start accepting commands
         mclient.set_message_handler(self.recv_message, mclient,
-                on_stream, on_eof, on_return)
+                on_stream, on_eof, on_return, on_error, callback)
 
     @gen.engine
-    def recv_message(self, message, mclient, on_stream, on_eof, on_return):
+    def recv_message(self, message, mclient, on_stream, on_eof, on_return, on_error, callback):
         if message.name == 'STREAM':
-            sys.stdout.write(message['contents'].replace('\n', '\n%s: ' % message['project']))
-            sys.stdout.flush()
+            if callable(on_stream):
+                on_stream(message)
         elif message.name == 'STREAM_EOF':
-            sys.stdout.write('\nEOF')
-            sys.stdout.flush()
+            if callable(on_eof):
+                on_eof(message)
         elif message.name == 'RETURN':
-            sys.stdout.write('%s return Code: %d' % (message['project'], message['code']))
+            if callable(on_return):
+                on_return(message)
+            if callable(callback):
+                callback(message)
             mclient.clear_message_handler()
             print "clear_message_handler()"
-            if callable(callback):
-                callback()
         else:
-            raise TypeError("Unknown message to handle: " + repr(message))
+            if callable(on_error):
+                on_error(message)
+            if callable(callback):
+                callback(message)
+            if not callable(on_error) and not callable(callback):
+                raise TypeError("Unknown message to handle: " + repr(message))
 
 
 class BuilderDelegate(MediatorClientDelegateBase):
@@ -176,6 +230,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
         # dispatch
         method = getattr(self, 'do_' + request.name, None)
         if callable(method):
+            print 'invoking', 'do_' + request.name
             method(mclient, request)
         else:
             yield gen.Task(mclient.send_response, Message(
@@ -188,20 +243,42 @@ class BuilderDelegate(MediatorClientDelegateBase):
         yield gen.Task(mclient.write_response, Message(
             'OK',
             ACK=request.name,
-            projects=[],
+            projects=[{"name": "project1"}],
         ))
 
+    @gen.engine
     def do_DOWNLOAD(self, mclient, request):
         project = request['project']
         filepath = request['filepath']
         print 'do download'
+        yield gen.Task(mclient.write_response, Message(
+            'OK',
+            ACK=request.name,
+            data='print "hello"',
+        ))
 
+    @gen.engine
     def do_UPLOAD(self, mclient, request):
         print 'do upload'
+        # no op for now
+        yield gen.Task(mclient.write_response, Message(
+            'OK',
+            ACK=request.name,
+        ))
 
+    @gen.engine
     def do_FILES(self, mclient, request):
         project = request['project']
-        print 'do files'
+        yield gen.Task(mclient.write_response, Message(
+            'OK',
+            ACK=request.name,
+            files=[{
+                "name": "foo.py",
+                "size": 123,
+                "kind": "source",
+                "mimetype": "plain/text",
+            }],
+        ))
 
     def do_STATS(self, mclient, request):
         print 'do stats'
@@ -215,9 +292,29 @@ class BuilderDelegate(MediatorClientDelegateBase):
     def do_INPUT(self, mclient, request):
         print 'do input'
 
+    @gen.engine
     def do_PERFORM(self, mclient, request):
-        print 'do perform'
-        return
+        target = request['sender']
+        name = request['project']
+        yield gen.Task(mclient.write_response, Message(
+            'OK',
+            ACK=request.name,
+        ))
+        yield gen.Task(mclient.send, target, Message(
+            'STREAM',
+            project=name,
+            contents='foobar',
+        ))
+        yield gen.Task(mclient.send, target, Message(
+            'STREAM_EOF',
+            project=name,
+        ))
+        yield gen.Task(mclient.send, target, Message(
+            'RETURN',
+            project=name,
+            code=0
+        ))
+        raise StopIteration
         try:
             operation = ProcessQuery(self.shell.perform(self.actions[command.name]))
             while not operation.has_terminated():
@@ -266,11 +363,20 @@ class MediatorClient(object):
         print 'mediator <-', cmd
 
     def send(self, machine, command, callback=None):
-        "Sends a given message to a target machine."
+        "sends a given message to a target machine. Expects no response."
         if callable(getattr(command, 'to_network', None)):
             command = command.to_network()
 
         cmd = Message('SEND', machine=machine, command=command)
+        self.stream.write(cmd, callback=callback)
+        print 'mediator <-', cmd
+
+    def request(self, machine, command, callback=None):
+        "Sends a given message to a target machine. Expects a response."
+        if callable(getattr(command, 'to_network', None)):
+            command = command.to_network()
+
+        cmd = Message('REQUEST', machine=machine, command=command)
         self.stream.write_and_read(cmd, callback=callback)
         print 'mediator <-', cmd
 

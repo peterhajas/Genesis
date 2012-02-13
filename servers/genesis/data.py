@@ -41,7 +41,8 @@ class ErrorCodes(object):
     MACHINE_CONFLICT = 101
     INVALID_MACHINE = 102
     INVALID_TYPE = 103
-
+    # for machine
+    UNKNOWN_MACHINE = 100
 
 class Account(object):
     "Represents a username and hashed password."

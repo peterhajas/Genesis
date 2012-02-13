@@ -95,6 +95,7 @@ class ClientHandler(object):
         else:
             self.fail(code=ErrorCodes.BAD_REQUEST)
 
+    CALLBACKS = ('OK', 'FAIL')
     def process_request(self, stream):
         if stream.reading():
             print 'process_request', self
@@ -106,9 +107,16 @@ class ClientHandler(object):
             method = getattr(self, 'do_' + request.name, None)
             if callable(method):
                 method(request)
-            elif request.name in ('OK', 'FAIL') and \
-                    self.reroute and self.reroute[0][1].name == request['ACK']:
-                target, orig, callback = self.reroute.pop(0)
+            elif request.name in self.CALLBACKS and self.reroute:
+                index = -1
+                for i, (target, orig, callback) in enumerate(self.reroute):
+                    if orig.name == request['ACK']:
+                        index = i
+                        break;
+                if index < 0:
+                    print "Ignoring invalid request", request,
+                    return
+                target, orig, callback = self.reroute.pop(index)
                 m = Message('SEND', command=orig, machine=target)
                 print "Got message:", request
                 callback(request)
@@ -124,10 +132,16 @@ class ClientHandler(object):
         yield gen.Task(self.stream.write, msg)
 
     @gen.engine
-    def do_SEND(self, request, is_return=False):
-        # TODO: reject if from_machine or command is malformed
-        print 'namespace =', self.namespace, 'machine =', request['machine']
+    def do_REQUEST(self, request, is_return=False):
+        # TODO: reject if sender or command is malformed
+        print 'namespace =', self.namespace, '; machine =', request['machine']
         target = self.tracker.get_client_in_namespace(self.namespace, request['machine'])
+        if target is None:
+            print "No machine named:", request['machine']
+            msg = Message('FAIL',
+                    reason="No machine exists named %r" % request['machine'],
+                    code=ErrorCodes.UNKNOWN_MACHINE)
+            yield gen.Task(self.stream.write, msg)
         msg = Message.create(request['command'])
         if not msg:
             print "bad message:", repr(msg)
@@ -140,7 +154,27 @@ class ClientHandler(object):
         print self.id, '<-', response, '[forwarding]'
         yield gen.Task(self.stream.write, response)
 
+    @gen.engine
+    def do_SEND(self, request, is_return=False):
+        # TODO: reject if sender or command is malformed
+        print 'namespace =', self.namespace, '; machine =', request['machine']
+        target = self.tracker.get_client_in_namespace(self.namespace, request['machine'])
+        if target is None:
+            print "No machine named:", request['machine']
+            msg = Message('FAIL',
+                    reason="No machine exists named %r" % request['machine'],
+                    code=ErrorCodes.UNKNOWN_MACHINE)
+            yield gen.Task(self.stream.write, msg)
+        msg = Message.create(request['command'])
+        if not msg:
+            print "bad message:", repr(msg)
+            return
+        msg['sender'] = self.machine
+        print target.id, '<-', msg, '[forwarding]'
+        yield gen.Task(target.stream.write, msg)
+
     def request(self, original, msg, callback=None):
+        "Perform a send & add expected response to routing list."
         self.reroute.append((original, msg, callback))
         self.stream.write(msg)
 
@@ -179,7 +213,7 @@ class ClientsTracker(object):
         return self.namespaces[name]
 
     def get_client_in_namespace(self, name, machine):
-        return self.namespaces[name][machine]
+        return self.namespaces.get(name, {}).get(machine)
 
     def has_namespace(self, name):
         return name in self.namespaces
