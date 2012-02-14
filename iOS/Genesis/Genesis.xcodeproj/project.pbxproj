@@ -40,17 +40,11 @@
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
 		4F77E99B14E4C696001A69E8 /* base.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E99A14E4C696001A69E8 /* base.html */; };
 		4F99F2B414EA3FC1005E8D91 /* CHANGES.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26614EA3FC1005E8D91 /* CHANGES.html */; };
-		4F99F2B614EA3FC1005E8D91 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26914EA3FC1005E8D91 /* COPYING */; };
-		4F99F2B714EA3FC1005E8D91 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26A14EA3FC1005E8D91 /* README */; };
 		4F99F2B814EA3FC1005E8D91 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26B14EA3FC1005E8D91 /* COPYING */; };
-		4F99F2CB14EA3FC1005E8D91 /* prettify.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28014EA3FC1005E8D91 /* prettify.css */; };
 		4F99F2D014EA3FC1005E8D91 /* extractSourceSpans_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28614EA3FC1005E8D91 /* extractSourceSpans_test.html */; };
 		4F99F2D214EA3FC1005E8D91 /* numberLines_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28814EA3FC1005E8D91 /* numberLines_test.html */; };
 		4F99F2D514EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28B14EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html */; };
 		4F99F2D614EA3FC1005E8D91 /* regexpPrecederPatterns.pl in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28C14EA3FC1005E8D91 /* regexpPrecederPatterns.pl */; };
-		4F99F2D714EA3FC1005E8D91 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4F99F28D14EA3FC1005E8D91 /* Makefile */; };
-		4F99F2D814EA3FC1005E8D91 /* README-zh-Hans.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28E14EA3FC1005E8D91 /* README-zh-Hans.html */; };
-		4F99F2D914EA3FC1005E8D91 /* README.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28F14EA3FC1005E8D91 /* README.html */; };
 		4F99F2EC14EA3FC1005E8D91 /* prettify.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A314EA3FC1005E8D91 /* prettify.css */; };
 		4F99F2EE14EA3FC1005E8D91 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A614EA3FC1005E8D91 /* demo.html */; };
 		4F99F2EF14EA3FC1005E8D91 /* desert.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A714EA3FC1005E8D91 /* desert.css */; };
@@ -62,32 +56,11 @@
 		4F99F2F514EA3FC1005E8D91 /* prettify_test_2.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2AE14EA3FC1005E8D91 /* prettify_test_2.html */; };
 		4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B014EA3FC1005E8D91 /* test_styles.css */; };
 		4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B214EA3FC1005E8D91 /* LICENSE.TXT */; };
-		4F99F2F914EA3FC1005E8D91 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B314EA3FC1005E8D91 /* README */; };
 		4FF3637714EAECB900125C74 /* console-externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26814EA3FC1005E8D91 /* console-externs.js */; };
-		4FF3637814EAECB900125C74 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26E14EA3FC1005E8D91 /* lang-apollo.js */; };
-		4FF3637914EAECB900125C74 /* lang-clj.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26F14EA3FC1005E8D91 /* lang-clj.js */; };
-		4FF3637A14EAECB900125C74 /* lang-css.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27014EA3FC1005E8D91 /* lang-css.js */; };
-		4FF3637B14EAECB900125C74 /* lang-go.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27114EA3FC1005E8D91 /* lang-go.js */; };
-		4FF3637C14EAECB900125C74 /* lang-hs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27214EA3FC1005E8D91 /* lang-hs.js */; };
-		4FF3637D14EAECB900125C74 /* lang-lisp.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27314EA3FC1005E8D91 /* lang-lisp.js */; };
-		4FF3637E14EAECB900125C74 /* lang-lua.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27414EA3FC1005E8D91 /* lang-lua.js */; };
-		4FF3637F14EAECB900125C74 /* lang-ml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27514EA3FC1005E8D91 /* lang-ml.js */; };
-		4FF3638014EAECB900125C74 /* lang-n.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27614EA3FC1005E8D91 /* lang-n.js */; };
-		4FF3638114EAECB900125C74 /* lang-proto.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27714EA3FC1005E8D91 /* lang-proto.js */; };
-		4FF3638214EAECB900125C74 /* lang-scala.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27814EA3FC1005E8D91 /* lang-scala.js */; };
-		4FF3638314EAECB900125C74 /* lang-sql.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27914EA3FC1005E8D91 /* lang-sql.js */; };
-		4FF3638414EAECB900125C74 /* lang-tex.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27A14EA3FC1005E8D91 /* lang-tex.js */; };
-		4FF3638514EAECB900125C74 /* lang-vb.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27B14EA3FC1005E8D91 /* lang-vb.js */; };
-		4FF3638614EAECB900125C74 /* lang-vhdl.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27C14EA3FC1005E8D91 /* lang-vhdl.js */; };
-		4FF3638714EAECB900125C74 /* lang-wiki.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27D14EA3FC1005E8D91 /* lang-wiki.js */; };
-		4FF3638814EAECB900125C74 /* lang-xq.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27E14EA3FC1005E8D91 /* lang-xq.js */; };
-		4FF3638914EAECB900125C74 /* lang-yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27F14EA3FC1005E8D91 /* lang-yaml.js */; };
-		4FF3638A14EAECB900125C74 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28114EA3FC1005E8D91 /* prettify.js */; };
 		4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28314EA3FC1005E8D91 /* combinePrefixPatterns.js */; };
 		4FF3638C14EAECB900125C74 /* externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28414EA3FC1005E8D91 /* externs.js */; };
 		4FF3638D14EAECB900125C74 /* extractSourceSpans.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28514EA3FC1005E8D91 /* extractSourceSpans.js */; };
 		4FF3638E14EAECB900125C74 /* numberLines.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28714EA3FC1005E8D91 /* numberLines.js */; };
-		4FF3638F14EAECB900125C74 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28914EA3FC1005E8D91 /* prettify.js */; };
 		4FF3639014EAECB900125C74 /* recombineTagsAndDecorations.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28A14EA3FC1005E8D91 /* recombineTagsAndDecorations.js */; };
 		4FF3639114EAECB900125C74 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29114EA3FC1005E8D91 /* lang-apollo.js */; };
 		4FF3639214EAECB900125C74 /* lang-clj.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29214EA3FC1005E8D91 /* lang-clj.js */; };
@@ -692,30 +665,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FF3637714EAECB900125C74 /* console-externs.js in Resources */,
-				4FF3637814EAECB900125C74 /* lang-apollo.js in Resources */,
-				4FF3637914EAECB900125C74 /* lang-clj.js in Resources */,
-				4FF3637A14EAECB900125C74 /* lang-css.js in Resources */,
-				4FF3637B14EAECB900125C74 /* lang-go.js in Resources */,
-				4FF3637C14EAECB900125C74 /* lang-hs.js in Resources */,
-				4FF3637D14EAECB900125C74 /* lang-lisp.js in Resources */,
-				4FF3637E14EAECB900125C74 /* lang-lua.js in Resources */,
-				4FF3637F14EAECB900125C74 /* lang-ml.js in Resources */,
-				4FF3638014EAECB900125C74 /* lang-n.js in Resources */,
-				4FF3638114EAECB900125C74 /* lang-proto.js in Resources */,
-				4FF3638214EAECB900125C74 /* lang-scala.js in Resources */,
-				4FF3638314EAECB900125C74 /* lang-sql.js in Resources */,
-				4FF3638414EAECB900125C74 /* lang-tex.js in Resources */,
-				4FF3638514EAECB900125C74 /* lang-vb.js in Resources */,
-				4FF3638614EAECB900125C74 /* lang-vhdl.js in Resources */,
-				4FF3638714EAECB900125C74 /* lang-wiki.js in Resources */,
-				4FF3638814EAECB900125C74 /* lang-xq.js in Resources */,
-				4FF3638914EAECB900125C74 /* lang-yaml.js in Resources */,
-				4FF3638A14EAECB900125C74 /* prettify.js in Resources */,
 				4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */,
 				4FF3638C14EAECB900125C74 /* externs.js in Resources */,
 				4FF3638D14EAECB900125C74 /* extractSourceSpans.js in Resources */,
 				4FF3638E14EAECB900125C74 /* numberLines.js in Resources */,
-				4FF3638F14EAECB900125C74 /* prettify.js in Resources */,
 				4FF3639014EAECB900125C74 /* recombineTagsAndDecorations.js in Resources */,
 				4FF3639114EAECB900125C74 /* lang-apollo.js in Resources */,
 				4FF3639214EAECB900125C74 /* lang-clj.js in Resources */,
@@ -745,16 +698,11 @@
 				4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */,
 				4F77E99B14E4C696001A69E8 /* base.html in Resources */,
 				4F99F2B414EA3FC1005E8D91 /* CHANGES.html in Resources */,
-				4F99F2B614EA3FC1005E8D91 /* COPYING in Resources */,
-				4F99F2B714EA3FC1005E8D91 /* README in Resources */,
 				4F99F2B814EA3FC1005E8D91 /* COPYING in Resources */,
-				4F99F2CB14EA3FC1005E8D91 /* prettify.css in Resources */,
 				4F99F2D014EA3FC1005E8D91 /* extractSourceSpans_test.html in Resources */,
 				4F99F2D214EA3FC1005E8D91 /* numberLines_test.html in Resources */,
 				4F99F2D514EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html in Resources */,
 				4F99F2D614EA3FC1005E8D91 /* regexpPrecederPatterns.pl in Resources */,
-				4F99F2D814EA3FC1005E8D91 /* README-zh-Hans.html in Resources */,
-				4F99F2D914EA3FC1005E8D91 /* README.html in Resources */,
 				4F99F2EC14EA3FC1005E8D91 /* prettify.css in Resources */,
 				4F99F2EE14EA3FC1005E8D91 /* demo.html in Resources */,
 				4F99F2EF14EA3FC1005E8D91 /* desert.css in Resources */,
@@ -766,7 +714,6 @@
 				4F99F2F514EA3FC1005E8D91 /* prettify_test_2.html in Resources */,
 				4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */,
 				4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */,
-				4F99F2F914EA3FC1005E8D91 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,7 +765,6 @@
 				4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */,
 				4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */,
 				4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */,
-				4F99F2D714EA3FC1005E8D91 /* Makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
