@@ -464,7 +464,6 @@ static CTFontRef defaultFont = nil;
 
 -(void)insertText:(NSString *)text
 {
-    NSLog(@"insert text");
     NSString* beforeCaret = [shownText substringToIndex:textCaretIndex];
     NSString* afterCaret = [shownText substringFromIndex:textCaretIndex];
     
@@ -511,7 +510,6 @@ static CTFontRef defaultFont = nil;
 
 -(void)moveCaretToIndex:(NSUInteger)index
 {
-    NSLog(@"move caret");
     textCaretIndex = index;
     
     CGRect characterRect = [self rectForCharacterAtIndex:index];
