@@ -32,18 +32,39 @@ class NetworkSerializer(object):
 
 
 class ProtocolSerializer(object):
+    """Handles the serializing and deserializing of the the network protocol.
+
+    It uses serializer instance to handle the serialization & deserialization of
+    the internal application format, independent from the simple message protocol.
+    Optionally can provide a different serializer to NetworkSerializer.
+
+    Delegate is a function that is invoked when the protocol encounters a
+    format not defined in it specification. This can be either invalid handshake
+    or a malformed message. The function should accept the iostream that caused the
+    error. It is the responsibility of the delegate to close.
+
+    If no delegate is provided, it simply closes the stream.
+    """
     version = 1
-    def __init__(self, serializer=None):
+    def __init__(self, serializer=None, delegate=None):
         self.serializer = serializer or NetworkSerializer()
+        self.delegate = delegate
 
     def offer_handshake(self):
         "When the server accepts a client."
-        return struct.pack('!I', self.version)
+        return struct.pack('!H', self.version)
 
     def accept_handshake(self, stream, callback):
         "When the client connects to the server. Gives callback the metadata."
         def _consume_version(data):
-            version = struct.unpack('!I', data)
+            try:
+                version = struct.unpack('!H', data)
+            except struct.error:
+                print "Malformed Handshake (version)"
+                self._error_on_stream(stream)
+                return
+
+            print 'version', version
             version = version[0] if version else -1
             metadata = {
                 'version': version,
@@ -51,27 +72,41 @@ class ProtocolSerializer(object):
             }
             callback(metadata)
         # 4 bytes => 32-bit
-        stream.read_bytes(4, _consume_version)
+        stream.read_bytes(2, _consume_version)
 
 
     def serialize(self, obj):
+        "Serializes the given data to be sent over the network."
         data = self.serializer.serialize(obj)
         net_data = struct.pack('!%dc' % len(data), *list(data))
-        return struct.pack('!Q', len(net_data)) + net_data
+        return struct.pack('!H', len(net_data)) + net_data
+
+    def _error_on_stream(self, stream):
+        if callable(self.delegate):
+            self.delegate(stream)
+        else:
+            stream.close()
 
     def deserialize(self, stream, callback):
         def _consume_data(data, length):
-            print 'data'
-            raw_data = ''.join(struct.unpack('!%dc' % length, data))
+            try:
+                raw_data = ''.join(struct.unpack('!%dc' % length, data))
+            except struct.error:
+                self._error_on_stream(stream)
+                return
+
             callback(self.serializer.deserialize(raw_data))
 
         def _consume_length(data):
-            length = struct.unpack('!Q', data)[0]
-            print 'length', length
+            try:
+                length = struct.unpack('!H', data)[0]
+            except struct.error:
+                self._error_on_stream(stream)
+                return
+
             stream.read_bytes(length, with_args(_consume_data, length))
 
-        # 8 bytes => 64-bit
-        print 'read_bytes'
-        stream.read_bytes(8, _consume_length)
+        # 4 bytes => 8-bit
+        stream.read_bytes(2, _consume_length)
 
 

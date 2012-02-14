@@ -9,7 +9,12 @@ from tornado import gen
 from genesis.utils import with_args
 from genesis.networking import Client, MessageStream
 from genesis.serializers import ProtocolSerializer, NetworkSerializer
-from genesis.data import Message, Account
+from genesis.data import (Account, LoginMessage, ProjectsMessage, FilesMessage,
+        DownloadMessage, UploadMessage, DownloadMessage, PerformMessage,
+        StreamNotification, StreamEOFNotification, ReturnCodeNotification,
+        ResponseMessage, RequestMessage, RegisterMessage, ClientsMessage,
+        SendMessage, ErrorCodes
+    )
 from genesis.shell import ShellProxy, ProcessQuery
 
 
@@ -20,7 +25,7 @@ from Queue import Queue
 def sample_handler(ios, mediator):
     # get clients
     response = yield gen.Task(mediator.clients)
-    if response.name != 'OK':
+    if response.is_error:
         print "Failed to get clients connected."
         mediator.close()
         raise StopIteration
@@ -31,12 +36,16 @@ def sample_handler(ios, mediator):
         raise StopIteration
 
     # get a builder
-    builders = [name for name, kind in response['clients'].items() if kind == 'builder']
+    builders = [name for name, kind in response['clients'].items() if kind.startswith('builder')]
+    if not builders:
+        print "No builders!"
+        mediator.close()
+        raise StopIteration
     non_self_builders = [name for name in builders if name != ios.machine]
     builder = non_self_builders[0]
 
     # get builder's projects
-    response = yield gen.Task(mediator.request, builder, Message('PROJECTS'))
+    response = yield gen.Task(mediator.request, builder, ProjectsMessage())
     print 'mediator ->', response
     if not response['projects']:
         print "No projects found... quitting."
@@ -48,7 +57,7 @@ def sample_handler(ios, mediator):
 
     # get files for that project
     response = yield gen.Task(
-            mediator.request, builder, Message('FILES', project=project_name))
+            mediator.request, builder, FilesMessage(project=project_name))
     print 'mediator ->', response
     if not response['files'] or len(response['files']) < 1:
         print "No files. Can't download anything."
@@ -60,28 +69,26 @@ def sample_handler(ios, mediator):
 
     # download it
     response = yield gen.Task(
-            mediator.request, builder, Message('DOWNLOAD', filepath=filepath))
+            mediator.request, builder, DownloadMessage(filepath=filepath))
     print 'mediator ->', response
-    if response.name != 'OK':
+    if response.is_error:
         print "Failed to download file!"
 
     # upload changes
     response = yield gen.Task(
             mediator.request, builder,
-            Message('UPLOAD',
-                filepath=filepath,
+            UploadMessage(filepath=filepath,
                 data="print 'hello'",
                 mimetype="plain/text"))
     print 'mediator ->', response
-    if response.name != 'OK':
+    if response.is_error:
         print "Failed to upload file!"
 
     # run it
     response = yield gen.Task(
             mediator.request, builder,
-            Message('PERFORM', stream_to=ios.machine, project=project_name,
-                action="run"))
-    if response.name != 'OK':
+            PerformMessage(project=project_name, action="run"))
+    if response.is_error:
         print "Failed to perform action 'run'..."
         mediator.close()
         raise StopIteration
@@ -92,14 +99,13 @@ def sample_handler(ios, mediator):
         sys.stdout.flush()
 
     def on_eof(message):
-        sys.stdout.write('\nEOF')
+        sys.stdout.write('\nEOF\n')
         sys.stdout.flush()
 
     def on_return(message):
-        sys.stdout.write('%s return Code: %d' % (message['project'], message['code']))
-        sys.stdout.flush()
+        print '%s return Code: %d' % (message['project'], message['code'])
 
-    response = yield gen.Task(ios.new_read_stream, mclient, on_stream, on_eof, on_return)
+    response = yield gen.Task(ios.read_stream, mclient, on_stream, on_eof, on_return)
     print "mediator ->", response
 
     # TODO: git push
@@ -121,7 +127,7 @@ class MediatorClientDelegateBase(object):
         if self.should_register:
             print 'registering'
             response = yield gen.Task(mclient.register, self.account)
-            if response.name != 'OK' and response['code'] != ErrorCodes.USERNAME_TAKEN:
+            if response.is_error and response['code'] != ErrorCodes.USERNAME_TAKEN:
                 # quit
                 print "Failed to register:", response['reason']
                 mclient.close()
@@ -130,7 +136,7 @@ class MediatorClientDelegateBase(object):
         # login
         response = yield gen.Task(mclient.login, self.account, self.machine, type=self.kind)
         print 'mediator ->', response
-        if response.name != 'OK':
+        if response.is_error:
             print "Failed to login:", response['reason']
             raise StopIteration
 
@@ -155,18 +161,18 @@ class iOSHandler(MediatorClientDelegateBase):
         self.io_loop.add_callback(fn)
 
     @gen.engine
-    def new_read_stream(self, mclient, on_stream=None, on_eof=None, on_return=None, on_error=None, callback=None):
+    def read_stream(self, mclient, on_stream=None, on_eof=None, on_return=None, on_error=None, callback=None):
         print 'waiting for stream ...'
         def invoke(fn, message):
             if callable(fn):
                 fn(message)
         while 1:
             message = yield gen.Task(mclient.read)
-            if message.name == 'STREAM':
+            if message.name == StreamNotification.name:
                 invoke(on_stream, message)
-            elif message.name == 'STREAM_EOF':
+            elif message.name == StreamEOFNotification.name:
                 invoke(on_eof, message)
-            elif message.name == 'RETURN':
+            elif message.name == ReturnCodeNotification.name:
                 invoke(on_return, message)
                 invoke(callback, message)
                 raise StopIteration
@@ -175,37 +181,8 @@ class iOSHandler(MediatorClientDelegateBase):
                 invoke(callback, message)
                 if not callable(on_error) and not callable(callback):
                     raise TypeError("Unknown message to handle: " + repr(message))
+                raise StopIteration
 
-
-    def read_stream(self, mclient, on_stream=None, on_eof=None, on_return=None, on_error=None, callback=None):
-        "callback = on_return and on_error"
-        print 'waiting for stream...'
-        # then start accepting commands
-        mclient.set_message_handler(self.recv_message, mclient,
-                on_stream, on_eof, on_return, on_error, callback)
-
-    @gen.engine
-    def recv_message(self, message, mclient, on_stream, on_eof, on_return, on_error, callback):
-        if message.name == 'STREAM':
-            if callable(on_stream):
-                on_stream(message)
-        elif message.name == 'STREAM_EOF':
-            if callable(on_eof):
-                on_eof(message)
-        elif message.name == 'RETURN':
-            if callable(on_return):
-                on_return(message)
-            if callable(callback):
-                callback(message)
-            mclient.clear_message_handler()
-            print "clear_message_handler()"
-        else:
-            if callable(on_error):
-                on_error(message)
-            if callable(callback):
-                callback(message)
-            if not callable(on_error) and not callable(callback):
-                raise TypeError("Unknown message to handle: " + repr(message))
 
 
 class BuilderDelegate(MediatorClientDelegateBase):
@@ -214,6 +191,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
         super(BuilderDelegate, self).__init__(account, machine, autoregister)
         self.actions = {} # name => Action
         self.shell = shell_proxy or ShellProxy()
+        self.inbox = {} # message id => callback
 
     def add_action(self, name, action):
         self.actions[name] = action
@@ -222,56 +200,52 @@ class BuilderDelegate(MediatorClientDelegateBase):
     def handle(self, mclient):
         print 'waiting for commands...'
         # then start accepting commands
-        mclient.set_message_handler(self.handle_message, mclient)
+        while 1:
+            message = yield gen.Task(mclient.read)
+            self.handle_message(message, mclient)
 
     @gen.engine
-    def handle_message(self, request, mclient):
-        print 'mediator ->', request
+    def handle_message(self, message, mclient):
+        print 'mediator ->', message
         # dispatch
-        method = getattr(self, 'do_' + request.name, None)
-        if callable(method):
-            print 'invoking', 'do_' + request.name
-            method(mclient, request)
+        if message.is_response and message.id in self.inbox:
+            self.inbox[message.id]()
+            del self.inbox[message.id]
+        elif message.is_invocation:
+            method = getattr(self, 'do_' + message.name, None)
+            if callable(method):
+                print 'invoking', 'do_' + message.name
+                method(mclient, message)
         else:
-            yield gen.Task(mclient.send_response, Message(
-                'FAIL',
-                reason="Malformed request",
-                code=ErrorCodes.BAD_REQUEST))
+            yield gen.Task(mclient.write_response,
+                    ResponseMessage.error(message.id,
+                        reason="Malformed request",
+                        code=ErrorCodes.BAD_REQUEST))
 
     @gen.engine
-    def do_PROJECTS(self, mclient, request):
-        yield gen.Task(mclient.write_response, Message(
-            'OK',
-            ACK=request.name,
-            projects=[{"name": "project1"}],
-        ))
+    def do_projects(self, mclient, request):
+        yield gen.Task(mclient.write_response,
+                ResponseMessage.success(request.id, projects=[{"name": "project1"}]))
 
     @gen.engine
-    def do_DOWNLOAD(self, mclient, request):
-        project = request['project']
-        filepath = request['filepath']
-        print 'do download'
-        yield gen.Task(mclient.write_response, Message(
-            'OK',
-            ACK=request.name,
+    def do_download(self, mclient, request):
+        print 'do download', request
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
+            request.id,
             data='print "hello"',
         ))
 
     @gen.engine
-    def do_UPLOAD(self, mclient, request):
+    def do_upload(self, mclient, request):
         print 'do upload'
         # no op for now
-        yield gen.Task(mclient.write_response, Message(
-            'OK',
-            ACK=request.name,
-        ))
+        yield gen.Task(mclient.write_response, ResponseMessage.success(request.id))
 
     @gen.engine
-    def do_FILES(self, mclient, request):
+    def do_files(self, mclient, request):
         project = request['project']
-        yield gen.Task(mclient.write_response, Message(
-            'OK',
-            ACK=request.name,
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
+            request.id,
             files=[{
                 "name": "foo.py",
                 "size": 123,
@@ -280,37 +254,31 @@ class BuilderDelegate(MediatorClientDelegateBase):
             }],
         ))
 
-    def do_STATS(self, mclient, request):
+    def do_stats(self, mclient, request):
         print 'do stats'
 
-    def do_GIT(self, mclient, request):
+    def do_git(self, mclient, request):
         print 'do git'
 
-    def do_CANCEL(self, mclient, request):
+    def do_cancel(self, mclient, request):
         print 'do cancel'
 
-    def do_INPUT(self, mclient, request):
+    def do_input(self, mclient, request):
         print 'do input'
 
     @gen.engine
-    def do_PERFORM(self, mclient, request):
-        target = request['sender']
+    def do_perform(self, mclient, request):
+        target = request.sender
         name = request['project']
-        yield gen.Task(mclient.write_response, Message(
-            'OK',
-            ACK=request.name,
-        ))
-        yield gen.Task(mclient.send, target, Message(
-            'STREAM',
+        yield gen.Task(mclient.write_response, ResponseMessage.success(request.id))
+        yield gen.Task(mclient.send, target, StreamNotification(
             project=name,
             contents='foobar',
         ))
-        yield gen.Task(mclient.send, target, Message(
-            'STREAM_EOF',
+        yield gen.Task(mclient.send, target, StreamEOFNotification(
             project=name,
         ))
-        yield gen.Task(mclient.send, target, Message(
-            'RETURN',
+        yield gen.Task(mclient.send, target, ReturnCodeNotification(
             project=name,
             code=0
         ))
@@ -319,10 +287,10 @@ class BuilderDelegate(MediatorClientDelegateBase):
             operation = ProcessQuery(self.shell.perform(self.actions[command.name]))
             while not operation.has_terminated():
                 if operation.readable():
-                    op = Message('stream', contents=operation.read())
+                    op = StreamNotification(contents=operation.read())
                     mclient.write(op, callback)
         except KeyError:
-            op = Message('bad_request')
+            op = ResponseMessage.error(request.id, reason='bad_request')
             mclient.write(op, callback)
 
 
@@ -348,9 +316,8 @@ class MediatorClient(object):
 
     def login(self, account, machine, type='builder', callback=None):
         "Logs into a given account, with specific machine credentials."
-        cmd = Message('LOGIN',
-                user=account.username,
-                pwd=account.password_hash,
+        cmd = LoginMessage(username=account.username,
+                password=account.password_hash,
                 machine=machine,
                 type=type)
         self.stream.write_and_read(cmd, callback=callback)
@@ -358,53 +325,40 @@ class MediatorClient(object):
 
     def register(self, account, callback=None):
         "Registers an account with the mediator server."
-        cmd = Message('REGISTER', user=account.username, pwd=account.password)
+        cmd = RegisterMessage(account.username, account.password)
         self.stream.write_and_read(cmd, callback=callback)
         print 'mediator <-', cmd
 
     def send(self, machine, command, callback=None):
-        "sends a given message to a target machine. Expects no response."
+        "sends a given message to a target machine. Expects no response from target."
         if callable(getattr(command, 'to_network', None)):
             command = command.to_network()
 
-        cmd = Message('SEND', machine=machine, command=command)
+        cmd = SendMessage(machine=machine, command=command)
         self.stream.write(cmd, callback=callback)
         print 'mediator <-', cmd
 
     def request(self, machine, command, callback=None):
-        "Sends a given message to a target machine. Expects a response."
+        "Sends a given message to a target machine. Expects a response from target."
         if callable(getattr(command, 'to_network', None)):
             command = command.to_network()
 
-        cmd = Message('REQUEST', machine=machine, command=command)
+        cmd = RequestMessage(machine=machine, command=command)
         self.stream.write_and_read(cmd, callback=callback)
         print 'mediator <-', cmd
 
     def write_response(self, command, callback):
         "Sends a given command back as a response."
         if not callable(getattr(command, 'to_network', None)):
-            command = Message.create(command)
+            command = ResponseMessage.create(command)
         self.stream.write(command, callback=callback)
         print "mediator <-", command
 
     def clients(self, callback=None):
         "Returns all clients connected using the given account."
-        cmd = Message('CLIENTS')
+        cmd = ClientsMessage()
         self.stream.write_and_read(cmd, callback=callback)
         print 'mediator <-', cmd
-
-    def set_message_handler(self, handler, *args, **kwargs):
-        """Assigns a given function as the message handler.
-
-        Function should accept MediatorClient instance and Message instance.
-        """
-        def _on_read(stream):
-            stream.read(callback=with_args(handler, *args, **kwargs))
-
-        self.stream.set_read_callback(_on_read)
-
-    def clear_message_handler(self):
-        self.stream.remove_callbacks()
 
     def _accept_handshake(self, callback):
         self.serializer.accept_handshake(self.stream.iostream(), callback=callback)
@@ -413,6 +367,7 @@ class MediatorClient(object):
     def handshake(self, stream):
         self.stream = MessageStream(stream, self.serializer, self.io_loop)
         # read version
+        print 'waiting for version'
         response = yield gen.Task(self._accept_handshake)
         self.mediator_version = response['version']
         print "Protocol Version:", self.mediator_version

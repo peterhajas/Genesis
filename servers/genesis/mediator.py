@@ -7,7 +7,8 @@ from tornado import iostream, gen
 
 from genesis.networking import Server, MessageStream
 from genesis.serializers import ProtocolSerializer, NetworkSerializer
-from genesis.data import Message, ErrorCodes, Account
+from genesis.data import (ErrorCodes, Account, ResponseMessage, LoginMessage,
+        invocation_message, get_message_class, InvocationMessage, RegisterMessage)
 
 
 class ClientHandler(object):
@@ -35,15 +36,15 @@ class ClientHandler(object):
     def address_str(self):
         return self.address[0] + ':' + str(self.address[1])
 
-    def fail(self, **properties):
-        close = properties.pop('close_stream', False)
-        cmd = Message('FAIL', **properties)
+    def fail(self, id, **kwargs):
+        close = kwargs.pop('close_stream', False)
+        msg = ResponseMessage.error(id, **kwargs)
         if close:
-            print self.id, '<-', cmd, '+ close'
+            print self.id, '<-', msg, '+ close'
         else:
-            print self.id, '<-', cmd
+            print self.id, '<-', msg
         closefn = lambda: self.tracker.remove(self)
-        self.stream.write(cmd, callback=closefn if close else None)
+        self.stream.write(msg, callback=closefn if close else None)
 
     def close(self):
         print "Disconnected", self.full_name(), '-', self.address_str()
@@ -59,123 +60,156 @@ class ClientHandler(object):
     @gen.engine
     def handle_login(self, request):
         "Log this client in."
-        self.account = Account(request['user'], request['pwd'])
+        request = request.cast_to(LoginMessage)
+        self.account = Account(request['username'], request['password'])
         # TODO: use real db?
         if self.account == Account.create('jeff', 'password'):
             # TODO: verify machine & type values
             self.machine, self.type = request['machine'], request['type']
-            self.namespace = request['user']
+            self.namespace = request['username']
             print self.address_str(), "=>", self.id
             self.tracker.assign_namespace(self)
-            msg = Message('OK')
+            msg = ResponseMessage.success(request.id)
             yield gen.Task(self.stream.write, msg)
             print self.id, '<-', msg
-            # add handler overwrites existing handlers
-            self.accepts_requests()
+            self.process_request()
         else:
-            self.fail(code=ErrorCodes.BAD_AUTH, close_stream=False)
-
-    def accepts_requests(self, enabled=True):
-        self.stream.set_read_callback(self.process_request if enabled else None)
-
+            self.fail(request.id, code=ErrorCodes.BAD_AUTH, close_stream=False)
 
     @gen.engine
     def handshake(self):
         # make this method the primary handling method unless otherwise
         # noted
-        self.stream.set_read_callback(self.handshake)
-
-        request = yield gen.Task(self.stream.read)
-        print self.id, '->', request
-        if request.name == 'REGISTER':
-            self.handle_register(request)
-        elif request.name == 'LOGIN':
-            print "LOGIN"
-            self.handle_login(request)
-        else:
-            self.fail(code=ErrorCodes.BAD_REQUEST)
-
-    CALLBACKS = ('OK', 'FAIL')
-    def process_request(self, stream):
-        if stream.reading():
-            print 'process_request', self
-            import sys
-            sys.exit(1)
-        print 'incoming request from', self.id
-        def _callback(request):
+        while not self.account:
+            request = yield gen.Task(self.stream.read)
             print self.id, '->', request
-            method = getattr(self, 'do_' + request.name, None)
-            if callable(method):
-                method(request)
-            elif request.name in self.CALLBACKS and self.reroute:
-                index = -1
-                for i, (target, orig, callback) in enumerate(self.reroute):
-                    if orig.name == request['ACK']:
-                        index = i
-                        break;
-                if index < 0:
-                    print "Ignoring invalid request", request,
-                    return
-                target, orig, callback = self.reroute.pop(index)
-                m = Message('SEND', command=orig, machine=target)
-                print "Got message:", request
-                callback(request)
-        self.stream.read(callback=_callback)
+            if request.name == RegisterMessage.name:
+                self.handle_register(request)
+            elif request.name == LoginMessage.name:
+                self.handle_login(request)
+            else:
+                self.fail(request.id, code=ErrorCodes.BAD_REQUEST)
 
     @gen.engine
-    def do_CLIENTS(self, request):
+    def process_request(self):
+        while 1:
+            message = yield gen.Task(self.stream.read)
+            print self.id, '->', message
+            if message.is_response and self.reroute:
+                index = -1
+                for i, (req_msg, callback) in enumerate(self.reroute):
+                    if req_msg.id == message.id:
+                        index = i
+                        break
+                if index < 0:
+                    print "Ignoring invalid request", message,
+                    continue
+                _, callback = self.reroute.pop(index)
+                print "Got message:", message
+                callback(message)
+            elif message.is_invocation:
+                print 'dispatch'
+                method = getattr(self, 'do_' + message.name, None)
+                if callable(method):
+                    method(message)
+                else:
+                    print "Failed to find method:", 'do_' + message.name
+            else:
+                print "UNKNOWN MESSAGE:", message
+
+
+#    def process_request(self, stream):
+#        if stream.reading():
+#            print 'process_request', self
+#            import sys
+#            sys.exit(1)
+#
+#        def _callback(message):
+#            print self.id, '->', message
+#            if message.is_response and self.reroute:
+#                index = -1
+#                for i, (req_msg, callback) in enumerate(self.reroute):
+#                    if req_msg.id == message.id:
+#                        index = i
+#                        break;
+#                if index < 0:
+#                    print "Ignoring invalid request", message,
+#                    return
+#                _, callback = self.reroute.pop(index)
+#                print "Got message:", message
+#                callback(message)
+#            elif message.is_invocation:
+#                print 'dispatch'
+#                method = getattr(self, 'do_' + message.name, None)
+#                if callable(method):
+#                    method(message)
+#                else:
+#                    print "Failed to find method:", 'do_' + message.name
+#            else:
+#                print "UNKNOWN MESSAGE:", message
+#
+#        self.stream.read(callback=_callback)
+
+    @gen.engine
+    def do_clients(self, request):
         machines = {}
         for name, client in self.tracker.get_namespace(self.namespace).items():
             machines[name] = client.type
-        msg = Message('OK', clients=machines)
+        msg = ResponseMessage.success(request.id, clients=machines)
         print self.id, '<-', msg
         yield gen.Task(self.stream.write, msg)
 
     @gen.engine
-    def do_REQUEST(self, request, is_return=False):
+    def do_request(self, request):
         # TODO: reject if sender or command is malformed
-        print 'namespace =', self.namespace, '; machine =', request['machine']
+        print 'REQUEST: namespace =', self.namespace, '; machine =', request['machine']
         target = self.tracker.get_client_in_namespace(self.namespace, request['machine'])
         if target is None:
             print "No machine named:", request['machine']
-            msg = Message('FAIL',
+            msg = ResponseMessage.error(request.id,
                     reason="No machine exists named %r" % request['machine'],
                     code=ErrorCodes.UNKNOWN_MACHINE)
             yield gen.Task(self.stream.write, msg)
-        msg = Message.create(request['command'])
+            raise StopIteration
+        msg = InvocationMessage.create(request['command'])
         if not msg:
             print "bad message:", repr(msg)
-            return
-        msg['sender'] = self.machine
+            raise StopIteration
+        msg.sender = self.machine
         print target.id, '<-', msg, '[forwarding]'
-        response = yield gen.Task(target.request, self.machine, msg)
+        response = yield gen.Task(target.request, msg)
         print '[forwarding]', target.id, '->', response
-        response['sender'] = target.machine
+        response.sender = target.machine
         print self.id, '<-', response, '[forwarding]'
         yield gen.Task(self.stream.write, response)
 
     @gen.engine
-    def do_SEND(self, request, is_return=False):
+    def do_send(self, request, callback=None):
         # TODO: reject if sender or command is malformed
-        print 'namespace =', self.namespace, '; machine =', request['machine']
+        print 'SEND: namespace =', self.namespace, '; machine =', request['machine']
         target = self.tracker.get_client_in_namespace(self.namespace, request['machine'])
         if target is None:
-            print "No machine named:", request['machine']
-            msg = Message('FAIL',
-                    reason="No machine exists named %r" % request['machine'],
-                    code=ErrorCodes.UNKNOWN_MACHINE)
-            yield gen.Task(self.stream.write, msg)
-        msg = Message.create(request['command'])
+            # absorb all invalid messages
+            print "No machine named:", request['machine'], '... Ignoring message'
+            #msg = ResponseMessage.error(request.id,
+            #        reason="No machine exists named %r" % request['machine'],
+            #        code=ErrorCodes.UNKNOWN_MACHINE)
+            #yield gen.Task(self.stream.write, msg)
+            raise StopIteration
+        msg = InvocationMessage.create(request['command'])
         if not msg:
+            print repr(request)
             print "bad message:", repr(msg)
-            return
-        msg['sender'] = self.machine
+            raise StopIteration
+        msg.sender = self.machine
         print target.id, '<-', msg, '[forwarding]'
         yield gen.Task(target.stream.write, msg)
+        if callable(callback):
+            callback()
 
-    def request(self, original, msg, callback=None):
+    def request(self, msg, callback=None):
         "Perform a send & add expected response to routing list."
-        self.reroute.append((original, msg, callback))
+        self.reroute.append((msg, callback))
         self.stream.write(msg)
 
 

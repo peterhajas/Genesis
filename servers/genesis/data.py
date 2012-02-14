@@ -1,5 +1,6 @@
 import os
 import hashlib
+import uuid
 
 
 class Action(object):
@@ -31,7 +32,8 @@ class Action(object):
 
 class ErrorCodes(object):
     # general purpose
-    INTERNAL_ERROR, BAD_REQUEST = range(2)
+    INTERNAL_ERROR = 0
+    BAD_REQUEST = 1
     # for register
     USERNAME_TAKEN = 100
     INVALID_USERNAME = 101
@@ -41,7 +43,7 @@ class ErrorCodes(object):
     MACHINE_CONFLICT = 101
     INVALID_MACHINE = 102
     INVALID_TYPE = 103
-    # for machine
+    # for send / request
     UNKNOWN_MACHINE = 100
 
 class Account(object):
@@ -65,10 +67,221 @@ class Account(object):
         return (self.username, self.password_hash) == (
                 account.username, account.password_hash)
 
+class InvocationMessage(object):
+    "Represents a remote procedure call with an expected response."
+    MAPPING = None
+    REQUIRES_SENDER = False
+    name = None
+    is_invocation = True
+    is_response = False
+    is_notification = False
+    def __init__(self, *args, **kwargs):
+        self.id = self.__class__.create_id(kwargs.pop('id', None))
+        self.sender = 0
+
+        if self.MAPPING is None:
+            self.args = list(args)
+        else:
+            self.args = [None] * len(self.MAPPING)
+            for i, value in enumerate(args):
+                self.args[i] = value
+            for key, value in kwargs.items():
+                try:
+                    self.args[self.MAPPING.index(key)] = value
+                except (IndexError, TypeError):
+                    raise KeyError('%r is not a valid message parameter.' % key)
+
+    def cast_to(self, cls):
+        return cls.create(self.to_network())
+
+    def __index_for_name(self, name, default=None):
+        try:
+            return self.MAPPING.index(name)
+        except (IndexError, TypeError):
+            return default
+
+    def __getitem__(self, key):
+        return self.args[self.__index_for_name(key, key)]
+
+    def __setitem__(self, key, value):
+        self.args[self.__index_for_name(key, key)] = value
+
+    def __contains__(self, key):
+        return self.__index_for_name(key, key) in self.args
+
+    def __setitem__(self, key, value):
+        self.args[self.__index_for_name(key, key)] = value
+
+    def __reversemapping(self):
+        return dict(map(reversed, self.MAPPING.items()))
+
+    def __repr__(self):
+        args = []
+        for i, value in enumerate(self.args):
+            if self.MAPPING is None:
+                args.append(repr(value))
+            elif 0 <= i < len(self.MAPPING):
+                args.append("%s=%r" % (self.MAPPING[i], value))
+            else:
+                args.append(repr(value))
+        return '%(name)s(%(args)s)<%(id)s, %(sender)r>' % {
+            'name': self.name,
+            'args': ', '.join(args),
+            'id': self.id,
+            'sender': self.sender,
+        }
+
+    @classmethod
+    def create_id(cls, provided_id=None):
+        "Defines the unique ID for this message."
+        if provided_id is None:
+            return str(uuid.uuid4())
+        return str(provided_id)
+
+    @classmethod
+    def create(cls, dictionary):
+        "Creates an instance of request from dictionary. Returns None on failure."
+        try:
+            assert isinstance(dictionary['method'], str) or isinstance(dictionary['method'], unicode)
+            params = list(dictionary['params'])
+            sender = params.pop()
+            instance = cls(*params, id=dictionary['id'])
+            instance.name = dictionary['method']
+            instance.sender = sender
+            return instance
+        except (KeyError, AssertionError):
+            return None
+
+    def to_network(self):
+        return {
+            "method": self.name,
+            "params": self.args + [self.sender],
+            "id": self.id,
+        }
+
+class RegisterMessage(InvocationMessage):
+    name = 'register'
+    MAPPING = ('username', 'password')
+
+class LoginMessage(InvocationMessage):
+    name = 'login'
+    MAPPING = ('username', 'password', 'machine', 'type')
+
+class ProjectsMessage(InvocationMessage):
+    name = 'projects'
+    MAPPING = ()
+
+class FilesMessage(InvocationMessage):
+    name = 'files'
+    MAPPING = ('project',)
+
+class DownloadMessage(InvocationMessage):
+    name = 'download'
+    MAPPING = ('filepath',)
+
+class UploadMessage(InvocationMessage):
+    name = 'upload'
+    MAPPING = ('filepath', 'data', 'mimetype')
+
+class PerformMessage(InvocationMessage):
+    name = 'perform'
+    MAPPING = ('project', 'action')
+
+class GitMessage(InvocationMessage):
+    name = 'git',
+    MAPPING = ('project', 'action')
+
+class SendMessage(InvocationMessage):
+    name = 'send'
+    MAPPING = ('machine', 'command')
+
+class RequestMessage(InvocationMessage):
+    name = 'request'
+    MAPPING = ('machine', 'command')
+
+class NotificationMessage(InvocationMessage):
+    "Represents a remote procedure call with the expectation of NO response."
+    is_invocation = True
+    is_response = False
+    is_notification = True
+    @classmethod
+    def create_id(cls, provided_id=None):
+        return None
+
+class StreamNotification(NotificationMessage):
+    name = 'stream'
+    MAPPING = ('project', 'contents',)
+
+class StreamEOFNotification(NotificationMessage):
+    name = 'stream_eof'
+    MAPPING = ('project',)
+
+class ReturnCodeNotification(NotificationMessage):
+    name = 'return'
+    MAPPING = ('project', 'code')
+
+class ClientsMessage(InvocationMessage):
+    name = 'clients'
+    MAPPING = ()
+
+class ResponseMessage(object):
+    "The results of remotely invoking a given procedure."
+    is_invocation = False
+    is_response = True
+    is_notification = False
+    def __init__(self, id, result=None, error=None):
+        assert result is not None or error is not None, "Both result and error cannot be None. (%r, %r)" % (result, error)
+        self.id, self.result, self.error = id, result, error
+
+    def __repr__(self):
+        return "%(name)s(%(id)r, %(result)r, %(error)r)" % {
+            "name": self.__class__.__name__,
+            "id": self.id,
+            "result": self.result,
+            "error": self.error,
+        }
+
+    def __getitem__(self, key):
+        if self.is_error:
+            return self.error.get(key)
+        return self.result.get(key)
+
+    @property
+    def is_error(self):
+        "Returns true if the given response is an error message."
+        return self.result is None and self.error is not None
+
+    @classmethod
+    def create(cls, dictionary):
+        "Creates an instance of request from dictionary. Returns None on failure."
+        try:
+            return cls(dictionary['id'], dictionary['result'], dictionary['error'])
+        except (KeyError, AssertionError):
+            return None
+
+    def to_network(self):
+        return {
+            "id": self.id,
+            "result": self.result,
+            "error": self.error,
+        }
+
+    @classmethod
+    def error(cls, id, **kwargs):
+        instance = cls(id, None, kwargs)
+        instance.name = 'FAIL'
+        return instance
+
+    @classmethod
+    def success(cls, id, **kwargs):
+        instance = cls(id, kwargs, None)
+        instance.name = 'OK'
+        return instance
+
 
 class Message(object):
     "Generate request or response used by either mediator or builder."
-    def __init__(self, name,  **kwargs):
+    def __init__(self, name, **kwargs):
         self.name = name
         self.kwargs = kwargs
 
@@ -105,4 +318,26 @@ class Message(object):
 
     def to_network(self):
         return [self.name, self.kwargs]
+
+messages = [
+    RegisterMessage, LoginMessage, ProjectsMessage, FilesMessage,
+    DownloadMessage, UploadMessage, PerformMessage, SendMessage,
+    RequestMessage, StreamNotification, StreamEOFNotification,
+    ReturnCodeNotification, ClientsMessage,
+]
+
+def get_message_class(dictionary):
+    instance = InvocationMessage.create(dictionary)
+    if instance:
+        for msg in messages:
+            if instance.name == msg.name:
+                return msg
+    return None
+
+
+def invocation_message(dictionary):
+    klass = get_message_class(dictionary)
+    if klass:
+        return klass.create(dictionary)
+    return None
 

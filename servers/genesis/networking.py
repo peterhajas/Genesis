@@ -6,7 +6,7 @@ from functools import partial
 from tornado.ioloop import IOLoop
 from tornado import iostream, gen
 
-from genesis.data import Message
+from genesis.data import ResponseMessage, invocation_message
 from genesis.serializers import ProtocolSerializer, NetworkSerializer
 
 
@@ -128,12 +128,11 @@ class Server(object):
             print "Listening on port %s" % self.port
         return sock
 
-
 class MessageStream(object):
     def __init__(self, iostrm, serializer=None, io_loop=None):
         self.stream = iostrm
         self.serializer = serializer or ProtocolSerializer(NetworkSerializer())
-        self.bad_message = None
+        self.on_bad_message = None
         self.io_loop = io_loop or IOLoop.instance()
 
     def iostream(self):
@@ -172,34 +171,18 @@ class MessageStream(object):
     def closed(self):
         return self.stream.closed()
 
-    def remove_callbacks(self):
-        if not self.stream.closed():
-            self.io_loop.remove_handler(self.stream.socket.fileno())
-
-    def set_read_callback(self, callback):
-        if callable(callback):
-            _callback = lambda fd, e: callback(self)
-        else:
-            _callback = lambda fd, e: None
-        self.io_loop.add_handler(
-                self.stream.socket.fileno(), _callback, IOLoop.READ)
-
-    def set_write_callback(self, callback):
-        if callable(callback):
-            _callback = lambda fd, e: callback(self)
-        else:
-            _callback = lambda fd, e: None
-        self.io_loop.add_handler(
-                self.stream.socket.fileno(), _callback, IOLoop.WRITE)
-
     def __to_message(self, callback):
         def handler(raw_msg):
-            op = Message.create(raw_msg)
+            print repr(raw_msg)
+            if 'result' in raw_msg:
+                op = ResponseMessage.create(raw_msg)
+            else:
+                op = invocation_message(raw_msg)
             if op or not self.ignore_invalid_messages:
                 callback(op)
             else:
-                if callable(self.bad_message):
-                    self.bad_message(raw_msg)
+                if callable(self.on_bad_message):
+                    self.on_bad_message(raw_msg)
                 else:
                     print "Bad Message", repr(raw_msg)
         return handler
