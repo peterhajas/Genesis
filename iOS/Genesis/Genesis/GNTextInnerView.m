@@ -766,7 +766,11 @@ static CTFontRef defaultFont = nil;
         {
             CFRelease(attributedString);
         }
-        attributedString = CFRetain((__bridge CFAttributedStringRef)highlightedText);
+        
+        NSMutableAttributedString* mutableHighlightedText = [[NSMutableAttributedString alloc] initWithAttributedString:highlightedText];
+        
+        attributedString = (__bridge CFMutableAttributedStringRef)mutableHighlightedText;
+        CFRetain(attributedString);
         [self textChangedWithHighlight:YES];
     }
 }
