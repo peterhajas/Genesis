@@ -29,7 +29,6 @@
     #import <CoreData/CoreData.h>
     #import <CoreText/CoreText.h>
     #import <CoreGraphics/CoreGraphics.h>
-    #import "DTCoreText.h"
 #endif
 
 #define kGNTintColor [UIColor colorWithRed:.451 green:.231 blue:.702 alpha:1.0]
