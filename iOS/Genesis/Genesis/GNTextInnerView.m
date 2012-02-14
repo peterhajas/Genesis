@@ -598,79 +598,29 @@ static CTFontRef defaultFont = nil;
         fontSizeForText = DEFAULT_SIZE;
     }
     
-    // TODO: The default font should be read from something like NSUserDefaults
-    
-    // First, find what line the character at this index is in
-    
-    CFArrayRef lines = CTFrameGetLines(frame);    
-    NSUInteger indexLine = NSUIntegerMax;
-    
-    // If there are zero lines in the frame, then this is an empty file.
-    // Return a rect corresponding to the first index.
-    
-    if(CFArrayGetCount(lines) == 0)
+    // If shownText is empty, return the first location
+    if([shownText length] == 0)
     {
         return CGRectMake(0, 0, kGNTextCaretViewWidth, fontSizeForText);
     }
     
-    // Loop through the lines in our frame
-    for(NSUInteger i = 0; i < CFArrayGetCount(lines); i++)
-    {
-        // Find the line range that represents our index
-        
-        CTLineRef currentLine = CFArrayGetValueAtIndex(lines, i);
-        CFRange lineStringRange = CTLineGetStringRange(currentLine);
-        
-        if((index >= lineStringRange.location) &&
-           (index <= lineStringRange.location + lineStringRange.length))
-        {
-            // We found the right line!
-            indexLine = i;
-            break;
-        }
-    }
+    // TODO: The default font should be read from something like NSUserDefaults
     
-    if(indexLine == NSUIntegerMax)
-    {
-        NSLog(@"Problem finding rect for character at index %u", index);
-        return CGRectMake(0, 0, 0, 0);
-    }
+    // First, find what line the character at this index is in
     
-    CTLineRef lineAtCaret = CFArrayGetValueAtIndex(lines, indexLine);
+    CTLineRef lineAtCaret = [self lineForCharacterAtIndex:index];
+    
+    // If there is no line at the caret, return the first location
+    
+    if(lineAtCaret == NULL)
+    {
+        return CGRectMake(0, 0, kGNTextCaretViewWidth, fontSizeForText);
+    }
     
     // Now, get the runs out of the line
 
-    CFArrayRef runs = CTLineGetGlyphRuns(lineAtCaret);
+    CTRunRef runForCaret = [self runForLine:lineAtCaret andCharacterAtIndex:index];
     
-    if(CFArrayGetCount(runs) < 1)
-    {
-        NSLog(@"Could not obtain line runs for character at index %u", index);
-        return CGRectMake(0, 0, 0, 0);
-    }
-    
-    // Find the run this index belongs to
-    
-    NSUInteger runForCaretIndex = NSUIntegerMax;
-    
-    for(NSUInteger i = 0; i < CFArrayGetCount(runs); i++)
-    {
-        CTRunRef run = CFArrayGetValueAtIndex(runs, i);
-        CFRange runRange = CTRunGetStringRange(run);
-        
-        if((index >= runRange.location) && (index <= runRange.location + runRange.length))
-        {
-            runForCaretIndex = i;
-            break;
-        }
-    }
-    
-    if(runForCaretIndex == NSUIntegerMax)
-    {
-        NSLog(@"Could not find line run for character at index %u", index);
-        return CGRectMake(0, 0, 0, 0);
-    }
-
-    CTRunRef runForCaret = CFArrayGetValueAtIndex(CTLineGetGlyphRuns(lineAtCaret), runForCaretIndex);
     CFRange caretRunStringRange = CTRunGetStringRange(runForCaret);
     
     NSUInteger indexOfGlyph = index - caretRunStringRange.location;
@@ -678,18 +628,8 @@ static CTFontRef defaultFont = nil;
     CGPoint glyphPosition;
     
     // Get the origin of lineAtCaret
-    
-    CGPoint* lineOriginsForFrame;
-    
-    lineOriginsForFrame = calloc(CFArrayGetCount(lines), sizeof(CGPoint));
-    
-    CTFrameGetLineOrigins(frame, CFRangeMake(0,0), lineOriginsForFrame);
-    
-    CGPoint lineOrigin;
-    
-    lineOrigin = lineOriginsForFrame[indexLine];
-    
-    free(lineOriginsForFrame);
+
+    CGPoint lineOrigin = [self originForLine:lineAtCaret];
     
     if(caretRunStringRange.location + caretRunStringRange.length == [shownText length])
     {
@@ -718,6 +658,128 @@ static CTFontRef defaultFont = nil;
                       [self frame].size.height - lineOrigin.y - fontSizeForText,
                       kGNTextCaretViewWidth,
                       fontSizeForText);
+}
+
+-(CTLineRef)lineForCharacterAtIndex:(NSUInteger)index
+{
+    CFArrayRef lines = CTFrameGetLines(frame);    
+    NSUInteger indexLine = NSUIntegerMax;
+    
+    // If there are zero lines in the frame, then this is an empty file.
+    // Return NULL.
+    
+    if(CFArrayGetCount(lines) == 0)
+    {
+        return NULL;
+    }
+    
+    // Loop through the lines in our frame
+    for(NSUInteger i = 0; i < CFArrayGetCount(lines); i++)
+    {
+        // Find the line range that represents our index
+        
+        CTLineRef currentLine = CFArrayGetValueAtIndex(lines, i);
+        CFRange lineStringRange = CTLineGetStringRange(currentLine);
+        
+        if((index >= lineStringRange.location) &&
+           (index <= lineStringRange.location + lineStringRange.length))
+        {
+            // We found the right line!
+            indexLine = i;
+            break;
+        }
+    }
+    
+    // If we still couldn't find it, return NULL and log this.
+    
+    if(indexLine == NSUIntegerMax)
+    {
+        NSLog(@"Problem finding rect for character at index %u", index);
+        return NULL;
+    }
+    
+    return CFArrayGetValueAtIndex(lines, indexLine);
+}
+
+-(CTRunRef)runForLine:(CTLineRef)line andCharacterAtIndex:(NSUInteger)index
+{
+    // Get the runs out of the line
+    
+    CFArrayRef runs = CTLineGetGlyphRuns(line);
+    
+    // If there aren't any runs, return NULL
+    
+    if(CFArrayGetCount(runs) == 0)
+    {
+        NSLog(@"Could not obtain line runs for character at index %u", index);
+        return NULL;
+    }
+    
+    // Find the run this index belongs to
+    
+    NSUInteger runForCaretIndex = NSUIntegerMax;
+    
+    for(NSUInteger i = 0; i < CFArrayGetCount(runs); i++)
+    {
+        CTRunRef run = CFArrayGetValueAtIndex(runs, i);
+        CFRange runRange = CTRunGetStringRange(run);
+        
+        if((index >= runRange.location) && (index <= runRange.location + runRange.length))
+        {
+            runForCaretIndex = i;
+            break;
+        }
+    }
+    
+    // If we couldn't find the run for the character, liog it and return NULL
+    
+    if(runForCaretIndex == NSUIntegerMax)
+    {
+        NSLog(@"Could not find line run for character at index %u", index);
+        return NULL;
+    }
+    
+    CTRunRef runForCaret = CFArrayGetValueAtIndex(CTLineGetGlyphRuns(line), runForCaretIndex);
+    
+    return runForCaret;
+}
+
+-(CGPoint)originForLine:(CTLineRef)line
+{
+    NSUInteger numberOfLines = CFArrayGetCount(CTFrameGetLines(frame));
+    
+    // Get the origin of lineAtCaret
+    
+    CGPoint* lineOriginsForFrame = calloc(numberOfLines, sizeof(CGPoint));
+    
+    CTFrameGetLineOrigins(frame, CFRangeMake(0,0), lineOriginsForFrame);
+    
+    CGPoint lineOrigin;
+    
+    lineOrigin = lineOriginsForFrame[[self indexOfFrameLine:line]];
+    
+    free(lineOriginsForFrame);
+    
+    return lineOrigin;
+}
+
+-(NSUInteger)indexOfFrameLine:(CTLineRef)line
+{
+    // Grab the lines out of the frame
+    CFArrayRef lines = CTFrameGetLines(frame);
+    for(NSUInteger i = 0; i < CFArrayGetCount(lines); i++)
+    {
+        CTLineRef currentLine = CFArrayGetValueAtIndex(lines, i);
+        
+        if(CFEqual(line, currentLine))
+        {
+            return i;
+        }
+    }
+    
+    // If we didn't find it, return NSUIntegerMax
+    
+    return NSUIntegerMax;
 }
 
 -(void)textChangedWithHighlight:(BOOL)highlight

@@ -63,6 +63,10 @@
 -(void)tapInView:(id)sender;
 
 -(CGRect)rectForCharacterAtIndex:(NSUInteger)index;
+-(CTLineRef)lineForCharacterAtIndex:(NSUInteger)index;
+-(CTRunRef)runForLine:(CTLineRef)line andCharacterAtIndex:(NSUInteger)index;
+-(CGPoint)originForLine:(CTLineRef)line;
+-(NSUInteger)indexOfFrameLine:(CTLineRef)line;
 
 -(void)textChangedWithHighlight:(BOOL)highlight;
 
