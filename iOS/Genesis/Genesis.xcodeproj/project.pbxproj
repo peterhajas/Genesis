@@ -63,6 +63,51 @@
 		4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B014EA3FC1005E8D91 /* test_styles.css */; };
 		4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B214EA3FC1005E8D91 /* LICENSE.TXT */; };
 		4F99F2F914EA3FC1005E8D91 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B314EA3FC1005E8D91 /* README */; };
+		4FF3637714EAECB900125C74 /* console-externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26814EA3FC1005E8D91 /* console-externs.js */; };
+		4FF3637814EAECB900125C74 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26E14EA3FC1005E8D91 /* lang-apollo.js */; };
+		4FF3637914EAECB900125C74 /* lang-clj.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26F14EA3FC1005E8D91 /* lang-clj.js */; };
+		4FF3637A14EAECB900125C74 /* lang-css.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27014EA3FC1005E8D91 /* lang-css.js */; };
+		4FF3637B14EAECB900125C74 /* lang-go.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27114EA3FC1005E8D91 /* lang-go.js */; };
+		4FF3637C14EAECB900125C74 /* lang-hs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27214EA3FC1005E8D91 /* lang-hs.js */; };
+		4FF3637D14EAECB900125C74 /* lang-lisp.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27314EA3FC1005E8D91 /* lang-lisp.js */; };
+		4FF3637E14EAECB900125C74 /* lang-lua.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27414EA3FC1005E8D91 /* lang-lua.js */; };
+		4FF3637F14EAECB900125C74 /* lang-ml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27514EA3FC1005E8D91 /* lang-ml.js */; };
+		4FF3638014EAECB900125C74 /* lang-n.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27614EA3FC1005E8D91 /* lang-n.js */; };
+		4FF3638114EAECB900125C74 /* lang-proto.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27714EA3FC1005E8D91 /* lang-proto.js */; };
+		4FF3638214EAECB900125C74 /* lang-scala.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27814EA3FC1005E8D91 /* lang-scala.js */; };
+		4FF3638314EAECB900125C74 /* lang-sql.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27914EA3FC1005E8D91 /* lang-sql.js */; };
+		4FF3638414EAECB900125C74 /* lang-tex.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27A14EA3FC1005E8D91 /* lang-tex.js */; };
+		4FF3638514EAECB900125C74 /* lang-vb.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27B14EA3FC1005E8D91 /* lang-vb.js */; };
+		4FF3638614EAECB900125C74 /* lang-vhdl.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27C14EA3FC1005E8D91 /* lang-vhdl.js */; };
+		4FF3638714EAECB900125C74 /* lang-wiki.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27D14EA3FC1005E8D91 /* lang-wiki.js */; };
+		4FF3638814EAECB900125C74 /* lang-xq.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27E14EA3FC1005E8D91 /* lang-xq.js */; };
+		4FF3638914EAECB900125C74 /* lang-yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F27F14EA3FC1005E8D91 /* lang-yaml.js */; };
+		4FF3638A14EAECB900125C74 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28114EA3FC1005E8D91 /* prettify.js */; };
+		4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28314EA3FC1005E8D91 /* combinePrefixPatterns.js */; };
+		4FF3638C14EAECB900125C74 /* externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28414EA3FC1005E8D91 /* externs.js */; };
+		4FF3638D14EAECB900125C74 /* extractSourceSpans.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28514EA3FC1005E8D91 /* extractSourceSpans.js */; };
+		4FF3638E14EAECB900125C74 /* numberLines.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28714EA3FC1005E8D91 /* numberLines.js */; };
+		4FF3638F14EAECB900125C74 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28914EA3FC1005E8D91 /* prettify.js */; };
+		4FF3639014EAECB900125C74 /* recombineTagsAndDecorations.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28A14EA3FC1005E8D91 /* recombineTagsAndDecorations.js */; };
+		4FF3639114EAECB900125C74 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29114EA3FC1005E8D91 /* lang-apollo.js */; };
+		4FF3639214EAECB900125C74 /* lang-clj.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29214EA3FC1005E8D91 /* lang-clj.js */; };
+		4FF3639314EAECB900125C74 /* lang-css.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29314EA3FC1005E8D91 /* lang-css.js */; };
+		4FF3639414EAECB900125C74 /* lang-go.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29414EA3FC1005E8D91 /* lang-go.js */; };
+		4FF3639514EAECB900125C74 /* lang-hs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29514EA3FC1005E8D91 /* lang-hs.js */; };
+		4FF3639614EAECB900125C74 /* lang-lisp.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29614EA3FC1005E8D91 /* lang-lisp.js */; };
+		4FF3639714EAECB900125C74 /* lang-lua.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29714EA3FC1005E8D91 /* lang-lua.js */; };
+		4FF3639814EAECB900125C74 /* lang-ml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29814EA3FC1005E8D91 /* lang-ml.js */; };
+		4FF3639914EAECB900125C74 /* lang-n.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29914EA3FC1005E8D91 /* lang-n.js */; };
+		4FF3639A14EAECB900125C74 /* lang-proto.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29A14EA3FC1005E8D91 /* lang-proto.js */; };
+		4FF3639B14EAECB900125C74 /* lang-scala.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29B14EA3FC1005E8D91 /* lang-scala.js */; };
+		4FF3639C14EAECB900125C74 /* lang-sql.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29C14EA3FC1005E8D91 /* lang-sql.js */; };
+		4FF3639D14EAECB900125C74 /* lang-tex.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29D14EA3FC1005E8D91 /* lang-tex.js */; };
+		4FF3639E14EAECB900125C74 /* lang-vb.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29E14EA3FC1005E8D91 /* lang-vb.js */; };
+		4FF3639F14EAECB900125C74 /* lang-vhdl.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29F14EA3FC1005E8D91 /* lang-vhdl.js */; };
+		4FF363A014EAECB900125C74 /* lang-wiki.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A014EA3FC1005E8D91 /* lang-wiki.js */; };
+		4FF363A114EAECB900125C74 /* lang-xq.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A114EA3FC1005E8D91 /* lang-xq.js */; };
+		4FF363A214EAECB900125C74 /* lang-yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A214EA3FC1005E8D91 /* lang-yaml.js */; };
+		4FF363A314EAECB900125C74 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A414EA3FC1005E8D91 /* prettify.js */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
 		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
@@ -646,6 +691,51 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF3637714EAECB900125C74 /* console-externs.js in Resources */,
+				4FF3637814EAECB900125C74 /* lang-apollo.js in Resources */,
+				4FF3637914EAECB900125C74 /* lang-clj.js in Resources */,
+				4FF3637A14EAECB900125C74 /* lang-css.js in Resources */,
+				4FF3637B14EAECB900125C74 /* lang-go.js in Resources */,
+				4FF3637C14EAECB900125C74 /* lang-hs.js in Resources */,
+				4FF3637D14EAECB900125C74 /* lang-lisp.js in Resources */,
+				4FF3637E14EAECB900125C74 /* lang-lua.js in Resources */,
+				4FF3637F14EAECB900125C74 /* lang-ml.js in Resources */,
+				4FF3638014EAECB900125C74 /* lang-n.js in Resources */,
+				4FF3638114EAECB900125C74 /* lang-proto.js in Resources */,
+				4FF3638214EAECB900125C74 /* lang-scala.js in Resources */,
+				4FF3638314EAECB900125C74 /* lang-sql.js in Resources */,
+				4FF3638414EAECB900125C74 /* lang-tex.js in Resources */,
+				4FF3638514EAECB900125C74 /* lang-vb.js in Resources */,
+				4FF3638614EAECB900125C74 /* lang-vhdl.js in Resources */,
+				4FF3638714EAECB900125C74 /* lang-wiki.js in Resources */,
+				4FF3638814EAECB900125C74 /* lang-xq.js in Resources */,
+				4FF3638914EAECB900125C74 /* lang-yaml.js in Resources */,
+				4FF3638A14EAECB900125C74 /* prettify.js in Resources */,
+				4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */,
+				4FF3638C14EAECB900125C74 /* externs.js in Resources */,
+				4FF3638D14EAECB900125C74 /* extractSourceSpans.js in Resources */,
+				4FF3638E14EAECB900125C74 /* numberLines.js in Resources */,
+				4FF3638F14EAECB900125C74 /* prettify.js in Resources */,
+				4FF3639014EAECB900125C74 /* recombineTagsAndDecorations.js in Resources */,
+				4FF3639114EAECB900125C74 /* lang-apollo.js in Resources */,
+				4FF3639214EAECB900125C74 /* lang-clj.js in Resources */,
+				4FF3639314EAECB900125C74 /* lang-css.js in Resources */,
+				4FF3639414EAECB900125C74 /* lang-go.js in Resources */,
+				4FF3639514EAECB900125C74 /* lang-hs.js in Resources */,
+				4FF3639614EAECB900125C74 /* lang-lisp.js in Resources */,
+				4FF3639714EAECB900125C74 /* lang-lua.js in Resources */,
+				4FF3639814EAECB900125C74 /* lang-ml.js in Resources */,
+				4FF3639914EAECB900125C74 /* lang-n.js in Resources */,
+				4FF3639A14EAECB900125C74 /* lang-proto.js in Resources */,
+				4FF3639B14EAECB900125C74 /* lang-scala.js in Resources */,
+				4FF3639C14EAECB900125C74 /* lang-sql.js in Resources */,
+				4FF3639D14EAECB900125C74 /* lang-tex.js in Resources */,
+				4FF3639E14EAECB900125C74 /* lang-vb.js in Resources */,
+				4FF3639F14EAECB900125C74 /* lang-vhdl.js in Resources */,
+				4FF363A014EAECB900125C74 /* lang-wiki.js in Resources */,
+				4FF363A114EAECB900125C74 /* lang-xq.js in Resources */,
+				4FF363A214EAECB900125C74 /* lang-yaml.js in Resources */,
+				4FF363A314EAECB900125C74 /* prettify.js in Resources */,
 				4F1DCC7C14EA234800811CFA /* parsecode.js in Resources */,
 				4F293B8814CCE88100020A09 /* InfoPlist.strings in Resources */,
 				4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */,
