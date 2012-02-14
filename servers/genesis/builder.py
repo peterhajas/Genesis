@@ -191,7 +191,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
         super(BuilderDelegate, self).__init__(account, machine, autoregister)
         self.actions = {} # name => Action
         self.shell = shell_proxy or ShellProxy()
-        self.inbox = {} # message id => callback
+        self.activity = None
 
     def add_action(self, name, action):
         self.actions[name] = action
@@ -237,7 +237,6 @@ class BuilderDelegate(MediatorClientDelegateBase):
 
     @gen.engine
     def do_upload(self, mclient, request):
-        print 'do upload'
         # no op for now
         yield gen.Task(mclient.write_response, ResponseMessage.success(request.id))
 
@@ -254,15 +253,22 @@ class BuilderDelegate(MediatorClientDelegateBase):
             }],
         ))
 
+    @gen.engine
     def do_stats(self, mclient, request):
-        print 'do stats'
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
+            request.id,
+            activity=self.activity,
+        ))
 
+    @gen.engine
     def do_git(self, mclient, request):
         print 'do git'
 
+    @gen.engine
     def do_cancel(self, mclient, request):
         print 'do cancel'
 
+    @gen.engine
     def do_input(self, mclient, request):
         print 'do input'
 
