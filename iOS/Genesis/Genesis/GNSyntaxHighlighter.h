@@ -8,14 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GNSyntaxHighlighter : NSObject <UIWebViewDelegate>
+@protocol GNSyntaxHighlighterDelegate
+
+-(void)didHighlightText:(NSAttributedString*)highlightedText;
+
+@end
+
+@interface GNSyntaxHighlighter : UIView <UIWebViewDelegate>
 {
     UIWebView* webView;
+    
+    id<GNSyntaxHighlighterDelegate> delegate;
 }
 
--(NSString*)htmlWithEmbeddedCode:(NSString*)code;
--(NSAttributedString*)highlightedStringForString:(NSString*)string;
+-(id)initWithDelegate:(id<GNSyntaxHighlighterDelegate>)_delegate;
+-(void)highlightText:(NSString*)text;
+-(UIColor*)colorForCSSFunction:(NSString*)css;
 
-@property(nonatomic, retain) UIWebView* webView;
+@property(nonatomic,retain) id<GNSyntaxHighlighterDelegate> delegate;
 
 @end

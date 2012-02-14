@@ -1,3 +1,0 @@
-[submodule "iOS/DTCoreText"]
-	path = iOS/DTCoreText
-	url = git://github.com/Cocoanetics/DTCoreText.git

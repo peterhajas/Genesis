@@ -28,10 +28,6 @@
     CGSize sizeForTextview = [innerView frame].size;
     
     [self setContentSize:sizeForTextview];
-    
-    syntaxHighlighter = [[GNSyntaxHighlighter alloc] init];
-    [self addSubview:[syntaxHighlighter webView]];
-    [syntaxHighlighter highlightedStringForString:@"def main():"];
 }
 
 -(void)requiresSize:(CGSize)size

@@ -10,66 +10,102 @@
 
 @implementation GNSyntaxHighlighter
 
-@synthesize webView;
+@synthesize delegate;
 
--(id)init
+-(void)highlightText:(NSString*)text
 {
-    self = [super init];
+    // Load base.html
+    
+    NSString* base = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"base" 
+                                                                                        ofType:@"html"]
+                                               encoding:NSUTF8StringEncoding
+                                                  error:nil];
+    
+    // Replace ___code___ with our text
+    
+    NSString* html = [base stringByReplacingOccurrencesOfString:@"___code___" withString:text];
+    
+    // Load this HTML
+    
+    [webView loadHTMLString:html baseURL:[[NSBundle mainBundle] bundleURL]];
+}
+
+-(UIColor*)colorForCSSFunction:(NSString*)css
+{
+    // Color is formatted like this: rgb(RRR, GGG, BBB)
+    
+    // Cut off rgb(
+    NSString* delimitedColor = [css substringFromIndex:3];
+    
+    // Cut off the )
+    delimitedColor = [delimitedColor substringToIndex:[delimitedColor length]-1];
+    
+    NSArray* colorComponents = [delimitedColor componentsSeparatedByString:@", "];
+    
+    return [UIColor colorWithRed:[[colorComponents objectAtIndex:0] floatValue] / 255.0
+                           green:[[colorComponents objectAtIndex:1] floatValue] / 255.0
+                            blue:[[colorComponents objectAtIndex:2] floatValue] / 255.0
+                           alpha:1.0];
+}
+
+
+
+-(id)initWithDelegate:(id<GNSyntaxHighlighterDelegate>)_delegate;
+{
+    self = [super initWithFrame:CGRectMake(0, 0, 1.0, 1.0)];
     if(self)
     {
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 500, 500)];
+        // Create our webview
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 1.0, 1.0)];
         [webView setDelegate:self];
+        [self addSubview:webView];
+        
+        delegate = _delegate;
     }
     
     return self;
 }
 
--(NSString*)htmlWithEmbeddedCode:(NSString*)code
-{
-    NSString* htmlString = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"base" 
-                                                                                              ofType:@"html"]
-                                                     encoding:NSUTF8StringEncoding
-                                                        error:nil];
-    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"___code___" withString:code];
-    return htmlString;
-}
-
--(NSAttributedString*)highlightedStringForString:(NSString*)string
-{
-    [webView setNeedsDisplayInRect:CGRectMake(0, 0, 500, 500)];
-    //NSString* htmlString = [GNSyntaxHighlighter htmlWithEmbeddedCode:string];
-    
-    [webView loadHTMLString:[self htmlWithEmbeddedCode:string]
-                    baseURL:[[NSBundle mainBundle] bundleURL]];
-    
-    return nil;
-}
-
 -(void)webViewDidFinishLoad:(UIWebView *)asdf
 {
-    NSString* style = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"prettify" 
-                                                                                         ofType:@".css"] 
-                                                                                       encoding:NSUTF8StringEncoding error:nil];
+    // Awesome, we loaded!
     
-    NSString* code = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"codeblock\").innerHTML;"];
+    // Execute our javascript function for delimited highlighted code
     
-    DTCSSStylesheet* styleSheet = [[DTCSSStylesheet alloc] initWithStyleBlock:style];
+    NSString* highlightedCode = [webView stringByEvaluatingJavaScriptFromString:@"highlightedCode()"];
     
-    NSDictionary* __autoreleasing options = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:styleSheet] forKeys:[NSArray arrayWithObject:DTDefaultStyleSheet]];
+    // Create the NSMutableAttributedString we'll stick our highlighted information into
     
-    NSAttributedString* demo = [[NSAttributedString alloc] initWithHTML:[code dataUsingEncoding:NSUTF8StringEncoding]
-                                                     documentAttributes:&options];
+    NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc] init];
     
-    NSLog(@"attr str: %@", demo);
+    // Split the highlightedCode into elements based on :::\n, our delimiter for each line
     
-    NSDictionary* attributes = [demo attributesAtIndex:0 effectiveRange:NULL];
+    NSArray* highlightedElements = [highlightedCode componentsSeparatedByString:@":::\n"];
     
-    CFTypeRef font = CTFontCopyAttribute((CTFontRef)CFDictionaryGetValue((__bridge CFDictionaryRef)attributes, CFSTR("NSFont")), CFSTR("kCTForegroundColorAttributeName"));
+    for(NSUInteger i = 0; i < [highlightedElements count]; i++)
+    {
+        // Split up the element based on our delimiter, ;;;
+        
+        NSString* element = [highlightedElements objectAtIndex:i];
+        NSArray* elementComponents = [element componentsSeparatedByString:@";;;"];
+        
+        if([elementComponents count] == 2)
+        {
+            NSString* code = [elementComponents objectAtIndex:0];
+            UIColor* color = [self colorForCSSFunction:[elementComponents objectAtIndex:1]];
+            
+            NSMutableAttributedString* highlightedElement = [[NSMutableAttributedString alloc] initWithString:code];
+            [highlightedElement addAttribute:(NSString*)kCTForegroundColorAttributeName
+                                       value:(id)[color CGColor]
+                                       range:[code rangeOfString:code]];
+            
+            [attributedString appendAttributedString:highlightedElement];
+        }
+    }
     
+    // Let our delegate know that we're done highlighting
     
-    
-    
-    
+    [delegate didHighlightText:attributedString];
 }
 
 -(BOOL)webView:(UIWebView *)asdf shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

@@ -17,6 +17,7 @@
 #import <CoreText/CoreText.h>
 #import "GNTextRange.h"
 #import "GNTextCaretView.h"
+#import "GNSyntaxHighlighter.h"
 
 @protocol GNTextInnerViewContainerProtocol <NSObject>
 
@@ -25,7 +26,8 @@
 @end
 
 @interface GNTextInnerView : UIView <UITextInput,
-                                     UITextInputTraits>
+                                     UITextInputTraits,
+                                     GNSyntaxHighlighterDelegate>
 
 {
     NSString* shownText;
@@ -46,6 +48,8 @@
     GNTextRange* selectedTextRange;
     
     id<GNTextInnerViewContainerProtocol> containerDelegate;
+    
+    GNSyntaxHighlighter* syntaxHighlighter;
 }
 
 -(void)fitFrameToText;
@@ -59,6 +63,8 @@
 -(void)tapInView:(id)sender;
 
 -(CGRect)rectForCharacterAtIndex:(NSUInteger)index;
+
+-(void)textChangedWithHighlight:(BOOL)highlight;
 
 @property(nonatomic,retain) NSString* shownText;
 @property(nonatomic,retain) id<GNTextInnerViewContainerProtocol> containerDelegate;

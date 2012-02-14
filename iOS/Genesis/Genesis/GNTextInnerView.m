@@ -28,7 +28,9 @@ static CTFontRef defaultFont = nil;
 {
     shownText = [[NSString alloc] initWithString:@""];
 
-    attributedString = NULL;
+    attributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
+    CFAttributedStringReplaceString(attributedString, CFRangeMake(0, 0), CFSTR(""));
+    
     frameSetter = NULL;
     [self evaluateFramesetter];
     
@@ -46,6 +48,10 @@ static CTFontRef defaultFont = nil;
     tapGestureReognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
                                                                   action:@selector(tapInView:)];
     [self addGestureRecognizer:tapGestureReognizer];
+    
+    // Create the syntax highlighter
+    syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
+    [self addSubview:syntaxHighlighter];
 }
 
 -(id)initWithFrame:(CGRect)frame_
@@ -73,8 +79,7 @@ static CTFontRef defaultFont = nil;
 -(void)setShownText:(NSString*)text
 {
     shownText = text;
-    [self setNeedsDisplay];
-    [self fitFrameToText];
+    [self textChangedWithHighlight:NO];
 }
 
 -(NSString*)shownText
@@ -468,8 +473,7 @@ static CTFontRef defaultFont = nil;
     
     textCaretIndex++;
     
-    [self setNeedsDisplay];
-    [self fitFrameToText];
+    [self textChangedWithHighlight:NO];
 }
 
 -(void)deleteBackward
@@ -484,8 +488,7 @@ static CTFontRef defaultFont = nil;
         
         textCaretIndex--;
                 
-        [self setNeedsDisplay];
-        [self fitFrameToText];
+        [self textChangedWithHighlight:NO];
     }
 }
 
@@ -523,20 +526,6 @@ static CTFontRef defaultFont = nil;
 
 -(void)evaluateFramesetter
 {
-    CFStringRef foundationString = (__bridge CFStringRef)shownText;
-    
-    if(attributedString != NULL)
-    {
-        CFRelease(attributedString);
-        attributedString = NULL;
-    }
-    
-    attributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
-    
-    // If we have text already, fill in the attributed string with the value of shownText
-    if (CFStringGetLength(foundationString) > 0)
-        CFAttributedStringReplaceString(attributedString, CFRangeMake(0, 0), foundationString);
-    
     // What font do we want?
     defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY, DEFAULT_SIZE, NULL);
     
@@ -731,6 +720,17 @@ static CTFontRef defaultFont = nil;
                       fontSizeForText);
 }
 
+-(void)textChangedWithHighlight:(BOOL)highlight
+{    
+    if(!highlight)
+    {
+        [syntaxHighlighter highlightText:[self shownText]];
+    }
+    
+    [self setNeedsDisplay];
+    [self fitFrameToText];
+}
+
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
@@ -754,6 +754,21 @@ static CTFontRef defaultFont = nil;
     NSLog(@"height for framesetter: %f", sizeForText.height);
     
     [containerDelegate requireSize:sizeForText];
+}
+
+#pragma mark GNSyntaxHighlighterDelegate mathods
+
+-(void)didHighlightText:(NSAttributedString*)highlightedText
+{
+    if(![[highlightedText string] isEqualToString:[(__bridge NSAttributedString*)attributedString string]])
+    {
+        if(attributedString)
+        {
+            CFRelease(attributedString);
+        }
+        attributedString = CFRetain((__bridge CFAttributedStringRef)highlightedText);
+        [self textChangedWithHighlight:YES];
+    }
 }
 
 @end
