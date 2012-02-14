@@ -47,7 +47,6 @@
 		4F77E97114E4C5F2001A69E8 /* numberLines_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92714E4C5F2001A69E8 /* numberLines_test.html */; };
 		4F77E97414E4C5F2001A69E8 /* recombineTagsAndDecorations_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92A14E4C5F2001A69E8 /* recombineTagsAndDecorations_test.html */; };
 		4F77E97514E4C5F2001A69E8 /* regexpPrecederPatterns.pl in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92B14E4C5F2001A69E8 /* regexpPrecederPatterns.pl */; };
-		4F77E97614E4C5F2001A69E8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E92C14E4C5F2001A69E8 /* Makefile */; };
 		4F77E97714E4C5F2001A69E8 /* README-zh-Hans.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92D14E4C5F2001A69E8 /* README-zh-Hans.html */; };
 		4F77E97814E4C5F2001A69E8 /* README.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E92E14E4C5F2001A69E8 /* README.html */; };
 		4F77E98B14E4C5F2001A69E8 /* prettify.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E94214E4C5F2001A69E8 /* prettify.css */; };
@@ -819,7 +818,6 @@
 				4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */,
 				4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */,
 				4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */,
-				4F77E97614E4C5F2001A69E8 /* Makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
