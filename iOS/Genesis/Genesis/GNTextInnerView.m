@@ -228,11 +228,7 @@ static CTFontRef defaultFont = nil;
     
     // Now that we have the closest line vertically, find the index for the point
     CFIndex indexIntoString = CTLineGetStringIndexForPosition(closestLineVerticallyToPoint, point);
-    if((indexIntoString > 0) && ((char)[shownText characterAtIndex:indexIntoString-1] == '\n'))
-    {
-        // Special case when the cursor is caught between two lines!
-        indexIntoString--;
-    }
+
     GNTextPosition* closestPosition = [[GNTextPosition alloc] init];
     if (indexIntoString < 0)
         [closestPosition setPosition:0];
@@ -580,6 +576,8 @@ static CTFontRef defaultFont = nil;
 
 -(CGRect)rectForCharacterAtIndex:(NSUInteger)index
 {
+    NSLog(@"%d : %c", index, (char)[shownText characterAtIndex:index]);
+    
     CTFontRef fontForText;
     CGFloat   fontSizeForText;
     
@@ -623,7 +621,7 @@ static CTFontRef defaultFont = nil;
     
     NSUInteger indexOfGlyph = index - caretRunStringRange.location;
     
-    CGPoint glyphPosition;
+    CGFloat glyphOffset;
     
     // Get the origin of lineAtCaret
 
@@ -631,28 +629,18 @@ static CTFontRef defaultFont = nil;
     
     if(caretRunStringRange.location + caretRunStringRange.length == [shownText length])
     {
-        // If they've just typed a newline, move them to the next line
-        if((char)[shownText characterAtIndex:index-1] == '\n')
-        {
-            return CGRectMake(0,
-                              [self frame].size.height - lineOrigin.y,
-                              kGNTextCaretViewWidth,
-                              fontSizeForText);
-            
-        }
-        glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph-1];
-        if([shownText length] > 0)
-        {
-            double glyphWidth = CTRunGetTypographicBounds(runForCaret, CFRangeMake(0, 1), NULL, NULL, NULL);
-            glyphPosition.x += glyphWidth;
-        }
+        glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph - 1
+                                                      inRun:runForCaret
+                                                 withinLine:lineAtCaret];
     }
     else
     {
-        glyphPosition = CTRunGetPositionsPtr(runForCaret)[indexOfGlyph];
+        glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph 
+                                                      inRun:runForCaret
+                                                 withinLine:lineAtCaret];
     }
     
-    return CGRectMake(glyphPosition.x,
+    return CGRectMake(glyphOffset,
                       [self frame].size.height - lineOrigin.y - fontSizeForText,
                       kGNTextCaretViewWidth,
                       fontSizeForText);
@@ -778,6 +766,11 @@ static CTFontRef defaultFont = nil;
     // If we didn't find it, return NSUIntegerMax
     
     return NSUIntegerMax;
+}
+
+-(CGFloat)absoluteXPositionOfGlyphAtIndex:(NSUInteger)index inRun:(CTRunRef)run withinLine:(CTLineRef)line
+{        
+    return CTRunGetPositionsPtr(run)[index-1].x + CTRunGetAdvancesPtr(run)[index-1].width;
 }
 
 -(void)textChangedWithHighlight:(BOOL)highlight
