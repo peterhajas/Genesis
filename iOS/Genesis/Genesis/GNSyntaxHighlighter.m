@@ -53,6 +53,18 @@
     NSString* clean = [dirty copy];
     
     // Sanitize HTML escapes
+    clean = [clean stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&cent;" withString:@"¢"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&pound;" withString:@"£"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&yen;" withString:@"¥"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&euro;" withString:@"€"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&sect;" withString:@"§"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&copy;" withString:@"©"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&reg;" withString:@"®"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&trade;" withString:@"™"];
+    
     clean = [clean stringByReplacingOccurrencesOfString:@"&lt" withString:@"<"];
     clean = [clean stringByReplacingOccurrencesOfString:@"&gt" withString:@">"];
     clean = [clean stringByReplacingOccurrencesOfString:@"&amp" withString:@"&"];
