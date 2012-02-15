@@ -24,6 +24,7 @@
 -(id)initWithDelegate:(id<GNSyntaxHighlighterDelegate>)_delegate;
 -(void)highlightText:(NSString*)text;
 -(UIColor*)colorForCSSFunction:(NSString*)css;
+-(NSString*)sanitizeHTMLEscapes:(NSString*)dirty;
 
 @property(nonatomic,retain) id<GNSyntaxHighlighterDelegate> delegate;
 

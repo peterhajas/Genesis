@@ -48,7 +48,25 @@
                            alpha:1.0];
 }
 
-
+-(NSString*)sanitizeHTMLEscapes:(NSString*)dirty
+{
+    NSString* clean = [dirty copy];
+    
+    // Sanitize HTML escapes
+    clean = [clean stringByReplacingOccurrencesOfString:@"&lt" withString:@"<"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&gt" withString:@">"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&amp" withString:@"&"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&cent" withString:@"¢"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&pound" withString:@"£"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&yen" withString:@"¥"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&euro" withString:@"€"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&sect" withString:@"§"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&copy" withString:@"©"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&reg" withString:@"®"];
+    clean = [clean stringByReplacingOccurrencesOfString:@"&trade" withString:@"™"];
+    
+    return clean;
+}
 
 -(id)initWithDelegate:(id<GNSyntaxHighlighterDelegate>)_delegate;
 {
@@ -92,6 +110,8 @@
         if([elementComponents count] == 2)
         {
             NSString* code = [elementComponents objectAtIndex:0];
+            code = [self sanitizeHTMLEscapes:code];
+            
             UIColor* color = [self colorForCSSFunction:[elementComponents objectAtIndex:1]];
             
             NSMutableAttributedString* highlightedElement = [[NSMutableAttributedString alloc] initWithString:code];
