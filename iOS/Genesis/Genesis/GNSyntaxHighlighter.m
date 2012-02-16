@@ -123,16 +123,16 @@
     
     NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc] init];
     
-    // Split the highlightedCode into elements based on :::\n, our delimiter for each line
+    // Split the highlightedCode into elements based on »»»\n, our delimiter for each line
     
-    NSArray* highlightedElements = [highlightedCode componentsSeparatedByString:@":::\n"];
+    NSArray* highlightedElements = [highlightedCode componentsSeparatedByString:@"»»»\n"];
     
     for(NSUInteger i = 0; i < [highlightedElements count]; i++)
     {
-        // Split up the element based on our delimiter, ;;;
+        // Split up the element based on our delimiter, «««
         
         NSString* element = [highlightedElements objectAtIndex:i];
-        NSArray* elementComponents = [element componentsSeparatedByString:@";;;"];
+        NSArray* elementComponents = [element componentsSeparatedByString:@"«««"];
         
         if([elementComponents count] == 2)
         {

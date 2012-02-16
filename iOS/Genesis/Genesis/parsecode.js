@@ -26,11 +26,11 @@ function highlightedCode()
 			color = style.color;
 		}
 		
-		// Colons and stuff! Nobody would actually write that, right?
+		// ««« and »»»! Nobody would actually write that, right?
 		
 		var code = String(child.innerHTML);
 		
-		styledump += code + ";;;" + color + ":::\n";
+		styledump += code + "«««" + color + "»»»\n";
 	}
     
 	return styledump;
