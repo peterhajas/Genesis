@@ -21,6 +21,10 @@
                                                encoding:NSUTF8StringEncoding
                                                   error:nil];
     
+    // Escape our text
+    
+    text = [self escapeHTMLString:text];
+    
     // Replace ___code___ with our text
     
     NSString* html = [base stringByReplacingOccurrencesOfString:@"___code___" withString:text];
@@ -78,6 +82,17 @@
     clean = [clean stringByReplacingOccurrencesOfString:@"&trade" withString:@"™"];
     
     return clean;
+}
+
+-(NSString*)escapeHTMLString:(NSString*)html
+{
+    NSString* escaped = [html copy];
+    
+    escaped = [escaped stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    escaped = [escaped stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
+    escaped = [escaped stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"];
+    
+    return escaped;
 }
 
 -(id)initWithDelegate:(id<GNSyntaxHighlighterDelegate>)_delegate;

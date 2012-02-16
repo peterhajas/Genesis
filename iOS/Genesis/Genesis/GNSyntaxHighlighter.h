@@ -25,6 +25,7 @@
 -(void)highlightText:(NSString*)text;
 -(UIColor*)colorForCSSFunction:(NSString*)css;
 -(NSString*)sanitizeHTMLEscapes:(NSString*)dirty;
+-(NSString*)escapeHTMLString:(NSString*)html;
 
 @property(nonatomic,retain) id<GNSyntaxHighlighterDelegate> delegate;
 
