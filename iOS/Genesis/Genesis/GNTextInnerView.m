@@ -271,30 +271,17 @@ static CTFontRef defaultFont = nil;
     {
         CTLineRef currentLine = CFArrayGetValueAtIndex(lines, i);
         CGPoint currentLineOriginCGCoords = lineOrigins[i];
-        CGPoint currentLineOrigin = CGPointMake(currentLineOriginCGCoords.x, [self frame].size.height - currentLineOriginCGCoords.y);
         
         // We need to compute the origin of this line in UIKit/Core Animation space.
         
-        // Grab the runs for this line
-        CFArrayRef runsForCurrentLine = CTLineGetGlyphRuns(currentLine);
-        if(CFArrayGetCount(runsForCurrentLine) < 1)
-        {
-            NSLog(@"Problem finding runs for line");
-            return NULL;
-        }
+        // Subtract the CG y coordinate of this line from our frame to get the bottom of the line
         
-        // Because this font is monospaced, and we're never modifying its size, we can
-        // just grab the first run we find.
+        CGPoint currentLineOrigin = CGPointMake(currentLineOriginCGCoords.x, [self frame].size.height - currentLineOriginCGCoords.y);
         
-        CTRunRef runForCurrentLine = CFArrayGetValueAtIndex(runsForCurrentLine, 0);
+        // Next, subtract the ascent and descent for this font to obtain the origin in UIKit/CA space
         
-        // Using the image bounds for this run, grab its height, and subtract that from
-        // the origin for this line
-        
-        CGRect runFrame = CTRunGetImageBounds(runForCurrentLine, staleContext, CFRangeMake(0, 0));
-        
-        currentLineOrigin.y-=runFrame.size.height;
-        
+        currentLineOrigin.y -= (CTFontGetAscent(defaultFont) + CTFontGetDescent(defaultFont));
+
         // If the line doesn't  represent the range, skip it
         CFRange lineStringRange = CTLineGetStringRange(currentLine);
         NSUInteger lineRangeStart = lineStringRange.location;
