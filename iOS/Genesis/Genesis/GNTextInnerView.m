@@ -276,13 +276,19 @@ static CTFontRef defaultFont = nil;
         
         // Subtract the CG y coordinate of this line from our frame to get the bottom of the line
         
-        CGPoint currentLineOrigin = CGPointMake(currentLineOriginCGCoords.x, [self frame].size.height - currentLineOriginCGCoords.y);
+        CGFloat currentLineOriginY = [self frame].size.height - currentLineOriginCGCoords.y;
         
-        // Next, subtract the ascent and descent for this font to obtain the origin in UIKit/CA space
+        // Next, subtract the ascent and descent (the height) for this font to obtain the origin in UIKit/CA space
         
-        currentLineOrigin.y -= (CTFontGetAscent(defaultFont) + CTFontGetDescent(defaultFont));
-
-        // If the line doesn't  represent the range, skip it
+        CGFloat lineHeight = CTFontGetAscent(defaultFont) + CTFontGetDescent(defaultFont);
+        currentLineOriginY -= lineHeight;
+        
+        if(currentLineOriginY < 0)
+        {
+            currentLineOriginY = 0;
+        }
+        
+        // If the line doesn't represent the range, skip it
         CFRange lineStringRange = CTLineGetStringRange(currentLine);
         NSUInteger lineRangeStart = lineStringRange.location;
         NSUInteger lineRangeEnd = lineStringRange.location = lineStringRange.length;
@@ -290,15 +296,13 @@ static CTFontRef defaultFont = nil;
         {
             continue;
         }
-        
-        // Fine the closest line that doesn't go past point
-        if(currentLineOrigin.y < point.y)
+                
+        // If the point is greater than the currentLineOrigin.y, it could be our line!
+        if(point.y >= currentLineOriginY)
         {
             closestLineVerticallyToPoint = currentLine;
-        }
-        else
-        {
-            if(closestLineVerticallyToPoint !=NULL)
+            // If this is the last line, then it has to be it
+            if(i == CFArrayGetCount(lines) - 1)
             {
                 break;
             }
