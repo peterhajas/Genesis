@@ -124,39 +124,6 @@ class ClientHandler(object):
             else:
                 print "UNKNOWN MESSAGE:", message
 
-
-#    def process_request(self, stream):
-#        if stream.reading():
-#            print 'process_request', self
-#            import sys
-#            sys.exit(1)
-#
-#        def _callback(message):
-#            print self.id, '->', message
-#            if message.is_response and self.reroute:
-#                index = -1
-#                for i, (req_msg, callback) in enumerate(self.reroute):
-#                    if req_msg.id == message.id:
-#                        index = i
-#                        break;
-#                if index < 0:
-#                    print "Ignoring invalid request", message,
-#                    return
-#                _, callback = self.reroute.pop(index)
-#                print "Got message:", message
-#                callback(message)
-#            elif message.is_invocation:
-#                print 'dispatch'
-#                method = getattr(self, 'do_' + message.name, None)
-#                if callable(method):
-#                    method(message)
-#                else:
-#                    print "Failed to find method:", 'do_' + message.name
-#            else:
-#                print "UNKNOWN MESSAGE:", message
-#
-#        self.stream.read(callback=_callback)
-
     @gen.engine
     def do_clients(self, request):
         machines = {}
