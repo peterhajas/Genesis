@@ -68,7 +68,14 @@ class ClientHandler(object):
             self.machine, self.type = request['machine'], request['type']
             self.namespace = request['username']
             print self.address_str(), "=>", self.id
-            self.tracker.assign_namespace(self)
+            if not self.tracker.assign_namespace(self):
+                yield gen.Task(self.stream.write, ResponseMessage.error(
+                    request.id,
+                    reason="Machine of name %r already connected." % self.machine,
+                    code=ErrorCodes.MACHINE_CONFLICT
+                ))
+                self.close()
+                raise StopIteration
             msg = ResponseMessage.success(request.id)
             yield gen.Task(self.stream.write, msg)
             print self.id, '<-', msg
@@ -255,7 +262,10 @@ class ClientsTracker(object):
     def assign_namespace(self, client):
         if not self.has_namespace(client.namespace):
             self.namespaces[client.namespace] = {}
-        self.namespaces[client.namespace][client.machine] = client
+        if not self.get_client_in_namespace(client.namespace, client.machine):
+            self.namespaces[client.namespace][client.machine] = client
+            return True
+        return False
 
     def unassign_namespace(self, client):
         if not self.has_namespace(client.namespace): return
