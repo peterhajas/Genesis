@@ -89,7 +89,7 @@ class ClientHandler(object):
         # noted
         while not self.account:
             request = yield gen.Task(self.stream.read)
-            print self.id, '->', request
+            print self.id, '->', request.name
             if request.name == RegisterMessage.name:
                 self.handle_register(request)
             elif request.name == LoginMessage.name:
@@ -115,7 +115,6 @@ class ClientHandler(object):
                 print "Got message:", message
                 callback(message)
             elif message.is_invocation:
-                print 'dispatch'
                 method = getattr(self, 'do_' + message.name, None)
                 if callable(method):
                     method(message)
@@ -150,17 +149,16 @@ class ClientHandler(object):
             print "bad message:", repr(msg)
             raise StopIteration
         msg.sender = self.machine
-        print target.id, '<-', msg, '[forwarding]'
+        print target.id, '<-', msg.name, '[forwarding]'
         response = yield gen.Task(target.request, msg)
         print '[forwarding]', target.id, '->', response
         response.sender = target.machine
-        print self.id, '<-', response, '[forwarding]'
+        print self.id, '<-', response.name, '[forwarding]'
         yield gen.Task(self.stream.write, response)
 
     @gen.engine
     def do_send(self, request, callback=None):
         # TODO: reject if sender or command is malformed
-        print 'SEND: namespace =', self.namespace, '; machine =', request['machine']
         target = self.tracker.get_client_in_namespace(self.namespace, request['machine'])
         if target is None:
             # absorb all invalid messages
@@ -172,7 +170,7 @@ class ClientHandler(object):
             print "bad message:", repr(msg)
             raise StopIteration
         msg.sender = self.machine
-        print target.id, '<-', msg, '[forwarding]'
+        print target.id, '<-', msg.name, '[forwarding]'
         yield gen.Task(target.stream.write, msg)
         if callable(callback):
             callback()
