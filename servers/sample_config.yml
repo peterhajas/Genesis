@@ -1,0 +1,15 @@
+projects:
+  Describe:
+    location: ~/Documents/projects/describe
+    ignore:
+      - "*.pyc"
+      - "*/.DS_Store"
+      - "*.js"
+      - "*/.git/*"
+    shell: /bin/bash
+    source:
+      - $HOME/.bash_profile
+    actions:
+      test: workon describe2 && nosetests
+      run: workon describe2 && ./describe.py
+
