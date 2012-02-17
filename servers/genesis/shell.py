@@ -15,9 +15,9 @@ class ProcessQuery(object):
         self.process = process
         self.queue = queue.Queue()
         self.thread_out = self._create_thread(
-            target=self._fill_output, args=(p.stdout, self.queue))
+            target=self._fill_output, args=(process.stdout, self.queue))
         self.thread_err = self._create_thread(
-            target=self._fill_output, args=(p.stderr, self.queue))
+            target=self._fill_output, args=(process.stderr, self.queue))
 
     def _create_thread(self, target, args):
         t = Thread(target=target, args=args)
