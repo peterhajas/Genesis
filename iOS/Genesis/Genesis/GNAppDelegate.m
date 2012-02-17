@@ -42,6 +42,7 @@
     [[UINavigationBar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
+        
     return YES;
 }
 
