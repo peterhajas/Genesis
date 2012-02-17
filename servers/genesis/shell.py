@@ -54,15 +54,25 @@ class ProcessQuery(object):
 
 class ShellProxy(object):
     "Represent shell commands to run."
-    def __init__(self, bufsize=None):
+    def __init__(self, executable=None, sources=None, bufsize=None):
         self.bufsize = bufsize if bufsize is not None else 1024
+        # TODO: validate executable path
+        self.executable = executable or '/bin/bash'
+        self.sources = list(sources or ['$HOME/.bash_profile'])
+
+    def _build_command(self, command):
+        # TODO: escape filenames?
+        sources = [('source "%s"' % src) for src in self.sources]
+        if sources:
+            return '%s && %s' % (' && '.join(sources), command)
+        return command
 
     def run(self, command, input=None, cwd=None):
         # remember, shell=True is extremely dangerous.
         p = subprocess.Popen(
-            command, cwd=cwd,
+            self._build_command(command), cwd=cwd,
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-            shell=True, bufsize=self.bufsize)
+            executable=self.executable, shell=True, bufsize=self.bufsize)
         return p
 
     def perform(self, action):
