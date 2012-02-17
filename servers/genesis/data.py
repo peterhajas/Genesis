@@ -157,6 +157,7 @@ class InvocationMessage(object):
         "Creates an instance of request from dictionary. Returns None on failure."
         try:
             assert isinstance(dictionary['method'], str) or isinstance(dictionary['method'], unicode)
+            assert cls.name is None or dictionary['method'] == cls.name
             params = list(dictionary['params'])
             sender = params.pop()
             instance = cls(*params, id=dictionary['id'])
