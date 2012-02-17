@@ -64,8 +64,8 @@ class ProtocolSerializer(object):
                 self._error_on_stream(stream)
                 return
 
+            version = version[0]
             print 'version', version
-            version = version[0] if version else -1
             metadata = {
                 'version': version,
                 'is_supported_version': version == self.version,
