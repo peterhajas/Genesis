@@ -1,13 +1,10 @@
 import shlex
 import subprocess
 import os
-import sys
 import Queue as queue
 from threading import Thread
 
-
-def is_windows():
-    return sys.platform == 'win32'
+from genesis.utils import is_windows
 
 
 # see:
