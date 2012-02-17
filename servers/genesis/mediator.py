@@ -165,10 +165,6 @@ class ClientHandler(object):
         if target is None:
             # absorb all invalid messages
             print "No machine named:", request['machine'], '... Ignoring message'
-            #msg = ResponseMessage.error(request.id,
-            #        reason="No machine exists named %r" % request['machine'],
-            #        code=ErrorCodes.UNKNOWN_MACHINE)
-            #yield gen.Task(self.stream.write, msg)
             raise StopIteration
         msg = InvocationMessage.create(request['command'])
         if not msg:
