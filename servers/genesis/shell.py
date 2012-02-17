@@ -27,27 +27,43 @@ class ProcessQuery(object):
         return t
 
     def _fill_output(self, stream, queue):
-        # TODO: read by char instead of by line
-        for line in iter(stream.readline, ''):
-            queue.put(line)
+        string = stream.read(1)
+        while string:
+            queue.put(string)
+            string = stream.read(1)
         stream.close()
 
+    @property
     def has_terminated(self):
-        return self.process.poll() is None
+        return self.process.poll() is not None
 
+    @property
     def return_code(self):
-        return self.process.returncode
+        return self.process.poll()
 
-    def readable(self):
+    @property
+    def can_read(self):
         return not self.queue.empty()
+
+    def terminate(self):
+        if not self.has_terminated():
+            self.process.terminate()
+
+    def kill(self):
+        if not self.has_terminated():
+            self.process.kill()
 
     def write(self, data):
         "Writes data to stdin"
         self.process.stdin.write(data)
+        self.process.stdin.flush()
 
     def read(self):
         try:
-            return self.queue.get_nowait()
+            buff = []
+            while not self.queue.empty():
+                buff.append(self.queue.get_nowait())
+            return ''.join(buff)
         except queue.Empty:
             return None
 
