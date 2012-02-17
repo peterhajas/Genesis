@@ -39,12 +39,20 @@ class ErrorCodes(object):
     INVALID_USERNAME = 101
     INVALID_PASSWORD = 102
     # for login
-    BAD_AUTH = 100
-    MACHINE_CONFLICT = 101
-    INVALID_MACHINE = 102
-    INVALID_TYPE = 103
+    BAD_AUTH = 103
+    MACHINE_CONFLICT = 104
+    INVALID_MACHINE = 105
+    INVALID_TYPE = 106
     # for send / request
-    UNKNOWN_MACHINE = 100
+    UNKNOWN_MACHINE = 107
+    # for download
+    MISSING_PROJECT = 108
+    MISSING_FILEPATH = 109
+    # for perform
+    MISSING_ACTION = 110
+    ACTION_CONFLICT = 111
+    # for input and cancel
+    NO_ACTIVITY = 112
 
 class Account(object):
     "Represents a username and hashed password."
