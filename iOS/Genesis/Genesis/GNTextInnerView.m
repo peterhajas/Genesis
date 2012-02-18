@@ -640,6 +640,14 @@ static CTFontRef defaultFont = nil;
                                                  withinLine:lineAtCaret];
     }
     
+    if(index == [shownText length])
+    {
+        // They're at the very end of the document
+        // We should increase glyphOffset by the width of a glyph
+        
+        glyphOffset+=[self widthOfCharacterInDefaultFont];
+    }
+    
     return CGRectMake(glyphOffset,
                       [self frame].size.height - lineOrigin.y - fontSizeForText,
                       kGNTextCaretViewWidth,
@@ -788,6 +796,33 @@ static CTFontRef defaultFont = nil;
 -(CGFloat)absoluteXPositionOfGlyphAtIndex:(NSUInteger)index inRun:(CTRunRef)run withinLine:(CTLineRef)line
 {        
     return CTRunGetPositionsPtr(run)[index-1].x + CTRunGetAdvancesPtr(run)[index-1].width;
+}
+
+-(CGFloat)widthOfCharacterInDefaultFont
+{
+    // Create an attributed string with our default font.
+    
+    CFMutableAttributedStringRef temporaryAttributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
+    CFAttributedStringReplaceString(temporaryAttributedString, CFRangeMake(0, 0), CFSTR("A"));
+    CFAttributedStringSetAttribute(attributedString, 
+                                   CFRangeMake(0, CFAttributedStringGetLength(attributedString)),
+                                   kCTFontAttributeName, 
+                                   defaultFont);
+    
+    // Create a line with this attributed string
+    
+    CTLineRef temporaryLine = CTLineCreateWithAttributedString(temporaryAttributedString);
+    
+    // Grab the run out of the line
+    
+    CTRunRef temporaryLineRun = CFArrayGetValueAtIndex(CTLineGetGlyphRuns(temporaryLine), 0);
+    
+    CGFloat widthOfAdvance = CTRunGetAdvancesPtr(temporaryLineRun)[0].width;
+    
+    CFRelease(temporaryLine);
+    CFRelease(temporaryAttributedString);
+    
+    return widthOfAdvance;
 }
 
 -(void)textChangedWithHighlight:(BOOL)highlight

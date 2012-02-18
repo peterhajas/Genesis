@@ -68,6 +68,7 @@
 -(CGPoint)originForLine:(CTLineRef)line;
 -(NSUInteger)indexOfFrameLine:(CTLineRef)line;
 -(CGFloat)absoluteXPositionOfGlyphAtIndex:(NSUInteger)index inRun:(CTRunRef)run withinLine:(CTLineRef)line;
+-(CGFloat)widthOfCharacterInDefaultFont;
 
 -(void)textChangedWithHighlight:(BOOL)highlight;
 
