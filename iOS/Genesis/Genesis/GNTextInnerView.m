@@ -717,7 +717,7 @@ static CTFontRef defaultFont = nil;
         }
     }
     
-    // If we couldn't find the run for the character, liog it and return NULL
+    // If we couldn't find the run for the character, log it and return NULL
     
     if(runForCaretIndex == NSUIntegerMax)
     {
