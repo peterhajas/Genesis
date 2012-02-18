@@ -578,8 +578,6 @@ static CTFontRef defaultFont = nil;
 
 -(CGRect)rectForCharacterAtIndex:(NSUInteger)index
 {
-    NSLog(@"%d : %c", index, (char)[shownText characterAtIndex:index]);
-    
     CTFontRef fontForText;
     CGFloat   fontSizeForText;
     
