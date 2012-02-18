@@ -659,6 +659,15 @@ static CTFontRef defaultFont = nil;
         return NULL;
     }
     
+    
+    // If the index is the same as shownText, then they're at the last line in the file
+    // Return the last line in the lines CFArray
+    
+    if(index == [shownText length])
+    {
+        return CFArrayGetValueAtIndex(lines, CFArrayGetCount(lines)-1);
+    }
+    
     // Loop through the lines in our frame
     for(NSUInteger i = 0; i < CFArrayGetCount(lines); i++)
     {
@@ -699,6 +708,15 @@ static CTFontRef defaultFont = nil;
     {
         NSLog(@"Could not obtain line runs for character at index %u", index);
         return NULL;
+    }
+    
+    // If the index is at the very end of this line, return the last run
+    
+    CFRange lineRange = CTLineGetStringRange(line);
+    
+    if(index > lineRange.location + lineRange.length)
+    {
+        return CFArrayGetValueAtIndex(runs, CFArrayGetCount(runs) - 1);
     }
     
     // Find the run this index belongs to
