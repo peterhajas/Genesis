@@ -1,0 +1,6 @@
+PyYAML==3.10
+byteplay==0.2
+describe==1.0.0beta1
+nose==1.1.2
+tornado==2.2
+wsgiref==0.1.2

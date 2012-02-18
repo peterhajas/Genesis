@@ -11,7 +11,7 @@ from genesis.serializers import ProtocolSerializer, NetworkSerializer
 
 
 class Client(object):
-    def __init__(self, port, host='', family=socket.AF_INET, kind=socket.SOCK_STREAM):
+    def __init__(self, port, host='', family=socket.AF_INET, kind=socket.SOCK_STREAM, autoreconnect=True):
         self.port = port
         self.host = host
         self.family = family
@@ -19,22 +19,32 @@ class Client(object):
         self.sock = None
         self.stream = None
         self.io_loop = None
+        self.autoreconnect = autoreconnect
+        self.is_connected = False
 
-    def create(self, callback=None, ioloop=None):
+    def create(self, callback=None, on_close=None, ioloop=None):
         self.io_loop = ioloop = ioloop or IOLoop.instance()
         self.sock, self.stream = self._create_socket_and_stream()
 
-        callback_partial = None
-        if callable(callback):
-            callback_partial = partial(callback, self.stream)
+        def _on_close(*args, **kwargs):
+            self.is_connected = False
+            if callable(on_close):
+                on_close(*args, **kwargs)
 
-        self.stream.connect((self.host, self.port), callback_partial)
+        self.stream.set_close_callback(_on_close)
+
+        def _callback(*args, **kwargs):
+            self.is_connected = True
+            if callable(callback):
+                callback(self.stream, *args, **kwargs)
+
+        self.stream.connect((self.host, self.port), _callback)
         return self.stream
 
     def _create_socket_and_stream(self):
         "Creates a non-blocking client socket to listen on the given hostname and port."
         sock = socket.socket(self.family, self.kind)
-        sock.setblocking(0)
+        sock.settimeout(30)
         stream = iostream.IOStream(sock)
         return sock, stream
 
@@ -135,8 +145,12 @@ class MessageStream(object):
         self.on_bad_message = None
         self.io_loop = io_loop or IOLoop.instance()
 
+    @property
     def iostream(self):
         return self.stream
+
+    def set_close_callback(self, fn):
+        self.stream.set_close_callback(fn)
 
     def __repr__(self):
         return "<%s(%r, %r, %r)>" % (
@@ -173,7 +187,6 @@ class MessageStream(object):
 
     def __to_message(self, callback):
         def handler(raw_msg):
-            print repr(raw_msg)
             if 'result' in raw_msg:
                 op = ResponseMessage.create(raw_msg)
             else:

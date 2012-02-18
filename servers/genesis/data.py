@@ -39,12 +39,20 @@ class ErrorCodes(object):
     INVALID_USERNAME = 101
     INVALID_PASSWORD = 102
     # for login
-    BAD_AUTH = 100
-    MACHINE_CONFLICT = 101
-    INVALID_MACHINE = 102
-    INVALID_TYPE = 103
+    BAD_AUTH = 103
+    MACHINE_CONFLICT = 104
+    INVALID_MACHINE = 105
+    INVALID_TYPE = 106
     # for send / request
-    UNKNOWN_MACHINE = 100
+    UNKNOWN_MACHINE = 107
+    # for download
+    MISSING_PROJECT = 108
+    MISSING_FILEPATH = 109
+    # for perform
+    MISSING_ACTION = 110
+    ACTION_CONFLICT = 111
+    # for input and cancel
+    NO_ACTIVITY = 112
 
 class Account(object):
     "Represents a username and hashed password."
@@ -61,7 +69,7 @@ class Account(object):
         return cls(username, hasher.hexdigest())
 
     def __hash__(self):
-        return hash(self.username) ^ (self.password_hash)
+        return hash(self.username) ^ hash(self.password_hash)
 
     def __eq__(self, account):
         return (self.username, self.password_hash) == (
@@ -94,10 +102,16 @@ class InvocationMessage(object):
     def cast_to(self, cls):
         return cls.create(self.to_network())
 
+    def __hash__(self):
+        return hash(self.id) ^ hash(self.sender) ^ hash(tuple(self.args))
+
+    def __eq__(self, other):
+        return hash(self) == hash(other)
+
     def __index_for_name(self, name, default=None):
         try:
             return self.MAPPING.index(name)
-        except (IndexError, TypeError):
+        except (IndexError, TypeError, ValueError):
             return default
 
     def __getitem__(self, key):
@@ -143,6 +157,7 @@ class InvocationMessage(object):
         "Creates an instance of request from dictionary. Returns None on failure."
         try:
             assert isinstance(dictionary['method'], str) or isinstance(dictionary['method'], unicode)
+            assert cls.name is None or dictionary['method'] == cls.name
             params = list(dictionary['params'])
             sender = params.pop()
             instance = cls(*params, id=dictionary['id'])
@@ -177,11 +192,11 @@ class FilesMessage(InvocationMessage):
 
 class DownloadMessage(InvocationMessage):
     name = 'download'
-    MAPPING = ('filepath',)
+    MAPPING = ('project', 'filepath',)
 
 class UploadMessage(InvocationMessage):
     name = 'upload'
-    MAPPING = ('filepath', 'data', 'mimetype')
+    MAPPING = ('project', 'filepath', 'data', 'mimetype')
 
 class PerformMessage(InvocationMessage):
     name = 'perform'
@@ -198,6 +213,14 @@ class SendMessage(InvocationMessage):
 class RequestMessage(InvocationMessage):
     name = 'request'
     MAPPING = ('machine', 'command')
+
+class CancelMessage(InvocationMessage):
+    name = 'cancel'
+    MAPPING = ('project',)
+
+class InputMessage(InvocationMessage):
+    name = 'input'
+    MAPPING = ('project', 'contents')
 
 class NotificationMessage(InvocationMessage):
     "Represents a remote procedure call with the expectation of NO response."
