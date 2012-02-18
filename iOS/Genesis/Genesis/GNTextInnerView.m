@@ -659,7 +659,6 @@ static CTFontRef defaultFont = nil;
         return NULL;
     }
     
-    
     // If the index is the same as shownText, then they're at the last line in the file
     // Return the last line in the lines CFArray
     
