@@ -228,7 +228,18 @@ static CTFontRef defaultFont = nil;
     
     // Now that we have the closest line vertically, find the index for the point
     CFIndex indexIntoString = CTLineGetStringIndexForPosition(closestLineVerticallyToPoint, point);
-
+    
+    if(([shownText length] > 0) && 
+       (indexIntoString > 0) && 
+       ((char)[shownText characterAtIndex:indexIntoString - 1] == '\n'))
+    {
+        if(CTLineGetStringRange(closestLineVerticallyToPoint).location != indexIntoString)
+        {
+            // In this case, they've clicked at the very end of the line
+            indexIntoString--;
+        }
+    }
+    
     GNTextPosition* closestPosition = [[GNTextPosition alloc] init];
     if (indexIntoString < 0)
         [closestPosition setPosition:0];
