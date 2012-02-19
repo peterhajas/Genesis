@@ -78,7 +78,8 @@ class ProtocolSerializer(object):
     def serialize(self, obj):
         "Serializes the given data to be sent over the network."
         data = self.serializer.serialize(obj)
-        net_data = struct.pack('!%dc' % len(data), *list(data))
+        #net_data = struct.pack('!%dc' % len(data), *list(data))
+        net_data = str(data)
         return struct.pack('!H', len(net_data)) + net_data
 
     def _error_on_stream(self, stream):
@@ -89,11 +90,12 @@ class ProtocolSerializer(object):
 
     def deserialize(self, stream, callback):
         def _consume_data(data, length):
-            try:
-                raw_data = ''.join(struct.unpack('!%dc' % length, data))
-            except struct.error:
-                self._error_on_stream(stream)
-                return
+            raw_data = str(data)
+            #try:
+            #    raw_data = ''.join(struct.unpack('!%dc' % length, data))
+            #except struct.error:
+            #    self._error_on_stream(stream)
+            #    return
 
             callback(self.serializer.deserialize(raw_data))
 
