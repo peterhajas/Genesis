@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F7030BD14EFAF36002FEA32 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030BB14EFAF36002FEA32 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1F7030BE14EFAF36002FEA32 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F7030BC14EFAF36002FEA32 /* README.md */; };
+		1F7030CB14F04042002FEA32 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030C914F04036002FEA32 /* CFNetwork.framework */; };
+		1F7030CD14F0406A002FEA32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030CC14F0406A002FEA32 /* libz.dylib */; };
+		1F7030CE14F04558002FEA32 /* GNNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030C014EFB13C002FEA32 /* GNNetworkResponse.m */; };
+		1F7030CF14F04558002FEA32 /* GNNetworkNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030C414EFB50D002FEA32 /* GNNetworkNotification.m */; };
+		1F7030D014F04558002FEA32 /* GNNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030C714F03A65002FEA32 /* GNNetworkRequest.m */; };
+		1F7030D114F04558002FEA32 /* GNMediatorClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEBE9814EEC92200C6E099 /* GNMediatorClient.m */; };
+		1FEEBEA114EECBD100C6E099 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEBEA014EECBD100C6E099 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */; };
 		4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */; };
 		4F1DCC7C14EA234800811CFA /* parsecode.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DCC7A14E9DFEA00811CFA /* parsecode.js */; };
@@ -99,6 +108,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F7030B514EFA785002FEA32 /* NSData+GNZlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GNZlib.h"; sourceTree = "<group>"; };
+		1F7030B614EFA785002FEA32 /* NSData+GNZlib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GNZlib.m"; sourceTree = "<group>"; };
+		1F7030BA14EFAF36002FEA32 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		1F7030BB14EFAF36002FEA32 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		1F7030BC14EFAF36002FEA32 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		1F7030BF14EFB13C002FEA32 /* GNNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GNNetworkResponse.h; sourceTree = "<group>"; };
+		1F7030C014EFB13C002FEA32 /* GNNetworkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNetworkResponse.m; sourceTree = "<group>"; };
+		1F7030C314EFB50D002FEA32 /* GNNetworkNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GNNetworkNotification.h; sourceTree = "<group>"; };
+		1F7030C414EFB50D002FEA32 /* GNNetworkNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNetworkNotification.m; sourceTree = "<group>"; };
+		1F7030C614F03A65002FEA32 /* GNNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkRequest.h; sourceTree = "<group>"; };
+		1F7030C714F03A65002FEA32 /* GNNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNetworkRequest.m; sourceTree = "<group>"; };
+		1F7030C914F04036002FEA32 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1F7030CC14F0406A002FEA32 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		1FEC6E5214F08258008E2277 /* GNNetworkMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GNNetworkMessageProtocol.h; sourceTree = "<group>"; };
+		1FEEBE9714EEC92200C6E099 /* GNMediatorClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNMediatorClient.h; sourceTree = "<group>"; };
+		1FEEBE9814EEC92200C6E099 /* GNMediatorClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNMediatorClient.m; sourceTree = "<group>"; };
+		1FEEBE9F14EECBD100C6E099 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		1FEEBEA014EECBD100C6E099 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		4F0216E214D1F3850027DF89 /* GNNewFileEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewFileEntryViewController.h; sourceTree = "<group>"; };
 		4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewFileEntryViewController.m; sourceTree = "<group>"; };
 		4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewFileEntryViewController.xib; sourceTree = "<group>"; };
@@ -231,6 +258,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F7030CD14F0406A002FEA32 /* libz.dylib in Frameworks */,
+				1F7030CB14F04042002FEA32 /* CFNetwork.framework in Frameworks */,
 				4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */,
 				4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */,
 				4F293B7C14CCE88100020A09 /* UIKit.framework in Frameworks */,
@@ -254,6 +283,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F7030B914EFAF1A002FEA32 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				1F7030BA14EFAF36002FEA32 /* JSONKit.h */,
+				1F7030BB14EFAF36002FEA32 /* JSONKit.m */,
+				1F7030BC14EFAF36002FEA32 /* README.md */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
+		1F7030C214EFB4B6002FEA32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FEC6E5214F08258008E2277 /* GNNetworkMessageProtocol.h */,
+				1F7030BF14EFB13C002FEA32 /* GNNetworkResponse.h */,
+				1F7030C014EFB13C002FEA32 /* GNNetworkResponse.m */,
+				1F7030C614F03A65002FEA32 /* GNNetworkRequest.h */,
+				1F7030C714F03A65002FEA32 /* GNNetworkRequest.m */,
+				1F7030C314EFB50D002FEA32 /* GNNetworkNotification.h */,
+				1F7030C414EFB50D002FEA32 /* GNNetworkNotification.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1FEEBE9514EEC8F800C6E099 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1F7030B914EFAF1A002FEA32 /* JSONKit */,
+				1FEEBE9E14EECBBF00C6E099 /* CocoaAsyncSockets */,
+				1F7030C214EFB4B6002FEA32 /* Model */,
+				1FEEBE9714EEC92200C6E099 /* GNMediatorClient.h */,
+				1FEEBE9814EEC92200C6E099 /* GNMediatorClient.m */,
+				1F7030B514EFA785002FEA32 /* NSData+GNZlib.h */,
+				1F7030B614EFA785002FEA32 /* NSData+GNZlib.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		1FEEBE9E14EECBBF00C6E099 /* CocoaAsyncSockets */ = {
+			isa = PBXGroup;
+			children = (
+				1FEEBE9F14EECBD100C6E099 /* GCDAsyncSocket.h */,
+				1FEEBEA014EECBD100C6E099 /* GCDAsyncSocket.m */,
+			);
+			name = CocoaAsyncSockets;
+			sourceTree = "<group>";
+		};
 		4F0216E714D1F3BF0027DF89 /* New Filesystem Entry */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +413,8 @@
 		4F293B7A14CCE88100020A09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F7030CC14F0406A002FEA32 /* libz.dylib */,
+				1F7030C914F04036002FEA32 /* CFNetwork.framework */,
 				4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */,
 				4F21143514DCF096001EE6C9 /* CoreText.framework */,
 				4F293B7B14CCE88100020A09 /* UIKit.framework */,
@@ -351,6 +429,7 @@
 		4F293B8314CCE88100020A09 /* Genesis */ = {
 			isa = PBXGroup;
 			children = (
+				1FEEBE9514EEC8F800C6E099 /* API */,
 				4F293B8C14CCE88100020A09 /* GNAppDelegate.h */,
 				4F293B8D14CCE88100020A09 /* GNAppDelegate.m */,
 				4F293B8F14CCE88100020A09 /* Genesis.xcdatamodeld */,
@@ -639,7 +718,7 @@
 		4F293B6E14CCE88100020A09 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 4F293B7114CCE88100020A09 /* Build configuration list for PBXProject "Genesis" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -714,6 +793,7 @@
 				4F99F2F514EA3FC1005E8D91 /* prettify_test_2.html in Resources */,
 				4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */,
 				4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */,
+				1F7030BE14EFAF36002FEA32 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +845,12 @@
 				4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */,
 				4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */,
 				4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */,
+				1FEEBEA114EECBD100C6E099 /* GCDAsyncSocket.m in Sources */,
+				1F7030BD14EFAF36002FEA32 /* JSONKit.m in Sources */,
+				1F7030CE14F04558002FEA32 /* GNNetworkResponse.m in Sources */,
+				1F7030CF14F04558002FEA32 /* GNNetworkNotification.m in Sources */,
+				1F7030D014F04558002FEA32 /* GNNetworkRequest.m in Sources */,
+				1F7030D114F04558002FEA32 /* GNMediatorClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
