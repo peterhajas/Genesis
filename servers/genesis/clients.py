@@ -320,7 +320,11 @@ class BuilderDelegate(MediatorClientDelegateBase):
 
     @gen.engine
     def do_git(self, mclient, request):
-        print 'do git'
+        yield gen.Task(mclient.write_response, ResponseMessage.error(
+            request.id,
+            reason="Not yet supported.",
+            code=ErrorCodes.INTERNAL_ERROR,
+        ))
 
     @gen.engine
     def do_cancel(self, mclient, request):
