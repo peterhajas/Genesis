@@ -44,7 +44,6 @@
 -(void)requireSize:(CGSize)size
 {
     [self setContentSize:size];
-    NSLog(@"scrollview content height: %f", size.height);
 }
 
 #pragma mark Text Handling
