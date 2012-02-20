@@ -54,19 +54,15 @@ static CTFontRef defaultFont = nil;
     [self addSubview:syntaxHighlighter];
 }
 
--(id)initWithFrame:(CGRect)frame_
+-(void)didMoveToSuperview
 {
-    self = [super initWithFrame:frame_];
-    if(self)
-    {
-        [self buildUpView];
-    }
-    return self;
+    
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
+-(id)init
 {
-    self = [super initWithCoder:aDecoder];
+    
+    self = [super initWithFrame:CGRectMake(0,0,100,100)];
     if(self)
     {
         [self buildUpView];

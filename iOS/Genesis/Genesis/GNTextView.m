@@ -19,7 +19,7 @@
 
 -(void)awakeFromNib
 {
-    innerView = [[GNTextInnerView alloc] initWithFrame:[self frame]];
+    innerView = [[GNTextInnerView alloc] init];
     [innerView setContainerDelegate:self];
     
     [self addSubview:innerView];
