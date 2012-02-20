@@ -899,19 +899,31 @@ static CTFontRef defaultFont = nil;
 -(void)fitFrameToText
 {    
     /*
-     * This view doesn't need to ever be smaller than the GNTextView superview, does it?
-     * If the string is empty, this routine fails for some reason.
+     When fitting the frame to the text we've drawn, we need to fit in all the text.
+     
+     If CTFramesetterSuggestFrameSizeWithConstraints() gives us a size smaller than
+     our superview frame, we should use our superview frame as the size.
+     
+     This helps with empty and short files. GNTextView and GNTextInnerView, as a
+     side effect, are now linked pretty intimately, but this is how they're *meant*
+     to be used.
+     
+     This method chooses the larger of the two - either the suggested framesize from
+     Core Text, or the superview framesize - and phones our delegate with that size.
      */
-    return; // temporarily disabled
     
-    // Find how large of a textarea we need
     CGSize sizeForText = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX), NULL);
     
-    [self setFrame:CGRectMake(0, 0, sizeForText.width,sizeForText.height)];
+    CGSize superviewSize = [[self superview] frame].size;
     
-    NSLog(@"height for framesetter: %f", sizeForText.height);
+    CGSize newViewSize;
     
-    [containerDelegate requireSize:sizeForText];
+    newViewSize.width = MAX(sizeForText.width, superviewSize.width);
+    newViewSize.height = MAX(sizeForText.height, superviewSize.height);
+    
+    [self setFrame:CGRectMake(0, 0, newViewSize.width, newViewSize.height)];
+    
+    [containerDelegate requireSize:newViewSize];
 }
 
 #pragma mark GNSyntaxHighlighterDelegate mathods
