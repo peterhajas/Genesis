@@ -632,8 +632,21 @@ static CTFontRef defaultFont = nil;
         // If the last character is a newline:
         if(lastCharacter == '\n' || lastCharacter == '\r')
         {            
+            CGFloat yCoordinate = [self frame].size.height - lineOrigin.y;
+            
+            /* If the *second to last character* is also a newline, we need to offset again by
+               the height of a line, because -originForLine has trouble with newline-only lines */
+            
+            if([shownText length] > 2)
+            {
+                char secondToLastCharacter = (char)[shownText characterAtIndex:[shownText length]-2];
+                if(secondToLastCharacter == '\n' || secondToLastCharacter == '\r')
+                {
+                    yCoordinate += DEFAULT_SIZE;
+                }
+            }
             return CGRectMake(0,
-                              [self frame].size.height - lineOrigin.y,
+                              yCoordinate,
                               kGNTextCaretViewWidth,
                               fontSizeForText);
         }
