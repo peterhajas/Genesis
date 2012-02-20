@@ -38,7 +38,7 @@ static CTFontRef defaultFont = nil;
     stringTokenizer = [[UITextInputStringTokenizer alloc] initWithTextInput:self];
     
     // Create our caret view
-    caretView = [[GNTextCaretView alloc] initWithFrame:CGRectMake(0, 0, 5, 10)];
+    caretView = [[GNTextCaretView alloc] initWithFrame:CGRectMake(0, 0, kGNTextCaretViewWidth, DEFAULT_SIZE)];
     [self addSubview:caretView];
     
     // Our caret index
