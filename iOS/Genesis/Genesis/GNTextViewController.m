@@ -48,4 +48,11 @@
     [textView setText:fileContents];
 }
 
+#pragma mark Orientation changes
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
 @end
