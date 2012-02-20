@@ -20,6 +20,15 @@
 -(void)didMoveToSuperview
 {
     [self setBackgroundColor:[UIColor blueColor]];
+    
+    animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    [animation setFromValue:[NSNumber numberWithFloat:1.0]];
+    [animation setToValue:[NSNumber numberWithFloat:0.0]];
+    [animation setDuration:1.0];
+    [animation setAutoreverses:NO];
+    [animation setRepeatCount:CGFLOAT_MAX];
+    
+    [[self layer] addAnimation:animation forKey:@"blinkAnimation"];
 }
 
 @end
