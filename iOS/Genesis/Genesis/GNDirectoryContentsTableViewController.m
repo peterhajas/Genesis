@@ -15,6 +15,7 @@
 
 #import "GNDirectoryContentsTableViewController.h"
 #import "GNDirectoryContentsTableViewCell.h"
+#import "GNFileManager.h"
 
 @implementation GNDirectoryContentsTableViewController
 
@@ -41,13 +42,13 @@
     if(indexPath.section == 0)
     {
         // They selected a directory
-        relativePath = [[self directoriesForPath] objectAtIndex:indexPath.row];
+        relativePath = [[GNFileManager directoryDirectoryContentsAtRelativePath:backingPath] objectAtIndex:indexPath.row];
         [delegate didSelectDirectoryWithRelativePath:relativePath];
     }
     else if(indexPath.section == 1)
     {
         // They selected a file
-        relativePath = [[self filesForPath] objectAtIndex:indexPath.row];
+        relativePath = [[GNFileManager directoryFileContentsAtRelativePath:backingPath] objectAtIndex:indexPath.row];
         [delegate didSelectFileWithRelativePath:relativePath];
     }
     else
@@ -58,60 +59,6 @@
 
 #pragma mark - Table View Data Source
 
--(NSArray*)contentsForPath
-{
-    NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-    NSString* absolutePath = [documentPath stringByAppendingPathComponent:backingPath];
-    
-    return [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:absolutePath error:nil] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-}
-
--(NSArray*)filesForPath
-{
-    NSArray* allContents = [self contentsForPath];
-    NSMutableArray* allFiles = [[NSMutableArray alloc] init];
-    
-    NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-    NSString* directoryPath = [documentPath stringByAppendingPathComponent:backingPath];
-    
-    for(NSString* directoryEntry in allContents)
-    {
-        NSString* absoluteEntryPath = [directoryPath stringByAppendingPathComponent:directoryEntry];
-        BOOL isDirectory = NO;
-
-        [[NSFileManager defaultManager] fileExistsAtPath:absoluteEntryPath isDirectory:&isDirectory];
-        if(!isDirectory)
-        {
-            [allFiles addObject:directoryEntry];
-        }
-    }
-    
-    return [NSArray arrayWithArray:allFiles];
-}
-
--(NSArray*)directoriesForPath
-{
-    NSArray* allContents = [self contentsForPath];
-    NSMutableArray* allDirectories = [[NSMutableArray alloc] init];
-    
-    NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-    NSString* directoryPath = [documentPath stringByAppendingPathComponent:backingPath];
-    
-    for(NSString* directoryEntry in allContents)
-    {
-        NSString* absoluteEntryPath = [directoryPath stringByAppendingPathComponent:directoryEntry];
-        BOOL isDirectory = NO;
-        
-        [[NSFileManager defaultManager] fileExistsAtPath:absoluteEntryPath isDirectory:&isDirectory];
-        if(isDirectory)
-        {
-            [allDirectories addObject:directoryEntry];
-        }
-    }
-    
-    return [NSArray arrayWithArray:allDirectories];
-}
-
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     GNDirectoryContentsTableViewCell* tableViewCell;
@@ -120,13 +67,13 @@
     {
         // Return a directory table view cell
         tableViewCell = [[GNDirectoryContentsTableViewCell alloc] initWithType:kGNDirectoryContentsTableViewCellTypeDirectory];
-        relevantEntries = [self directoriesForPath];
+        relevantEntries = [GNFileManager directoryDirectoryContentsAtRelativePath:backingPath];
     }
     else if(indexPath.section == 1)
     {
         // Return a file table view cell
         tableViewCell = [[GNDirectoryContentsTableViewCell alloc] initWithType:kGNDirectoryContentsTableViewCellTypeFile];
-        relevantEntries = [self filesForPath];
+        relevantEntries = [GNFileManager directoryFileContentsAtRelativePath:backingPath];
     }
     else
     {
@@ -140,13 +87,13 @@
 
 -(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0)
+    if(section == 0) // Directory entries
     {
-        return [[self directoriesForPath] count];
+        return [[GNFileManager directoryDirectoryContentsAtRelativePath:backingPath] count];
     }
-    else if(section == 1)
+    else if(section == 1) // File entries
     {
-        return [[self filesForPath] count];
+        return [[GNFileManager directoryFileContentsAtRelativePath:backingPath] count];
     }
     else
     {
@@ -160,23 +107,21 @@
     {
         // Get the path of the item they deleted
         
-        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-        NSString* directoryPath = [documentPath stringByAppendingPathComponent:backingPath];
-
         NSString* entityPath = @"";
         
         if(indexPath.section == 0)
         {
             // It's a directory
-            entityPath = [directoryPath stringByAppendingPathComponent:[[self directoriesForPath] objectAtIndex:indexPath.row]];
+            entityPath = [backingPath stringByAppendingPathComponent:[[GNFileManager directoryDirectoryContentsAtRelativePath:backingPath] objectAtIndex:indexPath.row]];
         }
         else if(indexPath.section == 1)
         {
             // It's a file
-            entityPath = [directoryPath stringByAppendingPathComponent:[[self filesForPath] objectAtIndex:indexPath.row]];
+            entityPath = [backingPath stringByAppendingPathComponent:[[GNFileManager directoryFileContentsAtRelativePath:backingPath] objectAtIndex:indexPath.row]];
         }
         
-        [[NSFileManager defaultManager] removeItemAtPath:entityPath error:nil]; //TODO: error checking on this!
+        [GNFileManager removeContentAtRelativePath:entityPath];
+        
         [tableView reloadData];
     }
 }

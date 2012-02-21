@@ -14,6 +14,7 @@
  */
 
 #import "GNTextViewController.h"
+#import "GNFileManager.h"
 
 @implementation GNTextViewController
 
@@ -34,15 +35,14 @@
 {
     // Load the string in the file, and show it
     
-    NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-    NSString* absolutePath = [documentPath stringByAppendingPathComponent:backingPath];
+    NSString* fileContents = [[NSString alloc] initWithData:[GNFileManager fileContentsAtRelativePath:backingPath] 
+                                                   encoding:NSUTF8StringEncoding];
     
-    NSMutableString *fileContents = [[NSMutableString alloc] initWithString:@""];
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    if ([fileManager fileExistsAtPath:absolutePath]) {
-        [fileContents appendString:[NSString stringWithContentsOfFile:absolutePath
-                                                             encoding:NSUTF8StringEncoding
-                                                                error:nil]];
+    // If there's nothing in the file, populate it with an empty string
+    
+    if(fileContents == nil)
+    {
+        fileContents = @"";
     }
     
     [textView setText:fileContents];
