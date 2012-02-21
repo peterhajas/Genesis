@@ -880,6 +880,7 @@ static CTFontRef defaultFont = nil;
 {    
     if(!highlight)
     {
+        [containerDelegate textChanged];
         [syntaxHighlighter highlightText:[self shownText]];
     }
     else

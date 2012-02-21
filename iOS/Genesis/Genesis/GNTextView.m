@@ -17,6 +17,8 @@
 
 @implementation GNTextView
 
+@synthesize dataDelegate;
+
 -(void)awakeFromNib
 {
     innerView = [[GNTextInnerView alloc] init];
@@ -41,9 +43,16 @@
     return [super resignFirstResponder];
 }
 
+#pragma mark GNTextInnerViewContainerProtocol methods
+
 -(void)requireSize:(CGSize)size
 {
     [self setContentSize:size];
+}
+
+-(void)textChanged
+{
+    [dataDelegate textChanged];
 }
 
 #pragma mark Text Handling

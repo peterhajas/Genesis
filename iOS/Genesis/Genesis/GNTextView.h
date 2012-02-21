@@ -16,12 +16,20 @@
 #import <UIKit/UIKit.h>
 #import "GNTextInnerView.h"
 
+@protocol GNTextViewDataDelegate
+
+-(void)textChanged;
+
+@end
+
 @interface GNTextView : UIScrollView <GNTextInnerViewContainerProtocol>
 
 {
     GNTextInnerView* innerView;
+    id<GNTextViewDataDelegate> dataDelegate;
 }
 
 @property(nonatomic,retain) NSString* text;
+@property(nonatomic,retain) id<GNTextViewDataDelegate> dataDelegate;
 
 @end

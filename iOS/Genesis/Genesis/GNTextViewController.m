@@ -29,6 +29,14 @@
     return self;
 }
 
+#pragma mark GNTextViewDataDelegate methods
+
+-(void)textChanged
+{
+    NSData* textContent = [[textView text] dataUsingEncoding:NSUTF8StringEncoding];
+    [GNFileManager setFileContentsAtRelativePath:backingPath toContent:textContent];
+}
+
 #pragma mark View lifecycle
 
 -(void)viewDidLoad
@@ -46,6 +54,7 @@
     }
     
     [textView setText:fileContents];
+    [textView setDataDelegate:self];
 }
 
 #pragma mark Orientation changes

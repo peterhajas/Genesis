@@ -22,6 +22,7 @@
 @protocol GNTextInnerViewContainerProtocol <NSObject>
 
 -(void)requireSize:(CGSize)size;
+-(void)textChanged;
 
 @end
 
