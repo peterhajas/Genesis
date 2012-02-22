@@ -98,9 +98,9 @@ All these commands return responses.
 * stats() - Gives current stats of the build server. Currently only supports
   one property right now:
 
-    * activity - Indicates the task being performed. Dictionary of project => name,
-      where name is the value given in PERFORM or just 'GIT*' if running a
-      GIT command. Is null if there is no streaming command running.
+  * activity - Indicates the task being performed. Dictionary of project => name,
+    where name is the value given in PERFORM or just 'GIT*' if running a
+    GIT command. Is null if there is no streaming command running.
 
 * perform(project, name) - Perform action on project. Usually is
   BUILD, RUN, and TEST. Name can only be alphanumeric.
