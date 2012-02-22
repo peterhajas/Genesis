@@ -18,6 +18,7 @@
 #import "GNProjectBrowserViewController.h"
 #import "GNAppDelegate.h"
 #import "GNProject.h"
+#import "GNFileManager.h"
 
 @implementation GNNewProjectViewController
 
@@ -49,12 +50,9 @@
         [appDelegate saveContext];
         
         // Create a new directory for this project
-        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-        NSString* directoryPath = [documentPath stringByAppendingPathComponent:[textField text]];
-        [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath
-                                  withIntermediateDirectories:NO 
-                                                   attributes:nil 
-                                                        error:nil];
+        [GNFileManager createFilesystemEntryAtRelativePath:@""
+                                                  withName:[textField text] 
+                                               isDirectory:YES];
                 
         // Dismiss us
         GNProjectBrowserViewController* projectBrowserViewController = (GNProjectBrowserViewController*)[(UINavigationController*)[self presentingViewController] topViewController];

@@ -14,6 +14,7 @@
  */
 
 #import "GNNewFileEntryViewController.h"
+#import "GNFileManager.h"
 
 @implementation GNNewFileEntryViewController
 
@@ -56,37 +57,21 @@
     // If the text of the text field isn't blank
     if(![[textField text] isEqualToString:@""])
     {
-        // Let's make sure there isn't a file in the backingPath with this same name
-        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString* directoryPath = [documentPath stringByAppendingPathComponent:backingPath];
-
-        NSArray* filesInBackingPath = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath 
-                                                                                           error:nil] 
-                                       sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]; //TODO: error checking on this!
+        NSString* entityPath = [backingPath stringByAppendingPathComponent:[textField text]];
         
-        // Determine if this is a file we're checking for, or a folder
+        BOOL makingADirectory = NO;
         
-        NSString* entityPath = [directoryPath stringByAppendingPathComponent:[textField text]];
-        
-        BOOL isDirectory = NO;
-        BOOL fileExists = NO;
-        BOOL entityExists = NO;
-        
-        fileExists = [[NSFileManager defaultManager] fileExistsAtPath:entityPath isDirectory:&isDirectory];
-        
-        // Check if there's a file with this particular name
         if([fileEntityTypeSegmentedControl selectedSegmentIndex] == 0)
         {
-            entityExists = !isDirectory && fileExists;
+            makingADirectory = NO;
         }
-        // Check if there's a folder with this particular name
         else if([fileEntityTypeSegmentedControl selectedSegmentIndex] == 1)
         {
-            entityExists = isDirectory && fileExists;
+            makingADirectory = YES;
         }
-
         
-        if([filesInBackingPath containsObject:[textField text]] && entityExists)
+        // Let's make sure there isn't a file in the backingPath with this same name
+        if([GNFileManager entryExistsAtRelativePath:entityPath isDirectory:makingADirectory])
         {
             // If this file entity already exists in this directory, present a UIAlertView
             UIAlertView* duplicateFileAlertView = [[UIAlertView alloc] initWithTitle:@"That already exists!"
@@ -99,32 +84,29 @@
         }
         else
         {
-            // Ok, excellent! The file doesn't already exist. Let's create it!
-            // If the segmented control is at the first position, then we're in file mode
-            if([fileEntityTypeSegmentedControl selectedSegmentIndex] == 0)
+            // Ok, excellent! The entity doesn't already exist. Let's create it!
+            
+            BOOL creationAttempt = [GNFileManager createFilesystemEntryAtRelativePath:backingPath
+                                                                             withName:[textField text]
+                                                                          isDirectory:makingADirectory];
+            
+            if(!creationAttempt)
             {
-                // Create the file
+                // There was a problem!
+                UIAlertView* issueCreatingEntityAlert = [[UIAlertView alloc] initWithTitle:@"Error creating filesystem entity"
+                                                                                   message:@"Please see the Console."
+                                                                                  delegate:self
+                                                                         cancelButtonTitle:@"Bummer!"
+                                                                         otherButtonTitles:nil];
                 
-                [[NSFileManager defaultManager] createFileAtPath:entityPath
-                                                        contents:nil
-                                                      attributes:nil];
+                [issueCreatingEntityAlert show];
             }
-            // If it's at the second, we're in folder mode
-            else if([fileEntityTypeSegmentedControl selectedSegmentIndex] == 1)
+            else
             {
-                // Create the directory
-                
-                [[NSFileManager defaultManager] createDirectoryAtPath:entityPath
-                                          withIntermediateDirectories:NO
-                                                           attributes:nil
-                                                                error:nil];
+                [delegate didCreateFileEntry];
+            
+                [[self presentingViewController] dismissModalViewControllerAnimated:YES];
             }
-            
-            [delegate didCreateFileEntry];
-            
-            [[self presentingViewController] dismissModalViewControllerAnimated:YES];
-            
-            return YES;
         }
     }
     

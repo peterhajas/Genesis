@@ -17,9 +17,11 @@
 
 @implementation GNTextView
 
+@synthesize dataDelegate;
+
 -(void)awakeFromNib
 {
-    innerView = [[GNTextInnerView alloc] initWithFrame:[self frame]];
+    innerView = [[GNTextInnerView alloc] init];
     [innerView setContainerDelegate:self];
     
     [self addSubview:innerView];
@@ -41,10 +43,16 @@
     return [super resignFirstResponder];
 }
 
+#pragma mark GNTextInnerViewContainerProtocol methods
+
 -(void)requireSize:(CGSize)size
 {
     [self setContentSize:size];
-    NSLog(@"scrollview content height: %f", size.height);
+}
+
+-(void)textChanged
+{
+    [dataDelegate textChanged];
 }
 
 #pragma mark Text Handling

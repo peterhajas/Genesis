@@ -13,23 +13,21 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
-#import "GNTextInnerView.h"
+#import <Foundation/Foundation.h>
 
-@protocol GNTextViewDataDelegate
+@interface GNFileManager : NSObject
 
--(void)textChanged;
++(NSString*)absolutePathForRelativePath:(NSString*)relativePath;
 
-@end
++(NSData*)fileContentsAtRelativePath:(NSString*)relativePath;
++(void)setFileContentsAtRelativePath:(NSString*)relativePath toContent:(NSData*)content;
 
-@interface GNTextView : UIScrollView <GNTextInnerViewContainerProtocol>
++(NSArray*)directoryContentsAtRelativePath:(NSString*)relativePath;
++(NSArray*)directoryFileContentsAtRelativePath:(NSString*)relativePath;
++(NSArray*)directoryDirectoryContentsAtRelativePath:(NSString*)relativePath;
++(BOOL)entryExistsAtRelativePath:(NSString*)relativePath isDirectory:(BOOL)isDirectory;
 
-{
-    GNTextInnerView* innerView;
-    id<GNTextViewDataDelegate> dataDelegate;
-}
-
-@property(nonatomic,retain) NSString* text;
-@property(nonatomic,retain) id<GNTextViewDataDelegate> dataDelegate;
++(BOOL)createFilesystemEntryAtRelativePath:(NSString*)relativePath withName:(NSString*)name isDirectory:(BOOL)isDirectory;
++(void)removeContentAtRelativePath:(NSString*)relativePath;
 
 @end

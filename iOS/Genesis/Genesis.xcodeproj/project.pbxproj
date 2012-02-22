@@ -21,6 +21,7 @@
 		4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */; };
 		4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */; };
 		4F1DCC7C14EA234800811CFA /* parsecode.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DCC7A14E9DFEA00811CFA /* parsecode.js */; };
+		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
 		4F1F04A014E1B128008619C0 /* GNTextInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextInnerView.m */; };
 		4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049C14E1B127008619C0 /* GNTextRange.m */; };
@@ -135,6 +136,8 @@
 		4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewFileEntryViewController.m; sourceTree = "<group>"; };
 		4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewFileEntryViewController.xib; sourceTree = "<group>"; };
 		4F1DCC7A14E9DFEA00811CFA /* parsecode.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = parsecode.js; sourceTree = "<group>"; };
+		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
+		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
 		4F1F049714E1B127008619C0 /* GNTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextCaretView.h; sourceTree = "<group>"; };
 		4F1F049814E1B127008619C0 /* GNTextCaretView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextCaretView.m; sourceTree = "<group>"; };
 		4F1F049914E1B127008619C0 /* GNTextInnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInnerView.h; sourceTree = "<group>"; };
@@ -348,6 +351,15 @@
 			name = "New Filesystem Entry";
 			sourceTree = "<group>";
 		};
+		4F1E6ACC14F2167700583852 /* File Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4F1E6AC814F2166C00583852 /* GNFileManager.h */,
+				4F1E6AC914F2166C00583852 /* GNFileManager.m */,
+			);
+			name = "File Manager";
+			sourceTree = "<group>";
+		};
 		4F1F04A314E1B35D008619C0 /* Caret View */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +458,7 @@
 				4FFDA03D14CCEB3C00422FF5 /* Project Browser */,
 				4F3E372314CFA91000E91A1A /* Project Viewing */,
 				4F21143114DCEF18001EE6C9 /* Text Editing */,
+				4F1E6ACC14F2167700583852 /* File Manager */,
 			);
 			path = Genesis;
 			sourceTree = "<group>";
@@ -861,6 +874,7 @@
 				1F7030D014F04558002FEA32 /* GNNetworkRequest.m in Sources */,
 				1F7030D114F04558002FEA32 /* GNMediatorClient.m in Sources */,
 				1F3D21D914F4B5840096FD17 /* NSString+GNNSStringHashes.m in Sources */,
+				4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

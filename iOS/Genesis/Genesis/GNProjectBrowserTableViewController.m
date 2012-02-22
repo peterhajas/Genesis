@@ -16,6 +16,7 @@
 
 #import "GNProjectBrowserTableViewController.h"
 #import "GNAppDelegate.h"
+#import "GNFileManager.h"
 
 @implementation GNProjectBrowserTableViewController
 
@@ -86,15 +87,13 @@
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
         // They deleted a project
-    
+        
         // Find the matching project
         GNProject* project = [[self allProjects] objectAtIndex:indexPath.row];
+        NSString* projectName = [project valueForKey:@"name"];
         
         // Remove folder for project
-        NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; //TODO: error checking on this!
-        NSString* projectDirectory = [documentPath stringByAppendingPathComponent:[project valueForKey:@"name"]];
-        
-        [[NSFileManager defaultManager] removeItemAtPath:projectDirectory error:nil]; //TODO: error checking on this!
+        [GNFileManager removeContentAtRelativePath:projectName];
         
         // Remove the project from the managed object context
         NSManagedObjectContext* managedObjectContext = [(GNAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];

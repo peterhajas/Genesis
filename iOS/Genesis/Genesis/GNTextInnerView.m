@@ -38,7 +38,7 @@ static CTFontRef defaultFont = nil;
     stringTokenizer = [[UITextInputStringTokenizer alloc] initWithTextInput:self];
     
     // Create our caret view
-    caretView = [[GNTextCaretView alloc] initWithFrame:CGRectMake(0, 0, 5, 10)];
+    caretView = [[GNTextCaretView alloc] initWithFrame:CGRectMake(0, 0, kGNTextCaretViewWidth, DEFAULT_SIZE)];
     [self addSubview:caretView];
     
     // Our caret index
@@ -54,19 +54,15 @@ static CTFontRef defaultFont = nil;
     [self addSubview:syntaxHighlighter];
 }
 
--(id)initWithFrame:(CGRect)frame_
+-(void)didMoveToSuperview
 {
-    self = [super initWithFrame:frame_];
-    if(self)
-    {
-        [self buildUpView];
-    }
-    return self;
+    
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
+-(id)init
 {
-    self = [super initWithCoder:aDecoder];
+    
+    self = [super initWithFrame:CGRectMake(0,0,100,100)];
     if(self)
     {
         [self buildUpView];
@@ -613,37 +609,92 @@ static CTFontRef defaultFont = nil;
         return CGRectMake(0, 0, kGNTextCaretViewWidth, fontSizeForText);
     }
     
+    CGFloat glyphOffset;
+    
+    // Get the origin of lineAtCaret
+    
+    CGPoint lineOrigin = [self originForLine:lineAtCaret];
+    
     // Now, get the runs out of the line
 
     CTRunRef runForCaret = [self runForLine:lineAtCaret andCharacterAtIndex:index];
     
-    CFRange caretRunStringRange = CTRunGetStringRange(runForCaret);
+    // If runForCaret is NULL, then we need to handle this special case
     
-    NSUInteger indexOfGlyph = index - caretRunStringRange.location;
-    
-    CGFloat glyphOffset;
-    
-    // Get the origin of lineAtCaret
-
-    CGPoint lineOrigin = [self originForLine:lineAtCaret];
-    
-    if(caretRunStringRange.location + caretRunStringRange.length == [shownText length])
+    if(runForCaret == NULL || index >= [shownText length])
     {
-        glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph - 1
-                                                      inRun:runForCaret
-                                                 withinLine:lineAtCaret];
+        char lastCharacter = (char)[shownText characterAtIndex:[shownText length]-1];
+        
+        // If the last character is a newline:
+        if(lastCharacter == '\n' || lastCharacter == '\r')
+        {            
+            CGFloat yCoordinate = [self frame].size.height - lineOrigin.y;
+            
+            /* If the *second to last character* is also a newline, we need to offset again by
+               the height of a line, because -originForLine has trouble with newline-only lines */
+            
+            if([shownText length] > 2)
+            {
+                char secondToLastCharacter = (char)[shownText characterAtIndex:[shownText length]-2];
+                if(secondToLastCharacter == '\n' || secondToLastCharacter == '\r')
+                {
+                    yCoordinate += DEFAULT_SIZE;
+                }
+            }
+            return CGRectMake(0,
+                              yCoordinate,
+                              kGNTextCaretViewWidth,
+                              fontSizeForText);
+        }
+        else
+        {
+            // Grab the run for the character before this one!
+            
+            CTRunRef runForEarlierIndex = [self runForLine:lineAtCaret andCharacterAtIndex:index-1];
+            
+            CFRange caretRunStringRange = CTRunGetStringRange(runForEarlierIndex);
+            
+            NSUInteger indexOfGlyph = index - 1 - caretRunStringRange.location;
+            
+            glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph
+                                                          inRun:runForEarlierIndex
+                                                     withinLine:lineAtCaret];
+            
+            // If the last character is a tab:
+            if(lastCharacter == '\t')
+            {
+                glyphOffset += 3 * [self widthOfCharacterInDefaultFont];
+            }
+            
+            // If the last character is a regular character (nice!):
+            else
+            {
+                glyphOffset += [self widthOfCharacterInDefaultFont];
+            }
+            
+            return CGRectMake(glyphOffset,
+                              [self frame].size.height - lineOrigin.y - fontSizeForText,
+                              kGNTextCaretViewWidth,
+                              fontSizeForText);
+        }
+        
+        
     }
     else
     {
+        CFRange caretRunStringRange = CTRunGetStringRange(runForCaret);
+        
+        NSUInteger indexOfGlyph = index - caretRunStringRange.location;
+                        
         glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph 
                                                       inRun:runForCaret
                                                  withinLine:lineAtCaret];
+        
+        return CGRectMake(glyphOffset,
+                          [self frame].size.height - lineOrigin.y - fontSizeForText,
+                          kGNTextCaretViewWidth,
+                          fontSizeForText);
     }
-    
-    return CGRectMake(glyphOffset,
-                      [self frame].size.height - lineOrigin.y - fontSizeForText,
-                      kGNTextCaretViewWidth,
-                      fontSizeForText);
 }
 
 -(CTLineRef)lineForCharacterAtIndex:(NSUInteger)index
@@ -676,7 +727,7 @@ static CTFontRef defaultFont = nil;
         CFRange lineStringRange = CTLineGetStringRange(currentLine);
         
         if((index >= lineStringRange.location) &&
-           (index <= lineStringRange.location + lineStringRange.length))
+           (index < lineStringRange.location + lineStringRange.length))
         {
             // We found the right line!
             indexLine = i;
@@ -727,7 +778,7 @@ static CTFontRef defaultFont = nil;
         CTRunRef run = CFArrayGetValueAtIndex(runs, i);
         CFRange runRange = CTRunGetStringRange(run);
         
-        if((index >= runRange.location) && (index <= runRange.location + runRange.length))
+        if((index >= runRange.location) && (index < runRange.location + runRange.length))
         {
             runForCaretIndex = i;
             break;
@@ -738,7 +789,7 @@ static CTFontRef defaultFont = nil;
     
     if(runForCaretIndex == NSUIntegerMax)
     {
-        NSLog(@"Could not find line run for character at index %u", index);
+        //NSLog(@"Could not find line run for character at index %u", index);
         return NULL;
     }
     
@@ -786,19 +837,57 @@ static CTFontRef defaultFont = nil;
 }
 
 -(CGFloat)absoluteXPositionOfGlyphAtIndex:(NSUInteger)index inRun:(CTRunRef)run withinLine:(CTLineRef)line
-{        
-    return CTRunGetPositionsPtr(run)[index-1].x + CTRunGetAdvancesPtr(run)[index-1].width;
+{
+    CGFloat absoluteXPosition = 0.0;
+    
+    CGPoint positionInRun = CTRunGetPositionsPtr(run)[index];
+    absoluteXPosition += positionInRun.x;
+    
+    CGSize advanceInRun = CTRunGetAdvancesPtr(run)[index];
+    absoluteXPosition += advanceInRun.width;
+    
+    return positionInRun.x;
+}
+
+-(CGFloat)widthOfCharacterInDefaultFont
+{
+    // Create an attributed string with our default font.
+    
+    CFMutableAttributedStringRef temporaryAttributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
+    CFAttributedStringReplaceString(temporaryAttributedString, CFRangeMake(0, 0), CFSTR("A"));
+    CFAttributedStringSetAttribute(attributedString, 
+                                   CFRangeMake(0, CFAttributedStringGetLength(attributedString)),
+                                   kCTFontAttributeName, 
+                                   defaultFont);
+    
+    // Create a line with this attributed string
+    
+    CTLineRef temporaryLine = CTLineCreateWithAttributedString(temporaryAttributedString);
+    
+    // Grab the run out of the line
+    
+    CTRunRef temporaryLineRun = CFArrayGetValueAtIndex(CTLineGetGlyphRuns(temporaryLine), 0);
+    
+    CGFloat widthOfAdvance = CTRunGetAdvancesPtr(temporaryLineRun)[0].width;
+    
+    CFRelease(temporaryLine);
+    CFRelease(temporaryAttributedString);
+    
+    return widthOfAdvance;
 }
 
 -(void)textChangedWithHighlight:(BOOL)highlight
 {    
     if(!highlight)
     {
+        [containerDelegate textChanged];
         [syntaxHighlighter highlightText:[self shownText]];
     }
-    
-    [self setNeedsDisplay];
-    [self fitFrameToText];
+    else
+    {
+        [self setNeedsDisplay];
+        [self fitFrameToText];
+    }
 }
 
 -(void)drawRect:(CGRect)rect
@@ -811,38 +900,47 @@ static CTFontRef defaultFont = nil;
 -(void)fitFrameToText
 {    
     /*
-     * This view doesn't need to ever be smaller than the GNTextView superview, does it?
-     * If the string is empty, this routine fails for some reason.
+     When fitting the frame to the text we've drawn, we need to fit in all the text.
+     
+     If CTFramesetterSuggestFrameSizeWithConstraints() gives us a size smaller than
+     our superview frame, we should use our superview frame as the size.
+     
+     This helps with empty and short files. GNTextView and GNTextInnerView, as a
+     side effect, are now linked pretty intimately, but this is how they're *meant*
+     to be used.
+     
+     This method chooses the larger of the two - either the suggested framesize from
+     Core Text, or the superview framesize - and phones our delegate with that size.
      */
-    return; // temporarily disabled
     
-    // Find how large of a textarea we need
     CGSize sizeForText = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX), NULL);
     
-    [self setFrame:CGRectMake(0, 0, sizeForText.width,sizeForText.height)];
+    CGSize superviewSize = [[self superview] frame].size;
     
-    NSLog(@"height for framesetter: %f", sizeForText.height);
+    CGSize newViewSize;
     
-    [containerDelegate requireSize:sizeForText];
+    newViewSize.width = MAX(sizeForText.width, superviewSize.width);
+    newViewSize.height = MAX(sizeForText.height, superviewSize.height);
+    
+    [self setFrame:CGRectMake(0, 0, newViewSize.width, newViewSize.height)];
+    
+    [containerDelegate requireSize:newViewSize];
 }
 
 #pragma mark GNSyntaxHighlighterDelegate mathods
 
 -(void)didHighlightText:(NSAttributedString*)highlightedText
 {
-    if(![[highlightedText string] isEqualToString:[(__bridge NSAttributedString*)attributedString string]])
+    if(attributedString)
     {
-        if(attributedString)
-        {
-            CFRelease(attributedString);
-        }
-        
-        NSMutableAttributedString* mutableHighlightedText = [[NSMutableAttributedString alloc] initWithAttributedString:highlightedText];
-        
-        attributedString = (__bridge CFMutableAttributedStringRef)mutableHighlightedText;
-        CFRetain(attributedString);
-        [self textChangedWithHighlight:YES];
+        CFRelease(attributedString);
     }
+    
+    NSMutableAttributedString* mutableHighlightedText = [[NSMutableAttributedString alloc] initWithAttributedString:highlightedText];
+    
+    attributedString = (__bridge CFMutableAttributedStringRef)mutableHighlightedText;
+    CFRetain(attributedString);
+    [self textChangedWithHighlight:YES];
 }
 
 @end

@@ -14,8 +14,12 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #define kGNTextCaretViewWidth 3.0
 
 @interface GNTextCaretView : UIView
+{
+    CABasicAnimation* animation;
+}
 
 @end

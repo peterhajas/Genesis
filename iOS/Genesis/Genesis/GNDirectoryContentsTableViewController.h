@@ -29,9 +29,6 @@
 }
 
 -(id)initWithBackingPath:(NSString*)path;
--(NSArray*)contentsForPath;
--(NSArray*)filesForPath;
--(NSArray*)directoriesForPath;
 
 @property (nonatomic, retain) id<GNDirectoryContentsTableViewControllerDelegate> delegate;
 
