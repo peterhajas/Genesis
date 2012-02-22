@@ -61,6 +61,7 @@
 
 #pragma mark - Public Methods
 
+#pragma mark Connection
 - (void)connectWithSSL:(BOOL)useSSL withCallback:(MediatorClientCallback)callback
 {
     [client connectWithSSL:useSSL withBlock:^(NSError *error) {
@@ -73,6 +74,8 @@
 {
     return [client disconnect];
 }
+
+#pragma mark Mediator Operations
 
 - (void)registerWithUsername:(NSString *)theUsername
                  andPassword:(NSString *)thePassword
@@ -131,7 +134,66 @@
 
 - (void)getClientsWithCallback:(GNClientCallback)callback
 {
-    
+    // TODO
+}
+
+- (void)getBuildersWithCallback:(GNClientCallback)callback
+{
+    // TODO
+}
+
+#pragma mark Builder operations
+- (void)getProjectsFromBuilder:(NSString *)builder
+                  withCallback:(GNClientCallback)callback
+{
+    // TODO
+}
+
+- (void)getFilesFromBuilder:(NSString *)builder
+                 forProject:(NSString *)project
+               withCallback:(GNClientCallback)callback
+{
+    // TODO
+}
+
+- (void)downloadFile:(NSString *)filepath
+         fromBuilder:(NSString *)builder
+          andProject:(NSString *)project
+        withCallback:(GNClientCallback)callback
+{
+    // TODO
+}
+
+- (void)uploadFile:(NSString *)filepath
+         toBuilder:(NSString *)builder
+        andProject:(NSString *)project
+      withContents:(NSString *)contents
+      withCallback:(GNClientCallback)callback
+{
+    // TODO
+}
+
+- (void)performAction:(NSString *)action
+            toBuilder:(NSString *)builder
+           andProject:(NSString *)project
+   withStreamCallback:(GNClientCallback)streamCallback
+{
+    // TODO
+}
+
+- (void)cancelActionForProject:(NSString *)project
+                   fromBuilder:(NSString *)builder
+                  withCallback:(GNClientCallback)callback
+{
+    // TODO
+}
+
+- (void)inputString:(NSString *)string
+          toBuilder:(NSString *)builder
+         andProject:(NSString *)project
+       withCallback:(GNClientCallback)callback
+{
+    // TODO
 }
 
 @end
