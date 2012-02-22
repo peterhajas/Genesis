@@ -47,25 +47,13 @@
     [self.window setRootViewController:navigationController];
     
     // Test Code
-    client = [[GNMediatorClient alloc] init];
-    [client connectWithSSL:NO withBlock:^(NSError *error) {
-        if(error){
-            NSLog(@"callback with error: %@", error);
-            return;
-        }
-        NSLog(@"Success!");
-        NSArray *params = [NSArray arrayWithObjects:@"jeff",
-                           [@"password" SHA512HashString],
-                           @"iOS client", // TODO: need unique name
-                           @"editor.genesis.ios.iphone",
-                           [NSNumber numberWithInt:0],
-                           nil];
-        GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:@"login"
-                                                             andParameters:params
-                                                         andExpectResponse:YES];
-        [client request:request withCallback:^(id<GNNetworkMessageProtocol> msg) {
-            NSLog(@"Got response: %@", msg);
-        }];
+    client = [[GNAPIClient alloc] init];
+    [client connectWithSSL:NO withCallback:^(NSError *error) {
+        [client loginWithUsername:@"jeff"
+                      andPassword:@"password"
+                     withCallback:^(BOOL succeeded, NSDictionary *info) {
+                         NSLog(succeeded ? @"Logged in!" : @"Failed to log in");
+                     }];
     }];
     NSLog(@"Starting client!");
     // End Test Code
