@@ -344,6 +344,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
         # really kill it if we need to
         yield gen.Task(mclient.wait_for, seconds=1)
         self.process_query.kill()
+        self.process_query = None
 
     @gen.engine
     def do_input(self, mclient, request):
