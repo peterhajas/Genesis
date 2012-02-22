@@ -50,6 +50,11 @@ NSString* generateUUID(void){
     return self;
 }
 
+- (id)initWithName:(NSString *)name andParameters:(NSArray *)parameters
+{
+    return [self initWithName:name andParameters:parameters andExpectResponse:YES];
+}
+
 - (id)params
 {
     return [dict objectForKey:GN_PARAMETERS_KEY];
