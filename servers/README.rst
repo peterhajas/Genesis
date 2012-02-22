@@ -34,7 +34,7 @@ version:
 
     <version>
 
-Where version is an unsigned short (2-bytes)
+Where version is an unsigned short (2-bytes) in network byte order.
 
 It is the client's job to check if it supports the given version and close if
 the version is invalid. The mediator may close the connection for an invalid
@@ -47,10 +47,11 @@ Message
 
 Each message is in the form:
 
-    <len> <data>
+    <len><data>
 
-Where len is the number of bytes of data, represented as an unsigned short.
-Data is zlibbed JSON data. Data is in the JSON-RPC version 1 format:
+Where len is the number of bytes of data, represented as an unsigned short in
+network byte-order. Data is zlibbed JSON data. Data is in the JSON-RPC version
+1 format:
 
     // Request format
     {
