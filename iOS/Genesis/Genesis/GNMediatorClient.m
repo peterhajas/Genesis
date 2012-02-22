@@ -14,8 +14,8 @@
  */
 
 #import "GNMediatorClient.h"
-#import "NSData+GNZlib.h"
 #import "JSONKit.h"
+#import "NSData+GNNSDataCategory.h"
 
 #define TAG_VERSION 1
 #define TAG_MESSAGE_LENGTH 2
@@ -23,21 +23,15 @@
 
 #define SUPPORTED_VERSION 1
 
+NSString * const GN_NETWORK_ERROR_DOMAIN = @"net.jeffhui.genesis";
+const NSInteger GNErrorBadVersion = 1;
+const NSInteger GNErrorBadProtocol = 2;
+
 @implementation GNMediatorClient
 
-static dispatch_queue_t socketQueue;
+#pragma mark - Initialization
 
-+ (void)initialize
-{
-    static BOOL initialized = NO;
-    if(!initialized)
-    {
-        initialized = YES;
-        socketQueue = dispatch_queue_create("GNMediatorClientSocketQueue", NULL);
-    }
-}
-
-@synthesize connectionTimeout, host, port, serverVersion;
+@synthesize connectionTimeout, host, port, serverVersion, compress;
 
 - (id)init
 {
@@ -53,36 +47,19 @@ static dispatch_queue_t socketQueue;
         self.host = hostAddr;
         self.port = portNum;
         self.serverVersion = 0;
+        self.compress = NO;
         sslEnabled = NO;
         expectedMessageLength = 0;
 
-        socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:socketQueue];
+        socket = nil;
+        messageHandlers = nil;
+        fallbackMessageHandler = nil;
     }
     
     return self;
 }
 
-- (BOOL)connectWithBlock:(MediatorClientCallback)doBlock useSSL:(BOOL)isSecure
-{
-    NSError *error = nil;
-    if(![socket connectToHost:self.host onPort:self.port withTimeout:self.connectionTimeout error:&error])
-    {
-        doBlock(error);
-        return NO;
-    }
-    
-    sslEnabled = isSecure;
-    connectCallback = doBlock;
-    
-    return YES;
-}
-
-- (void)request:(id<GNNetworkMessageProtocol>)request success:(MediatorClientCallback)doBlock
-{
-    
-}
-
-#pragma mark Error Codes
+#pragma mark - Error Codes
 
 - (NSError *)errorWithCode:(NSInteger)errorCode
 {
@@ -95,18 +72,14 @@ static dispatch_queue_t socketQueue;
     return [NSError errorWithDomain:GN_NETWORK_ERROR_DOMAIN code:errorCode userInfo:userInfo];
 }
 
-#pragma mark Processing Data
-
-- (void)startReadVersion:(GCDAsyncSocket *)sock
-{
-    [sock readDataToLength:sizeof(uint16_t) withTimeout:-1 tag:TAG_VERSION];
-}
+#pragma mark - Processing Data
 
 - (BOOL)readVersionFromData:(NSData *)data
 {
-    if([data length] != sizeof(uint8_t))
+    uint32_t size = sizeof(uint16_t);
+    if([data length] != size)
     {
-        NSLog(@"Invalid data for version");
+        NSLog(@"Invalid data length for version (got %u; expected %u)", [data length], size);
         return NO;
     }
     
@@ -114,47 +87,43 @@ static dispatch_queue_t socketQueue;
     *value = ntohs(*value);
     self.serverVersion = *value;
     
-    NSLog(@"Server API Version: %hu", self.serverVersion);
+    NSLog(@"Server API Version: %@ = %hu", data, self.serverVersion);
     return SUPPORTED_VERSION == self.serverVersion;
 }
 
-- (BOOL)readMessageLengthFromData:(NSData *)data
+- (uint16_t)readMessageLengthFromData:(NSData *)data
 {
     if([data length] != sizeof(uint16_t))
     {
         NSLog(@"Invalid message length");
-        return NO;
+        return 0;
     }
     
     uint16_t *value = (uint16_t *)[data bytes];
     *value = ntohs(*value);
-    expectedMessageLength = *value;
     
     NSLog(@"Message Length: %hu", *value);
-    return YES;
+    return *value;
 }
 
 - (id)readMessageBodyFromData:(NSData *)data
 {
-    if ([data length] != expectedMessageLength)
-    {
-        NSLog(@"Expected message length (%hu) does not match actual (%u)", expectedMessageLength, [data length]);
-        return nil;
-    }
     // gunzip data
-    NSData *gunzipData = [data gunzipData];
-    if (!gunzipData){
-        NSLog(@"Message was not in gzip format.");
-        return nil;
+    if (self.compress)
+    {
+        data = [data zlibInflate];
+        if (!data)
+        {
+            NSLog(@"Message was not in compressed format.");
+            return nil;
+        }
     }
     
-    NSString *jsonString = [[NSString alloc] initWithData:gunzipData encoding:NSASCIIStringEncoding];
-    // parse as json!
-    id object = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionUnicodeNewlines];
-    
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    id object = [jsonString objectFromJSONString];
     if (![object isKindOfClass:[NSDictionary class]])
     {
-        NSLog(@"Message was not an object (aka, NSDictionary)");
+        NSLog(@"Message was not an object (aka, NSDictionary): %@", object);
         return nil;
     }
     // validate
@@ -171,23 +140,122 @@ static dispatch_queue_t socketQueue;
     return obj;
 }
 
-#pragma mark Socket Delegate
+- (void)startReadVersion
+{
+    NSLog(@"start reading version");
+    [socket readDataToLength:sizeof(uint16_t) withTimeout:-1 tag:TAG_VERSION];
+}
 
-- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)hostAddr port:(uint16_t)portNum
+- (void)startReadMessage
+{
+    [socket readDataToLength:sizeof(uint16_t) withTimeout:-1 tag:TAG_MESSAGE_LENGTH];
+}
+
+- (void)startReadMessageBodyWithLength:(uint16_t)messageLength
+{
+    [socket readDataToLength:messageLength withTimeout:-1 tag:TAG_MESSAGE_BODY];
+}
+
+- (void)dispatchMessage:(id<GNNetworkMessageProtocol>)message
+{
+    if ([message identifier] && [messageHandlers objectForKey:[message identifier]])
+    {
+        MediatorMessageHandler handler = (MediatorMessageHandler)[messageHandlers objectForKey:[message identifier]];
+        handler(message);
+        return;
+    }
+    
+    // use generic handler
+    if (fallbackMessageHandler)
+    {
+        fallbackMessageHandler(message);
+        return;
+    }
+    
+    NSLog(@"Unhandled message being dropped: %@", message);
+}
+
+#pragma mark - Private Methods
+
+- (NSData *)dataFromDictionary:(NSDictionary *)dictionary
+{
+    NSData *jsonData = [[NSData alloc] initWithData:[dictionary JSONData]];
+    if (self.compress)
+    {
+        NSData *compressedData = [jsonData zlibDeflate];
+        assert(compressedData != nil);
+        return compressedData;
+    }
+    return jsonData;
+}
+
+- (void)disconnectWithError:(NSError *)error
+{
+    [socket disconnect];
+    if (disconnectCallback){
+        disconnectCallback(error);
+    }
+}
+
+#pragma mark - Public Methods
+
+- (BOOL)connectWithSSL:(BOOL)isSecure withBlock:(MediatorClientCallback)doBlock
+{
+    socket = [[AsyncSocket alloc] initWithDelegate:self];
+    messageHandlers = [NSMutableDictionary new];
+    
+    sslEnabled = isSecure;
+    connectCallback = doBlock;
+    
+    NSError *error = nil;
+    [socket connectToHost:self.host onPort:self.port withTimeout:self.connectionTimeout error:&error];
+    
+    NSLog(@"starting connection");
+    
+    return error == nil;
+}
+
+- (void)disconnect
+{
+    [self disconnectWithError:nil];
+}
+
+- (void)setDisconnectBlock:(MediatorClientCallback)onDisconnectBlock
+{
+    disconnectCallback = onDisconnectBlock;
+}
+
+- (void)request:(id<GNNetworkMessageProtocol>)request withCallback:(MediatorMessageHandler)doBlock
+{
+    if([request identifier] && doBlock)
+    {
+        [messageHandlers setObject:doBlock forKey:[request identifier]];
+        NSLog(@"Added handler to collection.");
+    }
+    [self send:request];
+}
+
+- (void)send:(id<GNNetworkMessageProtocol>)request
+{
+    NSLog(@"Request ID: %@", [request identifier]);
+    NSData *msgData = [self dataFromDictionary:[request jsonRPCObject]];
+    uint16_t size = htons(msgData.length);
+    NSData *sizeData = [[NSData alloc] initWithBytes:&size length:sizeof(uint16_t)];
+    [socket writeData:sizeData withTimeout:-1 tag:0];
+    [socket writeData:msgData withTimeout:-1 tag:0];
+}
+
+- (void)setFallbackMessageHandler:(MediatorMessageHandler)doBlock
+{
+    fallbackMessageHandler = doBlock;
+}
+
+#pragma mark - Socket Delegate
+
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)hostAddr port:(uint16_t)portNum
 {
     NSLog(@"Connected to %@ from %hu", hostAddr, portNum);
     
-    
-    [sock performBlock:^{
-        if([sock enableBackgroundingOnSocket])
-        {
-            NSLog(@"Enabled backgrounding socket.");
-        }
-        else
-        {
-            NSLog(@"Failed to enable backgrounding socket.");
-        }
-    }];
     
     if(sslEnabled)
     {
@@ -212,55 +280,64 @@ static dispatch_queue_t socketQueue;
     }
     else
     {
-        [self startReadVersion:sock];
+        [self startReadVersion];
     }
 }
 
-- (void)socketDidSecure:(GCDAsyncSocket *)sock
+- (void)onSocketDidSecure:(AsyncSocket *)sock
 {
     NSLog(@"isSecure = YES");
-    [self startReadVersion:sock];
+    [self startReadVersion];
 }
 
-- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    id msg = nil;
+    id<GNNetworkMessageProtocol> msg = nil;
+    uint16_t size = 0;
     switch(tag)
     {
         case TAG_VERSION:
             if([self readVersionFromData:data])
             {
                 connectCallback(nil);
+                [self startReadMessage];
             }
             else
             {
                 NSLog(@"Disconnected - Bad Version format");
-                connectCallback([self errorWithCode:GN_ERROR_BAD_VERSION]);
-                [sock disconnect];
+                [self disconnect];
+                connectCallback([self errorWithCode:GNErrorBadProtocol]);
             }
             break;
         case TAG_MESSAGE_LENGTH:
-            if([self readMessageLengthFromData:data])
+            size = [self readMessageLengthFromData:data];
+            if(size > 0)
             {
-                
+                [self startReadMessageBodyWithLength:size];
+                NSLog(@"Got message size: %u", size);
             }
             else
             {
                 NSLog(@"Bad message body");
-                //[sock disconnect];
+                //[self disconnectWithError:];
             }
+            break;
         case TAG_MESSAGE_BODY:
             msg = [self readMessageBodyFromData:data];
             if (msg)
             {
-                // 
+                NSLog(@"Dispatch Message: %@", msg);
+                [self dispatchMessage:msg];
+                // handle message! (call delegate?)
             }
             else
             {
-                NSLog(@"Bad message body.");
-                //[sock disconnect];
+                NSLog(@"Bad message body. (%u)", data.length);
+                //[self disconnectWithError:];
             }
+            break;
         default:
+            NSLog(@"Data Dropped");
             // do something with garbage data??
             break;
     }

@@ -29,5 +29,6 @@
 @property(readonly) BOOL isRequest;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSString *)description;
 
 @end

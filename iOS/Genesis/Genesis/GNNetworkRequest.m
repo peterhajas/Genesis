@@ -14,20 +14,14 @@
  */
 
 #import "GNNetworkRequest.h"
-
-#define PARAMETERS_KEY @"params"
-#define NAME_KEY @"name"
-#define ID_KEY @"id"
+#import "GNNetworkMessageKeys.h"
 
 // probably needs a better place to be other than here...
 NSString* generateUUID(void);
 
 NSString* generateUUID(void){
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-    CFStringRef uuidStringRef = CFUUIDCreateString(kCFAllocatorDefault, uuid);
-    NSString *uuidString = (__bridge_transfer NSString *)CFStringCreateCopy(kCFAllocatorNull, uuidStringRef);
-    
-    CFRelease(uuidStringRef);
+    NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
     CFRelease(uuid);
     return uuidString;
 }
@@ -44,7 +38,9 @@ NSString* generateUUID(void){
     return self;
 }
 
-- (id)initWithName:(NSString *)name andParameters:(NSArray *)parameters andExpectResponse:(BOOL)expectsResponse
+- (id)initWithName:(NSString *)name
+     andParameters:(NSArray *)parameters
+ andExpectResponse:(BOOL)expectsResponse
 {
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, NAME_KEY,
                                 parameters, PARAMETERS_KEY,
@@ -95,6 +91,12 @@ NSString* generateUUID(void){
 - (NSDictionary *)jsonRPCObject
 {
     return dict;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<GNNetworkRequest(id=%@, name=%@, params=%@)>",
+            self.identifier, self.name, self.params, nil];
 }
 
 @end

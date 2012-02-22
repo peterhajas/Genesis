@@ -12,19 +12,11 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#import "GNNetworkNotification.h"
 
-@implementation GNNetworkNotification
+#import <Foundation/Foundation.h>
 
-- (BOOL)isNotification
-{
-    return YES;
-}
+@interface NSString (GNNSStringHashes)
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<GNNetworkNotification(id=%@, name=%@, params=%@)>",
-            self.identifier, self.name, self.params, nil];
-}
+- (NSString *)SHA512HashString;
 
 @end

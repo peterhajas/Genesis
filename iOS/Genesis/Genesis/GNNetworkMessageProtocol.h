@@ -21,5 +21,6 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (BOOL)isValid;
 - (NSDictionary *)jsonRPCObject;
+- (NSString *)identifier;
 
 @end

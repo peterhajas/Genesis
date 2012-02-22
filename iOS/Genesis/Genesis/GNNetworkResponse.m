@@ -14,10 +14,7 @@
  */
 
 #import "GNNetworkResponse.h"
-
-#define RESULT_KEY @"result"
-#define ERROR_KEY @"error"
-#define ID_KEY @"id"
+#import "GNNetworkMessageKeys.h"
 
 @implementation GNNetworkResponse
 
@@ -51,7 +48,7 @@
 
 - (BOOL)isValid
 {
-    return ![[dict objectForKey:ID_KEY] isKindOfClass:[NSString class]] && (self.result || self.error);
+    return self.identifier && (self.result || self.error);
 }
 
 - (BOOL)isError
@@ -77,6 +74,12 @@
 - (NSDictionary *)jsonRPCObject
 {
     return dict;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<GNNetworkResponse(id=%@, result=%@, error=%@)>",
+            self.identifier, self.result, self.error, nil];
 }
 
 @end

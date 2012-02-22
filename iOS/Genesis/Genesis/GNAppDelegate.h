@@ -15,9 +15,13 @@
 
 #import <UIKit/UIKit.h>
 
+// networking
+#import "GNMediatorClient.h"
+
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController* navigationController;
+    GNMediatorClient *client;
 }
 @property (strong, nonatomic) UIWindow *window;
 

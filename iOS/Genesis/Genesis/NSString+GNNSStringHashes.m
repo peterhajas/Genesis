@@ -13,11 +13,23 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
+#import "NSString+GNNSStringHashes.h"
+#include <CommonCrypto/CommonDigest.h>
 
-@interface NSData (GNZlib)
+@implementation NSString (GNNSStringHashes)
 
-- (NSData *)gunzipData;
-- (NSData *)gzipData;
 
+// from: http://stackoverflow.com/questions/3829068/hash-a-password-string-using-sha512-like-c-sharp
+- (NSString *) SHA512HashString
+{
+    const char *cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cstr length:self.length];
+    uint8_t digest[CC_SHA512_DIGEST_LENGTH];
+    CC_SHA512(data.bytes, data.length, digest);
+    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA512_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_SHA512_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    return output;
+}
 @end

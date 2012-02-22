@@ -12,19 +12,20 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#import "GNNetworkNotification.h"
 
-@implementation GNNetworkNotification
+#import <Foundation/Foundation.h>
 
-- (BOOL)isNotification
-{
-    return YES;
-}
+// Methods from http://www.cocoadev.com/index.pl?NSDataCategory
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<GNNetworkNotification(id=%@, name=%@, params=%@)>",
-            self.identifier, self.name, self.params, nil];
-}
+@interface NSData (GNNSDataCategory)
+
+// ZLIB
+- (NSData *) zlibInflate;
+- (NSData *) zlibDeflate;
+
+// GZIP
+- (NSData *) gzipInflate;
+- (NSData *) gzipDeflate;
+
 
 @end

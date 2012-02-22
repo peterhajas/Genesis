@@ -14,7 +14,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "GCDAsyncSocket.h"
+#import "AsyncSocket.h"
 #import "GNNetworkResponse.h"
 #import "GNNetworkNotification.h"
 #import "GNNetworkRequest.h"
@@ -22,33 +22,44 @@
 
 #define GN_MEDIATOR_HOST @"localhost"
 #define GN_MEDIATOR_PORT 8080
-#define GN_NETWORK_ERROR_DOMAIN @"GNProtocolError"
-#define GN_ERROR_BAD_VERSION 1
+
+
+extern NSString * const GN_NETWORK_ERROR_DOMAIN;
+
+extern const NSInteger GNErrorBadVersion;
+extern const NSInteger GNErrorBadProtocol;
 
 typedef void(^MediatorClientCallback)(NSError *error);
+typedef void(^MediatorMessageHandler)(id<GNNetworkMessageProtocol>msg);
 
 /*
  * Low-level client protocol to the Genesis Mediator server.
  */
-@interface GNMediatorClient : NSObject <GCDAsyncSocketDelegate> {
-    GCDAsyncSocket *socket;
-    MediatorClientCallback connectCallback;
+@interface GNMediatorClient : NSObject <AsyncSocketDelegate> {
+    AsyncSocket *socket;
+    MediatorClientCallback connectCallback, disconnectCallback;
+    MediatorMessageHandler fallbackMessageHandler;
+    NSMutableDictionary *messageHandlers;
     uint16_t expectedMessageLength;
     BOOL sslEnabled;
 }
 
-@property(nonatomic) NSTimeInterval connectionTimeout;
-@property(nonatomic, strong) NSString *host;
-@property(nonatomic) uint16_t port;
-@property(nonatomic) uint16_t serverVersion;
+@property (nonatomic) NSTimeInterval connectionTimeout;
+@property (nonatomic, strong) NSString *host;
+@property (nonatomic) uint16_t port;
+@property (nonatomic) uint16_t serverVersion;
+@property (nonatomic) BOOL compress;
 
 
 - (id)init;
 - (id)initWithHost:(NSString *)ipAddress onPort:(uint16_t)portNum;
 
-- (BOOL)connectWithBlock:(MediatorClientCallback)doBlock useSSL:(BOOL)isSecure;
-- (void)request:(id<GNNetworkMessageProtocol>)request withCallback:(MediatorClientCallback)doBlock;
-- (void)send:(id<GNNetworkMessageProtocol>)request withCallback:(MediatorClientCallback)doBlock;
-- (void)recv:(id<GNNetworkMessageProtocol>)request withCallback:(MediatorClientCallback)doBlock;
+- (void)setDisconnectBlock:(MediatorClientCallback)onDisconnectBlock;
+
+- (BOOL)connectWithSSL:(BOOL)isSecure withBlock:(MediatorClientCallback)doBlock;
+- (void)disconnect;
+- (void)request:(id<GNNetworkMessageProtocol>)request withCallback:(MediatorMessageHandler)doBlock;
+- (void)send:(id<GNNetworkMessageProtocol>)request;
+- (void)setFallbackMessageHandler:(MediatorMessageHandler)handler;
 
 @end
