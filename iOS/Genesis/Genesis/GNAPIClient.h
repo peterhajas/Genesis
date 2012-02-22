@@ -21,6 +21,7 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 @interface GNAPIClient : NSObject
 {
     GNMediatorClient *client;
+    id sender;
 }
 
 @property (nonatomic, readonly) BOOL isConnected;

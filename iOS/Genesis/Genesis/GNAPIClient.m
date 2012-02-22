@@ -34,6 +34,7 @@
     {
         self.machineName = @"Genesis iOS Editor";
         client = theClient;
+        sender = [NSNumber numberWithInt:0];
         _isConnected = NO;
     }
     return self;
@@ -50,6 +51,36 @@
 }
 
 #pragma mark - Private Methods
+- (GNNetworkRequest *)newSendRequestTo:(NSString *)machine command:(id<GNNetworkMessageProtocol>)command
+{
+    NSDictionary *serializedCommand = [command jsonRPCObject];
+    NSArray *params = [NSArray arrayWithObjects:machine, serializedCommand, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_SEND andParameters:params];
+    return request;
+}
+
+- (GNNetworkRequest *)newRequestTo:(NSString *)machine command:(id<GNNetworkMessageProtocol>)command
+{
+    NSDictionary *serializedCommand = [command jsonRPCObject];
+    NSArray *params = [NSArray arrayWithObjects:machine, serializedCommand, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_REQUEST andParameters:params];
+    return request;
+}
+
+- (void)invokeCallback:(GNClientCallback)callback withMessage:(id<GNNetworkMessageProtocol>)msg
+{
+    if (![msg isResponse])
+    {
+        callback(NO, [NSDictionary dictionaryWithObjectsAndKeys:@"Unexpected data", @"reason", nil]);
+        return;
+    }
+    GNNetworkResponse *response = (GNNetworkResponse *)msg;
+    
+    if (![response isError])
+        callback(YES, [NSDictionary dictionaryWithDictionary:response.result]);
+    else
+        callback(NO, [NSDictionary dictionaryWithDictionary:response.error]);
+}
 
 #pragma mark - Public Properties
 
@@ -83,23 +114,11 @@
 {
     NSArray *params = [NSArray arrayWithObjects:theUsername,
                        [thePassword SHA512HashString],
-                       [NSNumber numberWithInt:0],
+                       sender,
                        nil];
-    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_REGISTER
-                                                         andParameters:params
-                                                     andExpectResponse:YES];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_REGISTER andParameters:params];
     [client request:request withCallback:^(id<GNNetworkMessageProtocol> msg) {
-        if (![msg isResponse])
-        {
-            callback(NO, [NSDictionary dictionaryWithObjectsAndKeys:@"Unexpected data", @"reason", nil]);
-            return;
-        }
-        GNNetworkResponse *response = (GNNetworkResponse *)msg;
-        
-        if (![response isError])
-            callback(YES, nil);
-        else
-            callback(NO, [NSDictionary dictionaryWithDictionary:response.error]);
+        [self invokeCallback:callback withMessage:msg];
     }];
 }
 
@@ -134,26 +153,57 @@
 
 - (void)getClientsWithCallback:(GNClientCallback)callback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_CLIENTS andParameters:params];
+    [client request:request withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
 }
 
 - (void)getBuildersWithCallback:(GNClientCallback)callback
 {
-    // TODO
+    [self getClientsWithCallback:^(BOOL succeeded, NSDictionary *info) {
+        if(succeeded)
+        {
+            NSMutableDictionary *builderClients = [[NSMutableDictionary alloc] init];
+            NSDictionary *allClients = [info objectForKey:@"clients"];
+            for (NSString *key in [allClients allKeys])
+            {
+                NSRange range = [key rangeOfString:@"builder."];
+                if (range.location == 0) {
+                    [builderClients setObject:[allClients objectForKey:key] forKey:key];
+                }
+            }
+            NSMutableDictionary *newInfo = [[NSMutableDictionary alloc] initWithDictionary:info];
+            [newInfo setObject:builderClients forKey:@"clients"];
+            info = newInfo;
+        }
+        callback(succeeded, info);
+    }];
 }
 
 #pragma mark Builder operations
 - (void)getProjectsFromBuilder:(NSString *)builder
                   withCallback:(GNClientCallback)callback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_PROJECTS andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
 }
 
 - (void)getFilesFromBuilder:(NSString *)builder
                  forProject:(NSString *)project
                withCallback:(GNClientCallback)callback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:project, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_FILES andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
 }
 
 - (void)downloadFile:(NSString *)filepath
@@ -161,7 +211,12 @@
           andProject:(NSString *)project
         withCallback:(GNClientCallback)callback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:project, filepath, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_DOWNLOAD andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
 }
 
 - (void)uploadFile:(NSString *)filepath
@@ -170,7 +225,12 @@
       withContents:(NSString *)contents
       withCallback:(GNClientCallback)callback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:project, filepath, contents, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_UPLOAD andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
 }
 
 - (void)performAction:(NSString *)action
@@ -178,14 +238,69 @@
            andProject:(NSString *)project
    withStreamCallback:(GNClientCallback)streamCallback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:project, action, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_PERFORM andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        if (![msg isNotification])
+        {
+            NSLog(@"Invalid message for perform action. Expected notification message.");
+            streamCallback(NO, [NSDictionary dictionaryWithObjectsAndKeys:@"Unexpected message", @"reason", nil]);
+            return;
+        }
+        // change depending on type of stream.
+        BOOL isSuccessful = NO;
+        GNNetworkNotification *notification = (GNNetworkNotification *)msg;
+        NSMutableDictionary *info = nil;
+        if (notification.name == GN_STREAM)
+        {
+            NSString *project = [notification.params objectAtIndex:0];
+            NSString *contents = [notification.params objectAtIndex:1];
+            // always +1 to params size because of sender arg
+            isSuccessful = project && contents && [notification.params count] == 3;
+            info = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"stream", @"name",
+                    project, @"project",
+                    contents, @"contents",
+                    nil];
+        }
+        else if (notification.name == GN_STREAM_EOF)
+        {
+            NSString *project = [notification.params objectAtIndex:0];
+            // always +1 to params size because of sender arg
+            isSuccessful = project && [notification.params count] == 2;
+            info = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"stream_eof", @"name",
+                    project, @"project",
+                    nil];
+        }
+        else if (notification.name == GN_RETURN_CODE)
+        {
+            NSString *project = [notification.params objectAtIndex:0];
+            NSNumber *returnCode = [notification.params objectAtIndex:1];
+            // always +1 to params size because of sender arg
+            isSuccessful = project && returnCode != nil && [notification.params count] == 3;
+            info = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"return_code", @"name",
+                    project, @"project",
+                    returnCode, @"return_code",
+                    nil];
+        }
+        else
+        {
+            info = [NSDictionary dictionaryWithObjectsAndKeys:@"Unknown notification", @"reason", nil];
+        }
+        streamCallback(isSuccessful, info);
+    }];
 }
 
 - (void)cancelActionForProject:(NSString *)project
                    fromBuilder:(NSString *)builder
                   withCallback:(GNClientCallback)callback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:project, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_CANCEL andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
 }
 
 - (void)inputString:(NSString *)string
@@ -193,7 +308,12 @@
          andProject:(NSString *)project
        withCallback:(GNClientCallback)callback
 {
-    // TODO
+    NSArray *params = [NSArray arrayWithObjects:project, string, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_INPUT andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
 }
 
 @end
