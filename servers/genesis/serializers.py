@@ -12,7 +12,7 @@ from genesis.utils import with_args
 
 class NetworkSerializer(object):
     "Serializes data to and from basic python types."
-    def __init__(self, encoder=None, compress_level=6):
+    def __init__(self, encoder=None, compress_level=0):
         self.encoder = encoder or json.JSONEncoder()
         self.compress_level = compress_level
 
@@ -24,10 +24,13 @@ class NetworkSerializer(object):
 
     def serialize(self, obj):
         data = self.encoder.encode(self.serialize_obj(obj))
-        return zlib.compress(data, self.compress_level)
+        if self.compress_level:
+            return zlib.compress(data, self.compress_level)
+        return data
 
     def deserialize(self, data):
-        data = zlib.decompress(data)
+        if self.compress_level:
+            data = zlib.decompress(data)
         return json.loads(data)
 
 
@@ -65,7 +68,6 @@ class ProtocolSerializer(object):
                 return
 
             version = version[0]
-            print 'version', version
             metadata = {
                 'version': version,
                 'is_supported_version': version == self.version,
