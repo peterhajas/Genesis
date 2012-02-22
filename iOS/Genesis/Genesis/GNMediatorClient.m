@@ -127,13 +127,14 @@ const NSInteger GNErrorBadProtocol = 2;
         return nil;
     }
     // validate
-    id obj = [[GNNetworkResponse alloc] initWithDictionary:object];
+    id<GNNetworkMessageProtocol> obj = [[GNNetworkResponse alloc] initWithDictionary:object];
     if(![obj isValid])
     {
         // try parsing as response
         obj = [[GNNetworkNotification alloc] initWithDictionary:object];
         if(![obj isValid])
         {
+            NSLog(@"Bad message: %@", jsonString);
             return nil; // failure
         }
     }
