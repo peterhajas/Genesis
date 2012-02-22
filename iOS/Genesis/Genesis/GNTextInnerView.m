@@ -363,6 +363,11 @@ static CTFontRef defaultFont = nil;
                                                                          nil]];
 }
 
+-(void)setMarkedTextStyle:(NSDictionary *)markedTextStyle
+{
+    
+}
+
 -(void)setSelectedTextRange:(UITextRange *)selectedTextRange
 {
     
