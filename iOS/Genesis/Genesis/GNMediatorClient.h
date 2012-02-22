@@ -34,8 +34,10 @@ typedef void(^MediatorMessageHandler)(id<GNNetworkMessageProtocol>msg);
 
 /*
  * Low-level client protocol to the Genesis Mediator server.
+ * Use GNAPIClient if you want to higher-level variant.
  */
-@interface GNMediatorClient : NSObject <AsyncSocketDelegate> {
+@interface GNMediatorClient : NSObject <AsyncSocketDelegate>
+{
     AsyncSocket *socket;
     MediatorClientCallback connectCallback, disconnectCallback;
     MediatorMessageHandler fallbackMessageHandler;
