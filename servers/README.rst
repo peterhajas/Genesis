@@ -93,60 +93,61 @@ All these commands return responses.
 * files(project) - Lists all files & metadata for the project
 
 * download(project, filepath) - Downloads the given file. All data downloaded is
-    assumed to be plain/text.
+  assumed to be plain/text.
 
 * stats() - Gives current stats of the build server. Currently only supports
-    one property right now:
-** activity - Indicates the task being performed. Dictionary of project => name,
-        where name is the value given in PERFORM or just 'GIT*' if running a
-        GIT command. Is null if there is no streaming command running.
+  one property right now:
+
+    * activity - Indicates the task being performed. Dictionary of project => name,
+      where name is the value given in PERFORM or just 'GIT*' if running a
+      GIT command. Is null if there is no streaming command running.
 
 * perform(project, name) - Perform action on project. Usually is
-    BUILD, RUN, and TEST. Name can only be alphanumeric.
-    Streams stdout and stderr back to sender.
+  BUILD, RUN, and TEST. Name can only be alphanumeric.
+  Streams stdout and stderr back to sender.
 
 * upload(from_machine, project, rel_filepath, data) - Uploads file to build
-    server. All files are relative to project root (no parent directories
-    allowed). All data is currently assumed to be plain/text.
+  server. All files are relative to project root (no parent directories
+  allowed). All data is currently assumed to be plain/text.
 
 * git(from_machine, command?) - Runs a git command ? (TODO: be more specific)
-    Streams stdout and stderr back to sender.
+  Streams stdout and stderr back to sender.
 
 * cancel(from_machine, project) - Cancels operation from the last streaming
-    command sent to the builder (from GIT or PERFORM)
+  command sent to the builder (from GIT or PERFORM)
 
 * input(from_machine, project, input_string) - Sends standard input data.
-    Newlines are NOT automatically append.
+  Newlines are NOT automatically append.
 
 Commands Supported by Mediator
 ------------------------------
 
 * register(email, password) - Registers a given username and password on
-    the mediator. After registering, you must log in.
+  the mediator. After registering, you must log in.
 
-    Once logged in, this command is no longer functional.
+  Once logged in, this command is no longer functional.
 
 * login(email, password, machine, type) - Logs user in to mediator. Shows
-    clients only avaliable only to that particular user (like a namespace).
+  clients only avaliable only to that particular user (like a namespace).
 
-    Machine name should be a unique identifier. Type indicates the kind of
-    machine to connect to.
+  Machine name should be a unique identifier. Type indicates the kind of
+  machine to connect to.
 
-    This is a prereq for all other commands except for REGISTER.
+  This is a prereq for all other commands except for REGISTER.
 
 
 * send(machine, command) - Sends the given command (JSON object) to the given
-    machine name. Mediator will append the sender information.
+  machine name. Mediator will append the sender information.
 
-    Essentially pipes a command to another machine connected to the mediator.
-    *No response is given by the mediator*
+  Essentially pipes a command to another machine connected to the mediator.
+  *No response is given by the mediator*
 
 
 * request(machine, command) - Idential to SEND, except the response given is
-    from the target machine the message is being sent to.
+  from the target machine the message is being sent to.
 
 * clients() - Returns all builders and clients connected to mediator under
-    the current user's account with their associated machine names and types.
+  the current user's account with their associated machine names and types.
 
 
 Streaming Commands (Should be supported by Editor/Client)
@@ -155,7 +156,7 @@ Streaming Commands (Should be supported by Editor/Client)
 [allows accepting streaming output from a given command]
 
 * stream(from_machine, project, contents) - Incoming data that the build server
-    reports when doing a PERFORM or GIT. This is both stdout & stderr
+  reports when doing a PERFORM or GIT. This is both stdout & stderr
 
 * stream_eof(from_machine, project) - Indicates end of stream of PERFORM or GIT
 
