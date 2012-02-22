@@ -122,33 +122,29 @@
     }];
 }
 
-- (void)loginWithUsername:(NSString *)theUsername
-              andPassword:(NSString *)thePassword
-             withCallback:(GNClientCallback)callback
+- (NSString *)loginWithUsername:(NSString *)theUsername
+                    andPassword:(NSString *)thePassword
+                   withCallback:(GNClientCallback)callback
+{
+    return [self loginWithUsername:theUsername andPassword:[thePassword SHA512HashString] withCallback:callback];
+}
+
+- (NSString *)loginWithUsername:(NSString *)theUsername
+                andPasswordHash:(NSString *)thePasswordHash
+                   withCallback:(GNClientCallback)callback
 {
     // [username, password_hash, machineName, machineType sender]
     NSArray *params = [NSArray arrayWithObjects:theUsername,
-                       [thePassword SHA512HashString],
+                       thePasswordHash,
                        self.machineName,
                        self.machineType,
-                       [NSNumber numberWithInt:0],
+                       sender,
                        nil];
-    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_LOGIN
-                                                         andParameters:params
-                                                     andExpectResponse:YES];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_LOGIN andParameters:params];
     [client request:request withCallback:^(id<GNNetworkMessageProtocol> msg) {
-        if (![msg isResponse])
-        {
-            callback(NO, [NSDictionary dictionaryWithObjectsAndKeys:@"Unexpected data", @"reason", nil]);
-            return;
-        }
-        GNNetworkResponse *response = (GNNetworkResponse *)msg;
-        
-        if (![response isError])
-            callback(YES, nil);
-        else
-            callback(NO, [NSDictionary dictionaryWithDictionary:response.error]);
+        [self invokeCallback:callback withMessage:msg];
     }];
+    return thePasswordHash;
 }
 
 - (void)getClientsWithCallback:(GNClientCallback)callback

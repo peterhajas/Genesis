@@ -48,9 +48,23 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 //
 // You should set the machineName property to something useful before calling this,
 // since each machine name should be unique per user.
-- (void)loginWithUsername:(NSString *)theUsername
-              andPassword:(NSString *)thePassword
-             withCallback:(GNClientCallback)callback;
+// 
+// Returns the hashed password, which can be stored
+- (NSString *)loginWithUsername:(NSString *)theUsername
+                    andPassword:(NSString *)thePassword
+                   withCallback:(GNClientCallback)callback;
+
+
+// Logs into the mediator with the given username and password hash. Callback is invoked
+// when successfully logged in or not.
+//
+// You should set the machineName property to something useful before calling this,
+// since each machine name should be unique per user.
+// 
+// Returns the hashed password - just to be consistent.
+- (NSString *)loginWithUsername:(NSString *)theUsername
+                andPasswordHash:(NSString *)thePasswordHash
+                   withCallback:(GNClientCallback)callback;
 
 // Registers the given account with the mediator. Callback is invoked when successfully
 // registered or not.
