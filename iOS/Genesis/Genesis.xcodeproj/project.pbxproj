@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F3D21D914F4B5840096FD17 /* NSString+GNNSStringHashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D21D814F4B5840096FD17 /* NSString+GNNSStringHashes.m */; };
+		1F5997BD14F4C5AD005FE26F /* GNAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */; };
 		1F7030BD14EFAF36002FEA32 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030BB14EFAF36002FEA32 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1F7030BE14EFAF36002FEA32 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F7030BC14EFAF36002FEA32 /* README.md */; };
 		1F7030CB14F04042002FEA32 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030C914F04036002FEA32 /* CFNetwork.framework */; };
@@ -114,6 +115,8 @@
 /* Begin PBXFileReference section */
 		1F3D21D714F4B5840096FD17 /* NSString+GNNSStringHashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GNNSStringHashes.h"; sourceTree = "<group>"; };
 		1F3D21D814F4B5840096FD17 /* NSString+GNNSStringHashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GNNSStringHashes.m"; sourceTree = "<group>"; };
+		1F5997BB14F4C5AD005FE26F /* GNAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAPIClient.h; sourceTree = "<group>"; };
+		1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAPIClient.m; sourceTree = "<group>"; };
 		1F7030B514EFA785002FEA32 /* NSData+GNNSDataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GNNSDataCategory.h"; sourceTree = "<group>"; };
 		1F7030B614EFA785002FEA32 /* NSData+GNNSDataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GNNSDataCategory.m"; sourceTree = "<group>"; };
 		1F7030BA14EFAF36002FEA32 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
@@ -325,6 +328,8 @@
 				1F7030B914EFAF1A002FEA32 /* JSONKit */,
 				1FEEBE9E14EECBBF00C6E099 /* CocoaAsyncSockets */,
 				1F7030C214EFB4B6002FEA32 /* Model */,
+				1F5997BB14F4C5AD005FE26F /* GNAPIClient.h */,
+				1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */,
 				1FEEBE9714EEC92200C6E099 /* GNMediatorClient.h */,
 				1FEEBE9814EEC92200C6E099 /* GNMediatorClient.m */,
 				1F3D21D714F4B5840096FD17 /* NSString+GNNSStringHashes.h */,
@@ -878,6 +883,7 @@
 				1F7030D114F04558002FEA32 /* GNMediatorClient.m in Sources */,
 				1F3D21D914F4B5840096FD17 /* NSString+GNNSStringHashes.m in Sources */,
 				4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */,
+				1F5997BD14F4C5AD005FE26F /* GNAPIClient.m in Sources */,
 				1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
