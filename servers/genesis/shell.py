@@ -46,11 +46,11 @@ class ProcessQuery(object):
         return not self.queue.empty()
 
     def terminate(self):
-        if not self.has_terminated():
+        if not self.has_terminated:
             self.process.terminate()
 
     def kill(self):
-        if not self.has_terminated():
+        if not self.has_terminated:
             self.process.kill()
 
     def write(self, data):
