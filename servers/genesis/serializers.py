@@ -12,8 +12,9 @@ from genesis.utils import with_args
 
 class NetworkSerializer(object):
     "Serializes data to and from basic python types."
-    def __init__(self, encoder=None, compress_level=0):
+    def __init__(self, encoder=None, compress_level=1):
         self.encoder = encoder or json.JSONEncoder()
+        # never set higher than 1, doesn't really do much
         self.compress_level = compress_level
 
     def serialize_obj(self, obj):

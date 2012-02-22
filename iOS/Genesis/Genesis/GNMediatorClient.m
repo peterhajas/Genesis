@@ -47,7 +47,7 @@ const NSInteger GNErrorBadProtocol = 2;
         self.host = hostAddr;
         self.port = portNum;
         self.serverVersion = 0;
-        self.compress = NO;
+        self.compress = YES;
         sslEnabled = NO;
         expectedMessageLength = 0;
 
