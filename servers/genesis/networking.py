@@ -139,11 +139,12 @@ class Server(object):
         return sock
 
 class MessageStream(object):
-    def __init__(self, iostrm, serializer=None, io_loop=None):
+    def __init__(self, iostrm, serializer=None, io_loop=None, ignore_invalid_messages=True):
         self.stream = iostrm
         self.serializer = serializer or ProtocolSerializer(NetworkSerializer())
         self.on_bad_message = None
         self.io_loop = io_loop or IOLoop.instance()
+        self.ignore_invalid_messages = ignore_invalid_messages
 
     @property
     def iostream(self):
