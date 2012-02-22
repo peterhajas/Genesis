@@ -37,7 +37,7 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 // Connect to the provide host and port. Enable SSL if the server supports it (not yet)
 // callback is invoked when connection has been made or there was an error.
 //
-// After logging in, you should either use -[loginWithUsername:andPassword:withCallback:]
+// After logging in, you should either use -[loginWithPassword:forUsername:withCallback:]
 // or -[registerWithUsername:andPassword:withCallback:].
 - (void)connectWithSSL:(BOOL)useSSL withCallback:(MediatorClientCallback)callback;
 // Disconnects from the mediator.
@@ -50,8 +50,8 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 // since each machine name should be unique per user.
 // 
 // Returns the hashed password, which can be stored
-- (NSString *)loginWithUsername:(NSString *)theUsername
-                    andPassword:(NSString *)thePassword
+- (NSString *)loginWithPassword:(NSString *)thePassword
+                    forUsername:(NSString *)theUsername
                    withCallback:(GNClientCallback)callback;
 
 
@@ -62,9 +62,9 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 // since each machine name should be unique per user.
 // 
 // Returns the hashed password - just to be consistent.
-- (NSString *)loginWithUsername:(NSString *)theUsername
-                andPasswordHash:(NSString *)thePasswordHash
-                   withCallback:(GNClientCallback)callback;
+- (NSString *)loginWithPasswordHash:(NSString *)thePasswordHash
+                        forUsername:(NSString *)theUsername
+                       withCallback:(GNClientCallback)callback;
 
 // Registers the given account with the mediator. Callback is invoked when successfully
 // registered or not.
@@ -94,18 +94,20 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
                  forProject:(NSString *)project
                withCallback:(GNClientCallback)callback;
 
-// Downloads the given file from the server.
+// Downloads the given file from the project.
 - (void)downloadFile:(NSString *)filepath
          fromBuilder:(NSString *)builder
           andProject:(NSString *)project
         withCallback:(GNClientCallback)callback;
 
+// Uploads the given file contents as the filepath to the builder.
 - (void)uploadFile:(NSString *)filepath
          toBuilder:(NSString *)builder
         andProject:(NSString *)project
       withContents:(NSString *)contents
       withCallback:(GNClientCallback)callback;
 
+// Performs a builder action.
 - (void)performAction:(NSString *)action
             toBuilder:(NSString *)builder
            andProject:(NSString *)project

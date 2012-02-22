@@ -122,16 +122,16 @@
     }];
 }
 
-- (NSString *)loginWithUsername:(NSString *)theUsername
-                    andPassword:(NSString *)thePassword
+- (NSString *)loginWithPassword:(NSString *)thePassword
+                    forUsername:(NSString *)theUsername
                    withCallback:(GNClientCallback)callback
 {
-    return [self loginWithUsername:theUsername andPassword:[thePassword SHA512HashString] withCallback:callback];
+    return [self loginWithPasswordHash:[thePassword SHA512HashString] forUsername:theUsername withCallback:callback];
 }
 
-- (NSString *)loginWithUsername:(NSString *)theUsername
-                andPasswordHash:(NSString *)thePasswordHash
-                   withCallback:(GNClientCallback)callback
+- (NSString *)loginWithPasswordHash:(NSString *)thePasswordHash
+                        forUsername:(NSString *)theUsername
+                       withCallback:(GNClientCallback)callback
 {
     // [username, password_hash, machineName, machineType sender]
     NSArray *params = [NSArray arrayWithObjects:theUsername,
