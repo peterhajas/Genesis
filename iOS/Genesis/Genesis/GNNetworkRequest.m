@@ -14,7 +14,7 @@
  */
 
 #import "GNNetworkRequest.h"
-#import "GNNetworkMessageKeys.h"
+#import "GNNetworkConstants.h"
 
 // probably needs a better place to be other than here...
 NSString* generateUUID(void);
@@ -42,9 +42,9 @@ NSString* generateUUID(void){
      andParameters:(NSArray *)parameters
  andExpectResponse:(BOOL)expectsResponse
 {
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, NAME_KEY,
-                                parameters, PARAMETERS_KEY,
-                                (expectsResponse ? generateUUID() : nil), ID_KEY,
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, GN_NAME_KEY,
+                                parameters, GN_PARAMETERS_KEY,
+                                (expectsResponse ? generateUUID() : nil), GN_ID_KEY,
                                 nil];
     self = [self initWithDictionary:dictionary];
     return self;
@@ -52,17 +52,17 @@ NSString* generateUUID(void){
 
 - (id)params
 {
-    return [dict objectForKey:PARAMETERS_KEY];
+    return [dict objectForKey:GN_PARAMETERS_KEY];
 }
 
 - (NSString *)name
 {
-    return [dict objectForKey:NAME_KEY];
+    return [dict objectForKey:GN_NAME_KEY];
 }
 
 - (NSString *)identifier
 {
-    id obj = [dict objectForKey:ID_KEY];
+    id obj = [dict objectForKey:GN_ID_KEY];
     if(obj == nil)
         return nil;
     return (NSString *)obj;
@@ -70,7 +70,7 @@ NSString* generateUUID(void){
 
 - (BOOL)isValid
 {
-    return ![[dict objectForKey:ID_KEY] isKindOfClass:[NSString class]] && self.name && self.params;
+    return ![[dict objectForKey:GN_ID_KEY] isKindOfClass:[NSString class]] && self.name && self.params;
 }
 
 - (BOOL)isResponse

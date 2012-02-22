@@ -18,9 +18,13 @@
 
 @protocol GNNetworkMessageProtocol <NSObject>
 
+@property(readonly) BOOL isResponse;
+@property(readonly) BOOL isNotification;
+@property(readonly) BOOL isRequest;
+@property(readonly) BOOL isValid;
+@property(readonly) NSString *identifier;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary;
-- (BOOL)isValid;
 - (NSDictionary *)jsonRPCObject;
-- (NSString *)identifier;
 
 @end

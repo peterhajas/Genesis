@@ -14,7 +14,7 @@
  */
 
 #import "GNNetworkResponse.h"
-#import "GNNetworkMessageKeys.h"
+#import "GNNetworkConstants.h"
 
 @implementation GNNetworkResponse
 
@@ -30,17 +30,17 @@
 
 - (id)error
 {
-    return [dict objectForKey:ERROR_KEY];
+    return [dict objectForKey:GN_ERROR_KEY];
 }
 
 - (id)result
 {
-    return [dict objectForKey:RESULT_KEY];
+    return [dict objectForKey:GN_RESULT_KEY];
 }
 
 - (NSString *)identifier
 {
-    id obj = [dict objectForKey:ID_KEY];
+    id obj = [dict objectForKey:GN_ID_KEY];
     if(obj == nil)
         return nil;
     return (NSString *)obj;
@@ -48,7 +48,7 @@
 
 - (BOOL)isValid
 {
-    return self.identifier && (self.result || self.error);
+    return self.identifier != nil;
 }
 
 - (BOOL)isError
