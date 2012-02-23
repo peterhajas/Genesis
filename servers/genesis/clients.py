@@ -75,9 +75,7 @@ def sample_handler(ios, mediator):
     # upload changes
     response = yield gen.Task(
             mediator.request, builder,
-            UploadMessage(project_name, filepath,
-                data="print 'hello'",
-                mimetype="plain/text"))
+            UploadMessage(project_name, filepath, contents="print 'hello'"))
     if response.is_error:
         print "Failed to upload file!"
         mediator.close()
@@ -276,7 +274,9 @@ class BuilderDelegate(MediatorClientDelegateBase):
             raise StopIteration
         yield gen.Task(mclient.write_response, ResponseMessage.success(
             request.id,
-            data=contents,
+            project=request['project'],
+            filepath=request['filepath'],
+            contents=contents,
         ))
 
     @gen.engine
@@ -501,7 +501,6 @@ class MediatorClient(object):
 
         self.delegate.handshake(self)
 
-    def on_close(self):
         if self.wants_to_close:
             return # continue
         if self.autoreconnect:

@@ -196,7 +196,7 @@ class DownloadMessage(InvocationMessage):
 
 class UploadMessage(InvocationMessage):
     name = 'upload'
-    MAPPING = ('project', 'filepath', 'data', 'mimetype')
+    MAPPING = ('project', 'filepath', 'contents', 'mimetype')
 
 class PerformMessage(InvocationMessage):
     name = 'perform'
