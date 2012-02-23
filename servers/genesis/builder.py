@@ -55,7 +55,8 @@ class BuilderConfig(object):
 
                 s = os.stat(filepath)
                 all_files.append({
-                    'name': filepath,
+                    'name': os.path.basename(filepath),
+                    'path': filepath,
                     'size': s.st_size,
                     'modified_time': s.st_mtime,
                     'kind': '',
