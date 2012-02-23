@@ -103,7 +103,7 @@
 
 #pragma mark - Public Methods
 
-#pragma mark Connection
+#pragma mark Connection Management
 - (void)connectWithSSL:(BOOL)useSSL withCallback:(MediatorClientCallback)callback
 {
     [client connectWithSSL:useSSL withBlock:^(NSError *error) {
@@ -188,7 +188,7 @@
     }];
 }
 
-#pragma mark Builder operations
+#pragma mark Builder Operations
 - (void)getProjectsFromBuilder:(NSString *)builder
                   withCallback:(GNClientCallback)callback
 {
