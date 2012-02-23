@@ -29,6 +29,8 @@
     id<GNTextViewDataDelegate> dataDelegate;
 }
 
+-(void)keyboardWillChange:(id)object;
+
 @property(nonatomic,retain) NSString* text;
 @property(nonatomic,retain) id<GNTextViewDataDelegate> dataDelegate;
 
