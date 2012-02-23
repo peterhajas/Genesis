@@ -53,7 +53,8 @@
 
 - (BOOL)isError
 {
-    return self.result == nil && self.error != nil;
+    return self.result && [self.result isKindOfClass:[NSNull class]] &&
+        self.error && ![self.error isKindOfClass:[NSNull class]];
 }
 
 - (BOOL)isResponse

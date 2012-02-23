@@ -75,7 +75,8 @@ NSString* generateUUID(void){
 
 - (BOOL)isValid
 {
-    return ![[dict objectForKey:GN_ID_KEY] isKindOfClass:[NSString class]] && self.name && self.params;
+    return self.name && ![self.name isKindOfClass:[NSNull class]] &&
+        self.params && ![self.params isKindOfClass:[NSNull class]];
 }
 
 - (BOOL)isResponse
