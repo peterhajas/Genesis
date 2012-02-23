@@ -49,11 +49,26 @@
     // Test Code
     client = [[GNAPIClient alloc] init];
     [client connectWithSSL:NO withCallback:^(NSError *error) {
-        [client loginWithUsername:@"jeff"
-                      andPassword:@"password"
-                     withCallback:^(BOOL succeeded, NSDictionary *info) {
-                         NSLog(succeeded ? @"Logged in!" : @"Failed to log in");
-                     }];
+        NSLog(@"Connection complete");
+        [client loginWithPassword:@"password" forUsername:@"jeff" withCallback:^(BOOL succeeded, NSDictionary *info) {
+            if (succeeded)
+            {
+                NSLog(@"Successfully logged in");
+                [client getClientsWithCallback:^(BOOL succeeded, NSDictionary *info) {
+                    if (succeeded) {
+                        NSLog(@"getClients => %@", info);
+                    }
+                    else
+                    {
+                        NSLog(@"getClients => Failed.");
+                    }
+                }];
+            }
+            else
+            {
+                NSLog(@"Failed to log in :(");
+            }
+        }];
     }];
     NSLog(@"Starting client!");
     // End Test Code

@@ -161,14 +161,20 @@ const NSInteger GNErrorBadProtocol = 2;
 {
     if ([message identifier] && [messageHandlers objectForKey:[message identifier]])
     {
-        MediatorMessageHandler handler = (MediatorMessageHandler)[messageHandlers objectForKey:[message identifier]];
-        handler(message);
-        return;
+        id obj = [messageHandlers objectForKey:[message identifier]];
+        if (obj)
+        {
+            MediatorMessageHandler handler = (MediatorMessageHandler)obj;
+            handler(message);
+            [messageHandlers removeObjectForKey:[message identifier]];
+            return;
+        }
     }
     
     // use generic handler
     if (fallbackMessageHandler)
     {
+        NSLog(@"Using fallback");
         fallbackMessageHandler(message);
         return;
     }
@@ -226,13 +232,19 @@ const NSInteger GNErrorBadProtocol = 2;
     disconnectCallback = onDisconnectBlock;
 }
 
-- (void)request:(id<GNNetworkMessageProtocol>)request withCallback:(MediatorMessageHandler)doBlock
+- (void)onMessageIdentifierRecieved:(NSString *)identifier doCallback:(MediatorMessageHandler)doBlock
 {
-    if([request identifier] && doBlock)
+    if(identifier && doBlock)
     {
-        [messageHandlers setObject:doBlock forKey:[request identifier]];
+        [messageHandlers setObject:doBlock forKey:identifier];
         NSLog(@"Added handler to collection.");
     }
+    [self startReadMessage];
+}
+
+- (void)request:(id<GNNetworkMessageProtocol>)request withCallback:(MediatorMessageHandler)doBlock
+{
+    [self onMessageIdentifierRecieved:[request identifier] doCallback:doBlock];
     [self send:request];
 }
 
@@ -301,7 +313,6 @@ const NSInteger GNErrorBadProtocol = 2;
             if([self readVersionFromData:data])
             {
                 connectCallback(nil);
-                [self startReadMessage];
             }
             else
             {

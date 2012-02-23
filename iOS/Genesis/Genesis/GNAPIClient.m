@@ -76,10 +76,11 @@
     }
     GNNetworkResponse *response = (GNNetworkResponse *)msg;
     
-    if (![response isError])
-        callback(YES, [NSDictionary dictionaryWithDictionary:response.result]);
+    NSLog(@"%d", [response isError]);
+    if ([response isError])
+        callback(NO, response.error);
     else
-        callback(NO, [NSDictionary dictionaryWithDictionary:response.error]);
+        callback(YES, [NSDictionary dictionaryWithDictionary:response.result]);
 }
 
 #pragma mark - Public Properties
@@ -149,7 +150,7 @@
 
 - (void)getClientsWithCallback:(GNClientCallback)callback
 {
-    NSArray *params = [NSArray arrayWithObjects:sender, nil];
+    NSArray *params = [NSArray arrayWithObject:sender];
     GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_CLIENTS andParameters:params];
     [client request:request withCallback:^(id<GNNetworkMessageProtocol> msg) {
         [self invokeCallback:callback withMessage:msg];
