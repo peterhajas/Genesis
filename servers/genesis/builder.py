@@ -42,6 +42,10 @@ class BuilderConfig(object):
     def get_ignored(self, project):
         return IgnoreList(self._get_project(project).get('ignore', []))
 
+    @property
+    def name(self):
+        return self.config.get('name')
+
     def get_files(self, project):
         ignored = self.get_ignored(project)
         location = expand(self.get_location(project))
@@ -151,6 +155,10 @@ class Builder(object):
         for p in self.projects:
             activities[p.name] = p.activity
         return activities
+
+    @property
+    def name(self):
+        return self.config.name
 
     def _filepath(self, project, filename):
         location = self.config.get_location(project)
