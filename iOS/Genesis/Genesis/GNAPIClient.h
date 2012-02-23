@@ -107,16 +107,28 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
       withContents:(NSString *)contents
       withCallback:(GNClientCallback)callback;
 
-// Performs a builder action.
+// Performs a builder action. The builder will stream stdout to us.
+// streamCallback is invoked multiple times: one for streaming data; another for
+// end of stream, and another for return code. Multiple stream notifications can
+// be received until stream_eof and return_code.
+// 
+// info => {"name": "stream", "project": "myProject", "contents": "hello world\n"}
+//      => {"name": "stream_eof", "project": "myProject"}
+//      => {"name": "return_code", "project": "myProject", "return_code": 0}
 - (void)performAction:(NSString *)action
             toBuilder:(NSString *)builder
            andProject:(NSString *)project
    withStreamCallback:(GNClientCallback)streamCallback;
 
+// Terminates the operation being done by -[performAction:toBuilder:andProject:withStreamCallback]
 - (void)cancelActionForProject:(NSString *)project
                    fromBuilder:(NSString *)builder
                   withCallback:(GNClientCallback)callback;
 
+// Sends input to a -[performAction:toBuilder:andProject:withStreamCallback] operation
+// as standard input. Used to fill out input for a program.
+//
+// Since this the raw string. Remember to give newlines.
 - (void)inputString:(NSString *)string
           toBuilder:(NSString *)builder
          andProject:(NSString *)project

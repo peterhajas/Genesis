@@ -102,7 +102,6 @@ const NSInteger GNErrorBadProtocol = 2;
     uint16_t *value = (uint16_t *)[data bytes];
     *value = ntohs(*value);
     
-    NSLog(@"Message Length: %hu", *value);
     return *value;
 }
 

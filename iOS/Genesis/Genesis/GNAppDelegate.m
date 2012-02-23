@@ -55,7 +55,8 @@
             {
                 NSLog(@"Successfully logged in");
                 [client getClientsWithCallback:^(BOOL succeeded, NSDictionary *info) {
-                    if (succeeded) {
+                    if (succeeded)
+                    {
                         NSLog(@"getClients => %@", info);
                     }
                     else
