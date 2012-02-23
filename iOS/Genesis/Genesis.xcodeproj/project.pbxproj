@@ -328,14 +328,9 @@
 				1F7030B914EFAF1A002FEA32 /* JSONKit */,
 				1FEEBE9E14EECBBF00C6E099 /* CocoaAsyncSockets */,
 				1F7030C214EFB4B6002FEA32 /* Model */,
+				1FFBE81214F5F1A800FC1DF2 /* Internals */,
 				1F5997BB14F4C5AD005FE26F /* GNAPIClient.h */,
 				1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */,
-				1FEEBE9714EEC92200C6E099 /* GNMediatorClient.h */,
-				1FEEBE9814EEC92200C6E099 /* GNMediatorClient.m */,
-				1F3D21D714F4B5840096FD17 /* NSString+GNNSStringHashes.h */,
-				1F3D21D814F4B5840096FD17 /* NSString+GNNSStringHashes.m */,
-				1F7030B514EFA785002FEA32 /* NSData+GNNSDataCategory.h */,
-				1F7030B614EFA785002FEA32 /* NSData+GNNSDataCategory.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -347,6 +342,19 @@
 				1FE09E2214F2466A004D6B2B /* AsyncSocket.m */,
 			);
 			name = CocoaAsyncSockets;
+			sourceTree = "<group>";
+		};
+		1FFBE81214F5F1A800FC1DF2 /* Internals */ = {
+			isa = PBXGroup;
+			children = (
+				1FEEBE9714EEC92200C6E099 /* GNMediatorClient.h */,
+				1FEEBE9814EEC92200C6E099 /* GNMediatorClient.m */,
+				1F3D21D714F4B5840096FD17 /* NSString+GNNSStringHashes.h */,
+				1F3D21D814F4B5840096FD17 /* NSString+GNNSStringHashes.m */,
+				1F7030B514EFA785002FEA32 /* NSData+GNNSDataCategory.h */,
+				1F7030B614EFA785002FEA32 /* NSData+GNNSDataCategory.m */,
+			);
+			name = Internals;
 			sourceTree = "<group>";
 		};
 		4F0216E714D1F3BF0027DF89 /* New Filesystem Entry */ = {

@@ -31,7 +31,14 @@
     self = [super init];
     if (self)
     {
-        self.machineName = @"Genesis iOS Editor";
+#if TARGET_OS_IPHONE
+        self.machineName = [[UIDevice currentDevice] name];
+#elif TARGET_OS_MAC
+        // Dunno. Use SCDynamicStoreCopyComputerName?
+        self.machineName = @"Unnamed Mac";
+#else
+        self.machineName = @"Unnamed Machine";
+#endif
         client = theClient;
         sender = [NSNumber numberWithInt:0];
     }
