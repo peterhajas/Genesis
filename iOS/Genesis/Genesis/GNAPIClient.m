@@ -172,7 +172,7 @@
                 }
             }
             NSMutableDictionary *newInfo = [[NSMutableDictionary alloc] initWithDictionary:info];
-            [newInfo setObject:builderClients forKey:@"clients"];
+            [newInfo setObject:builderClients forKey:@"builders"];
             info = newInfo;
         }
         callback(succeeded, info);

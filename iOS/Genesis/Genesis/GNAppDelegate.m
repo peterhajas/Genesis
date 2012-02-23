@@ -48,6 +48,7 @@
     
     // Test Code
     client = [[GNAPIClient alloc] init];
+    client.machineName = @"myUnique name per account";
     [client connectWithSSL:NO withCallback:^(NSError *error) {
         NSLog(@"Connection complete");
         [client loginWithPassword:@"password" forUsername:@"jeff" withCallback:^(BOOL succeeded, NSDictionary *info) {
@@ -71,7 +72,6 @@
             }
         }];
     }];
-    NSLog(@"Starting client!");
     // End Test Code
         
     return YES;
