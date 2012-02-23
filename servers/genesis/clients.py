@@ -501,6 +501,8 @@ class MediatorClient(object):
 
         self.delegate.handshake(self)
 
+
+    def on_close(self, address):
         if self.wants_to_close:
             return # continue
         if self.autoreconnect:
