@@ -1,4 +1,7 @@
 name: Jeff's MBP
+mediator:
+  host: localhost
+  port: 8080
 projects:
   Describe:
     location: ~/Documents/projects/describe

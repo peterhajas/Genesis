@@ -153,7 +153,7 @@ class ClientHandler(object):
         response = yield gen.Task(target.request, msg)
         print '[forwarding]', target.id, '->', response
         response.sender = target.machine
-        print self.id, '<-', response.name, '[forwarding]'
+        print self.id, '<-', response, '[forwarding]'
         yield gen.Task(self.stream.write, response)
 
     @gen.engine
@@ -262,8 +262,13 @@ class Mediator(object):
 
 
 if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print "Usage: %s PORT [HOST]" % sys.argv[0]
+        sys.exit(1)
+    port = int(sys.argv[1])
+    host = sys.argv[2] if len(sys.argv) > 2 else ''
     mediator = Mediator(ProtocolSerializer(NetworkSerializer()))
-    server = Server(mediator, port=8080, host='localhost')
+    server = Server(mediator, port=port, host=host)
     server.start()
     IOLoop.instance().start()
 

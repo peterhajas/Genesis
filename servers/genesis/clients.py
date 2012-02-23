@@ -207,8 +207,8 @@ class iOSHandler(MediatorClientDelegateBase):
 
 class BuilderDelegate(MediatorClientDelegateBase):
     "Handles the system commands to run"
-    def __init__(self, account, machine=None, autoregister=False, builder=None, io_loop=None):
-        self.builder = builder or Builder.from_file('./sample_config.yml')
+    def __init__(self, account, builder, machine=None, autoregister=False, io_loop=None):
+        self.builder = builder
         self.process_query = None
         kind = 'builder.genesis.%s' % platform()
         super(BuilderDelegate, self).__init__(
@@ -527,18 +527,21 @@ class MediatorClient(object):
 
 if __name__ == '__main__':
     import random
-    client = Client(port=8080, host='localhost')
     if 'client' in sys.argv:
         handler = iOSHandler(
                 Account.create('jeff', 'password'),
                 machine='TestClient' + str(random.random()),
                 delegate=sample_handler,#interactive_handler
             )
+        client = Client(port=int(sys.argv[2]), host=sys.argv[3] if len(sys.argv) > 3 else 'localhost')
     else:
-        handler = BuilderDelegate(Account.create('jeff', 'password'))
+        builder = Builder.from_file('./sample_config.yml')
+        handler = BuilderDelegate(Account.create('jeff', 'password'), builder)
+        client = Client(port=builder.port, host=builder.host)
     mclient = MediatorClient(client, ProtocolSerializer(NetworkSerializer()), handler)
     mclient.create()
     #stream = client.create(send_response)
+    print "Connecting to %s:%d" % (builder.host, builder.port)
     IOLoop.instance().start()
 
 
