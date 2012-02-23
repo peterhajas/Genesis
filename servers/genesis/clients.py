@@ -7,7 +7,7 @@ from Queue import Queue
 from tornado.ioloop import IOLoop
 from tornado import gen
 
-from genesis.utils import with_args
+from genesis.utils import with_args, platform
 from genesis.networking import Client, MessageStream
 from genesis.serializers import ProtocolSerializer, NetworkSerializer
 from genesis.data import (Account, LoginMessage, ProjectsMessage, FilesMessage,
@@ -75,9 +75,7 @@ def sample_handler(ios, mediator):
     # upload changes
     response = yield gen.Task(
             mediator.request, builder,
-            UploadMessage(project_name, filepath,
-                data="print 'hello'",
-                mimetype="plain/text"))
+            UploadMessage(project_name, filepath, contents="print 'hello'"))
     if response.is_error:
         print "Failed to upload file!"
         mediator.close()
@@ -113,7 +111,7 @@ def sample_handler(ios, mediator):
 
 
 class MediatorClientDelegateBase(object):
-    def __init__(self, account, machine, autoregister=False, kind='builder', io_loop=None):
+    def __init__(self, account, machine, kind, autoregister=False, io_loop=None):
         self.account = account
         self.machine = machine
         self.should_register = autoregister
@@ -175,7 +173,8 @@ def request_requires(key, reason, code, mclient_index=0, request_index=1, valida
 class iOSHandler(MediatorClientDelegateBase):
     "Simulates the protocol that the iOS client would use."
     def __init__(self, account, machine, autoregister=False, delegate=None, io_loop=None):
-        super(iOSHandler, self).__init__(account, machine, autoregister, kind='editor.ios', io_loop=io_loop)
+        kind = 'editor.genesis.test.%s' % platform
+        super(iOSHandler, self).__init__(account, machine, kind, autoregister, io_loop=io_loop)
         self.delegate = delegate
 
     def handle(self, mclient):
@@ -208,10 +207,16 @@ class iOSHandler(MediatorClientDelegateBase):
 
 class BuilderDelegate(MediatorClientDelegateBase):
     "Handles the system commands to run"
-    def __init__(self, account, machine, autoregister=False, builder=None, io_loop=None):
-        super(BuilderDelegate, self).__init__(account, machine, autoregister, 'builder.genesis', io_loop)
+    def __init__(self, account, machine=None, autoregister=False, builder=None, io_loop=None):
         self.builder = builder or Builder.from_file('./sample_config.yml')
         self.process_query = None
+        kind = 'builder.genesis.%s' % platform()
+        super(BuilderDelegate, self).__init__(
+                account,
+                machine or self.builder.name or 'Unnamed machine',
+                kind,
+                autoregister,
+                io_loop)
 
     @gen.engine
     def handle(self, mclient):
@@ -276,7 +281,9 @@ class BuilderDelegate(MediatorClientDelegateBase):
             raise StopIteration
         yield gen.Task(mclient.write_response, ResponseMessage.success(
             request.id,
-            data=contents,
+            project=request['project'],
+            filepath=request['filepath'],
+            contents=contents,
         ))
 
     @gen.engine
@@ -501,6 +508,7 @@ class MediatorClient(object):
 
         self.delegate.handshake(self)
 
+
     def on_close(self):
         if self.wants_to_close:
             return # continue
@@ -527,9 +535,7 @@ if __name__ == '__main__':
                 delegate=sample_handler,#interactive_handler
             )
     else:
-        handler = BuilderDelegate(
-                Account.create('jeff', 'password'),
-                machine='Builder' + str(random.random()))
+        handler = BuilderDelegate(Account.create('jeff', 'password'))
     mclient = MediatorClient(client, ProtocolSerializer(NetworkSerializer()), handler)
     mclient.create()
     #stream = client.create(send_response)

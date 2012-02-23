@@ -22,7 +22,6 @@
 
 @implementation GNAPIClient
 
-@synthesize isConnected=_isConnected;
 @synthesize machineName;
 
 #pragma mark - Constructors
@@ -32,10 +31,16 @@
     self = [super init];
     if (self)
     {
-        self.machineName = @"Genesis iOS Editor";
+#if TARGET_OS_IPHONE
+        self.machineName = [[UIDevice currentDevice] name];
+#elif TARGET_OS_MAC
+        // Dunno. Use SCDynamicStoreCopyComputerName?
+        self.machineName = @"Unnamed Mac";
+#else
+        self.machineName = @"Unnamed Machine";
+#endif
         client = theClient;
         sender = [NSNumber numberWithInt:0];
-        _isConnected = NO;
     }
     return self;
 }
@@ -91,13 +96,17 @@
     return [NSString stringWithFormat:@"editor.genesis.iOS.%@", type];
 }
 
+- (BOOL)isConnected
+{
+    return client.isConnected;
+}
+
 #pragma mark - Public Methods
 
-#pragma mark Connection
+#pragma mark Connection Management
 - (void)connectWithSSL:(BOOL)useSSL withCallback:(MediatorClientCallback)callback
 {
     [client connectWithSSL:useSSL withBlock:^(NSError *error) {
-        _isConnected = (error == nil);
         callback(error);
     }];
 }
@@ -172,14 +181,14 @@
                 }
             }
             NSMutableDictionary *newInfo = [[NSMutableDictionary alloc] initWithDictionary:info];
-            [newInfo setObject:builderClients forKey:@"clients"];
+            [newInfo setObject:builderClients forKey:@"builders"];
             info = newInfo;
         }
         callback(succeeded, info);
     }];
 }
 
-#pragma mark Builder operations
+#pragma mark Builder Operations
 - (void)getProjectsFromBuilder:(NSString *)builder
                   withCallback:(GNClientCallback)callback
 {

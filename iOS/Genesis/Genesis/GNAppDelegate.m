@@ -49,7 +49,7 @@
     // Test Code
     client = [[GNAPIClient alloc] init];
     [client connectWithSSL:NO withCallback:^(NSError *error) {
-        NSLog(@"Connection complete");
+        NSLog(@"Connection: %@", error);
         [client loginWithPassword:@"password" forUsername:@"jeff" withCallback:^(BOOL succeeded, NSDictionary *info) {
             if (succeeded)
             {
@@ -71,7 +71,6 @@
             }
         }];
     }];
-    NSLog(@"Starting client!");
     // End Test Code
         
     return YES;

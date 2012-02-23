@@ -26,6 +26,12 @@ Format
 This is a relatively simple format to support the most flexibility. This makes
 the protocol suffer from size. (Maybe rewrite it after the API stablizes?).
 
+The current implementation suffers from:
+
+* *No binary file support.* JSON does not support transferring binary data.
+* *Limited file size support.* No easy way to stream JSON data, so all file contents
+  should be able to fit in memory before being written to disk
+
 Version
 -------
 

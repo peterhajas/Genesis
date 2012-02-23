@@ -74,10 +74,16 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 
 // Gets all machines connected to the mediator under this account. Callback is invoked
 // when clients are fetched or failure occurs.
+//
+// info => {"clients": {"<machine name>": "builder.genesis.osx"}}
 - (void)getClientsWithCallback:(GNClientCallback)callback;
 
 // An abstraction above -[getClientsWithCallback:], but filters the client list to all
 // builders. Failures are simply passed through to callback.
+//
+// info => {"clients": {"myMachine": "builder.genesis.osx",
+//                      "anotherMachine": "editor.genesis.ios.iPhone"},
+//          "builders": {"myMachine": "builder.genesis.osx"}}
 - (void)getBuildersWithCallback:(GNClientCallback)callback;
 
 /******************************* Builder Interactions *******************************/
@@ -85,22 +91,43 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 
 // Gets all projects from the given builder. The callback is invoked with all the
 // projects names or on failure.
+//
+// info => {"projects": ["myProject1", "myProject2"]}
 - (void)getProjectsFromBuilder:(NSString *)builder
                   withCallback:(GNClientCallback)callback;
 
 // Gets all files from the builder. The callback is invoked either with all the files
 // for the given project or when an error occurs.
+//
+// info => {"files": [
+//              {"name": "foo.py",
+//               "path": "rel/path/to/foo.py",
+//               "size": 20,
+//               "kind": "<TBA/not implemented yet>",
+//               "mimetype": "text/x-python"},
+//              {"name": "foo2.py",
+//               "path": "rel/path/to/foo2.py",
+//               "size": 54,
+//               "kind": "<TBA/not implemented yet>",
+//               "mimetype": "text/x-python"},
+//          ]}
 - (void)getFilesFromBuilder:(NSString *)builder
                  forProject:(NSString *)project
                withCallback:(GNClientCallback)callback;
 
 // Downloads the given file from the project.
+//
+// info => {"project": "myProject",
+//          "filepath": "rel/path/to/file.py",
+//          "contents": "print 'hello world'"}
 - (void)downloadFile:(NSString *)filepath
          fromBuilder:(NSString *)builder
           andProject:(NSString *)project
         withCallback:(GNClientCallback)callback;
 
 // Uploads the given file contents as the filepath to the builder.
+//
+// info => {}
 - (void)uploadFile:(NSString *)filepath
          toBuilder:(NSString *)builder
         andProject:(NSString *)project
@@ -129,6 +156,8 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 // as standard input. Used to fill out input for a program.
 //
 // Since this the raw string. Remember to give newlines.
+//
+// info => {}
 - (void)inputString:(NSString *)string
           toBuilder:(NSString *)builder
          andProject:(NSString *)project
