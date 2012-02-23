@@ -23,7 +23,7 @@
 
 #define SUPPORTED_VERSION 1
 
-NSString * const GN_NETWORK_ERROR_DOMAIN = @"net.jeffhui.genesis";
+NSString * const GN_NETWORK_ERROR_DOMAIN = @"genesis";
 const NSInteger GNErrorBadVersion = 1;
 const NSInteger GNErrorBadProtocol = 2;
 
@@ -31,7 +31,10 @@ const NSInteger GNErrorBadProtocol = 2;
 
 #pragma mark - Initialization
 
-@synthesize connectionTimeout, host, port, serverVersion, compress;
+@synthesize connectionTimeout;
+@synthesize host, port;
+@synthesize serverVersion;
+@synthesize compress;
 
 - (id)init
 {
@@ -43,13 +46,12 @@ const NSInteger GNErrorBadProtocol = 2;
     self = [super init];
     if(self)
     {
-        self.connectionTimeout = 30;
+        self.connectionTimeout = 10;
         self.host = hostAddr;
         self.port = portNum;
         self.serverVersion = 0;
         self.compress = YES;
         sslEnabled = NO;
-        expectedMessageLength = 0;
 
         socket = nil;
         messageHandlers = nil;
@@ -198,12 +200,22 @@ const NSInteger GNErrorBadProtocol = 2;
 - (void)disconnectWithError:(NSError *)error
 {
     [socket disconnect];
-    if (disconnectCallback){
+    if (connectCallback)
+    {
+        connectCallback(error);
+    }
+    if (disconnectCallback)
+    {
         disconnectCallback(error);
     }
 }
 
 #pragma mark - Public Methods
+
+- (BOOL)isConnected
+{
+    return [socket isConnected];
+}
 
 - (BOOL)connectWithSSL:(BOOL)isSecure withBlock:(MediatorClientCallback)doBlock
 {
@@ -216,7 +228,7 @@ const NSInteger GNErrorBadProtocol = 2;
     NSError *error = nil;
     [socket connectToHost:self.host onPort:self.port withTimeout:self.connectionTimeout error:&error];
     
-    NSLog(@"starting connection");
+    NSLog(@"Starting connection (timeout: %f)", self.connectionTimeout);
     
     return error == nil;
 }
@@ -264,10 +276,15 @@ const NSInteger GNErrorBadProtocol = 2;
 
 #pragma mark - Socket Delegate
 
+- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err
+{
+    NSLog(@"Disconnected: %@", err);
+    [self disconnectWithError:err];
+}
+
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)hostAddr port:(uint16_t)portNum
 {
     NSLog(@"Connected to %@ from %hu", hostAddr, portNum);
-    
     
     if(sslEnabled)
     {
@@ -319,6 +336,7 @@ const NSInteger GNErrorBadProtocol = 2;
                 [self disconnect];
                 connectCallback([self errorWithCode:GNErrorBadProtocol]);
             }
+            connectCallback = nil;
             break;
         case TAG_MESSAGE_LENGTH:
             size = [self readMessageLengthFromData:data];

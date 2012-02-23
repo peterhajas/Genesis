@@ -42,7 +42,6 @@ typedef void(^MediatorMessageHandler)(id<GNNetworkMessageProtocol>msg);
     MediatorClientCallback connectCallback, disconnectCallback;
     MediatorMessageHandler fallbackMessageHandler;
     NSMutableDictionary *messageHandlers;
-    uint16_t expectedMessageLength;
     BOOL sslEnabled;
 }
 
@@ -51,7 +50,7 @@ typedef void(^MediatorMessageHandler)(id<GNNetworkMessageProtocol>msg);
 @property (nonatomic) uint16_t port;
 @property (nonatomic) uint16_t serverVersion;
 @property (nonatomic) BOOL compress;
-
+@property (nonatomic, readonly) BOOL isConnected;
 
 - (id)init;
 - (id)initWithHost:(NSString *)ipAddress onPort:(uint16_t)portNum;

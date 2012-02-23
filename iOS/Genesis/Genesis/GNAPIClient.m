@@ -22,7 +22,6 @@
 
 @implementation GNAPIClient
 
-@synthesize isConnected=_isConnected;
 @synthesize machineName;
 
 #pragma mark - Constructors
@@ -35,7 +34,6 @@
         self.machineName = @"Genesis iOS Editor";
         client = theClient;
         sender = [NSNumber numberWithInt:0];
-        _isConnected = NO;
     }
     return self;
 }
@@ -91,13 +89,17 @@
     return [NSString stringWithFormat:@"editor.genesis.iOS.%@", type];
 }
 
+- (BOOL)isConnected
+{
+    return client.isConnected;
+}
+
 #pragma mark - Public Methods
 
 #pragma mark Connection
 - (void)connectWithSSL:(BOOL)useSSL withCallback:(MediatorClientCallback)callback
 {
     [client connectWithSSL:useSSL withBlock:^(NSError *error) {
-        _isConnected = (error == nil);
         callback(error);
     }];
 }

@@ -48,9 +48,9 @@
     
     // Test Code
     client = [[GNAPIClient alloc] init];
-    client.machineName = @"myUnique name per account";
+    client.machineName = [[UIDevice currentDevice] name];
     [client connectWithSSL:NO withCallback:^(NSError *error) {
-        NSLog(@"Connection complete");
+        NSLog(@"Connection: %@", error);
         [client loginWithPassword:@"password" forUsername:@"jeff" withCallback:^(BOOL succeeded, NSDictionary *info) {
             if (succeeded)
             {
