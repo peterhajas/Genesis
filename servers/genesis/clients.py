@@ -291,7 +291,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
         if self._invalid_project(mclient, request):
             raise StopIteration
 
-        if request['data'] is None:
+        if request['contents'] is None:
             yield gen.Task(mclient.write_response, ResponseMessage.error(
                 request.id,
                 reason="Bad Request",
@@ -300,7 +300,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
             raise StopIteration
         # no op for now
         try:
-            self.builder.write_file(request['project'], request['filepath'], request['data'] or '')
+            self.builder.write_file(request['project'], request['filepath'], request['contents'] or '')
         except IOError:
             yield gen.Task(mclient.write_response, ResponseMessage.error(
                 request.id, reason="Failed to write", code=ErrorCodes.INTERNAL_ERROR))
@@ -533,15 +533,17 @@ if __name__ == '__main__':
                 machine='TestClient' + str(random.random()),
                 delegate=sample_handler,#interactive_handler
             )
-        client = Client(port=int(sys.argv[2]), host=sys.argv[3] if len(sys.argv) > 3 else 'localhost')
+        port, host = int(sys.argv[2]), sys.argv[3] if len(sys.argv) >= 4 else 'localhost'
+        client = Client(port=port, host=host)
     else:
         builder = Builder.from_file('./sample_config.yml')
         handler = BuilderDelegate(Account.create('jeff', 'password'), builder)
+        port, host = builder.port, builder.host
         client = Client(port=builder.port, host=builder.host)
     mclient = MediatorClient(client, ProtocolSerializer(NetworkSerializer()), handler)
     mclient.create()
     #stream = client.create(send_response)
-    print "Connecting to %s:%d" % (builder.host, builder.port)
+    print "Connecting to %s:%d" % (host, port)
     IOLoop.instance().start()
 
 
