@@ -77,13 +77,13 @@ def sample_handler(ios, mediator):
         raise StopIteration
 
     # upload changes
-    response = yield gen.Task(
-            mediator.request, builder,
-            UploadMessage(project_name, filepath, contents="print 'hello'"))
-    if response.is_error:
-        print "Failed to upload file!"
-        mediator.close()
-        raise StopIteration
+    #response = yield gen.Task(
+    #        mediator.request, builder,
+    #        UploadMessage(project_name, filepath, contents="print 'hello'"))
+    #if response.is_error:
+    #    print "Failed to upload file!"
+    #    mediator.close()
+    #    raise StopIteration
 
     # run it
     response = yield gen.Task(
