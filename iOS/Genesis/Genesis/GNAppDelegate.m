@@ -47,7 +47,7 @@
     [self.window setRootViewController:navigationController];
     
     // Test Code
-    client = [[GNAPIClient alloc] init];
+    client = [[GNAPIClient alloc] initWithHost:@"genesis.coralset.com" andPort:7331];
     [client connectWithSSL:NO withCallback:^(NSError *error) {
         NSLog(@"Connection: %@", error);
         [client loginWithPassword:@"password" forUsername:@"jeff" withCallback:^(BOOL succeeded, NSDictionary *info) {
@@ -58,6 +58,30 @@
                     if (succeeded)
                     {
                         NSLog(@"getClients => %@", info);
+                        
+                        [client getBuildersWithCallback:^(BOOL didSucceed, NSDictionary *builderDict) {
+                            // Look for a builder.genesis.OSX type
+                            NSString* builderName = @"";
+                            for(NSString* key in [[builderDict valueForKey:@"clients"] allKeys])
+                            {
+                                if([[[builderDict valueForKey:@"clients"] valueForKey:key] isEqualToString:@"builder.genesis.OSX"])
+                                {
+                                    builderName = key;
+                                    break;
+                                }
+                            }
+                            if(![builderName isEqualToString:@""])
+                            {
+                                NSLog(@"builderName => %@", builderName);
+                                // Ok! We have the builder name! Let's ask it for the projects
+                                [client getProjectsFromBuilder:builderName
+                                                  withCallback:^(BOOL projectGrabbingSucceeded, NSDictionary *projectDict)
+                                 {
+                                     NSLog(@"projectDict => %@", projectDict);
+                                 }];
+                            }
+                        }];
+
                     }
                     else
                     {
