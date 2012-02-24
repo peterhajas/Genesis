@@ -19,6 +19,8 @@
 
 @implementation GNProjectBrowserViewController
 
+@synthesize tableView;
+
 -(IBAction)addProjectButtonPressed:(id)sender
 {
     GNNewProjectViewController* newProjectViewController = [[GNNewProjectViewController alloc] initWithNibName:@"GNNewProjectViewController"

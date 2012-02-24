@@ -16,6 +16,7 @@
 
 #import "GNAppDelegate.h"
 #import "GNProjectBrowserViewController.h"
+#import "GNFileManager.h"
 
 #import "GNNetworkRequest.h"
 #import "NSString+GNNSStringHashes.h"
@@ -78,6 +79,24 @@
                                                   withCallback:^(BOOL projectGrabbingSucceeded, NSDictionary *projectDict)
                                  {
                                      NSLog(@"projectDict => %@", projectDict);
+                                     
+                                     NSArray* projects = [projectDict valueForKey:@"projects"];
+                                     
+                                     for(NSString* project in projects)
+                                     {
+                                         // Create an entry in the Core Data store
+                                         
+                                         NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"GNProject" 
+                                                                                              inManagedObjectContext:[self managedObjectContext]];
+
+                                         
+                                         GNProject* newProject = [[GNProject alloc] initWithEntity:entityDescription
+                                                                 insertIntoManagedObjectContext:[self managedObjectContext]];
+
+                                         [newProject setName:project];
+                                         [[self managedObjectContext] insertObject:newProject];
+                                     }
+                                     [[projectBrowser tableView] reloadData];
                                  }];
                             }
                         }];

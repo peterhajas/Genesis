@@ -28,4 +28,6 @@
 -(IBAction)addProjectButtonPressed:(id)sender;
 -(IBAction)editButtonPressed:(id)sender;
 
+@property(nonatomic, retain) UITableView* tableView;
+
 @end
