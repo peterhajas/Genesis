@@ -1,8 +1,20 @@
 name: Jeff's MBP
 mediator:
-  host: localhost
-  port: 8080
+  host: localhost #genesis.coralset.com #localhost
+  port: 8080 #7331 #8080
 projects:
+  YACS:
+    location: ~/Documents/projects/yacs
+    ignore:
+      - "*.pyc"
+      - "*/.DS_Store"
+      - "*/.git/*"
+    shell: /bin/bash
+    source:
+      - $HOME/.bash_profile
+    actions:
+      test: workon timetable && fab test
+
   Describe:
     location: ~/Documents/projects/describe
     ignore:
