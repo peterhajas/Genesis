@@ -43,6 +43,8 @@ def sample_handler(ios, mediator):
     non_self_builders = [name for name in builders if name != ios.machine]
     builder = non_self_builders[0]
 
+    print "Using builder", builder
+
     # get builder's projects
     response = yield gen.Task(mediator.request, builder, ProjectsMessage())
     if not response['projects']:
@@ -52,6 +54,7 @@ def sample_handler(ios, mediator):
 
     # just use the first project
     project_name = response['projects'][0]
+    print "Using project", project_name
 
     # get files for that project
     response = yield gen.Task(
@@ -63,6 +66,7 @@ def sample_handler(ios, mediator):
 
     # use first file in the project
     filepath = response['files'][0]['name']
+    print "Download file", filepath
 
     # download it
     response = yield gen.Task(
