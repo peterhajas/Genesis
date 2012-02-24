@@ -68,7 +68,9 @@
 {
     NSDictionary *serializedCommand = [command jsonRPCObject];
     NSArray *params = [NSArray arrayWithObjects:machine, serializedCommand, sender, nil];
-    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_REQUEST andParameters:params];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_REQUEST
+                                                         andParameters:params
+                                                         andIdentifier:[command identifier]];
     return request;
 }
 

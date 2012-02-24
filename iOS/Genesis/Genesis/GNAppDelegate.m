@@ -58,6 +58,13 @@
                     if (succeeded)
                     {
                         NSLog(@"getClients => %@", info);
+                        NSString *builder = [[[info objectForKey:@"builders"] allKeys] objectAtIndex:0];
+                        [client getProjectsFromBuilder:builder withCallback:^(BOOL succeeded, NSDictionary *info) {
+                            if(succeeded)
+                            {
+                                NSLog(@"Info => %@", info);
+                            }
+                        }];
                     }
                     else
                     {

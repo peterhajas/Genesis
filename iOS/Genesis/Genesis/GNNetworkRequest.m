@@ -40,14 +40,21 @@ NSString* generateUUID(void){
 
 - (id)initWithName:(NSString *)name
      andParameters:(NSArray *)parameters
- andExpectResponse:(BOOL)expectsResponse
+     andIdentifier:(NSString *)identifier
 {
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:name, GN_NAME_KEY,
                                 parameters, GN_PARAMETERS_KEY,
-                                (expectsResponse ? generateUUID() : nil), GN_ID_KEY,
+                                identifier, GN_ID_KEY,
                                 nil];
     self = [self initWithDictionary:dictionary];
     return self;
+}
+
+- (id)initWithName:(NSString *)name
+     andParameters:(NSArray *)parameters
+ andExpectResponse:(BOOL)expectsResponse
+{
+    return [self initWithName:name andParameters:parameters andIdentifier:(expectsResponse ? generateUUID() : nil)];
 }
 
 - (id)initWithName:(NSString *)name andParameters:(NSArray *)parameters

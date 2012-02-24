@@ -31,6 +31,7 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (id)initWithName:(NSString *)name andParameters:(NSArray *)parameters;
 - (id)initWithName:(NSString *)name andParameters:(NSArray *)parameters andExpectResponse:(BOOL)expectsResponse;
+- (id)initWithName:(NSString *)name andParameters:(NSArray *)parameters andIdentifier:(NSString *)identifier;
 - (NSString *)description;
 
 @end
