@@ -70,6 +70,9 @@
 		4F99F2F514EA3FC1005E8D91 /* prettify_test_2.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2AE14EA3FC1005E8D91 /* prettify_test_2.html */; };
 		4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B014EA3FC1005E8D91 /* test_styles.css */; };
 		4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B214EA3FC1005E8D91 /* LICENSE.TXT */; };
+		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
+		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
+		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
 		4FF3637714EAECB900125C74 /* console-externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26814EA3FC1005E8D91 /* console-externs.js */; };
 		4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28314EA3FC1005E8D91 /* combinePrefixPatterns.js */; };
 		4FF3638C14EAECB900125C74 /* externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28414EA3FC1005E8D91 /* externs.js */; };
@@ -256,6 +259,9 @@
 		4F99F2B014EA3FC1005E8D91 /* test_styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = test_styles.css; sourceTree = "<group>"; };
 		4F99F2B214EA3FC1005E8D91 /* LICENSE.TXT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.TXT; sourceTree = "<group>"; };
 		4F99F2B314EA3FC1005E8D91 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
+		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
+		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
 		4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNProjectBrowserViewController.xib; sourceTree = "<group>"; };
@@ -487,6 +493,7 @@
 				4F293B8614CCE88100020A09 /* InfoPlist.strings */,
 				4F293B8914CCE88100020A09 /* main.m */,
 				4F293B8B14CCE88100020A09 /* Genesis-Prefix.pch */,
+				4FB4E6E714F73C8D00436618 /* Icons */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -687,6 +694,16 @@
 			path = "yui-compressor";
 			sourceTree = "<group>";
 		};
+		4FB4E6E714F73C8D00436618 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				4FB4E6F014F73D8100436618 /* Genesis_57.png */,
+				4FB4E6F614F73DF400436618 /* Genesis_72.png */,
+				4FB4E6F214F73D8700436618 /* Genesis_114.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		4FFDA03D14CCEB3C00422FF5 /* Project Browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,6 +848,9 @@
 				4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */,
 				4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */,
 				1F7030BE14EFAF36002FEA32 /* README.md in Resources */,
+				4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */,
+				4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */,
+				4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
