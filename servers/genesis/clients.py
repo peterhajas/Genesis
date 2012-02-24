@@ -43,6 +43,8 @@ def sample_handler(ios, mediator):
     non_self_builders = [name for name in builders if name != ios.machine]
     builder = non_self_builders[0]
 
+    print "Using builder", builder
+
     # get builder's projects
     response = yield gen.Task(mediator.request, builder, ProjectsMessage())
     if not response['projects']:
@@ -52,6 +54,7 @@ def sample_handler(ios, mediator):
 
     # just use the first project
     project_name = response['projects'][0]
+    print "Using project", project_name
 
     # get files for that project
     response = yield gen.Task(
@@ -63,6 +66,7 @@ def sample_handler(ios, mediator):
 
     # use first file in the project
     filepath = response['files'][0]['name']
+    print "Download file", filepath
 
     # download it
     response = yield gen.Task(
@@ -73,13 +77,13 @@ def sample_handler(ios, mediator):
         raise StopIteration
 
     # upload changes
-    response = yield gen.Task(
-            mediator.request, builder,
-            UploadMessage(project_name, filepath, contents="print 'hello'"))
-    if response.is_error:
-        print "Failed to upload file!"
-        mediator.close()
-        raise StopIteration
+    #response = yield gen.Task(
+    #        mediator.request, builder,
+    #        UploadMessage(project_name, filepath, contents="print 'hello'"))
+    #if response.is_error:
+    #    print "Failed to upload file!"
+    #    mediator.close()
+    #    raise StopIteration
 
     # run it
     response = yield gen.Task(
@@ -207,8 +211,8 @@ class iOSHandler(MediatorClientDelegateBase):
 
 class BuilderDelegate(MediatorClientDelegateBase):
     "Handles the system commands to run"
-    def __init__(self, account, machine=None, autoregister=False, builder=None, io_loop=None):
-        self.builder = builder or Builder.from_file('./sample_config.yml')
+    def __init__(self, account, builder, machine=None, autoregister=False, io_loop=None):
+        self.builder = builder
         self.process_query = None
         kind = 'builder.genesis.%s' % platform()
         super(BuilderDelegate, self).__init__(
@@ -291,7 +295,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
         if self._invalid_project(mclient, request):
             raise StopIteration
 
-        if request['data'] is None:
+        if request['contents'] is None:
             yield gen.Task(mclient.write_response, ResponseMessage.error(
                 request.id,
                 reason="Bad Request",
@@ -300,7 +304,7 @@ class BuilderDelegate(MediatorClientDelegateBase):
             raise StopIteration
         # no op for now
         try:
-            self.builder.write_file(request['project'], request['filepath'], request['data'] or '')
+            self.builder.write_file(request['project'], request['filepath'], request['contents'] or '')
         except IOError:
             yield gen.Task(mclient.write_response, ResponseMessage.error(
                 request.id, reason="Failed to write", code=ErrorCodes.INTERNAL_ERROR))
@@ -527,18 +531,23 @@ class MediatorClient(object):
 
 if __name__ == '__main__':
     import random
-    client = Client(port=8080, host='localhost')
     if 'client' in sys.argv:
         handler = iOSHandler(
                 Account.create('jeff', 'password'),
                 machine='TestClient' + str(random.random()),
                 delegate=sample_handler,#interactive_handler
             )
+        port, host = int(sys.argv[2]), sys.argv[3] if len(sys.argv) >= 4 else 'localhost'
+        client = Client(port=port, host=host)
     else:
-        handler = BuilderDelegate(Account.create('jeff', 'password'))
+        builder = Builder.from_file('./sample_config.yml')
+        handler = BuilderDelegate(Account.create('jeff', 'password'), builder)
+        port, host = builder.port, builder.host
+        client = Client(port=builder.port, host=builder.host)
     mclient = MediatorClient(client, ProtocolSerializer(NetworkSerializer()), handler)
     mclient.create()
     #stream = client.create(send_response)
+    print "Connecting to %s:%d" % (host, port)
     IOLoop.instance().start()
 
 

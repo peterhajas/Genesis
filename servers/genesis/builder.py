@@ -33,6 +33,14 @@ class BuilderConfig(object):
         return expand(string)
 
     @property
+    def mediator(self):
+        mediator = self.config.get('mediator', {})
+        return {
+            'host': mediator.get('host', ''),
+            'port': int(mediator.get('port', 7331)),
+        }
+
+    @property
     def project_names(self):
         return self.config.get('projects', {}).keys()
 
@@ -159,6 +167,14 @@ class Builder(object):
     @property
     def name(self):
         return self.config.name
+
+    @property
+    def host(self):
+        return self.config.mediator['host']
+
+    @property
+    def port(self):
+        return self.config.mediator['port']
 
     def _filepath(self, project, filename):
         location = self.config.get_location(project)

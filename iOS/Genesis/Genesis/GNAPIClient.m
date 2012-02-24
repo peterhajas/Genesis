@@ -68,7 +68,9 @@
 {
     NSDictionary *serializedCommand = [command jsonRPCObject];
     NSArray *params = [NSArray arrayWithObjects:machine, serializedCommand, sender, nil];
-    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_REQUEST andParameters:params];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_REQUEST
+                                                         andParameters:params
+                                                         andIdentifier:[command identifier]];
     return request;
 }
 
@@ -175,7 +177,8 @@
             NSDictionary *allClients = [info objectForKey:@"clients"];
             for (NSString *key in [allClients allKeys])
             {
-                NSRange range = [key rangeOfString:@"builder."];
+                NSString *type = [allClients objectForKey:key];
+                NSRange range = [type rangeOfString:@"builder."];
                 if (range.location == 0) {
                     [builderClients setObject:[allClients objectForKey:key] forKey:key];
                 }
