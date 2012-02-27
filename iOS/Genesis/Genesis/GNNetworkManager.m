@@ -31,7 +31,7 @@
               {
                   if(succeeded)
                   {
-                      [self grabBuilderName];
+                      [self grabBuilderNames];
                   }
               }];
          }];
@@ -67,7 +67,7 @@
     }
 }
 
--(void)grabBuilderName
+-(void)grabBuilderNames
 {
     [apiClient getBuildersWithCallback:^(BOOL succeeded, NSDictionary* builders)
      {
