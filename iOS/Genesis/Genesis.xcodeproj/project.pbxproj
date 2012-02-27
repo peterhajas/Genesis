@@ -49,6 +49,7 @@
 		4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E371F14CFA90D00E91A1A /* GNDirectoryViewController.xib */; };
 		4F3E372614CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */; };
 		4F3E372914CFB6BC00E91A1A /* GNDirectoryContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */; };
+		4F7074A314FB13BA00F22D40 /* GNNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7074A214FB13BA00F22D40 /* GNNetworkManager.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
@@ -183,6 +184,8 @@
 		4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewController.m; sourceTree = "<group>"; };
 		4F3E372714CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNDirectoryContentsTableViewCell.h; sourceTree = "<group>"; };
 		4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewCell.m; sourceTree = "<group>"; };
+		4F7074A114FB13BA00F22D40 /* GNNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkManager.h; sourceTree = "<group>"; };
+		4F7074A214FB13BA00F22D40 /* GNNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNetworkManager.m; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
 		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -475,6 +478,7 @@
 				4F293B8C14CCE88100020A09 /* GNAppDelegate.h */,
 				4F293B8D14CCE88100020A09 /* GNAppDelegate.m */,
 				4F293B8F14CCE88100020A09 /* Genesis.xcdatamodeld */,
+				4F7074A514FB13D600F22D40 /* Network Communication */,
 				4F73FA7014CF294000976824 /* Model */,
 				4F293B8414CCE88100020A09 /* Supporting Files */,
 				4FFDA03D14CCEB3C00422FF5 /* Project Browser */,
@@ -530,6 +534,15 @@
 				4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */,
 			);
 			name = "Project Viewing";
+			sourceTree = "<group>";
+		};
+		4F7074A514FB13D600F22D40 /* Network Communication */ = {
+			isa = PBXGroup;
+			children = (
+				4F7074A114FB13BA00F22D40 /* GNNetworkManager.h */,
+				4F7074A214FB13BA00F22D40 /* GNNetworkManager.m */,
+			);
+			name = "Network Communication";
 			sourceTree = "<group>";
 		};
 		4F73FA7014CF294000976824 /* Model */ = {
@@ -913,6 +926,7 @@
 				4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */,
 				1F5997BD14F4C5AD005FE26F /* GNAPIClient.m in Sources */,
 				1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */,
+				4F7074A314FB13BA00F22D40 /* GNNetworkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
