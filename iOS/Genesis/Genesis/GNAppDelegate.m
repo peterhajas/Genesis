@@ -17,9 +17,6 @@
 #import "GNAppDelegate.h"
 #import "GNProjectBrowserViewController.h"
 
-#import "GNNetworkRequest.h"
-#import "NSString+GNNSStringHashes.h"
-
 @implementation GNAppDelegate
 
 @synthesize window = _window;
@@ -46,40 +43,6 @@
     
     [self.window setRootViewController:navigationController];
     
-    // Test Code
-    client = [[GNAPIClient alloc] init];
-    [client connectWithSSL:NO withCallback:^(NSError *error) {
-        NSLog(@"Connection: %@", error);
-        [client loginWithPassword:@"password" forUsername:@"jeff" withCallback:^(BOOL succeeded, NSDictionary *info) {
-            if (succeeded)
-            {
-                NSLog(@"Successfully logged in");
-                [client getBuildersWithCallback:^(BOOL succeeded, NSDictionary *info) {
-                    if (succeeded)
-                    {
-                        NSLog(@"getClients => %@", info);
-                        NSString *builder = [[[info objectForKey:@"builders"] allKeys] objectAtIndex:0];
-                        [client getProjectsFromBuilder:builder withCallback:^(BOOL succeeded, NSDictionary *info) {
-                            if(succeeded)
-                            {
-                                NSLog(@"Info => %@", info);
-                            }
-                        }];
-                    }
-                    else
-                    {
-                        NSLog(@"getClients => Failed.");
-                    }
-                }];
-            }
-            else
-            {
-                NSLog(@"Failed to log in :(");
-            }
-        }];
-    }];
-    // End Test Code
-        
     return YES;
 }
 
