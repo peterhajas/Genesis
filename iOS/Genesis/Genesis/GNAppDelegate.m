@@ -31,6 +31,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    // Create the network manager
+    networkManager = [[GNNetworkManager alloc] init];
+    
     // Create a project browser table view
     GNProjectBrowserViewController* projectBrowser = [[GNProjectBrowserViewController alloc] initWithNibName:@"GNProjectBrowserViewController" 
                                                                                                       bundle:[NSBundle mainBundle]];

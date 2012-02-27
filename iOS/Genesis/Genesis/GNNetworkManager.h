@@ -19,5 +19,6 @@
 @interface GNNetworkManager : NSObject
 {
     GNAPIClient* apiClient;
+    NSMutableArray* builderNames;
 }
 @end

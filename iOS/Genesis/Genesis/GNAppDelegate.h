@@ -14,10 +14,12 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "GNNetworkManager.h"
 
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController* navigationController;
+    GNNetworkManager* networkManager;
 }
 @property (strong, nonatomic) UIWindow *window;
 

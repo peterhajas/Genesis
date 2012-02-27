@@ -23,23 +23,64 @@
     if(self)
     {
         apiClient = [[GNAPIClient alloc] initWithHost:@"localhost" andPort:8080];
-        [apiClient loginWithPassword:@"password"
-                         forUsername:@"user" 
-                        withCallback:^(BOOL succeeded, NSDictionary* loginInformation)
+        [apiClient connectWithSSL:NO withCallback:^(NSError* error)
          {
-             
+             [apiClient loginWithPassword:@"password"
+                              forUsername:@"jeff" 
+                             withCallback:^(BOOL succeeded, NSDictionary* loginInformation)
+              {
+                  if(succeeded)
+                  {
+                      [self grabBuilderName];
+                  }
+              }];
          }];
+        builderNames = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
--(void)syncProjects
+-(void)syncProject:(NSString*)projectName inBuilder:(NSString*)builderName
+{
+    // Grab all the filenames
+    
+}
+
+-(void)syncAllProjects
+{
+    for(NSString* builder in builderNames)
+    {
+        // Grab the projects for each builder
+        [apiClient getProjectsFromBuilder:builder
+                             withCallback:^(BOOL succeeded, NSDictionary* info)
+         {
+             if(succeeded)
+             {
+                 NSArray* projects = [info valueForKey:@"projects"];
+                 for(NSString* project in projects)
+                 {
+                     // Sync the project
+                     [self syncProject:project inBuilder:builder];
+                 }
+             }
+         }];
+    }
+}
+
+-(void)grabBuilderName
 {
     [apiClient getBuildersWithCallback:^(BOOL succeeded, NSDictionary* builders)
      {
          if(succeeded)
          {
-             // We have builders!
+             // Try to grab builders out of the builders dictionary
+             NSDictionary* buildersDictionary = [builders objectForKey:@"builders"];
+             NSArray* buildersArray = [buildersDictionary allKeys];
+             
+             [builderNames removeAllObjects];
+             
+             // Record all the builders we find
+             builderNames = [NSMutableArray arrayWithArray:buildersArray];
          }
      }];
 }
