@@ -42,7 +42,15 @@
 
 -(void)syncFile:(NSString*)filePath inProject:(NSString*)projectName forBuilder:(NSString*)builderName
 {
-    
+    // Download the file
+    [apiClient downloadFile:filePath
+                fromBuilder:builderName
+                 andProject:projectName
+               withCallback:^(BOOL succeeded, NSDictionary* info)
+     {
+         NSString* fileContents = [info valueForKey:@"contents"];
+         NSLog(@"I grabbed a file at path %@ with contents %@", filePath, fileContents);
+     }];
 }
 
 -(void)syncProject:(NSString*)projectName inBuilder:(NSString*)builderName
