@@ -40,10 +40,30 @@
     return self;
 }
 
+-(void)syncFile:(NSString*)filePath inProject:(NSString*)projectName forBuilder:(NSString*)builderName
+{
+    
+}
+
 -(void)syncProject:(NSString*)projectName inBuilder:(NSString*)builderName
 {
     // Grab all the filenames
-    
+    [apiClient getFilesFromBuilder:builderName
+                        forProject:projectName
+                      withCallback:^(BOOL succeeded, NSDictionary* info)
+     {
+         if(succeeded)
+         {
+             NSArray* files = [info valueForKey:@"files"];
+             for(NSDictionary* file in files)
+             {
+                 NSString* filePath = [file valueForKey:@"path"];
+                 [self syncFile:filePath
+                      inProject:projectName
+                     forBuilder:builderName];
+             }
+         }
+     }];
 }
 
 -(void)syncAllProjects
