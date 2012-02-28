@@ -48,8 +48,10 @@
                  andProject:projectName
                withCallback:^(BOOL succeeded, NSDictionary* info)
      {
-         NSString* fileContents = [info valueForKey:@"contents"];
-         NSLog(@"I grabbed a file at path %@ with contents %@", filePath, fileContents);
+         if(succeeded){
+             NSString* fileContents = [info valueForKey:@"contents"];
+             NSLog(@"I grabbed a file at path %@ with contents %@", filePath, fileContents);
+         }
      }];
 }
 
