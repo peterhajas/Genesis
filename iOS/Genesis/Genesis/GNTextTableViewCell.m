@@ -52,6 +52,10 @@ static CTFontRef defaultFont = nil;
     CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedLine;
     CTLineRef line = CTLineCreateWithAttributedString(attributedString);
     
+    // Account for Cocoa coordinate system
+    CGContextScaleCTM(staleContext, 1, -1);
+    CGContextTranslateCTM(staleContext, 0, -[self frame].size.height);
+    
     CGContextSetTextPosition(staleContext, 5.0, 5.0);
     CTLineDraw(line, staleContext);
 }
