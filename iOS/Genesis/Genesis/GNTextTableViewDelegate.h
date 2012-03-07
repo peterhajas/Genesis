@@ -15,6 +15,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GNTextTableViewDelegate : NSObject
+@interface GNTextTableViewDelegate : NSObject <UITableViewDelegate>
 
 @end
