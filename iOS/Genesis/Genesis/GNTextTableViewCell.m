@@ -34,6 +34,8 @@ static CTFontRef defaultFont = nil;
         
         syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
         [self addSubview:syntaxHighlighter];
+        
+        [syntaxHighlighter highlightText:line];
                 
         // Create the default font (later should be done in preferences)
         defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
