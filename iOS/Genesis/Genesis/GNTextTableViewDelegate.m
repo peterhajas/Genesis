@@ -17,4 +17,11 @@
 
 @implementation GNTextTableViewDelegate
 
+#pragma mark UITableViewDelegate Configuring Rows
+-(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    // Quick hack, this should be changed
+    return 16;
+}
+
 @end
