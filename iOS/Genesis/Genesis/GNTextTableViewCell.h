@@ -16,10 +16,16 @@
 #define kGNTextTableViewCellReuseIdentifier @"kGNTextTableViewCellReuseIdentifier"
 
 #import <UIKit/UIKit.h>
+#import "GNSyntaxHighlighter.h"
 
-@interface GNTextTableViewCell : UITableViewCell
+@interface GNTextTableViewCell : UITableViewCell <GNSyntaxHighlighterDelegate>
 {
     NSString* representedLine;
+    NSAttributedString* attributedLine;
+    
+    GNSyntaxHighlighter* syntaxHighlighter;
+    
+    CGContextRef staleContext;
 }
 
 -(id)initWIthLine:(NSString*)line;

@@ -28,9 +28,13 @@ static CTFontRef defaultFont = nil;
     if(self)
     {
         representedLine = line;
-        // Temporary stop-gap
-        [[self textLabel] setText:representedLine];
         
+        // Attributed string with representedLine's text
+        attributedLine = [[NSAttributedString alloc] initWithString:representedLine];
+        
+        syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
+        [self addSubview:syntaxHighlighter];
+                
         // Create the default font (later should be done in preferences)
         defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
                                            DEFAULT_SIZE,
@@ -38,6 +42,26 @@ static CTFontRef defaultFont = nil;
     }
     
     return self;
+}
+
+-(void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    staleContext = UIGraphicsGetCurrentContext();
+    
+    CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedLine;
+    CTLineRef line = CTLineCreateWithAttributedString(attributedString);
+    
+    CGContextSetTextPosition(staleContext, 5.0, 5.0);
+    CTLineDraw(line, staleContext);
+}
+
+#pragma mark GNSyntaxHighlighterDelegate methods
+
+-(void)didHighlightText:(NSAttributedString *)highlightedText
+{
+    attributedLine = highlightedText;
+    [self setNeedsDisplay];
 }
 
 @end
