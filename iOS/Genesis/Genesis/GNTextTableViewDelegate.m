@@ -17,11 +17,19 @@
 
 @implementation GNTextTableViewDelegate
 
+@synthesize scrollDelegate;
+
 #pragma mark UITableViewDelegate Configuring Rows
 -(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     // Quick hack, this should be changed
     return 16;
+}
+
+#pragma mark GNScrollViewDelegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [scrollDelegate scrollViewDidScroll:scrollView];
 }
 
 @end

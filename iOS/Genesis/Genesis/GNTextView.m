@@ -32,7 +32,10 @@
 {
     // Create the text table view
     
-    textTableView = [[GNTextTableView alloc] initWithFrame:[self frame]];
+    textTableView = [[GNTextTableView alloc] initWithFrame:CGRectMake([self frame].origin.x + kGNLineNumberTableViewWidth,
+                                                                      [self frame].origin.y,
+                                                                      [self frame].size.width - kGNLineNumberTableViewWidth,
+                                                                      [self frame].size.height)];
     
     // Set up its data source
     textTableViewDataSource = [[GNTextTableViewDataSource alloc] initWithFileRepresentation:fileRepresentation];
@@ -40,11 +43,21 @@
     
     // Set up its delegate
     textTableViewDelegate = [[GNTextTableViewDelegate alloc] init];
+    [textTableViewDelegate setScrollDelegate:self];
     [textTableView setDelegate:textTableViewDelegate];
     
     // Add it as a subview
     
     [self addSubview:textTableView];
+    
+    // Create the line number view
+    
+    lineNumberTableView = [[GNLineNumberTableView alloc] initWithFileRepresentation:fileRepresentation
+                                                                             height:[self frame].size.height];
+    [lineNumberTableView setScrollDelegate:self];
+    
+    // Add it as a subview
+    [self addSubview:lineNumberTableView];
     
     // Subscribe to keyboard notifications
     
@@ -83,6 +96,29 @@
                                         keyboardFrame.origin.y);
     
     [self setFrame:newFrameForView];
+}
+
+#pragma mark UIScrollViewDelegate methods
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // Match the scroll position between textTableView and lineNumberTableView
+    
+    CGFloat verticalContentOffset = [scrollView contentOffset].y;
+    UIScrollView* otherScrollView;
+    
+    if([scrollView isEqual:textTableView])
+    {
+        otherScrollView = lineNumberTableView;
+    }
+    else if([scrollView isEqual:lineNumberTableView])
+    {
+        otherScrollView = textTableView;
+    }
+    
+    CGPoint otherScrollViewContentOffset = [otherScrollView contentOffset];
+    [otherScrollView setContentOffset:CGPointMake(otherScrollViewContentOffset.x,
+                                                  verticalContentOffset)];
 }
 
 @end

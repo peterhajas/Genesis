@@ -15,6 +15,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 @interface GNTextTableViewDelegate : NSObject <UITableViewDelegate>
+{
+    NSObject<GNScrollViewDelegate>* scrollDelegate;
+}
+
+@property(nonatomic,retain) NSObject<GNScrollViewDelegate>* scrollDelegate;
 
 @end

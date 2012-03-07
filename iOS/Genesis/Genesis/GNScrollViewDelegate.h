@@ -13,30 +13,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
-#import "GNTextTableView.h"
-#import "GNTextTableViewDataSource.h"
-#import "GNTextTableViewDelegate.h"
+#import <Foundation/Foundation.h>
 
-#import "GNLineNumberTableView.h"
+@protocol GNScrollViewDelegate <NSObject>
 
-#import "GNFileRepresentation.h"
-
-@interface GNTextView : UIView <GNScrollViewDelegate,
-                                UIScrollViewDelegate>
-{
-    GNTextTableView* textTableView;
-    GNTextTableViewDataSource* textTableViewDataSource;
-    GNTextTableViewDelegate* textTableViewDelegate;
-    
-    GNLineNumberTableView* lineNumberTableView;
-    
-    GNFileRepresentation* fileRepresentation;
-}
-
--(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame;
--(void)keyboardWillChange:(id)object;
-
-@property(nonatomic,retain) NSString* text;
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView;
 
 @end

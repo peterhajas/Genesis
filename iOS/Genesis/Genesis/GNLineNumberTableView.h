@@ -13,30 +13,22 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#define kGNLineNumberTableViewWidth 30
+
 #import <UIKit/UIKit.h>
-#import "GNTextTableView.h"
-#import "GNTextTableViewDataSource.h"
-#import "GNTextTableViewDelegate.h"
-
-#import "GNLineNumberTableView.h"
-
+#import "GNLineNumberTableViewDataSource.h"
 #import "GNFileRepresentation.h"
 
-@interface GNTextView : UIView <GNScrollViewDelegate,
-                                UIScrollViewDelegate>
+@interface GNLineNumberTableView : UITableView <UITableViewDelegate>
 {
-    GNTextTableView* textTableView;
-    GNTextTableViewDataSource* textTableViewDataSource;
-    GNTextTableViewDelegate* textTableViewDelegate;
-    
-    GNLineNumberTableView* lineNumberTableView;
-    
     GNFileRepresentation* fileRepresentation;
+    GNLineNumberTableViewDataSource* dataSource;
+    
+    NSObject<GNScrollViewDelegate>* scrollDelegate;
 }
 
--(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame;
--(void)keyboardWillChange:(id)object;
+-(id)initWithFileRepresentation:(GNFileRepresentation*)representation height:(CGFloat)height;
 
-@property(nonatomic,retain) NSString* text;
+@property(nonatomic,retain) NSObject<GNScrollViewDelegate>* scrollDelegate;
 
 @end
