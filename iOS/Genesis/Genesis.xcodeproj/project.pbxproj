@@ -52,6 +52,7 @@
 		4F3F0468150740A300AA6E95 /* GNFileRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */; };
 		4F3F046D150744ED00AA6E95 /* GNTextTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */; };
 		4F3F0471150745D300AA6E95 /* GNTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */; };
+		4F3F047D15074E4700AA6E95 /* GNTextTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F047C15074E4700AA6E95 /* GNTextTableViewDelegate.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
@@ -192,6 +193,8 @@
 		4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewDataSource.m; sourceTree = "<group>"; };
 		4F3F046F150745D300AA6E95 /* GNTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableViewCell.h; sourceTree = "<group>"; };
 		4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewCell.m; sourceTree = "<group>"; };
+		4F3F047B15074E4700AA6E95 /* GNTextTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableViewDelegate.h; sourceTree = "<group>"; };
+		4F3F047C15074E4700AA6E95 /* GNTextTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewDelegate.m; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
 		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -415,6 +418,7 @@
 				4F1F049914E1B127008619C0 /* GNTextTableView.h */,
 				4F1F049A14E1B127008619C0 /* GNTextTableView.m */,
 				4F3F046E150744F000AA6E95 /* Data Source */,
+				4F3F047F15074E4B00AA6E95 /* Delegate */,
 				4F3F0472150745D600AA6E95 /* Cell */,
 			);
 			name = "Text View TableView";
@@ -569,6 +573,15 @@
 				4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		4F3F047F15074E4B00AA6E95 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F047B15074E4700AA6E95 /* GNTextTableViewDelegate.h */,
+				4F3F047C15074E4700AA6E95 /* GNTextTableViewDelegate.m */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 		4F73FA7014CF294000976824 /* Model */ = {
@@ -955,6 +968,7 @@
 				4F3F0468150740A300AA6E95 /* GNFileRepresentation.m in Sources */,
 				4F3F046D150744ED00AA6E95 /* GNTextTableViewDataSource.m in Sources */,
 				4F3F0471150745D300AA6E95 /* GNTextTableViewCell.m in Sources */,
+				4F3F047D15074E4700AA6E95 /* GNTextTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
