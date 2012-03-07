@@ -16,12 +16,14 @@
 #import <UIKit/UIKit.h>
 #import "GNTextTableView.h"
 #import "GNTextTableViewDataSource.h"
+#import "GNTextTableViewDelegate.h"
 #import "GNFileRepresentation.h"
 
 @interface GNTextView : UIView
 {
     GNTextTableView* textTableView;
     GNTextTableViewDataSource* textTableViewDataSource;
+    GNTextTableViewDelegate* textTableViewDelegate;
     
     GNFileRepresentation* fileRepresentation;
 }

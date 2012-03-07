@@ -38,6 +38,10 @@
     textTableViewDataSource = [[GNTextTableViewDataSource alloc] initWithFileRepresentation:fileRepresentation];
     [textTableView setDataSource:textTableViewDataSource];
     
+    // Set up its delegate
+    textTableViewDelegate = [[GNTextTableViewDelegate alloc] init];
+    [textTableView setDelegate:textTableViewDelegate];
+    
     // Add it as a subview
     
     [self addSubview:textTableView];
