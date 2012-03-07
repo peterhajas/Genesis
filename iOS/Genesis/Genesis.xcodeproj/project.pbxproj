@@ -25,7 +25,7 @@
 		4F1DCC7C14EA234800811CFA /* parsecode.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DCC7A14E9DFEA00811CFA /* parsecode.js */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
-		4F1F04A014E1B128008619C0 /* GNTextInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextInnerView.m */; };
+		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
 		4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049C14E1B127008619C0 /* GNTextRange.m */; };
 		4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049E14E1B128008619C0 /* GNTextView.m */; };
 		4F21143614DCF097001EE6C9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F21143514DCF096001EE6C9 /* CoreText.framework */; };
@@ -49,6 +49,9 @@
 		4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E371F14CFA90D00E91A1A /* GNDirectoryViewController.xib */; };
 		4F3E372614CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */; };
 		4F3E372914CFB6BC00E91A1A /* GNDirectoryContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */; };
+		4F3F0468150740A300AA6E95 /* GNFileRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */; };
+		4F3F046D150744ED00AA6E95 /* GNTextTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */; };
+		4F3F0471150745D300AA6E95 /* GNTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
@@ -148,8 +151,8 @@
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
 		4F1F049714E1B127008619C0 /* GNTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextCaretView.h; sourceTree = "<group>"; };
 		4F1F049814E1B127008619C0 /* GNTextCaretView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextCaretView.m; sourceTree = "<group>"; };
-		4F1F049914E1B127008619C0 /* GNTextInnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInnerView.h; sourceTree = "<group>"; };
-		4F1F049A14E1B127008619C0 /* GNTextInnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInnerView.m; sourceTree = "<group>"; };
+		4F1F049914E1B127008619C0 /* GNTextTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableView.h; sourceTree = "<group>"; };
+		4F1F049A14E1B127008619C0 /* GNTextTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableView.m; sourceTree = "<group>"; };
 		4F1F049B14E1B127008619C0 /* GNTextRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextRange.h; sourceTree = "<group>"; };
 		4F1F049C14E1B127008619C0 /* GNTextRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextRange.m; sourceTree = "<group>"; };
 		4F1F049D14E1B128008619C0 /* GNTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextView.h; sourceTree = "<group>"; };
@@ -183,6 +186,12 @@
 		4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewController.m; sourceTree = "<group>"; };
 		4F3E372714CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNDirectoryContentsTableViewCell.h; sourceTree = "<group>"; };
 		4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewCell.m; sourceTree = "<group>"; };
+		4F3F0466150740A300AA6E95 /* GNFileRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileRepresentation.h; sourceTree = "<group>"; };
+		4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileRepresentation.m; sourceTree = "<group>"; };
+		4F3F046B150744ED00AA6E95 /* GNTextTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableViewDataSource.h; sourceTree = "<group>"; };
+		4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewDataSource.m; sourceTree = "<group>"; };
+		4F3F046F150745D300AA6E95 /* GNTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableViewCell.h; sourceTree = "<group>"; };
+		4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewCell.m; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
 		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -391,22 +400,24 @@
 			name = "Caret View";
 			sourceTree = "<group>";
 		};
-		4F1F04A414E1B37E008619C0 /* Text Container View */ = {
+		4F1F04A414E1B37E008619C0 /* Text View */ = {
 			isa = PBXGroup;
 			children = (
 				4F1F049D14E1B128008619C0 /* GNTextView.h */,
 				4F1F049E14E1B128008619C0 /* GNTextView.m */,
 			);
-			name = "Text Container View";
+			name = "Text View";
 			sourceTree = "<group>";
 		};
-		4F1F04A514E1B3A8008619C0 /* Text Rendering / UITextInput */ = {
+		4F1F04A514E1B3A8008619C0 /* Text View TableView */ = {
 			isa = PBXGroup;
 			children = (
-				4F1F049914E1B127008619C0 /* GNTextInnerView.h */,
-				4F1F049A14E1B127008619C0 /* GNTextInnerView.m */,
+				4F1F049914E1B127008619C0 /* GNTextTableView.h */,
+				4F1F049A14E1B127008619C0 /* GNTextTableView.m */,
+				4F3F046E150744F000AA6E95 /* Data Source */,
+				4F3F0472150745D600AA6E95 /* Cell */,
 			);
-			name = "Text Rendering / UITextInput";
+			name = "Text View TableView";
 			sourceTree = "<group>";
 		};
 		4F1F04A614E1B3B9008619C0 /* Text Geometry */ = {
@@ -425,8 +436,8 @@
 				4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */,
 				4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */,
 				4F1F04A314E1B35D008619C0 /* Caret View */,
-				4F1F04A414E1B37E008619C0 /* Text Container View */,
-				4F1F04A514E1B3A8008619C0 /* Text Rendering / UITextInput */,
+				4F1F04A414E1B37E008619C0 /* Text View */,
+				4F1F04A514E1B3A8008619C0 /* Text View TableView */,
 				4F1F04A614E1B3B9008619C0 /* Text Geometry */,
 				4F77E90414E4C503001A69E8 /* Syntax Highlighting */,
 			);
@@ -480,6 +491,7 @@
 				4FFDA03D14CCEB3C00422FF5 /* Project Browser */,
 				4F3E372314CFA91000E91A1A /* Project Viewing */,
 				4F21143114DCEF18001EE6C9 /* Text Editing */,
+				4F3F046A150740AE00AA6E95 /* File Representation */,
 				4F1E6ACC14F2167700583852 /* File Manager */,
 			);
 			path = Genesis;
@@ -530,6 +542,33 @@
 				4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */,
 			);
 			name = "Project Viewing";
+			sourceTree = "<group>";
+		};
+		4F3F046A150740AE00AA6E95 /* File Representation */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F0466150740A300AA6E95 /* GNFileRepresentation.h */,
+				4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */,
+			);
+			name = "File Representation";
+			sourceTree = "<group>";
+		};
+		4F3F046E150744F000AA6E95 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F046B150744ED00AA6E95 /* GNTextTableViewDataSource.h */,
+				4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */,
+			);
+			name = "Data Source";
+			sourceTree = "<group>";
+		};
+		4F3F0472150745D600AA6E95 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F046F150745D300AA6E95 /* GNTextTableViewCell.h */,
+				4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		4F73FA7014CF294000976824 /* Model */ = {
@@ -898,7 +937,7 @@
 				4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */,
 				4F21143A14DCF0C8001EE6C9 /* GNTextViewController.m in Sources */,
 				4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */,
-				4F1F04A014E1B128008619C0 /* GNTextInnerView.m in Sources */,
+				4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */,
 				4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */,
 				4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */,
 				4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */,
@@ -913,6 +952,9 @@
 				4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */,
 				1F5997BD14F4C5AD005FE26F /* GNAPIClient.m in Sources */,
 				1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */,
+				4F3F0468150740A300AA6E95 /* GNFileRepresentation.m in Sources */,
+				4F3F046D150744ED00AA6E95 /* GNTextTableViewDataSource.m in Sources */,
+				4F3F0471150745D300AA6E95 /* GNTextTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

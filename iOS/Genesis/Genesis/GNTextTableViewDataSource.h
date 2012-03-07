@@ -13,36 +13,14 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextViewController.h"
+#import <Foundation/Foundation.h>
 #import "GNFileRepresentation.h"
 
-@implementation GNTextViewController
-
--(id)initWithBackingPath:(NSString*)path;
+@interface GNTextTableViewDataSource : NSObject <UITableViewDataSource>
 {
-    self = [super initWithNibName:@"GNTextViewController" bundle:[NSBundle mainBundle]];
-    if(self)
-    {
-        backingPath = path;
-        [self setTitle:[backingPath lastPathComponent]];
-    }
-    return self;
+    GNFileRepresentation* fileRepresentation;
 }
 
-#pragma mark View lifecycle
-
--(void)viewDidLoad
-{
-    // Create text view
-    textView = [[GNTextView alloc] initWithBackingPath:backingPath andFrame:[textViewContainerView frame]];
-    [textViewContainerView addSubview:textView];
-}
-
-#pragma mark Orientation changes
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
+-(id)initWithFileRepresentation:(GNFileRepresentation*)representation;
 
 @end

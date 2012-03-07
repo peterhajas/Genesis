@@ -13,36 +13,24 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextViewController.h"
-#import "GNFileRepresentation.h"
+#import <Foundation/Foundation.h>
 
-@implementation GNTextViewController
-
--(id)initWithBackingPath:(NSString*)path;
+@interface GNFileRepresentation : NSObject
 {
-    self = [super initWithNibName:@"GNTextViewController" bundle:[NSBundle mainBundle]];
-    if(self)
-    {
-        backingPath = path;
-        [self setTitle:[backingPath lastPathComponent]];
-    }
-    return self;
+    NSString* relativePath;
+    NSString* fileContents;
+    NSMutableArray* fileLines;
 }
 
-#pragma mark View lifecycle
+-(id)initWithRelativePath:(NSString*)path;
 
--(void)viewDidLoad
-{
-    // Create text view
-    textView = [[GNTextView alloc] initWithBackingPath:backingPath andFrame:[textViewContainerView frame]];
-    [textViewContainerView addSubview:textView];
-}
+-(NSUInteger)lineCount;
 
-#pragma mark Orientation changes
+-(NSString*)lineAtIndex:(NSUInteger)index;
+-(void)insertLineWithText:(NSString*)text afterLineAtIndex:(NSUInteger)index;
+-(void)removeLineAtIndex:(NSUInteger)index;
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
+-(void)moveLineAtIndex:(NSUInteger)index toIndex:(NSUInteger)index;
+
 
 @end

@@ -17,19 +17,30 @@
 
 @implementation GNTextView
 
-@synthesize dataDelegate;
-
--(void)awakeFromNib
+-(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame
 {
-    innerView = [[GNTextInnerView alloc] init];
-    [innerView setContainerDelegate:self];
+    self = [super initWithFrame:_frame];
+    if(self)
+    {
+        // Set file representation
+        fileRepresentation = [[GNFileRepresentation alloc] initWithRelativePath:path];
+    }
+    return self;
+}
+
+-(void)didMoveToSuperview
+{
+    // Create the text table view
     
-    [self addSubview:innerView];
+    textTableView = [[GNTextTableView alloc] initWithFrame:[self frame]];
     
-    [innerView fitFrameToText];
-    CGSize sizeForTextview = [innerView frame].size;
+    // Set up its data source
+    textTableViewDataSource = [[GNTextTableViewDataSource alloc] initWithFileRepresentation:fileRepresentation];
+    [textTableView setDataSource:textTableViewDataSource];
     
-    [self setContentSize:sizeForTextview];
+    // Add it as a subview
+    
+    [self addSubview:textTableView];
     
     // Subscribe to keyboard notifications
     
@@ -38,29 +49,6 @@
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
 
-}
-
--(void)requiresSize:(CGSize)size
-{
-    [self setContentSize:size];
-}
-
--(BOOL)resignFirstResponder
-{
-    [innerView resignFirstResponder];
-    return [super resignFirstResponder];
-}
-
-#pragma mark GNTextInnerViewContainerProtocol methods
-
--(void)requireSize:(CGSize)size
-{
-    [self setContentSize:size];
-}
-
--(void)textChanged
-{
-    [dataDelegate textChanged];
 }
 
 #pragma mark Keyboard Notification Handling
@@ -91,18 +79,6 @@
                                         keyboardFrame.origin.y);
     
     [self setFrame:newFrameForView];
-}
-
-#pragma mark Text Handling
-
--(void)setText:(NSString*)text
-{
-    [innerView setShownText:text];
-}
-
--(NSString*)text
-{
-    return [innerView shownText];
 }
 
 @end

@@ -13,36 +13,15 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextViewController.h"
-#import "GNFileRepresentation.h"
+#define kGNTextTableViewCellReuseIdentifier @"kGNTextTableViewCellReuseIdentifier"
 
-@implementation GNTextViewController
+#import <UIKit/UIKit.h>
 
--(id)initWithBackingPath:(NSString*)path;
+@interface GNTextTableViewCell : UITableViewCell
 {
-    self = [super initWithNibName:@"GNTextViewController" bundle:[NSBundle mainBundle]];
-    if(self)
-    {
-        backingPath = path;
-        [self setTitle:[backingPath lastPathComponent]];
-    }
-    return self;
+    NSString* representedLine;
 }
 
-#pragma mark View lifecycle
-
--(void)viewDidLoad
-{
-    // Create text view
-    textView = [[GNTextView alloc] initWithBackingPath:backingPath andFrame:[textViewContainerView frame]];
-    [textViewContainerView addSubview:textView];
-}
-
-#pragma mark Orientation changes
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
+-(id)initWIthLine:(NSString*)line;
 
 @end

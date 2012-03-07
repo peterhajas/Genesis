@@ -13,36 +13,31 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextViewController.h"
-#import "GNFileRepresentation.h"
+#import "GNTextTableViewCell.h"
 
-@implementation GNTextViewController
+#define DEFAULT_FONT_FAMILY @"Courier"
+#define DEFAULT_SIZE 16
 
--(id)initWithBackingPath:(NSString*)path;
+static CTFontRef defaultFont = nil;
+
+@implementation GNTextTableViewCell
+
+-(id)initWIthLine:(NSString*)line
 {
-    self = [super initWithNibName:@"GNTextViewController" bundle:[NSBundle mainBundle]];
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
     {
-        backingPath = path;
-        [self setTitle:[backingPath lastPathComponent]];
+        representedLine = line;
+        // Temporary stop-gap
+        [[self textLabel] setText:representedLine];
+        
+        // Create the default font (later should be done in preferences)
+        defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
+                                           DEFAULT_SIZE,
+                                           NULL);
     }
+    
     return self;
-}
-
-#pragma mark View lifecycle
-
--(void)viewDidLoad
-{
-    // Create text view
-    textView = [[GNTextView alloc] initWithBackingPath:backingPath andFrame:[textViewContainerView frame]];
-    [textViewContainerView addSubview:textView];
-}
-
-#pragma mark Orientation changes
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
 }
 
 @end
