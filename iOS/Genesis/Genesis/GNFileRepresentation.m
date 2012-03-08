@@ -66,7 +66,7 @@
     [fileLines removeObjectAtIndex:index];
 }
 
--(void)moveLineAtIndex:(NSUInteger)index toIndex:(NSUInteger)index
+-(void)moveLineAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
 {
     
 }

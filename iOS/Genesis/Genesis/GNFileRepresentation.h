@@ -30,7 +30,7 @@
 -(void)insertLineWithText:(NSString*)text afterLineAtIndex:(NSUInteger)index;
 -(void)removeLineAtIndex:(NSUInteger)index;
 
--(void)moveLineAtIndex:(NSUInteger)index toIndex:(NSUInteger)index;
+-(void)moveLineAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 
 @end
