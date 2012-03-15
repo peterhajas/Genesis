@@ -317,7 +317,6 @@ static CTFontRef defaultFont = nil;
     }
     
     CFRetain(closestLineVerticallyToPoint);
-    
     return closestLineVerticallyToPoint;
 }
 
@@ -629,21 +628,51 @@ static CTFontRef defaultFont = nil;
     if(runForCaret == NULL || index >= [shownText length])
     {
         char lastCharacter = (char)[shownText characterAtIndex:[shownText length]-1];
+        CTRunRef runForEarlierIndex = [self runForLine:lineAtCaret andCharacterAtIndex:index-1];
+        
+        CFRange caretRunStringRange = CTRunGetStringRange(runForEarlierIndex);
+        
+        NSUInteger indexOfGlyph = index - 1 - caretRunStringRange.location;
+        
+        glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph
+                                                      inRun:runForEarlierIndex
+                                                 withinLine:lineAtCaret];
+        
+        // If the last character is a tab:
+        if(lastCharacter == '\t')
+        {
+            glyphOffset += 3 * [self widthOfCharacterInDefaultFont];
+        }
+        
+        // If the last character is a regular character (nice!):
+        else
+        {
+            glyphOffset += [self widthOfCharacterInDefaultFont];
+        }
         
         // If the last character is a newline:
         if(lastCharacter == '\n' || lastCharacter == '\r')
-        {            
+        {           
             CGFloat yCoordinate = [self frame].size.height - lineOrigin.y;
-            
+
             /* If the *second to last character* is also a newline, we need to offset again by
                the height of a line, because -originForLine has trouble with newline-only lines */
-            
+
             if([shownText length] > 2)
             {
                 char secondToLastCharacter = (char)[shownText characterAtIndex:[shownText length]-2];
                 if(secondToLastCharacter == '\n' || secondToLastCharacter == '\r')
-                {
+                {            
+
                     yCoordinate += DEFAULT_SIZE;
+                }
+                else {
+                    
+                    yCoordinate -= DEFAULT_SIZE;
+                    return CGRectMake(glyphOffset,
+                                      yCoordinate,
+                                      kGNTextCaretViewWidth,
+                                      fontSizeForText);
                 }
             }
             return CGRectMake(0,
@@ -653,29 +682,7 @@ static CTFontRef defaultFont = nil;
         }
         else
         {
-            // Grab the run for the character before this one!
-            
-            CTRunRef runForEarlierIndex = [self runForLine:lineAtCaret andCharacterAtIndex:index-1];
-            
-            CFRange caretRunStringRange = CTRunGetStringRange(runForEarlierIndex);
-            
-            NSUInteger indexOfGlyph = index - 1 - caretRunStringRange.location;
-            
-            glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph
-                                                          inRun:runForEarlierIndex
-                                                     withinLine:lineAtCaret];
-            
-            // If the last character is a tab:
-            if(lastCharacter == '\t')
-            {
-                glyphOffset += 3 * [self widthOfCharacterInDefaultFont];
-            }
-            
-            // If the last character is a regular character (nice!):
-            else
-            {
-                glyphOffset += [self widthOfCharacterInDefaultFont];
-            }
+
             
             return CGRectMake(glyphOffset,
                               [self frame].size.height - lineOrigin.y - fontSizeForText,
@@ -717,12 +724,15 @@ static CTFontRef defaultFont = nil;
     
     // If the index is the same as shownText, then they're at the last line in the file
     // Return the last line in the lines CFArray
-    
-    if(index == [shownText length])
+    char lastChar = (char)[shownText characterAtIndex:[shownText length] - 1];
+
+    if((index == [shownText length]) || (index == [shownText length]-1 && (lastChar == '\n' || lastChar == '\r')))
     {
         return CFArrayGetValueAtIndex(lines, CFArrayGetCount(lines)-1);
     }
-    
+
+  
+
     // Loop through the lines in our frame
     for(NSUInteger i = 0; i < CFArrayGetCount(lines); i++)
     {
