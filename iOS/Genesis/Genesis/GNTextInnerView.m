@@ -26,6 +26,7 @@ static CTFontRef defaultFont = nil;
 
 -(void)buildUpView
 {
+    
     shownText = [[NSString alloc] initWithString:@""];
 
     attributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
@@ -39,16 +40,21 @@ static CTFontRef defaultFont = nil;
     
     // Create our caret view
     caretView = [[GNTextCaretView alloc] initWithFrame:CGRectMake(0, 0, kGNTextCaretViewWidth, DEFAULT_SIZE)];
+    [caretView setHidden:YES];
     [self addSubview:caretView];
     
     // Our caret index
     textCaretIndex = 0;
     
     // Gesture recognizer for moving the cursor
-    tapGestureReognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
+    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
                                                                   action:@selector(tapInView:)];
-    [self addGestureRecognizer:tapGestureReognizer];
+    [self addGestureRecognizer:tapGestureRecognizer];
     
+    // Gesture recognizer for UIMenu
+    longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressInView:)];
+    
+    [self addGestureRecognizer:longPressGestureRecognizer];
     // Create the syntax highlighter
     syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
     [self addSubview:syntaxHighlighter];
@@ -490,11 +496,28 @@ static CTFontRef defaultFont = nil;
 }
 
 #pragma mark User Interaction
+-(BOOL)becomeFirstResponder {
+    
+    BOOL becomeFirstResponder = [super becomeFirstResponder];
+    if (becomeFirstResponder) {
+        [caretView setHidden:NO];
+    }
+    
+    return becomeFirstResponder;
+    
+}
+-(BOOL)resignFirstResponder {
+    BOOL resignFirstResponder = [super resignFirstResponder];
+    if (resignFirstResponder)
+        [caretView setHidden:YES];
+    return resignFirstResponder;
+    
+    
+}
 -(BOOL)canBecomeFirstResponder
 {
     return YES;
 }
-
 -(void)tapInView:(id)sender
 {
     CGPoint tapLocation = [sender locationInView:self];
@@ -504,6 +527,20 @@ static CTFontRef defaultFont = nil;
     [self becomeFirstResponder];
 }
 
+-(void)longPressInView:(id)sender {
+    CGPoint location = [sender locationInView:self];
+    GNTextPosition* closestPosition = (GNTextPosition*)[self closestPositionToPoint:location];
+    [self moveCaretToIndex:[closestPosition position]];
+ 
+}
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    if (action == @selector(paste:)) {
+        UIPasteboard* pb = [UIPasteboard generalPasteboard];
+        if ([pb.string length] > 0)
+            return YES;
+    }
+     return NO;
+}
 #pragma mark View drawing and sizing
 
 -(void)moveCaretToIndex:(NSUInteger)index
@@ -512,6 +549,11 @@ static CTFontRef defaultFont = nil;
     
     CGRect characterRect = [self rectForCharacterAtIndex:index];
     [caretView setFrame:characterRect];
+    // automatically scrolls to caret
+    UIScrollView *superview = (UIScrollView *)[self superview];
+    [superview scrollRectToVisible:[self rectForCharacterAtIndex:textCaretIndex] animated:YES];
+
+
 }
 
 -(void)redrawText
@@ -572,7 +614,7 @@ static CTFontRef defaultFont = nil;
     CGContextRestoreGState(context);
     
     [self moveCaretToIndex:textCaretIndex];
-    
+
     CFRelease(path);
 }
 
@@ -945,6 +987,7 @@ static CTFontRef defaultFont = nil;
     [self setFrame:CGRectMake(0, 0, newViewSize.width, newViewSize.height)];
     
     [containerDelegate requireSize:newViewSize];
+
 }
 
 #pragma mark GNSyntaxHighlighterDelegate mathods
@@ -963,4 +1006,10 @@ static CTFontRef defaultFont = nil;
     [self textChangedWithHighlight:YES];
 }
 
+#pragma mark UIMenuItems
+-(void)paste:(id)sender {
+    
+    
+    
+}
 @end

@@ -39,8 +39,8 @@
     GNTextCaretView* caretView;
     NSUInteger textCaretIndex;
     
-    UITapGestureRecognizer* tapGestureReognizer;
-    
+    UITapGestureRecognizer* tapGestureRecognizer;
+    UILongPressGestureRecognizer* longPressGestureRecognizer;
     CGContextRef staleContext;
     
     UITextInputStringTokenizer* stringTokenizer;
@@ -62,6 +62,7 @@
 -(void)plotText;
 
 -(void)tapInView:(id)sender;
+-(void)longPressInView:(id)sender;
 
 -(CGRect)rectForCharacterAtIndex:(NSUInteger)index;
 -(CTLineRef)lineForCharacterAtIndex:(NSUInteger)index;
