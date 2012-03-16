@@ -929,11 +929,16 @@ static CTFontRef defaultFont = nil;
      */
     
     CGSize sizeForText = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX), NULL);
-    
-    CGSize superviewSize = [[self superview] frame].size;
+    CGSize superviewSize = [[self superview] bounds].size;
+    // Adjust size based off of insets
+    if ([[self superview]isKindOfClass:[UIScrollView class]]) 
+    {
+        UIScrollView *superview = (UIScrollView *)[self superview];
+        superviewSize.width -= superview.contentInset.left + superview.contentInset.right;
+        superviewSize.height -= superview.contentInset.top + superview.contentInset.bottom;
+    }
     
     CGSize newViewSize;
-    
     newViewSize.width = MAX(sizeForText.width, superviewSize.width);
     newViewSize.height = MAX(sizeForText.height, superviewSize.height);
     
