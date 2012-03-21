@@ -22,20 +22,23 @@ static CTFontRef defaultFont = nil;
 
 @implementation GNTextTableViewCell
 
--(id)initWIthLine:(NSString*)line
+-(id)initWIthLine:(NSString*)lineText
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
     {
-        representedLine = line;
+        representedLineText = lineText;
+        
+        // Set our line ivar to nil
+        line = nil;
         
         // Attributed string with representedLine's text
-        attributedLine = [[NSAttributedString alloc] initWithString:representedLine];
+        attributedLine = [[NSAttributedString alloc] initWithString:representedLineText];
         
         syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
         [self addSubview:syntaxHighlighter];
         
-        [syntaxHighlighter highlightText:line];
+        [syntaxHighlighter highlightText:representedLineText];
                 
         // Create the default font (later should be done in preferences)
         defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
@@ -52,7 +55,11 @@ static CTFontRef defaultFont = nil;
     staleContext = UIGraphicsGetCurrentContext();
     
     CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedLine;
-    CTLineRef line = CTLineCreateWithAttributedString(attributedString);
+    if(line != nil)
+    {
+        CFRelease(line);
+    }
+    line = CTLineCreateWithAttributedString(attributedString);
     
     // Account for Cocoa coordinate system
     CGContextScaleCTM(staleContext, 1, -1);
@@ -60,6 +67,14 @@ static CTFontRef defaultFont = nil;
     
     CGContextSetTextPosition(staleContext, 5.0, 5.0);
     CTLineDraw(line, staleContext);
+}
+
+-(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    UITouch* touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInView:self];
+    CFIndex indexIntoString = CTLineGetStringIndexForPosition(line, touchLocation);
+    NSLog(@"index: %d", indexIntoString);
 }
 
 #pragma mark GNSyntaxHighlighterDelegate methods

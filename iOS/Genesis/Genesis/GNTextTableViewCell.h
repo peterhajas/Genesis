@@ -20,10 +20,12 @@
 
 @interface GNTextTableViewCell : UITableViewCell <GNSyntaxHighlighterDelegate>
 {
-    NSString* representedLine;
+    NSString* representedLineText;
     NSAttributedString* attributedLine;
     
     GNSyntaxHighlighter* syntaxHighlighter;
+    
+    CTLineRef line;
     
     CGContextRef staleContext;
 }
