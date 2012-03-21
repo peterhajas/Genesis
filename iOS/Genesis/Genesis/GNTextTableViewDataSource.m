@@ -36,7 +36,11 @@
 {
     // Grab the line for the index path
     NSString* line = [fileRepresentation lineAtIndex:[indexPath row]];
-    return [[GNTextTableViewCell alloc] initWithLine:line];
+    
+    GNTextTableViewCell* cell = [[GNTextTableViewCell alloc] initWithLine:line atIndex:[indexPath row]];
+    [cell setFileRepresentation:fileRepresentation];
+    
+    return cell;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
