@@ -22,7 +22,9 @@ static CTFontRef defaultFont = nil;
 
 @implementation GNTextTableViewCell
 
--(id)initWithLine:(NSString*)lineText
+@synthesize fileRepresentation;
+
+-(id)initWithLine:(NSString*)lineText atIndex:(NSUInteger)index
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
@@ -44,6 +46,8 @@ static CTFontRef defaultFont = nil;
         defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
                                            DEFAULT_SIZE,
                                            NULL);
+        
+        lineNumber = index;
     }
     
     return self;
@@ -74,7 +78,9 @@ static CTFontRef defaultFont = nil;
     UITouch* touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInView:self];
     CFIndex indexIntoString = CTLineGetStringIndexForPosition(line, touchLocation);
-    NSLog(@"index: %d", indexIntoString);
+    
+    [fileRepresentation setInsertionToLineAtIndex:lineNumber
+                             characterIndexInLine:indexIntoString];
 }
 
 #pragma mark GNSyntaxHighlighterDelegate methods

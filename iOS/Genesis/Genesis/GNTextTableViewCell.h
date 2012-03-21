@@ -16,6 +16,7 @@
 #define kGNTextTableViewCellReuseIdentifier @"kGNTextTableViewCellReuseIdentifier"
 
 #import <UIKit/UIKit.h>
+#import "GNFileRepresentation.h"
 #import "GNSyntaxHighlighter.h"
 
 @interface GNTextTableViewCell : UITableViewCell <GNSyntaxHighlighterDelegate>
@@ -23,13 +24,18 @@
     NSString* representedLineText;
     NSAttributedString* attributedLine;
     
+    GNFileRepresentation* fileRepresentation;
+    
     GNSyntaxHighlighter* syntaxHighlighter;
     
     CTLineRef line;
+    NSUInteger lineNumber;
     
     CGContextRef staleContext;
 }
 
--(id)initWithLine:(NSString*)line;
+-(id)initWithLine:(NSString*)lineText atIndex:(NSUInteger)index;
+
+@property (nonatomic, retain) GNFileRepresentation* fileRepresentation;
 
 @end
