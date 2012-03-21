@@ -18,16 +18,21 @@
 #import "GNTextTableViewDataSource.h"
 #import "GNTextTableViewDelegate.h"
 
+#import "GNTextInputManagerView.h"
+
 #import "GNLineNumberTableView.h"
 
 #import "GNFileRepresentation.h"
 
-@interface GNTextView : UIView <GNScrollViewDelegate,
+@interface GNTextView : UIView <GNTextInputManagerViewDelegate,
+                                GNScrollViewDelegate,
                                 UIScrollViewDelegate>
 {
     GNTextTableView* textTableView;
     GNTextTableViewDataSource* textTableViewDataSource;
     GNTextTableViewDelegate* textTableViewDelegate;
+    
+    GNTextInputManagerView* textInputManagerView;
     
     GNLineNumberTableView* lineNumberTableView;
     

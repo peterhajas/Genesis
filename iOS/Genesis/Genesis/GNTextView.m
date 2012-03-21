@@ -50,6 +50,14 @@
     
     [self addSubview:textTableView];
     
+    // Create the text input manager view
+    textInputManagerView = [[GNTextInputManagerView alloc] initWithFileRepresentation:fileRepresentation];
+    [textInputManagerView setDelegate:self];
+    
+    // Add it as a subview
+    
+    [self addSubview:textInputManagerView];
+    
     // Create the line number view
     
     lineNumberTableView = [[GNLineNumberTableView alloc] initWithFileRepresentation:fileRepresentation
@@ -96,6 +104,13 @@
                                         keyboardFrame.origin.y);
     
     [self setFrame:newFrameForView];
+}
+
+#pragma mark GNTextInputManagerViewDelegate methods
+
+-(CGFloat)verticalScrollOffset
+{
+    return [textTableView contentOffset].y;
 }
 
 #pragma mark UIScrollViewDelegate methods
