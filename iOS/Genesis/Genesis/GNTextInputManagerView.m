@@ -18,6 +18,8 @@
 
 @implementation GNTextInputManagerView
 
+@synthesize delegate;
+
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation
 {
     self = [super init];

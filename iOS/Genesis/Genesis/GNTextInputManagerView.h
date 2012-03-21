@@ -27,8 +27,12 @@
 {
     GNFileRepresentation* fileRepresentation;
     NSUInteger textCaretIndex;
+    
+    id<GNTextInputManagerViewDelegate> delegate;
 }
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation;
+
+@property(nonatomic,retain) id<GNTextInputManagerViewDelegate> delegate;
 
 @end
