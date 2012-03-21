@@ -419,7 +419,7 @@
 			children = (
 				4F1F049D14E1B128008619C0 /* GNTextView.h */,
 				4F1F049E14E1B128008619C0 /* GNTextView.m */,
-				4FFF7D60151A107200C986A1 /* UITextInput */,
+				4FFF7D60151A107200C986A1 /* Input */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -804,13 +804,13 @@
 			name = "New Project";
 			sourceTree = "<group>";
 		};
-		4FFF7D60151A107200C986A1 /* UITextInput */ = {
+		4FFF7D60151A107200C986A1 /* Input */ = {
 			isa = PBXGroup;
 			children = (
 				4FFF7D5C151A106E00C986A1 /* GNTextInputManagerView.h */,
 				4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */,
 			);
-			name = UITextInput;
+			name = Input;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
