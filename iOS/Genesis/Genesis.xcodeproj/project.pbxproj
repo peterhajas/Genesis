@@ -109,6 +109,8 @@
 		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
 		4FFDA04414CCF2E300422FF5 /* GNNewProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA04214CCF2E300422FF5 /* GNNewProjectViewController.m */; };
 		4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA04314CCF2E300422FF5 /* GNNewProjectViewController.xib */; };
+		4FFF7D5E151A106E00C986A1 /* GNTextInputManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */; };
+		4FFF7D5F151A106E00C986A1 /* GNTextInputManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +291,8 @@
 		4FFDA04114CCF2E300422FF5 /* GNNewProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewProjectViewController.h; sourceTree = "<group>"; };
 		4FFDA04214CCF2E300422FF5 /* GNNewProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewProjectViewController.m; sourceTree = "<group>"; };
 		4FFDA04314CCF2E300422FF5 /* GNNewProjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewProjectViewController.xib; sourceTree = "<group>"; };
+		4FFF7D5C151A106E00C986A1 /* GNTextInputManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GNTextInputManagerView.h; sourceTree = "<group>"; };
+		4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputManagerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +419,7 @@
 			children = (
 				4F1F049D14E1B128008619C0 /* GNTextView.h */,
 				4F1F049E14E1B128008619C0 /* GNTextView.m */,
+				4FFF7D60151A107200C986A1 /* UITextInput */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -799,6 +804,15 @@
 			name = "New Project";
 			sourceTree = "<group>";
 		};
+		4FFF7D60151A107200C986A1 /* UITextInput */ = {
+			isa = PBXGroup;
+			children = (
+				4FFF7D5C151A106E00C986A1 /* GNTextInputManagerView.h */,
+				4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */,
+			);
+			name = UITextInput;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -991,6 +1005,7 @@
 				4F3F047D15074E4700AA6E95 /* GNTextTableViewDelegate.m in Sources */,
 				4F3F04821507519F00AA6E95 /* GNLineNumberTableView.m in Sources */,
 				4F3F0486150752A600AA6E95 /* GNLineNumberTableViewDataSource.m in Sources */,
+				4FFF7D5E151A106E00C986A1 /* GNTextInputManagerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,6 +1014,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F293BA714CCE88100020A09 /* GenesisTests.m in Sources */,
+				4FFF7D5F151A106E00C986A1 /* GNTextInputManagerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
