@@ -78,10 +78,12 @@
 {
     insertionIndex = 0;
     
-    for(NSUInteger i = 0; i < [fileLines count]; i++)
+    for(NSUInteger i = 0; i < lineIndex; i++)
     {
         insertionIndex += [[fileLines objectAtIndex:i] length];
     }
+    
+    insertionIndex += characterIndex;
 }
 
 -(BOOL)hasText
