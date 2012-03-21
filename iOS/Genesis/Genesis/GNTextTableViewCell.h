@@ -30,6 +30,6 @@
     CGContextRef staleContext;
 }
 
--(id)initWIthLine:(NSString*)line;
+-(id)initWithLine:(NSString*)line;
 
 @end

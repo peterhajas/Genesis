@@ -22,7 +22,7 @@ static CTFontRef defaultFont = nil;
 
 @implementation GNTextTableViewCell
 
--(id)initWIthLine:(NSString*)lineText
+-(id)initWithLine:(NSString*)lineText
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
