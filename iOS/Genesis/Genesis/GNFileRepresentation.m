@@ -112,6 +112,7 @@
     
     // Increment the insertion index by the length of text
     insertionIndex += [text length];
+    [self insertionPointChanged];
 }
 
 -(void)deleteBackwards
@@ -124,6 +125,12 @@
     fileContents = [beforeInsertion stringByAppendingString:afterInsertion];
     
     [self refreshLineArray];
+}
+
+-(void)insertionPointChanged
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointChanged"
+                                                        object:self];
 }
 
 @end

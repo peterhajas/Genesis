@@ -32,6 +32,7 @@
 }
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation;
+-(void)insertionPointChanged:(NSNotification*)notification;
 
 @property(nonatomic,retain) id<GNTextInputManagerViewDelegate> delegate;
 

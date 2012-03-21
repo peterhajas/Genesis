@@ -26,8 +26,20 @@
     if(self)
     {
         fileRepresentation = representation;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(insertionPointChanged:)
+                                                     name:@"kGNInsertionPointChanged"
+                                                   object:nil];
     }
     return self;
+}
+
+-(void)insertionPointChanged:(NSNotification*)notification
+{
+    NSUInteger insertionIndex = [fileRepresentation insertionIndex];
+    NSUInteger insertionLine = [fileRepresentation insertionLine];
+    
+    NSLog(@"insertion at line: %d index: %d", insertionLine, insertionIndex);
 }
 
 #pragma mark UITextInputTraits methods
