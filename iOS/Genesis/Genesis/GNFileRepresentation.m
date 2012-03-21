@@ -18,6 +18,8 @@
 
 @implementation GNFileRepresentation
 
+@synthesize insertionIndex, insertionLine;
+
 -(id)initWithRelativePath:(NSString*)path
 {
     self = [super init];
@@ -38,8 +40,10 @@
         }
         [self refreshLineArray];
         
-        // Set insertion index to 0
+        // Set insertion index and line to 0
         insertionIndex = 0;
+        insertionLine = 0;
+        [self insertionPointChanged];
     }
     return self;
 }
@@ -84,6 +88,10 @@
     }
     
     insertionIndex += characterIndex;
+    
+    insertionLine = lineIndex;
+    
+    [self insertionPointChanged];
 }
 
 -(BOOL)hasText

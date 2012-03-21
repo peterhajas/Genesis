@@ -22,6 +22,7 @@
     NSMutableArray* fileLines;
     
     NSUInteger insertionIndex;
+    NSUInteger insertionLine;
 }
 
 -(id)initWithRelativePath:(NSString*)path;
@@ -38,5 +39,10 @@
 -(BOOL)hasText;
 -(void)insertText:(NSString*)text;
 -(void)deleteBackwards;
+
+-(void)insertionPointChanged;
+
+@property(readonly) NSUInteger insertionIndex;
+@property(readonly) NSUInteger insertionLine;
 
 @end
