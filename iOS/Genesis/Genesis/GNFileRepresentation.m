@@ -37,6 +37,9 @@
             fileContents = @"";
         }
         [self refreshLineArray];
+        
+        // Set insertion index to 0
+        insertionIndex = 0;
     }
     return self;
 }
@@ -69,6 +72,48 @@
 -(void)moveLineAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
 {
     
+}
+
+-(void)setInsertionToLineAtIndex:(NSUInteger)lineIndex characterIndexInLine:(NSUInteger)characterIndex
+{
+    insertionIndex = 0;
+    
+    for(NSUInteger i = 0; i < [fileLines count]; i++)
+    {
+        insertionIndex += [[fileLines objectAtIndex:i] length];
+    }
+}
+
+-(BOOL)hasText
+{
+    return [fileContents length] > 0;
+}
+
+-(void)insertText:(NSString*)text
+{
+    // Grab the text before and after the insertion point
+    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex];
+    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
+    
+    // Concatenate beforeInsertion + text + afterInsertion
+    
+    fileContents = [beforeInsertion stringByAppendingString:text];
+    fileContents = [fileContents stringByAppendingString:afterInsertion];
+    
+    // Increment the insertion index by the length of text
+    insertionIndex += [text length];
+}
+
+-(void)deleteBackwards
+{
+    // Grab the text before the insertion point minus 1 and the text after insertion
+    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex-1];
+    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
+    
+    // Set the new file contents
+    fileContents = [beforeInsertion stringByAppendingString:afterInsertion];
+    
+    [self refreshLineArray];
 }
 
 @end
