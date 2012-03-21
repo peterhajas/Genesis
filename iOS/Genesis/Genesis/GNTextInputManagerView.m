@@ -14,7 +14,6 @@
  */
 
 #import "GNTextInputManagerView.h"
-#import "GNTextRange.h"
 
 @implementation GNTextInputManagerView
 
