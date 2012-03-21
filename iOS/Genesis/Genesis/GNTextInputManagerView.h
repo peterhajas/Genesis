@@ -20,7 +20,6 @@
 
 -(CGFloat)verticalScrollOffset;
 
-
 @end
 
 @interface GNTextInputManagerView : UIView <UIKeyInput,
