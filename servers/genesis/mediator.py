@@ -1,14 +1,11 @@
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
 from tornado.ioloop import IOLoop
 from tornado import iostream, gen
 
-from genesis.networking import Server, MessageStream
-from genesis.serializers import ProtocolSerializer, NetworkSerializer
-from genesis.data import (ErrorCodes, Account, ResponseMessage, LoginMessage,
-        invocation_message, get_message_class, InvocationMessage, RegisterMessage)
+from genesis.networking import MessageStream
+from genesis.data import (
+    ErrorCodes, Account, ResponseMessage, LoginMessage, invocation_message,
+    get_message_class, InvocationMessage, RegisterMessage
+)
 
 
 class ClientHandler(object):
@@ -262,13 +259,5 @@ class Mediator(object):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print "Usage: %s PORT [HOST]" % sys.argv[0]
-        sys.exit(1)
-    port = int(sys.argv[1])
-    host = sys.argv[2] if len(sys.argv) > 2 else ''
-    mediator = Mediator(ProtocolSerializer(NetworkSerializer()))
-    server = Server(mediator, port=port, host=host)
-    server.start()
-    IOLoop.instance().start()
+    print "Use python genesis/ instead."
 

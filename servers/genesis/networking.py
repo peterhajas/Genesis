@@ -132,10 +132,6 @@ class Server(object):
         sock.setblocking(0)
         sock.bind((self.host, self.port))
         sock.listen(self.backlog)
-        if self.host:
-            print "Listening on %s:%s" % (self.host, self.port)
-        else:
-            print "Listening on port %s" % self.port
         return sock
 
 class MessageStream(object):

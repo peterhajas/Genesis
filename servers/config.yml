@@ -1,7 +1,9 @@
 name: Jeff's MBP
+username: jeff
+password: password
 mediator:
-  host: localhost #genesis.coralset.com #localhost
-  port: 8080 #7331 #8080
+  host: localhost
+  port: 7331
 projects:
   YACS:
     location: ~/Documents/projects/yacs

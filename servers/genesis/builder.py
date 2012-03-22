@@ -6,15 +6,10 @@ import yaml
 
 from genesis.shell import ShellProxy, ProcessQuery
 from genesis.utils import expand, is_windows
+from genesis.config import load_yaml
 
+# TODO: simplify here
 
-def load_yaml(filename):
-    with open(filename, 'r') as handle:
-        return yaml.load(handle.read())
-
-def save_yaml(filename, obj):
-    with open(filename, 'w+') as handle:
-        handle.write(yaml.dump(obj))
 
 class IgnoreList(object):
     def __init__(self, ignored):
@@ -33,14 +28,6 @@ class BuilderConfig(object):
         return expand(string)
 
     @property
-    def mediator(self):
-        mediator = self.config.get('mediator', {})
-        return {
-            'host': mediator.get('host', ''),
-            'port': int(mediator.get('port', 7331)),
-        }
-
-    @property
     def project_names(self):
         return self.config.get('projects', {}).keys()
 
@@ -49,10 +36,6 @@ class BuilderConfig(object):
 
     def get_ignored(self, project):
         return IgnoreList(self._get_project(project).get('ignore', []))
-
-    @property
-    def name(self):
-        return self.config.get('name')
 
     def get_files(self, project):
         ignored = self.get_ignored(project)
@@ -163,18 +146,6 @@ class Builder(object):
         for p in self.projects:
             activities[p.name] = p.activity
         return activities
-
-    @property
-    def name(self):
-        return self.config.name
-
-    @property
-    def host(self):
-        return self.config.mediator['host']
-
-    @property
-    def port(self):
-        return self.config.mediator['port']
 
     def _filepath(self, project, filename):
         location = self.config.get_location(project)

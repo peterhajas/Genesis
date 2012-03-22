@@ -1,22 +1,18 @@
-import time
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from Queue import Queue
 
 from tornado.ioloop import IOLoop
 from tornado import gen
 
 from genesis.utils import with_args, platform
-from genesis.networking import Client, MessageStream
-from genesis.serializers import ProtocolSerializer, NetworkSerializer
-from genesis.data import (Account, LoginMessage, ProjectsMessage, FilesMessage,
-        DownloadMessage, UploadMessage, DownloadMessage, PerformMessage,
-        StreamNotification, StreamEOFNotification, ReturnCodeNotification,
-        ResponseMessage, RequestMessage, RegisterMessage, ClientsMessage,
-        CancelMessage, SendMessage, ErrorCodes
-    )
-from genesis.builder import Builder
+from genesis.networking import MessageStream
+from genesis.data import (
+    LoginMessage, ProjectsMessage, FilesMessage, DownloadMessage,
+    UploadMessage, DownloadMessage, PerformMessage, StreamNotification,
+    StreamEOFNotification, ReturnCodeNotification, ResponseMessage,
+    RequestMessage, RegisterMessage, ClientsMessage, CancelMessage,
+    SendMessage, ErrorCodes
+)
 
 
 # an example set of commands an iOS client would send
@@ -42,6 +38,8 @@ def sample_handler(ios, mediator):
         raise StopIteration
     non_self_builders = [name for name in builders if name != ios.machine]
     builder = non_self_builders[0]
+
+    print "Clients:", response['clients']
 
     print "Using builder", builder
 
@@ -69,12 +67,12 @@ def sample_handler(ios, mediator):
     print "Download file", filepath
 
     # download it
-    response = yield gen.Task(
-            mediator.request, builder, DownloadMessage(project_name, filepath))
-    if response.is_error:
-        print "Failed to download file!"
-        mediator.close()
-        raise StopIteration
+    #response = yield gen.Task(
+    #        mediator.request, builder, DownloadMessage(project_name, filepath))
+    #if response.is_error:
+    #    print "Failed to download file!"
+    #    mediator.close()
+    #    raise StopIteration
 
     # upload changes
     #response = yield gen.Task(
@@ -174,11 +172,11 @@ def request_requires(key, reason, code, mclient_index=0, request_index=1, valida
     return decorator
 
 
-class iOSHandler(MediatorClientDelegateBase):
+class EditorDelegate(MediatorClientDelegateBase):
     "Simulates the protocol that the iOS client would use."
     def __init__(self, account, machine, autoregister=False, delegate=None, io_loop=None):
-        kind = 'editor.genesis.test.%s' % platform
-        super(iOSHandler, self).__init__(account, machine, kind, autoregister, io_loop=io_loop)
+        kind = 'editor.genesis.test.%s' % platform()
+        super(EditorDelegate, self).__init__(account, machine, kind, autoregister, io_loop=io_loop)
         self.delegate = delegate
 
     def handle(self, mclient):
@@ -530,24 +528,5 @@ class MediatorClient(object):
 
 
 if __name__ == '__main__':
-    import random
-    if 'client' in sys.argv:
-        handler = iOSHandler(
-                Account.create('jeff', 'password'),
-                machine='TestClient' + str(random.random()),
-                delegate=sample_handler,#interactive_handler
-            )
-        port, host = int(sys.argv[2]), sys.argv[3] if len(sys.argv) >= 4 else 'localhost'
-        client = Client(port=port, host=host)
-    else:
-        builder = Builder.from_file('./sample_config.yml')
-        handler = BuilderDelegate(Account.create('jeff', 'password'), builder)
-        port, host = builder.port, builder.host
-        client = Client(port=builder.port, host=builder.host)
-    mclient = MediatorClient(client, ProtocolSerializer(NetworkSerializer()), handler)
-    mclient.create()
-    #stream = client.create(send_response)
-    print "Connecting to %s:%d" % (host, port)
-    IOLoop.instance().start()
-
+    print "Please use python genesis instead."
 
