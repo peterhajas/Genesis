@@ -74,13 +74,13 @@ class ShellProxy(object):
         self.bufsize = bufsize if bufsize is not None else 1024
         # TODO: validate executable path
         self.executable = executable or '/bin/bash'
-        self.sources = list(sources or ['$HOME/.bash_profile'])
+        self.sources = list(sources or ['$HOME/.bashrc', '$HOME/.bash_profile'])
 
     def _build_command(self, command):
         # TODO: escape filenames?
         sources = [('source "%s"' % src) for src in self.sources]
         if sources:
-            return '%s && %s' % (' && '.join(sources), command)
+            return '%s && (%s)' % (' || '.join(sources), command)
         return command
 
     def run(self, command, input=None, cwd=None):
