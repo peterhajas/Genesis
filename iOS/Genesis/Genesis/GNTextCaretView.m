@@ -14,8 +14,18 @@
  */
 
 #import "GNTextCaretView.h"
+#import "GNTextGeometry.h"
 
 @implementation GNTextCaretView
+
+-(id)init
+{
+    self = [super initWithFrame:CGRectMake(0,
+                                           0,
+                                           kGNTextCaretViewWidth,
+                                           [GNTextGeometry heightOfCharacter])];
+    return self;
+}
 
 -(void)didMoveToSuperview
 {

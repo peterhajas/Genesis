@@ -15,6 +15,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GNFileRepresentation.h"
+#import "GNTextCaretView.h"
 
 @protocol GNTextInputManagerViewDelegate
 
@@ -27,6 +28,8 @@
 {
     GNFileRepresentation* fileRepresentation;
     NSUInteger textCaretIndex;
+    
+    GNTextCaretView* caretView;
     
     id<GNTextInputManagerViewDelegate> delegate;
 }

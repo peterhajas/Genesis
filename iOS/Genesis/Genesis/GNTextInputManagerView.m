@@ -14,6 +14,7 @@
  */
 
 #import "GNTextInputManagerView.h"
+#import "GNTextGeometry.h"
 
 @implementation GNTextInputManagerView
 
@@ -29,6 +30,8 @@
                                                  selector:@selector(insertionPointChanged:)
                                                      name:@"kGNInsertionPointChanged"
                                                    object:nil];
+        caretView = [[GNTextCaretView alloc] init];
+        [self addSubview:caretView];
     }
     return self;
 }
@@ -37,8 +40,14 @@
 {
     NSUInteger insertionIndex = [fileRepresentation insertionIndex];
     NSUInteger insertionLine = [fileRepresentation insertionLine];
+    NSUInteger insertionIndexInLine = [fileRepresentation insertionIndexInLine];
     
-    NSLog(@"insertion at line: %d index: %d", insertionLine, insertionIndex);
+    CGFloat heightOfCharacter = [GNTextGeometry heightOfCharacter];
+    
+    [caretView setFrame:CGRectMake(insertionIndexInLine * 12.0,
+                                   heightOfCharacter * insertionLine,
+                                   kGNTextCaretViewWidth,
+                                   heightOfCharacter)];
 }
 
 #pragma mark UITextInputTraits methods
