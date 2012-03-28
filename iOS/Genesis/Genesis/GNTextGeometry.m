@@ -17,4 +17,17 @@
 
 @implementation GNTextGeometry
 
++(CGFloat)heightOfCharacter
+{
+    return (CGFloat)DEFAULT_SIZE;
+}
+
++(CTFontRef)defaultFont
+{
+    CTFontRef defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
+                                                 DEFAULT_SIZE,
+                                                 NULL);
+    return defaultFont;
+}
+
 @end

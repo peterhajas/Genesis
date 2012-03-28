@@ -17,4 +17,7 @@
 
 @interface GNTextGeometry : NSObject
 
++(CGFloat)heightOfCharacter;
++(CTFontRef)defaultFont;
+
 @end
