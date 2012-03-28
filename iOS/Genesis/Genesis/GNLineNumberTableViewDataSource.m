@@ -33,7 +33,7 @@
 {
     UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                    reuseIdentifier:kGNLineNumberTableViewCellReuseIdentifier];
-    [[cell textLabel] setText:[NSString stringWithFormat:@"%d",[indexPath row]]];
+    [[cell textLabel] setText:[NSString stringWithFormat:@"%d",[indexPath row] + 1]];
     [[cell textLabel] setFont:[UIFont systemFontOfSize:9]];
     
     return cell;
