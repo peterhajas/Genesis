@@ -18,7 +18,7 @@
 
 @implementation GNFileRepresentation
 
-@synthesize insertionIndex, insertionLine;
+@synthesize insertionIndex, insertionIndexInLine, insertionLine;
 
 -(id)initWithRelativePath:(NSString*)path
 {
@@ -43,6 +43,7 @@
         // Set insertion index and line to 0
         insertionIndex = 0;
         insertionLine = 0;
+        insertionIndexInLine = 0;
         [self insertionPointChanged];
     }
     return self;
@@ -88,9 +89,7 @@
     }
     
     insertionIndex += characterIndex;
-    
-    insertionLine = lineIndex;
-    
+        
     [self insertionPointChanged];
 }
 
@@ -129,6 +128,32 @@
 
 -(void)insertionPointChanged
 {
+    // Recompute insertion line and insertion index in line
+    
+    NSInteger charactersUntilInsertionPoint = insertionIndex;
+    
+    insertionLine = 0;
+    insertionIndexInLine = 0;
+    
+    for(NSString* line in fileLines)
+    {
+        NSInteger difference = charactersUntilInsertionPoint - [line length];
+        
+        if(difference <= 0)
+        {
+            insertionIndexInLine = charactersUntilInsertionPoint;
+            insertionIndexInLine -= (insertionLine != 0);
+                        
+            break;
+        }
+        else
+        {
+            charactersUntilInsertionPoint-=[line length];
+        }
+        
+        insertionLine += 1;
+    }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointChanged"
                                                         object:self];
 }

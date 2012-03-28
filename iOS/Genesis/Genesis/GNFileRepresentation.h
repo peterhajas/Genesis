@@ -22,6 +22,7 @@
     NSMutableArray* fileLines;
     
     NSUInteger insertionIndex;
+    NSUInteger insertionIndexInLine;
     NSUInteger insertionLine;
 }
 
@@ -43,6 +44,7 @@
 -(void)insertionPointChanged;
 
 @property(readonly) NSUInteger insertionIndex;
+@property(readonly) NSUInteger insertionIndexInLine;
 @property(readonly) NSUInteger insertionLine;
 
 @end
