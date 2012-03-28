@@ -48,6 +48,8 @@
                                    heightOfCharacter * insertionLine,
                                    kGNTextCaretViewWidth,
                                    heightOfCharacter)];
+    
+    [self becomeFirstResponder];
 }
 
 #pragma mark UITextInputTraits methods
@@ -102,6 +104,13 @@
 -(void)deleteBackward
 {
     [fileRepresentation deleteBackwards];
+}
+
+#pragma mark UIResponder methods
+
+-(BOOL)canBecomeFirstResponder
+{
+    return YES;
 }
 
 @end

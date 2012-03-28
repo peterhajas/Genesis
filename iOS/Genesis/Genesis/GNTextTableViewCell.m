@@ -81,6 +81,8 @@ static CTFontRef defaultFont = nil;
     
     [fileRepresentation setInsertionToLineAtIndex:lineNumber
                              characterIndexInLine:indexIntoString];
+    
+    [self resignFirstResponder];
 }
 
 #pragma mark GNSyntaxHighlighterDelegate methods
