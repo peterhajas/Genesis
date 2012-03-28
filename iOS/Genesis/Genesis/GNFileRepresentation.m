@@ -38,7 +38,7 @@
         {
             fileContents = @"";
         }
-        [self refreshLineArray];
+        [self textChanged];
         
         // Set insertion index and line to 0
         insertionIndex = 0;
@@ -112,18 +112,32 @@
     // Increment the insertion index by the length of text
     insertionIndex += [text length];
     [self insertionPointChanged];
+    
+    [self textChanged];
 }
 
 -(void)deleteBackwards
 {
     // Grab the text before the insertion point minus 1 and the text after insertion
-    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex-1];
+    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex - 1];
     NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
+    
+    insertionIndex--;
+    
+    [self insertionPointChanged];
     
     // Set the new file contents
     fileContents = [beforeInsertion stringByAppendingString:afterInsertion];
     
+    [self textChanged];
+}
+
+-(void)textChanged
+{
     [self refreshLineArray];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
+                                                        object:self];
 }
 
 -(void)insertionPointChanged

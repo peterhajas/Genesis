@@ -24,6 +24,12 @@
     {
         // Set the separator style
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        // Subscribe to notifications about text changing
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reloadData) 
+                                                     name:@"kGNTextChanged"
+                                                   object:nil];
     }
     return self;
 }

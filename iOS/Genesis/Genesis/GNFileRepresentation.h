@@ -41,6 +41,7 @@
 -(void)insertText:(NSString*)text;
 -(void)deleteBackwards;
 
+-(void)textChanged;
 -(void)insertionPointChanged;
 
 @property(readonly) NSUInteger insertionIndex;
