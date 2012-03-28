@@ -14,6 +14,7 @@
  */
 
 #import "GNSyntaxHighlighter.h"
+#import "GNTextGeometry.h"
 
 @implementation GNSyntaxHighlighter
 
@@ -151,6 +152,10 @@
             NSMutableAttributedString* highlightedElement = [[NSMutableAttributedString alloc] initWithString:code];
             [highlightedElement addAttribute:(NSString*)kCTForegroundColorAttributeName
                                        value:(id)[color CGColor]
+                                       range:[code rangeOfString:code]];
+            
+            [highlightedElement addAttribute:(NSString*)kCTFontAttributeName
+                                       value:(id)[GNTextGeometry defaultFont]
                                        range:[code rangeOfString:code]];
             
             [attributedString appendAttributedString:highlightedElement];
