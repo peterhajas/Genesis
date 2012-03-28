@@ -42,6 +42,4 @@
 -(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame;
 -(void)keyboardWillChange:(id)object;
 
-@property(nonatomic,retain) NSString* text;
-
 @end
