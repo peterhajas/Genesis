@@ -15,6 +15,7 @@
 
 #import "GNTextInputManagerView.h"
 #import "GNTextGeometry.h"
+#import "GNLineNumberTableView.h"
 
 @implementation GNTextInputManagerView
 
@@ -38,16 +39,21 @@
 
 -(void)insertionPointChanged:(NSNotification*)notification
 {
-    NSUInteger insertionIndex = [fileRepresentation insertionIndex];
     NSUInteger insertionLine = [fileRepresentation insertionLine];
-    NSUInteger insertionIndexInLine = [fileRepresentation insertionIndexInLine];
     
     CGFloat heightOfCharacter = [GNTextGeometry heightOfCharacter];
     
-    [caretView setFrame:CGRectMake(insertionIndexInLine * 12.0,
+    NSString* lineToInsertionIndex = [fileRepresentation lineToInsertionPoint];
+    CGSize sizeOfLineToInsertionIndex = [lineToInsertionIndex sizeWithFont:[GNTextGeometry defaultUIFont]];    
+    
+    NSLog(@"caret view origin before: %f, %f", caretView.frame.origin.x, caretView.frame.origin.y);
+    
+    [caretView setFrame:CGRectMake(sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth,
                                    heightOfCharacter * insertionLine,
                                    kGNTextCaretViewWidth,
                                    heightOfCharacter)];
+    
+    NSLog(@"caret view origin after: %f, %f", caretView.frame.origin.x, caretView.frame.origin.y);
     
     [self becomeFirstResponder];
 }
