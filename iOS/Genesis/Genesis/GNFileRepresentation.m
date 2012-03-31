@@ -132,6 +132,12 @@
     [self textChanged];
 }
 
+-(NSString*)lineToInsertionPoint
+{
+    NSString* currentLine = [fileLines objectAtIndex:insertionLine];
+    return [currentLine substringToIndex:insertionIndexInLine];
+}
+
 -(void)textChanged
 {
     [self refreshLineArray];

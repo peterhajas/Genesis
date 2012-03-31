@@ -41,6 +41,8 @@
 -(void)insertText:(NSString*)text;
 -(void)deleteBackwards;
 
+-(NSString*)lineToInsertionPoint;
+
 -(void)textChanged;
 -(void)insertionPointChanged;
 
