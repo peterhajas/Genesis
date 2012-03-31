@@ -30,4 +30,10 @@
     return defaultFont;
 }
 
++(UIFont*)defaultUIFont
+{
+    return [UIFont fontWithName:DEFAULT_FONT_FAMILY
+                           size:DEFAULT_SIZE];
+}
+
 @end

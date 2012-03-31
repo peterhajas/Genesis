@@ -19,5 +19,6 @@
 
 +(CGFloat)heightOfCharacter;
 +(CTFontRef)defaultFont;
++(UIFont*)defaultUIFont;
 
 @end
