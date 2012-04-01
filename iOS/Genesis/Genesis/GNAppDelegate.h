@@ -15,13 +15,9 @@
 
 #import <UIKit/UIKit.h>
 
-// networking
-#import "GNAPIClient.h"
-
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController* navigationController;
-    GNAPIClient *client;
 }
 @property (strong, nonatomic) UIWindow *window;
 
