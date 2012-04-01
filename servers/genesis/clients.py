@@ -104,7 +104,7 @@ def sample_handler(ios, mediator):
     def on_return(message):
         print '%s return Code: %d' % (message['project'], message['code'])
 
-    response = yield gen.Task(ios.read_stream, mclient, on_stream, on_eof, on_return)
+    response = yield gen.Task(ios.read_stream, mediator, on_stream, on_eof, on_return)
 
     # TODO: git push
 

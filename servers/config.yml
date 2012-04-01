@@ -15,7 +15,7 @@ projects:
     source:
       - $HOME/.bash_profile
     actions:
-      test: workon timetable && fab test
+      test: workon yacs && make test
 
   Describe:
     location: ~/Documents/projects/describe
