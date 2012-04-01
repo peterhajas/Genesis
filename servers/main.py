@@ -121,7 +121,7 @@ def get_args(progn, args):
 
     # mediator
     subcommands = parser.add_subparsers(title='type', dest='type',
-        description="How this program should behavior in the Genesis network system.")
+        description="How this program should behave in the Genesis network system.")
     mediator = subcommands.add_parser('mediator', help="Runs as a mediator server. The mediator facilitates communication between the Builder and the Editor.")
     mediator.add_argument('ADDRESS', default=None,
         help="The address to listen (Mediator) or connect to (Builder). In the format of ADDRESS:PORT, where either one can be optional. Overrides value from config for builder and editor.")
