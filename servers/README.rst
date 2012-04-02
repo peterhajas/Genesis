@@ -96,7 +96,10 @@ All these commands return responses.
 
 * project() - Lists all available projects on the system.
 
-* files(project) - Lists all files & metadata for the project
+* files(project, branch='') - Lists all files & metadata for the project.
+  Can optionally specify which branch, which will checkout the given branch.
+
+* branches(project) - Lists all branches available for the project.
 
 * download(project, filepath) - Downloads the given file. All data downloaded is
   assumed to be plain/text.

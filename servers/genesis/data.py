@@ -188,6 +188,10 @@ class ProjectsMessage(InvocationMessage):
 
 class FilesMessage(InvocationMessage):
     name = 'files'
+    MAPPING = ('project', 'branch',)
+
+class BranchesMessage(InvocationMessage):
+    name = 'branches'
     MAPPING = ('project',)
 
 class DownloadMessage(InvocationMessage):
@@ -342,11 +346,12 @@ class Message(object):
     def to_network(self):
         return [self.name, self.kwargs]
 
+# all the messages the parser can base
 messages = [
     RegisterMessage, LoginMessage, ProjectsMessage, FilesMessage,
     DownloadMessage, UploadMessage, PerformMessage, SendMessage,
     RequestMessage, StreamNotification, StreamEOFNotification,
-    ReturnCodeNotification, ClientsMessage,
+    BranchesMessage, ReturnCodeNotification, ClientsMessage,
 ]
 
 def get_message_class(dictionary):

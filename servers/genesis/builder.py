@@ -7,6 +7,7 @@ import yaml
 from genesis.shell import ShellProxy, ProcessQuery
 from genesis.utils import expand, is_windows
 from genesis.config import load_yaml
+from genesis.scm import get_scm
 
 # TODO: simplify here
 
@@ -78,13 +79,21 @@ class BuilderConfig(object):
 
 
 class Project(object):
-    def __init__(self, name, config, shell=None):
+    def __init__(self, name, config, scm=None, shell=None):
         self.name = name
         self.config = config
+        self.scm = scm
         self._shell = shell
         self._query = None # last ProcessQuery instance
         self._last_action = None
-        self.scm =
+
+    @property
+    def branches(self):
+        return self.scm.branches()
+
+    @property
+    def head(self):
+        return self.scm.current_branch()
 
     @property
     def activity(self):
@@ -127,6 +136,9 @@ class Project(object):
         self._query = ProcessQuery(self.shell.run(actions[name], cwd=cwd))
         return self._query
 
+    def checkout(self, branch):
+        assert not self.is_busy, "Cannot perform checkout, busy running %r" % self._last_action
+        self.scm.checkout(branch)
 
 
 class Builder(object):
@@ -134,7 +146,10 @@ class Builder(object):
         self.config = config
         self.projects = {}
         for name in self.config.project_names:
-            self.projects[name] = Project(name, self.config)
+            self.projects[name] = Project(
+                name,
+                self.config,
+                get_scm(self.config.get_location(name)))
 
     @classmethod
     def from_file(cls, filename):
@@ -160,8 +175,19 @@ class Builder(object):
         )
         return filepath
 
-    def get_files(self, project):
+    def get_files(self, project, branch=None):
+        if self.checkout(project, branch or ''):
+            return None
         return self.config.get_files(project)
+
+    def checkout(self, project, branch=''):
+        return branch and self.projects[project].checkout(branch or '')
+
+    def get_branches(self, project):
+        return self.projects[project].branches
+
+    def get_current_branch(self, project):
+        return self.projects[project].head
 
     def has_file(self, project, filename):
         ignored = self.config.get_ignored(project)

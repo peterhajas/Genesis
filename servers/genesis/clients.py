@@ -11,7 +11,7 @@ from genesis.data import (
     UploadMessage, DownloadMessage, PerformMessage, StreamNotification,
     StreamEOFNotification, ReturnCodeNotification, ResponseMessage,
     RequestMessage, RegisterMessage, ClientsMessage, CancelMessage,
-    SendMessage, ErrorCodes
+    BranchesMessage, SendMessage, ErrorCodes
 )
 
 
@@ -53,6 +53,17 @@ def sample_handler(ios, mediator):
     # just use the first project
     project_name = response['projects'][0]
     print "Using project", project_name
+
+
+    response = yield gen.Task(
+            mediator.request, builder, BranchesMessage(project=project_name))
+
+    if not response['branches'] or len(response['branches']) < 1:
+        print "No branches :("
+        mediator.close()
+        raise StopIteration
+    print 'branches =', response['branches']
+    print 'current =', response['head']
 
     # get files for that project
     response = yield gen.Task(
@@ -315,9 +326,34 @@ class BuilderDelegate(MediatorClientDelegateBase):
         if self._invalid_project(mclient, request):
             raise StopIteration
 
+        files = self.builder.get_files(
+            request['project'],
+            request['branch']
+        )
+
+        # files is None when switching branches fails.
+        # TODO: perhaps we should stash & apply instead?
+        if files is None:
+            yield gen.Task(mclient.write_response, ResponseMessage.error(
+                request.id,
+                reason="Failed to checkout files",
+                code=ErrorCodes.INTERNAL_ERROR,
+            ))
+        else:
+            yield gen.Task(mclient.write_response, ResponseMessage.success(
+                request.id,
+                files=files
+            ))
+
+    @gen.engine
+    def do_branches(self, mclient, request):
+        if self._invalid_project(mclient, request):
+            raise StopIteration
+
         yield gen.Task(mclient.write_response, ResponseMessage.success(
             request.id,
-            files=self.builder.get_files(request['project']),
+            branches=self.builder.get_branches(request['project']),
+            head=self.builder.get_current_branch(request['project']),
         ))
 
     @gen.engine
