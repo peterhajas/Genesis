@@ -207,8 +207,31 @@
                  forProject:(NSString *)project
                withCallback:(GNClientCallback)callback
 {
-    NSArray *params = [NSArray arrayWithObjects:project, sender, nil];
+    [self getFilesFromBuilder:builder
+                   forProject:project
+                     onBranch:nil
+                 withCallback:callback];
+}
+
+- (void)getFilesFromBuilder:(NSString *)builder
+                 forProject:(NSString *)project
+                   onBranch:(NSString *)branch
+               withCallback:(GNClientCallback)callback
+{
+    NSArray *params = [NSArray arrayWithObjects:project, branch || @"", sender, nil];
     GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_FILES andParameters:params];
+    GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
+    [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
+        [self invokeCallback:callback withMessage:msg];
+    }];
+}
+
+- (void)getBranchesFromBuilder:(NSString *)builder
+                    forProject:(NSString *)project
+                  withCallback:(GNClientCallback)callback
+{
+    NSArray *params = [NSArray arrayWithObjects:project, sender, nil];
+    GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_BRANCHES andParameters:params];
     GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
     [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {
         [self invokeCallback:callback withMessage:msg];
