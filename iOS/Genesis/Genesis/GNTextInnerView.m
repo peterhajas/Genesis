@@ -26,6 +26,7 @@ static CTFontRef defaultFont = nil;
 
 -(void)buildUpView
 {
+    
     shownText = [[NSString alloc] initWithString:@""];
 
     attributedString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
@@ -39,16 +40,21 @@ static CTFontRef defaultFont = nil;
     
     // Create our caret view
     caretView = [[GNTextCaretView alloc] initWithFrame:CGRectMake(0, 0, kGNTextCaretViewWidth, DEFAULT_SIZE)];
+    [caretView setHidden:YES];
     [self addSubview:caretView];
     
     // Our caret index
     textCaretIndex = 0;
     
     // Gesture recognizer for moving the cursor
-    tapGestureReognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
+    tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
                                                                   action:@selector(tapInView:)];
-    [self addGestureRecognizer:tapGestureReognizer];
+    [self addGestureRecognizer:tapGestureRecognizer];
     
+    // Gesture recognizer for UIMenu
+    longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressInView:)];
+    
+    [self addGestureRecognizer:longPressGestureRecognizer];
     // Create the syntax highlighter
     syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
     [self addSubview:syntaxHighlighter];
@@ -317,7 +323,6 @@ static CTFontRef defaultFont = nil;
     }
     
     CFRetain(closestLineVerticallyToPoint);
-    
     return closestLineVerticallyToPoint;
 }
 
@@ -491,11 +496,28 @@ static CTFontRef defaultFont = nil;
 }
 
 #pragma mark User Interaction
+-(BOOL)becomeFirstResponder {
+    
+    BOOL becomeFirstResponder = [super becomeFirstResponder];
+    if (becomeFirstResponder) {
+        [caretView setHidden:NO];
+    }
+    
+    return becomeFirstResponder;
+    
+}
+-(BOOL)resignFirstResponder {
+    BOOL resignFirstResponder = [super resignFirstResponder];
+    if (resignFirstResponder)
+        [caretView setHidden:YES];
+    return resignFirstResponder;
+    
+    
+}
 -(BOOL)canBecomeFirstResponder
 {
     return YES;
 }
-
 -(void)tapInView:(id)sender
 {
     CGPoint tapLocation = [sender locationInView:self];
@@ -505,6 +527,20 @@ static CTFontRef defaultFont = nil;
     [self becomeFirstResponder];
 }
 
+-(void)longPressInView:(id)sender {
+    CGPoint location = [sender locationInView:self];
+    GNTextPosition* closestPosition = (GNTextPosition*)[self closestPositionToPoint:location];
+    [self moveCaretToIndex:[closestPosition position]];
+ 
+}
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    if (action == @selector(paste:)) {
+        UIPasteboard* pb = [UIPasteboard generalPasteboard];
+        if ([pb.string length] > 0)
+            return YES;
+    }
+     return NO;
+}
 #pragma mark View drawing and sizing
 
 -(void)moveCaretToIndex:(NSUInteger)index
@@ -513,6 +549,11 @@ static CTFontRef defaultFont = nil;
     
     CGRect characterRect = [self rectForCharacterAtIndex:index];
     [caretView setFrame:characterRect];
+    // automatically scrolls to caret
+    UIScrollView *superview = (UIScrollView *)[self superview];
+    [superview scrollRectToVisible:[self rectForCharacterAtIndex:textCaretIndex] animated:YES];
+
+
 }
 
 -(void)redrawText
@@ -573,7 +614,7 @@ static CTFontRef defaultFont = nil;
     CGContextRestoreGState(context);
     
     [self moveCaretToIndex:textCaretIndex];
-    
+
     CFRelease(path);
 }
 
@@ -629,21 +670,51 @@ static CTFontRef defaultFont = nil;
     if(runForCaret == NULL || index >= [shownText length])
     {
         char lastCharacter = (char)[shownText characterAtIndex:[shownText length]-1];
+        CTRunRef runForEarlierIndex = [self runForLine:lineAtCaret andCharacterAtIndex:index-1];
+        
+        CFRange caretRunStringRange = CTRunGetStringRange(runForEarlierIndex);
+        
+        NSUInteger indexOfGlyph = index - 1 - caretRunStringRange.location;
+        
+        glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph
+                                                      inRun:runForEarlierIndex
+                                                 withinLine:lineAtCaret];
+        
+        // If the last character is a tab:
+        if(lastCharacter == '\t')
+        {
+            glyphOffset += 3 * [self widthOfCharacterInDefaultFont];
+        }
+        
+        // If the last character is a regular character (nice!):
+        else
+        {
+            glyphOffset += [self widthOfCharacterInDefaultFont];
+        }
         
         // If the last character is a newline:
         if(lastCharacter == '\n' || lastCharacter == '\r')
-        {            
+        {           
             CGFloat yCoordinate = [self frame].size.height - lineOrigin.y;
-            
+
             /* If the *second to last character* is also a newline, we need to offset again by
                the height of a line, because -originForLine has trouble with newline-only lines */
-            
+
             if([shownText length] > 2)
             {
                 char secondToLastCharacter = (char)[shownText characterAtIndex:[shownText length]-2];
                 if(secondToLastCharacter == '\n' || secondToLastCharacter == '\r')
-                {
+                {            
+
                     yCoordinate += DEFAULT_SIZE;
+                }
+                else {
+                    
+                    yCoordinate -= DEFAULT_SIZE;
+                    return CGRectMake(glyphOffset,
+                                      yCoordinate,
+                                      kGNTextCaretViewWidth,
+                                      fontSizeForText);
                 }
             }
             return CGRectMake(0,
@@ -653,29 +724,7 @@ static CTFontRef defaultFont = nil;
         }
         else
         {
-            // Grab the run for the character before this one!
-            
-            CTRunRef runForEarlierIndex = [self runForLine:lineAtCaret andCharacterAtIndex:index-1];
-            
-            CFRange caretRunStringRange = CTRunGetStringRange(runForEarlierIndex);
-            
-            NSUInteger indexOfGlyph = index - 1 - caretRunStringRange.location;
-            
-            glyphOffset = [self absoluteXPositionOfGlyphAtIndex:indexOfGlyph
-                                                          inRun:runForEarlierIndex
-                                                     withinLine:lineAtCaret];
-            
-            // If the last character is a tab:
-            if(lastCharacter == '\t')
-            {
-                glyphOffset += 3 * [self widthOfCharacterInDefaultFont];
-            }
-            
-            // If the last character is a regular character (nice!):
-            else
-            {
-                glyphOffset += [self widthOfCharacterInDefaultFont];
-            }
+
             
             return CGRectMake(glyphOffset,
                               [self frame].size.height - lineOrigin.y - fontSizeForText,
@@ -717,12 +766,15 @@ static CTFontRef defaultFont = nil;
     
     // If the index is the same as shownText, then they're at the last line in the file
     // Return the last line in the lines CFArray
-    
-    if(index == [shownText length])
+    char lastChar = (char)[shownText characterAtIndex:[shownText length] - 1];
+
+    if((index == [shownText length]) || (index == [shownText length]-1 && (lastChar == '\n' || lastChar == '\r')))
     {
         return CFArrayGetValueAtIndex(lines, CFArrayGetCount(lines)-1);
     }
-    
+
+  
+
     // Loop through the lines in our frame
     for(NSUInteger i = 0; i < CFArrayGetCount(lines); i++)
     {
@@ -919,17 +971,23 @@ static CTFontRef defaultFont = nil;
      */
     
     CGSize sizeForText = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX,CGFLOAT_MAX), NULL);
-    
-    CGSize superviewSize = [[self superview] frame].size;
+    CGSize superviewSize = [[self superview] bounds].size;
+    // Adjust size based off of insets
+    if ([[self superview]isKindOfClass:[UIScrollView class]]) 
+    {
+        UIScrollView *superview = (UIScrollView *)[self superview];
+        superviewSize.width -= superview.contentInset.left + superview.contentInset.right;
+        superviewSize.height -= superview.contentInset.top + superview.contentInset.bottom;
+    }
     
     CGSize newViewSize;
-    
     newViewSize.width = MAX(sizeForText.width, superviewSize.width);
     newViewSize.height = MAX(sizeForText.height, superviewSize.height);
     
     [self setFrame:CGRectMake(0, 0, newViewSize.width, newViewSize.height)];
     
     [containerDelegate requireSize:newViewSize];
+
 }
 
 #pragma mark GNSyntaxHighlighterDelegate mathods
@@ -948,4 +1006,10 @@ static CTFontRef defaultFont = nil;
     [self textChangedWithHighlight:YES];
 }
 
+#pragma mark UIMenuItems
+-(void)paste:(id)sender {
+    
+    
+    
+}
 @end

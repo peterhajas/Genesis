@@ -15,12 +15,16 @@
 
 #import "GNTextView.h"
 
+#define TEXT_INSET 5
+
 @implementation GNTextView
 
 @synthesize dataDelegate;
 
 -(void)awakeFromNib
 {
+    // Inset the text
+    [self setContentInset:UIEdgeInsetsMake(TEXT_INSET, TEXT_INSET, TEXT_INSET, TEXT_INSET)];
     innerView = [[GNTextInnerView alloc] init];
     [innerView setContainerDelegate:self];
     
