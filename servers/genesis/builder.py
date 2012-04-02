@@ -19,6 +19,7 @@ class IgnoreList(object):
         matches = fnmatch.fnmatch if is_windows() else fnmatch.fnmatchcase
         return any(matches(filepath, i) for i in self.ignored)
 
+
 class BuilderConfig(object):
     def __init__(self, config, filepath=None):
         self.config = config # TODO: verify object format
@@ -75,6 +76,7 @@ class BuilderConfig(object):
     def to_dict(self):
         return self.config
 
+
 class Project(object):
     def __init__(self, name, config, shell=None):
         self.name = name
@@ -82,6 +84,7 @@ class Project(object):
         self._shell = shell
         self._query = None # last ProcessQuery instance
         self._last_action = None
+        self.scm =
 
     @property
     def activity(self):
@@ -123,6 +126,7 @@ class Project(object):
         cwd = self.config.get_location(self.name)
         self._query = ProcessQuery(self.shell.run(actions[name], cwd=cwd))
         return self._query
+
 
 
 class Builder(object):
