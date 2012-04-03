@@ -1,8 +1,22 @@
 name: Jeff's MBP
+username: jeff
+password: password
 mediator:
   host: localhost
-  port: 8080
+  port: 7331
 projects:
+  YACS:
+    location: ~/Documents/projects/yacs
+    ignore:
+      - "*.pyc"
+      - "*/.DS_Store"
+      - "*/.git/*"
+    shell: /bin/bash
+    source:
+      - $HOME/.bash_profile
+    actions:
+      test: workon yacs && make test
+
   Describe:
     location: ~/Documents/projects/describe
     ignore:

@@ -37,6 +37,7 @@ extern NSString * const GN_CLIENTS;
 // method names for builder
 extern NSString * const GN_PROJECTS;
 extern NSString * const GN_FILES;
+extern NSString * const GN_BRANCHES;
 extern NSString * const GN_DOWNLOAD;
 extern NSString * const GN_UPLOAD;
 extern NSString * const GN_PERFORM;
