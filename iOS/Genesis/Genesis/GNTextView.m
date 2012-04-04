@@ -73,7 +73,8 @@
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
-
+    
+    [textTableView reloadData];
 }
 
 #pragma mark Keyboard Notification Handling
