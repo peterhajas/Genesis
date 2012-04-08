@@ -28,6 +28,8 @@
     
     GNSyntaxHighlighter* syntaxHighlighter;
     
+    UITapGestureRecognizer* tapGestureRecognizer;
+    
     CTLineRef line;
     NSUInteger lineNumber;
     

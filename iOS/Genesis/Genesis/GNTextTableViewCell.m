@@ -47,6 +47,11 @@ static CTFontRef defaultFont = nil;
                                            NULL);
         
         lineNumber = index;
+        
+        // Create our tap gesture recognizer
+        tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                       action:@selector(handleTap:)];
+        [self addGestureRecognizer:tapGestureRecognizer];
     }
     
     return self;
@@ -72,21 +77,23 @@ static CTFontRef defaultFont = nil;
     CTLineDraw(line, staleContext);
 }
 
--(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+-(void)handleTap:(UITapGestureRecognizer*)sender
 {
-    UITouch* touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInView:self];
-    CFIndex indexIntoString = CTLineGetStringIndexForPosition(line, touchLocation);
-    
-    if(indexIntoString == kCFNotFound)
+    if([sender state] == UIGestureRecognizerStateEnded)
     {
-        indexIntoString = 0;
+        CGPoint touchLocation = [sender locationInView:self];
+        CFIndex indexIntoString = CTLineGetStringIndexForPosition(line, touchLocation);
+        
+        if(indexIntoString == kCFNotFound)
+        {
+            indexIntoString = 0;
+        }
+        
+        [fileRepresentation setInsertionToLineAtIndex:lineNumber
+                                 characterIndexInLine:indexIntoString];
+        
+        [self resignFirstResponder];
     }
-    
-    [fileRepresentation setInsertionToLineAtIndex:lineNumber
-                             characterIndexInLine:indexIntoString];
-    
-    [self resignFirstResponder];
 }
 
 #pragma mark GNSyntaxHighlighterDelegate methods
