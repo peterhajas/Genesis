@@ -172,8 +172,7 @@
             if(difference <= 0)
             {
                 insertionIndexInLine = charactersUntilInsertionPoint;
-                insertionIndexInLine -= (insertionLine != 0);
-                            
+                
                 break;
             }
             else
