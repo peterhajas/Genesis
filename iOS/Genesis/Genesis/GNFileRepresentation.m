@@ -104,8 +104,8 @@
 -(void)insertText:(NSString*)text
 {
     // Grab the text before and after the insertion point
-    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex];
-    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
+    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex + insertionLine];
+    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex + insertionLine];
     
     // Concatenate beforeInsertion + text + afterInsertion
     
