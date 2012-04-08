@@ -38,6 +38,11 @@
     [textViewContainerView addSubview:textView];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [textView cleanUp];
+}
+
 #pragma mark Orientation changes
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

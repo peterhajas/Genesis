@@ -18,4 +18,6 @@
 
 @interface GNTextTableView : UITableView
 
+-(void)cleanUp;
+
 @end

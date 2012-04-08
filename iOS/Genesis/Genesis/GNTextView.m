@@ -137,4 +137,9 @@
                                                   verticalContentOffset)];
 }
 
+-(void)cleanUp
+{
+    [textTableView cleanUp];
+}
+
 @end

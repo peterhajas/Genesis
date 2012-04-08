@@ -41,5 +41,6 @@
 
 -(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame;
 -(void)keyboardWillChange:(id)object;
+-(void)cleanUp;
 
 @end

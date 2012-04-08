@@ -34,4 +34,9 @@
     return self;
 }
 
+-(void)cleanUp
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end
