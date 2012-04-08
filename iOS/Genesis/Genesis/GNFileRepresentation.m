@@ -129,6 +129,12 @@
 
 -(void)deleteBackwards
 {
+    if(insertionIndex == 0)
+    {
+        // Don't do anything. We can't move back.
+        return;
+    }
+    
     // Grab the text before the insertion point minus 1 and the text after insertion
     NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex - 1];
     NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
