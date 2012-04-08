@@ -116,7 +116,8 @@
     }
     else
     {
-        fileContents = [fileContents stringByAppendingString:text];
+        [fileLines replaceObjectAtIndex:insertionLine
+                             withObject:[[fileLines objectAtIndex:insertionLine] stringByAppendingString:text]];
     }
     
     // Increment the insertion index by the length of text
