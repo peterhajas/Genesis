@@ -15,10 +15,6 @@
 
 #import "GNTextTableViewCell.h"
 
-#define DEFAULT_FONT_FAMILY @"Courier"
-
-static CTFontRef defaultFont = nil;
-
 @implementation GNTextTableViewCell
 
 @synthesize fileRepresentation;
@@ -28,23 +24,9 @@ static CTFontRef defaultFont = nil;
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
     {
-        representedLineText = lineText;
-        
-        // Set our line ivar to nil
-        line = nil;
-        
-        // Attributed string with representedLine's text
-        attributedLine = [[NSAttributedString alloc] initWithString:representedLineText];
-        
-        syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
-        [self addSubview:syntaxHighlighter];
-        
-        [syntaxHighlighter highlightText:representedLineText];
-                
-        // Create the default font (later should be done in preferences)
-        defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
-                                           DEFAULT_SIZE,
-                                           NULL);
+        textLineView = [[GNTextLineView alloc] initWithLine:lineText
+                                                   andFrame:[self frame]];
+        [self addSubview:textLineView];
         
         lineNumber = index;
         
@@ -57,51 +39,18 @@ static CTFontRef defaultFont = nil;
     return self;
 }
 
--(void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    staleContext = UIGraphicsGetCurrentContext();
-    
-    CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedLine;
-    if(line != nil)
-    {
-        CFRelease(line);
-    }
-    line = CTLineCreateWithAttributedString(attributedString);
-    
-    // Account for Cocoa coordinate system
-    CGContextScaleCTM(staleContext, 1, -1);
-    CGContextTranslateCTM(staleContext, 0, -[self frame].size.height);
-    
-    CGContextSetTextPosition(staleContext, 5.0, 5.0);
-    CTLineDraw(line, staleContext);
-}
-
 -(void)handleTap:(UITapGestureRecognizer*)sender
 {
     if([sender state] == UIGestureRecognizerStateEnded)
     {
         CGPoint touchLocation = [sender locationInView:self];
-        CFIndex indexIntoString = CTLineGetStringIndexForPosition(line, touchLocation);
-        
-        if(indexIntoString == kCFNotFound)
-        {
-            indexIntoString = 0;
-        }
-        
+        CFIndex indexIntoString = [textLineView indexForTappedPoint:touchLocation];
+                
         [fileRepresentation setInsertionToLineAtIndex:lineNumber
                                  characterIndexInLine:indexIntoString];
         
         [self resignFirstResponder];
     }
-}
-
-#pragma mark GNSyntaxHighlighterDelegate methods
-
--(void)didHighlightText:(NSAttributedString *)highlightedText
-{
-    attributedLine = highlightedText;
-    [self setNeedsDisplay];
 }
 
 @end

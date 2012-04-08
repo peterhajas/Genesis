@@ -13,24 +13,22 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define kGNTextTableViewCellReuseIdentifier @"kGNTextTableViewCellReuseIdentifier"
-
 #import <UIKit/UIKit.h>
-#import "GNFileRepresentation.h"
-#import "GNTextLineView.h"
+#import "GNSyntaxHighlighter.h"
 
-@interface GNTextTableViewCell : UITableViewCell
+@interface GNTextLineView : UIView <GNSyntaxHighlighterDelegate>
 {
-    GNTextLineView* textLineView;    
-    GNFileRepresentation* fileRepresentation;
+    NSString* representedLineText;
+    NSAttributedString* attributedLine;
     
-    UITapGestureRecognizer* tapGestureRecognizer;
+    GNSyntaxHighlighter* syntaxHighlighter;
     
-    NSUInteger lineNumber;
+    CTLineRef line;
+    CGContextRef staleContext;
 }
 
--(id)initWithLine:(NSString*)lineText atIndex:(NSUInteger)index;
 
-@property (nonatomic, retain) GNFileRepresentation* fileRepresentation;
+-(id)initWithLine:(NSString*)lineText andFrame:(CGRect)frame;
+-(CFIndex)indexForTappedPoint:(CGPoint)point;
 
 @end
