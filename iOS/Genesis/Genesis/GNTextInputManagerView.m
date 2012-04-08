@@ -117,4 +117,12 @@
     return YES;
 }
 
+#pragma mark Lifecycle cleanup methods
+
+-(void)cleanUp
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 @end

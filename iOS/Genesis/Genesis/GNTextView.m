@@ -140,6 +140,7 @@
 -(void)cleanUp
 {
     [textTableView cleanUp];
+    [textInputManagerView cleanUp];
 }
 
 @end
