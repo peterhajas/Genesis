@@ -25,6 +25,9 @@
         // Set the separator style
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         
+        // We don't allow selection
+        [self setAllowsSelection:NO];
+        
         // Subscribe to notifications about text changing
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reloadData) 
