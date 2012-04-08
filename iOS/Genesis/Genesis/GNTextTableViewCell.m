@@ -78,6 +78,11 @@ static CTFontRef defaultFont = nil;
     CGPoint touchLocation = [touch locationInView:self];
     CFIndex indexIntoString = CTLineGetStringIndexForPosition(line, touchLocation);
     
+    if(indexIntoString == kCFNotFound)
+    {
+        indexIntoString = 0;
+    }
+    
     [fileRepresentation setInsertionToLineAtIndex:lineNumber
                              characterIndexInLine:indexIntoString];
     
