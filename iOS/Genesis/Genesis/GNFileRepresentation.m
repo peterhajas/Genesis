@@ -103,28 +103,20 @@
 
 -(void)insertText:(NSString*)text
 {
-    if(insertionIndexInLine < [[fileLines objectAtIndex:insertionLine] length])
-    {
-        // Grab the text before and after the insertion point
-        NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex];
-        NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
-        
-        // Concatenate beforeInsertion + text + afterInsertion
-        
-        fileContents = [beforeInsertion stringByAppendingString:text];
-        fileContents = [fileContents stringByAppendingString:afterInsertion];
-    }
-    else
-    {
-        [fileLines replaceObjectAtIndex:insertionLine
-                             withObject:[[fileLines objectAtIndex:insertionLine] stringByAppendingString:text]];
-    }
+    // Grab the text before and after the insertion point
+    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex];
+    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
+    
+    // Concatenate beforeInsertion + text + afterInsertion
+    
+    fileContents = [beforeInsertion stringByAppendingString:text];
+    fileContents = [fileContents stringByAppendingString:afterInsertion];
+    
+    [self textChanged];
     
     // Increment the insertion index by the length of text
     insertionIndex += [text length];
     [self insertionPointChangedShouldRecomputeIndices:YES];
-    
-    [self textChanged];
 }
 
 -(void)deleteBackwards
