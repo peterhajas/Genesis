@@ -19,9 +19,11 @@
 #import "GNFileRepresentation.h"
 #import "GNTextLineView.h"
 
-@interface GNTextTableViewCell : UITableViewCell
+@interface GNTextTableViewCell : UITableViewCell <GNTextLineViewSizingDelegate>
 {
     GNTextLineView* textLineView;    
+    UIScrollView* textContainerScrollView;
+    
     GNFileRepresentation* fileRepresentation;
     
     UITapGestureRecognizer* tapGestureRecognizer;

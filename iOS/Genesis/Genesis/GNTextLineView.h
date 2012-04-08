@@ -16,6 +16,12 @@
 #import <UIKit/UIKit.h>
 #import "GNSyntaxHighlighter.h"
 
+@protocol GNTextLineViewSizingDelegate <NSObject>
+
+-(void)requiresWidth:(CGFloat)width;
+
+@end
+
 @interface GNTextLineView : UIView <GNSyntaxHighlighterDelegate>
 {
     NSString* representedLineText;
@@ -25,10 +31,12 @@
     
     CTLineRef line;
     CGContextRef staleContext;
+    
+    NSObject<GNTextLineViewSizingDelegate>* delegate;
 }
 
 
--(id)initWithLine:(NSString*)lineText andFrame:(CGRect)frame;
+-(id)initWithLine:(NSString*)lineText frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate;
 -(CFIndex)indexForTappedPoint:(CGPoint)point;
 
 @end

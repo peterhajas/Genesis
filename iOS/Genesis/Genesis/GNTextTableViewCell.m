@@ -14,6 +14,7 @@
  */
 
 #import "GNTextTableViewCell.h"
+#import "GNLineNumberTableView.h"
 
 @implementation GNTextTableViewCell
 
@@ -24,9 +25,15 @@
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
     {
+        textContainerScrollView = [[UIScrollView alloc] initWithFrame:[self frame]];
+        [textContainerScrollView setContentSize:[self frame].size];
+        [self addSubview:textContainerScrollView];
+        
         textLineView = [[GNTextLineView alloc] initWithLine:lineText
-                                                   andFrame:[self frame]];
-        [self addSubview:textLineView];
+                                                      frame:[self frame]
+                                          andSizingDelegate:self];
+
+        [textContainerScrollView addSubview:textLineView];
         
         lineNumber = index;
         
@@ -44,6 +51,7 @@
     if([sender state] == UIGestureRecognizerStateEnded)
     {
         CGPoint touchLocation = [sender locationInView:self];
+        touchLocation.x += [textContainerScrollView contentOffset].x;
         CFIndex indexIntoString = [textLineView indexForTappedPoint:touchLocation];
                 
         [fileRepresentation setInsertionToLineAtIndex:lineNumber
@@ -51,6 +59,14 @@
         
         [self resignFirstResponder];
     }
+}
+
+#pragma mark GNTextLineViewSizingDelegate methods
+
+-(void)requiresWidth:(CGFloat)width
+{
+    [textContainerScrollView setContentSize:CGSizeMake(width + kGNLineNumberTableViewWidth,
+                                                       [textContainerScrollView contentSize].height)];
 }
 
 @end

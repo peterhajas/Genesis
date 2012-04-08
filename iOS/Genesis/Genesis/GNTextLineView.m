@@ -21,13 +21,9 @@
 
 static CTFontRef defaultFont = nil;
 
--(id)initWithLine:(NSString*)lineText andFrame:(CGRect)frame
+-(id)initWithLine:(NSString*)lineText frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate
 {
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self = [super initWithFrame:CGRectMake(0,
-                                           0,
-                                           screenBounds.size.width,
-                                           DEFAULT_SIZE)];
+    self = [super initWithFrame:frame];
     if(self)
     {
         representedLineText = lineText;
@@ -47,6 +43,22 @@ static CTFontRef defaultFont = nil;
         defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
                                            DEFAULT_SIZE,
                                            NULL);
+        
+        delegate = sizingDelegate;
+        
+        // Re-evaluate our size, in case we need to be larger
+        UIFont* defaultUIFont = [UIFont fontWithName:DEFAULT_FONT_FAMILY
+                                                size:DEFAULT_SIZE];
+        
+        CGSize sizeRequiredForText = [representedLineText sizeWithFont:defaultUIFont];
+        
+        if(sizeRequiredForText.width > [self frame].size.width)
+        {
+            [self setFrame:CGRectMake([self frame].origin.x,
+                                      [self frame].origin.y,
+                                      sizeRequiredForText.width,
+                                      [self frame].size.height)];
+        }
         
         [self setBackgroundColor:[UIColor whiteColor]];
     }
@@ -74,9 +86,10 @@ static CTFontRef defaultFont = nil;
     CTLineDraw(line, staleContext);
 }
 
--(void)didMoveToSuperview
+-(void)setFrame:(CGRect)frame
 {
-    
+    [super setFrame:frame];
+    [delegate requiresWidth:frame.size.width];
 }
 
 #pragma mark Hit-testing
