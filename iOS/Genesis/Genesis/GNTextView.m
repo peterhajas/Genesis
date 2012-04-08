@@ -141,6 +141,7 @@
 {
     [textTableView cleanUp];
     [textInputManagerView cleanUp];
+    [lineNumberTableView cleanUp];
 }
 
 @end

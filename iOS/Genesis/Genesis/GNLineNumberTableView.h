@@ -28,6 +28,7 @@
 }
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation height:(CGFloat)height;
+-(void)cleanUp;
 
 @property(nonatomic,retain) NSObject<GNScrollViewDelegate>* scrollDelegate;
 
