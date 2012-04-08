@@ -143,8 +143,7 @@
 
 -(NSString*)lineToInsertionPoint
 {
-    NSString* currentLine = [fileLines objectAtIndex:insertionLine];
-    return [currentLine substringToIndex:insertionIndexInLine];
+    return [[self currentLine] substringToIndex:insertionIndexInLine];
 }
 
 -(void)textChanged
@@ -187,6 +186,11 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointChanged"
                                                         object:self];
+}
+
+-(NSString*)currentLine
+{
+    return [fileLines objectAtIndex:insertionLine];
 }
 
 @end
