@@ -131,14 +131,14 @@
     NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex - 1 + insertionLine];
     NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex + insertionLine];
     
-    insertionIndex--;
-    
-    [self insertionPointChangedShouldRecomputeIndices:YES];
-    
     // Set the new file contents
     fileContents = [beforeInsertion stringByAppendingString:afterInsertion];
     
     [self textChanged];
+    
+    insertionIndex--;
+    
+    [self insertionPointChangedShouldRecomputeIndices:YES];
 }
 
 -(NSString*)lineToInsertionPoint
