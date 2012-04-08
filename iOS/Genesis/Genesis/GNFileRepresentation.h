@@ -44,7 +44,7 @@
 -(NSString*)lineToInsertionPoint;
 
 -(void)textChanged;
--(void)insertionPointChanged;
+-(void)insertionPointChangedShouldRecomputeIndices:(BOOL)shouldRecompute;
 
 @property(readonly) NSUInteger insertionIndex;
 @property(readonly) NSUInteger insertionIndexInLine;

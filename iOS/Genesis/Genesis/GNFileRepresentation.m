@@ -44,7 +44,7 @@
         insertionIndex = 0;
         insertionLine = 0;
         insertionIndexInLine = 0;
-        [self insertionPointChanged];
+        [self insertionPointChangedShouldRecomputeIndices:NO];
     }
     return self;
 }
@@ -89,8 +89,11 @@
     }
     
     insertionIndex += characterIndex;
+    
+    insertionLine = lineIndex;
+    insertionIndexInLine = characterIndex;
         
-    [self insertionPointChanged];
+    [self insertionPointChangedShouldRecomputeIndices:NO];
 }
 
 -(BOOL)hasText
@@ -100,18 +103,25 @@
 
 -(void)insertText:(NSString*)text
 {
-    // Grab the text before and after the insertion point
-    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex];
-    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
-    
-    // Concatenate beforeInsertion + text + afterInsertion
-    
-    fileContents = [beforeInsertion stringByAppendingString:text];
-    fileContents = [fileContents stringByAppendingString:afterInsertion];
+    if(insertionIndexInLine < [[fileLines objectAtIndex:insertionLine] length])
+    {
+        // Grab the text before and after the insertion point
+        NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex];
+        NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
+        
+        // Concatenate beforeInsertion + text + afterInsertion
+        
+        fileContents = [beforeInsertion stringByAppendingString:text];
+        fileContents = [fileContents stringByAppendingString:afterInsertion];
+    }
+    else
+    {
+        fileContents = [fileContents stringByAppendingString:text];
+    }
     
     // Increment the insertion index by the length of text
     insertionIndex += [text length];
-    [self insertionPointChanged];
+    [self insertionPointChangedShouldRecomputeIndices:YES];
     
     [self textChanged];
 }
@@ -124,7 +134,7 @@
     
     insertionIndex--;
     
-    [self insertionPointChanged];
+    [self insertionPointChangedShouldRecomputeIndices:YES];
     
     // Set the new file contents
     fileContents = [beforeInsertion stringByAppendingString:afterInsertion];
@@ -146,34 +156,36 @@
                                                         object:self];
 }
 
--(void)insertionPointChanged
+-(void)insertionPointChangedShouldRecomputeIndices:(BOOL)shouldRecompute
 {
-    // Recompute insertion line and insertion index in line
-    
-    NSInteger charactersUntilInsertionPoint = insertionIndex;
-    
-    insertionLine = 0;
-    insertionIndexInLine = 0;
-    
-    for(NSString* line in fileLines)
+    if(shouldRecompute)
     {
-        NSInteger difference = charactersUntilInsertionPoint - [line length];
+        // Recompute insertion line and insertion index in line
         
-        if(difference <= 0)
-        {
-            insertionIndexInLine = charactersUntilInsertionPoint;
-            insertionIndexInLine -= (insertionLine != 0);
-                        
-            break;
-        }
-        else
-        {
-            charactersUntilInsertionPoint-=[line length];
-        }
+        NSInteger charactersUntilInsertionPoint = insertionIndex;
         
-        insertionLine += 1;
+        insertionLine = 0;
+        insertionIndexInLine = 0;
+        
+        for(NSString* line in fileLines)
+        {
+            NSInteger difference = charactersUntilInsertionPoint - [line length];
+            
+            if(difference <= 0)
+            {
+                insertionIndexInLine = charactersUntilInsertionPoint;
+                insertionIndexInLine -= (insertionLine != 0);
+                            
+                break;
+            }
+            else
+            {
+                charactersUntilInsertionPoint-=[line length];
+            }
+            
+            insertionLine += 1;
+        }
     }
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointChanged"
                                                         object:self];
 }

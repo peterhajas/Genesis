@@ -45,7 +45,7 @@
     
     NSString* lineToInsertionIndex = [fileRepresentation lineToInsertionPoint];
     CGSize sizeOfLineToInsertionIndex = [lineToInsertionIndex sizeWithFont:[GNTextGeometry defaultUIFont]];    
-        
+    
     CGFloat newCaretViewXLocation = sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth;
     
     [caretView setFrame:CGRectMake(newCaretViewXLocation,
