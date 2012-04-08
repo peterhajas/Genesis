@@ -128,8 +128,8 @@
     }
     
     // Grab the text before the insertion point minus 1 and the text after insertion
-    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex - 1];
-    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex];
+    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex - 1 + insertionLine];
+    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex + insertionLine];
     
     insertionIndex--;
     
