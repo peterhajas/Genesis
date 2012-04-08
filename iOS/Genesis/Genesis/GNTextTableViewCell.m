@@ -16,7 +16,6 @@
 #import "GNTextTableViewCell.h"
 
 #define DEFAULT_FONT_FAMILY @"Courier"
-#define DEFAULT_SIZE 16
 
 static CTFontRef defaultFont = nil;
 
