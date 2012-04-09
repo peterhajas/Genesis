@@ -41,7 +41,7 @@
 {
     NSUInteger insertionLine = [fileRepresentation insertionLine];
     
-    CGFloat heightOfCharacter = [GNTextGeometry heightOfCharacter];
+    CGFloat lineHeight = [GNTextGeometry lineHeight];
     
     NSString* lineToInsertionIndex = [fileRepresentation lineToInsertionPoint];
     CGSize sizeOfLineToInsertionIndex = [lineToInsertionIndex sizeWithFont:[GNTextGeometry defaultUIFont]];    
@@ -49,9 +49,9 @@
     CGFloat newCaretViewXLocation = sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth;
     
     [caretView setFrame:CGRectMake(newCaretViewXLocation,
-                                   heightOfCharacter * insertionLine,
+                                   lineHeight * insertionLine,
                                    kGNTextCaretViewWidth,
-                                   heightOfCharacter)];
+                                   lineHeight)];
         
     [self becomeFirstResponder];
 }
