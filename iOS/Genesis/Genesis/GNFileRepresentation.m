@@ -40,6 +40,9 @@
         }
         [self textChanged];
         
+        // Set our file type
+        fileType = [GNFileType fileTypeForExtension:[relativePath pathExtension]];
+        
         lineHorizontalOffsets = [[NSMutableArray alloc] init];
         [self clearHorizontalOffsets];
         
