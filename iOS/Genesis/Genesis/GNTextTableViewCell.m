@@ -46,6 +46,19 @@
     return self;
 }
 
+-(void)didMoveToSuperview
+{
+    [textContainerScrollView setFrame:CGRectMake(0,
+                                                 0,
+                                                 [self frame].size.width,
+                                                 [self frame].size.height)];
+    CGRect textLineViewFrame = [textLineView frame];
+    [textLineView setFrame:CGRectMake(textLineViewFrame.origin.x,
+                                      textLineViewFrame.origin.y,
+                                      textLineViewFrame.size.width,
+                                      [self frame].size.height)];
+}
+
 -(void)handleTap:(UITapGestureRecognizer*)sender
 {
     if([sender state] == UIGestureRecognizerStateEnded)
