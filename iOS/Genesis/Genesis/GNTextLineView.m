@@ -59,8 +59,8 @@ static CTFontRef defaultFont = nil;
                                       sizeRequiredForText.width,
                                       [self frame].size.height)];
         }
-        
-        [self setBackgroundColor:[UIColor whiteColor]];
+                
+        [self setBackgroundColor:[UIColor clearColor]];
     }
     
     return self;
