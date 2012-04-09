@@ -19,7 +19,8 @@
 #import "GNFileRepresentation.h"
 #import "GNTextLineView.h"
 
-@interface GNTextTableViewCell : UITableViewCell <GNTextLineViewSizingDelegate>
+@interface GNTextTableViewCell : UITableViewCell <GNTextLineViewSizingDelegate,
+                                                  UIScrollViewDelegate>
 {
     GNTextLineView* textLineView;    
     UIScrollView* textContainerScrollView;

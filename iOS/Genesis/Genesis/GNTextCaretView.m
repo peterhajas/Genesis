@@ -24,6 +24,14 @@
                                            0,
                                            kGNTextCaretViewWidth,
                                            [GNTextGeometry heightOfCharacter])];
+    
+    contentOffset = CGPointMake(0, 0);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(horizontalOffsetChanged:)
+                                                 name:@"kGNHorizontalOffsetChanged"
+                                               object:nil];
+    
     return self;
 }
 
@@ -39,6 +47,59 @@
     [animation setRepeatCount:CGFLOAT_MAX];
     
     [[self layer] addAnimation:animation forKey:@"blinkAnimation"];
+}
+
+-(void)setFrame:(CGRect)frame
+{
+    nonOffsetFrame = frame;
+    [self recalculateFrame];
+}
+
+-(void)horizontalOffsetChanged:(NSNotification*)notification
+{
+    CGFloat newHorizontalOffset = [[notification object] floatValue];
+    [self setHorizontalOffset:newHorizontalOffset];
+}
+
+-(CGFloat)horizontalOffset
+{
+    return contentOffset.x;
+}
+
+-(void)setHorizontalOffset:(CGFloat)horizontalOffset
+{
+    contentOffset = CGPointMake(horizontalOffset,
+                                contentOffset.y);
+    [self recalculateFrame];
+}
+
+-(CGFloat)verticalOffset
+{
+    return contentOffset.y;
+}
+
+-(void)setVerticalOffset:(CGFloat)verticalOffset
+{
+    contentOffset = CGPointMake(contentOffset.x,
+                                verticalOffset);
+    [self recalculateFrame];
+}
+
+-(void)recalculateFrame
+{
+    CGRect frame = nonOffsetFrame;
+    CGRect newFrame = CGRectMake(frame.origin.x - contentOffset.x,
+                                 frame.origin.y - contentOffset.y,
+                                 frame.size.width,
+                                 frame.size.height);
+    [super setFrame:newFrame];
+}
+
+#pragma mark Lifecycle cleanup methods
+
+-(void)cleanUp
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

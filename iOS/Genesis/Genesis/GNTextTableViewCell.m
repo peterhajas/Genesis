@@ -29,6 +29,8 @@
         [textContainerScrollView setContentSize:[self frame].size];
         [self addSubview:textContainerScrollView];
         
+        [textContainerScrollView setDelegate:self];
+        
         textLineView = [[GNTextLineView alloc] initWithLine:lineText
                                                       frame:[self frame]
                                           andSizingDelegate:self];
@@ -82,6 +84,19 @@
 {
     [textContainerScrollView setContentSize:CGSizeMake(width,
                                                        [textContainerScrollView contentSize].height)];
+}
+
+#pragma mark UIScrollViewDelegate methods
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if(lineNumber == [fileRepresentation insertionLine])
+    {
+        CGFloat horizontalOffset = [scrollView contentOffset].x;
+        NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNHorizontalOffsetChanged"
+                                                            object:horizontalOffsetNumber];
+    }
 }
 
 @end

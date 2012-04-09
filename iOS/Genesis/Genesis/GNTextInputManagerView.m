@@ -56,6 +56,11 @@
     [self becomeFirstResponder];
 }
 
+-(void)didScrollToVerticalOffset:(CGFloat)offset
+{
+    [caretView setVerticalOffset:offset];
+}
+
 #pragma mark UITextInputTraits methods
 
 -(UITextAutocapitalizationType)autocapitalizationType
@@ -121,6 +126,7 @@
 
 -(void)cleanUp
 {
+    [caretView cleanUp];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

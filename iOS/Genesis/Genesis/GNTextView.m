@@ -135,6 +135,8 @@
     CGPoint otherScrollViewContentOffset = [otherScrollView contentOffset];
     [otherScrollView setContentOffset:CGPointMake(otherScrollViewContentOffset.x,
                                                   verticalContentOffset)];
+    
+    [textInputManagerView didScrollToVerticalOffset:verticalContentOffset];
 }
 
 -(void)cleanUp
