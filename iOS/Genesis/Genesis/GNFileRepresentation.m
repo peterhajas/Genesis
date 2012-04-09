@@ -203,6 +203,9 @@
 
 -(void)textChanged
 {
+    [GNFileManager setFileContentsAtRelativePath:relativePath
+                                       toContent:[fileContents dataUsingEncoding:NSUTF8StringEncoding]];
+    
     [self refreshLineArray];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
