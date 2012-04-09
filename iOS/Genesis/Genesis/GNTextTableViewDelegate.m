@@ -14,6 +14,7 @@
  */
 
 #import "GNTextTableViewDelegate.h"
+#import "GNTextGeometry.h"
 
 @implementation GNTextTableViewDelegate
 
@@ -22,7 +23,7 @@
 #pragma mark UITableViewDelegate Configuring Rows
 -(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return DEFAULT_SIZE;
+    return [GNTextGeometry lineHeight];
 }
 
 #pragma mark GNScrollViewDelegate
