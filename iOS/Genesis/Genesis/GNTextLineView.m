@@ -82,7 +82,7 @@ static CTFontRef defaultFont = nil;
     CGContextScaleCTM(staleContext, 1, -1);
     CGContextTranslateCTM(staleContext, 0, -[self frame].size.height);
     
-    CGContextSetTextPosition(staleContext, 0.0, 0.0);
+    CGContextSetTextPosition(staleContext, 0.0, DEFAULT_SIZE * 0.25);
     CTLineDraw(line, staleContext);
 }
 
