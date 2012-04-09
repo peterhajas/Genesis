@@ -38,28 +38,17 @@ static CTFontRef defaultFont = nil;
         [self addSubview:syntaxHighlighter];
         
         [syntaxHighlighter highlightText:representedLineText];
+                
+        delegate = sizingDelegate;
+        
+        // Re-evaluate our size, in case we need to be larger
+        [self setFrame:frame];
         
         // Create the default font (later should be done in preferences)
         defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
                                            DEFAULT_SIZE,
                                            NULL);
         
-        delegate = sizingDelegate;
-        
-        // Re-evaluate our size, in case we need to be larger
-        UIFont* defaultUIFont = [UIFont fontWithName:DEFAULT_FONT_FAMILY
-                                                size:DEFAULT_SIZE];
-        
-        CGSize sizeRequiredForText = [representedLineText sizeWithFont:defaultUIFont];
-        
-        if(sizeRequiredForText.width > [self frame].size.width)
-        {
-            [self setFrame:CGRectMake([self frame].origin.x,
-                                      [self frame].origin.y,
-                                      sizeRequiredForText.width,
-                                      [self frame].size.height)];
-        }
-                
         [self setBackgroundColor:[UIColor clearColor]];
     }
     
@@ -89,7 +78,24 @@ static CTFontRef defaultFont = nil;
 -(void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    [delegate requiresWidth:frame.size.width];
+    [self fitSizeToText];
+}
+
+-(void)fitSizeToText
+{
+    UIFont* defaultUIFont = [UIFont fontWithName:DEFAULT_FONT_FAMILY
+                                            size:DEFAULT_SIZE];
+    
+    CGFloat widthRequiredForText = [representedLineText sizeWithFont:defaultUIFont].width;
+    
+    CGRect oldFrame = [self frame];
+    CGRect newFrame = CGRectMake(oldFrame.origin.x,
+                                 oldFrame.origin.y,
+                                 widthRequiredForText,
+                                 oldFrame.size.height);
+    [super setFrame:newFrame];
+    
+    [delegate requiresWidth:widthRequiredForText];
 }
 
 #pragma mark Hit-testing

@@ -52,10 +52,12 @@
                                                  0,
                                                  [self frame].size.width,
                                                  [self frame].size.height)];
+    [textContainerScrollView setContentSize:CGSizeMake([textContainerScrollView contentSize].width,
+                                                       [self frame].size.height)];
     CGRect textLineViewFrame = [textLineView frame];
     [textLineView setFrame:CGRectMake(textLineViewFrame.origin.x,
                                       textLineViewFrame.origin.y,
-                                      textLineViewFrame.size.width,
+                                      [self frame].size.width,
                                       [self frame].size.height)];
 }
 
@@ -78,7 +80,7 @@
 
 -(void)requiresWidth:(CGFloat)width
 {
-    [textContainerScrollView setContentSize:CGSizeMake(width + kGNLineNumberTableViewWidth,
+    [textContainerScrollView setContentSize:CGSizeMake(width,
                                                        [textContainerScrollView contentSize].height)];
 }
 
