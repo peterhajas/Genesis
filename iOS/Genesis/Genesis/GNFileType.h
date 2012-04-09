@@ -20,7 +20,10 @@ typedef enum
     kGNObjectiveCFileType,
     
     // Other languages
-    kGNPythonFileType
+    kGNPythonFileType,
+    
+    // Unknown language
+    kGNUnknownFileType
 } kGNFileType;
 
 #import <UIKit/UIKit.h>
