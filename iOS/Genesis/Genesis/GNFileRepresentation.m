@@ -40,6 +40,9 @@
         }
         [self textChanged];
         
+        lineHorizontalOffsets = [[NSMutableArray alloc] init];
+        [self clearHorizontalOffsets];
+        
         // Set insertion index and line to 0
         insertionIndex = 0;
         insertionLine = 0;
@@ -129,6 +132,8 @@
     
     else
     {
+        [self addedLineAtIndex:insertionLine];
+        
         insertionLine++;
         insertionIndexInLine = 0;
         [self insertionPointChangedShouldRecomputeIndices:NO];
@@ -183,6 +188,8 @@
     
     else
     {
+        [self removeLineAtIndex:insertionLine];
+        
         insertionLine--;
         insertionIndexInLine = [[self currentLine] length] - previousCurrentLineLength;
         [self insertionPointChangedShouldRecomputeIndices:NO];
@@ -235,9 +242,43 @@
                                                         object:self];
 }
 
+-(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index
+{
+    return [[lineHorizontalOffsets objectAtIndex:index] floatValue];
+}
+
+
 -(NSString*)currentLine
 {
     return [fileLines objectAtIndex:insertionLine];
+}
+
+#pragma mark Horizontal Offset Management
+
+-(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index
+{
+    NSNumber* newHorizontalOffset = [NSNumber numberWithFloat:scrollOffset];
+    [lineHorizontalOffsets replaceObjectAtIndex:index withObject:newHorizontalOffset];
+}
+
+-(void)addedLineAtIndex:(NSUInteger)index
+{
+    [lineHorizontalOffsets insertObject:[NSNumber numberWithFloat:0.0]
+                                atIndex:index];
+}
+
+-(void)removedLineAtIndex:(NSUInteger)index
+{
+    [lineHorizontalOffsets removeObjectAtIndex:index];
+}
+
+
+-(void)clearHorizontalOffsets
+{
+    for(NSUInteger i = 0; i < [fileLines count]; i++)
+    {
+        [lineHorizontalOffsets addObject:[NSNumber numberWithFloat:0.0]];
+    }
 }
 
 @end

@@ -61,6 +61,11 @@
                                       textLineViewFrame.origin.y,
                                       [self frame].size.width,
                                       [self frame].size.height)];
+    
+    // Set the scrollview content offset
+    CGFloat horizontalOffset = [fileRepresentation horizontalOffsetForLineAtIndex:lineNumber];
+    [textContainerScrollView setContentOffset:CGPointMake(horizontalOffset,
+                                                          [textContainerScrollView contentOffset].y)];
 }
 
 -(void)handleTap:(UITapGestureRecognizer*)sender
@@ -95,13 +100,16 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    CGFloat horizontalOffset = [scrollView contentOffset].x;
     if(lineNumber == [fileRepresentation insertionLine])
     {
-        CGFloat horizontalOffset = [scrollView contentOffset].x;
         NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNHorizontalOffsetChanged"
                                                             object:horizontalOffsetNumber];
     }
+    
+    [fileRepresentation setHorizontalOffset:horizontalOffset
+                             forLineAtIndex:lineNumber];
 }
 
 @end
