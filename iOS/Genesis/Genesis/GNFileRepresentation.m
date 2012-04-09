@@ -188,7 +188,7 @@
     
     else
     {
-        [self removeLineAtIndex:insertionLine];
+        [self removedLineAtIndex:insertionLine];
         
         insertionLine--;
         insertionIndexInLine = [[self currentLine] length] - previousCurrentLineLength;
