@@ -14,11 +14,7 @@
  */
 
 #import "GNTextTableViewCell.h"
-
-#define DEFAULT_FONT_FAMILY @"Courier"
-#define DEFAULT_SIZE 16
-
-static CTFontRef defaultFont = nil;
+#import "GNLineNumberTableView.h"
 
 @implementation GNTextTableViewCell
 
@@ -29,68 +25,91 @@ static CTFontRef defaultFont = nil;
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
     {
-        representedLineText = lineText;
+        textContainerScrollView = [[UIScrollView alloc] initWithFrame:[self frame]];
+        [textContainerScrollView setContentSize:[self frame].size];
+        [self addSubview:textContainerScrollView];
         
-        // Set our line ivar to nil
-        line = nil;
+        [textContainerScrollView setDelegate:self];
         
-        // Attributed string with representedLine's text
-        attributedLine = [[NSAttributedString alloc] initWithString:representedLineText];
-        
-        syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
-        [self addSubview:syntaxHighlighter];
-        
-        [syntaxHighlighter highlightText:representedLineText];
-                
-        // Create the default font (later should be done in preferences)
-        defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
-                                           DEFAULT_SIZE,
-                                           NULL);
+        textLineView = [[GNTextLineView alloc] initWithLine:lineText
+                                                      frame:[self frame]
+                                          andSizingDelegate:self];
+
+        [textContainerScrollView addSubview:textLineView];
         
         lineNumber = index;
+        
+        // Create our tap gesture recognizer
+        tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                       action:@selector(handleTap:)];
+        [self addGestureRecognizer:tapGestureRecognizer];
     }
     
     return self;
 }
 
--(void)drawRect:(CGRect)rect
+-(void)didMoveToSuperview
 {
-    [super drawRect:rect];
-    staleContext = UIGraphicsGetCurrentContext();
+    [textContainerScrollView setFrame:CGRectMake(0,
+                                                 0,
+                                                 [self frame].size.width,
+                                                 [self frame].size.height)];
+    [textContainerScrollView setContentSize:CGSizeMake([textContainerScrollView contentSize].width,
+                                                       [self frame].size.height)];
+    CGRect textLineViewFrame = [textLineView frame];
+    [textLineView setFrame:CGRectMake(textLineViewFrame.origin.x,
+                                      textLineViewFrame.origin.y,
+                                      [self frame].size.width,
+                                      [self frame].size.height)];
     
-    CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedLine;
-    if(line != nil)
+    // Set the scrollview content offset
+    CGFloat horizontalOffset = [fileRepresentation horizontalOffsetForLineAtIndex:lineNumber];
+    [textContainerScrollView setContentOffset:CGPointMake(horizontalOffset,
+                                                          [textContainerScrollView contentOffset].y)];
+}
+
+-(void)handleTap:(UITapGestureRecognizer*)sender
+{
+    if([sender state] == UIGestureRecognizerStateEnded)
     {
-        CFRelease(line);
+        CGPoint touchLocation = [sender locationInView:self];
+        touchLocation.x += [textContainerScrollView contentOffset].x;
+        CFIndex indexIntoString = [textLineView indexForTappedPoint:touchLocation];
+        
+        [fileRepresentation setInsertionToLineAtIndex:lineNumber
+                                 characterIndexInLine:indexIntoString];
+        
+        CGFloat horizontalOffset = [textContainerScrollView contentOffset].x;
+        NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNHorizontalOffsetChanged"
+                                                            object:horizontalOffsetNumber];
+        
+        [self resignFirstResponder];
     }
-    line = CTLineCreateWithAttributedString(attributedString);
-    
-    // Account for Cocoa coordinate system
-    CGContextScaleCTM(staleContext, 1, -1);
-    CGContextTranslateCTM(staleContext, 0, -[self frame].size.height);
-    
-    CGContextSetTextPosition(staleContext, 5.0, 5.0);
-    CTLineDraw(line, staleContext);
 }
 
--(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+#pragma mark GNTextLineViewSizingDelegate methods
+
+-(void)requiresWidth:(CGFloat)width
 {
-    UITouch* touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInView:self];
-    CFIndex indexIntoString = CTLineGetStringIndexForPosition(line, touchLocation);
-    
-    [fileRepresentation setInsertionToLineAtIndex:lineNumber
-                             characterIndexInLine:indexIntoString];
-    
-    [self resignFirstResponder];
+    [textContainerScrollView setContentSize:CGSizeMake(width,
+                                                       [textContainerScrollView contentSize].height)];
 }
 
-#pragma mark GNSyntaxHighlighterDelegate methods
+#pragma mark UIScrollViewDelegate methods
 
--(void)didHighlightText:(NSAttributedString *)highlightedText
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    attributedLine = highlightedText;
-    [self setNeedsDisplay];
+    CGFloat horizontalOffset = [scrollView contentOffset].x;
+    if(lineNumber == [fileRepresentation insertionLine])
+    {
+        NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNHorizontalOffsetChanged"
+                                                            object:horizontalOffsetNumber];
+    }
+    
+    [fileRepresentation setHorizontalOffset:horizontalOffset
+                             forLineAtIndex:lineNumber];
 }
 
 @end

@@ -17,6 +17,11 @@
 
 @implementation GNTextGeometry
 
++(CGFloat)lineHeight
+{
+    return [GNTextGeometry heightOfCharacter] * 1.25;
+}
+
 +(CGFloat)heightOfCharacter
 {
     return (CGFloat)DEFAULT_SIZE;

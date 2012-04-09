@@ -20,6 +20,13 @@
 @interface GNTextCaretView : UIView
 {
     CABasicAnimation* animation;
+    CGPoint contentOffset;
+    CGRect nonOffsetFrame;
 }
+
+-(void)cleanUp;
+
+@property(nonatomic) CGFloat horizontalOffset;
+@property(nonatomic) CGFloat verticalOffset;
 
 @end

@@ -13,33 +13,30 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextTableView.h"
+#import <UIKit/UIKit.h>
+#import "GNSyntaxHighlighter.h"
 
-@implementation GNTextTableView
+@protocol GNTextLineViewSizingDelegate <NSObject>
 
--(id)initWithFrame:(CGRect)frame
+-(void)requiresWidth:(CGFloat)width;
+
+@end
+
+@interface GNTextLineView : UIView <GNSyntaxHighlighterDelegate>
 {
-    self = [super initWithFrame:frame];
-    if(self)
-    {
-        // Set the separator style
-        [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        
-        // We don't allow selection
-        [self setAllowsSelection:NO];
-        
-        // Subscribe to notifications about text changing
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(reloadData) 
-                                                     name:@"kGNTextChanged"
-                                                   object:nil];
-    }
-    return self;
+    NSString* representedLineText;
+    NSAttributedString* attributedLine;
+    
+    GNSyntaxHighlighter* syntaxHighlighter;
+    
+    CTLineRef line;
+    CGContextRef staleContext;
+    
+    NSObject<GNTextLineViewSizingDelegate>* delegate;
 }
 
--(void)cleanUp
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+
+-(id)initWithLine:(NSString*)lineText frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate;
+-(CFIndex)indexForTappedPoint:(CGPoint)point;
 
 @end

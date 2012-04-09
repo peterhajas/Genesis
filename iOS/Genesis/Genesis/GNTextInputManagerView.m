@@ -41,21 +41,24 @@
 {
     NSUInteger insertionLine = [fileRepresentation insertionLine];
     
-    CGFloat heightOfCharacter = [GNTextGeometry heightOfCharacter];
+    CGFloat lineHeight = [GNTextGeometry lineHeight];
     
     NSString* lineToInsertionIndex = [fileRepresentation lineToInsertionPoint];
     CGSize sizeOfLineToInsertionIndex = [lineToInsertionIndex sizeWithFont:[GNTextGeometry defaultUIFont]];    
     
-    NSLog(@"caret view origin before: %f, %f", caretView.frame.origin.x, caretView.frame.origin.y);
+    CGFloat newCaretViewXLocation = sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth;
     
-    [caretView setFrame:CGRectMake(sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth,
-                                   heightOfCharacter * insertionLine,
+    [caretView setFrame:CGRectMake(newCaretViewXLocation,
+                                   lineHeight * insertionLine,
                                    kGNTextCaretViewWidth,
-                                   heightOfCharacter)];
-    
-    NSLog(@"caret view origin after: %f, %f", caretView.frame.origin.x, caretView.frame.origin.y);
-    
+                                   lineHeight)];
+        
     [self becomeFirstResponder];
+}
+
+-(void)didScrollToVerticalOffset:(CGFloat)offset
+{
+    [caretView setVerticalOffset:offset];
 }
 
 #pragma mark UITextInputTraits methods
@@ -118,5 +121,14 @@
 {
     return YES;
 }
+
+#pragma mark Lifecycle cleanup methods
+
+-(void)cleanUp
+{
+    [caretView cleanUp];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 @end

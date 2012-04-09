@@ -21,6 +21,8 @@
     NSString* fileContents;
     NSMutableArray* fileLines;
     
+    NSMutableArray* lineHorizontalOffsets;
+    
     NSUInteger insertionIndex;
     NSUInteger insertionIndexInLine;
     NSUInteger insertionLine;
@@ -44,7 +46,10 @@
 -(NSString*)lineToInsertionPoint;
 
 -(void)textChanged;
--(void)insertionPointChanged;
+-(void)insertionPointChangedShouldRecomputeIndices:(BOOL)shouldRecompute;
+
+-(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index;
+-(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index;
 
 @property(readonly) NSUInteger insertionIndex;
 @property(readonly) NSUInteger insertionIndexInLine;

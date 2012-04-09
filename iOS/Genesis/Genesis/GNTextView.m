@@ -73,7 +73,8 @@
                                              selector:@selector(keyboardWillChange:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
-
+    
+    [textTableView reloadData];
 }
 
 #pragma mark Keyboard Notification Handling
@@ -134,6 +135,15 @@
     CGPoint otherScrollViewContentOffset = [otherScrollView contentOffset];
     [otherScrollView setContentOffset:CGPointMake(otherScrollViewContentOffset.x,
                                                   verticalContentOffset)];
+    
+    [textInputManagerView didScrollToVerticalOffset:verticalContentOffset];
+}
+
+-(void)cleanUp
+{
+    [textTableView cleanUp];
+    [textInputManagerView cleanUp];
+    [lineNumberTableView cleanUp];
 }
 
 @end

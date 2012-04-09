@@ -78,6 +78,7 @@
 		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
+		4FBD8B8515324BD9006D510E /* GNTextLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBD8B8415324BD9006D510E /* GNTextLineView.m */; };
 		4FF3637714EAECB900125C74 /* console-externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26814EA3FC1005E8D91 /* console-externs.js */; };
 		4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28314EA3FC1005E8D91 /* combinePrefixPatterns.js */; };
 		4FF3638C14EAECB900125C74 /* externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28414EA3FC1005E8D91 /* externs.js */; };
@@ -281,6 +282,8 @@
 		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
+		4FBD8B8315324BD9006D510E /* GNTextLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextLineView.h; sourceTree = "<group>"; };
+		4FBD8B8415324BD9006D510E /* GNTextLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextLineView.m; sourceTree = "<group>"; };
 		4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNScrollViewDelegate.h; sourceTree = "<group>"; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
@@ -586,6 +589,7 @@
 			children = (
 				4F3F046F150745D300AA6E95 /* GNTextTableViewCell.h */,
 				4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */,
+				4FBD8B8715324BDC006D510E /* Line View */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -780,6 +784,15 @@
 				4FB4E6F214F73D8700436618 /* Genesis_114.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		4FBD8B8715324BDC006D510E /* Line View */ = {
+			isa = PBXGroup;
+			children = (
+				4FBD8B8315324BD9006D510E /* GNTextLineView.h */,
+				4FBD8B8415324BD9006D510E /* GNTextLineView.m */,
+			);
+			name = "Line View";
 			sourceTree = "<group>";
 		};
 		4FFDA03D14CCEB3C00422FF5 /* Project Browser */ = {
@@ -1007,6 +1020,7 @@
 				4F3F0486150752A600AA6E95 /* GNLineNumberTableViewDataSource.m in Sources */,
 				4FFF7D5E151A106E00C986A1 /* GNTextInputManagerView.m in Sources */,
 				4FFF7D63151A2D1600C986A1 /* GNTextGeometry.m in Sources */,
+				4FBD8B8515324BD9006D510E /* GNTextLineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

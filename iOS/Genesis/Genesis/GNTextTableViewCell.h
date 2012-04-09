@@ -17,21 +17,19 @@
 
 #import <UIKit/UIKit.h>
 #import "GNFileRepresentation.h"
-#import "GNSyntaxHighlighter.h"
+#import "GNTextLineView.h"
 
-@interface GNTextTableViewCell : UITableViewCell <GNSyntaxHighlighterDelegate>
+@interface GNTextTableViewCell : UITableViewCell <GNTextLineViewSizingDelegate,
+                                                  UIScrollViewDelegate>
 {
-    NSString* representedLineText;
-    NSAttributedString* attributedLine;
+    GNTextLineView* textLineView;    
+    UIScrollView* textContainerScrollView;
     
     GNFileRepresentation* fileRepresentation;
     
-    GNSyntaxHighlighter* syntaxHighlighter;
+    UITapGestureRecognizer* tapGestureRecognizer;
     
-    CTLineRef line;
     NSUInteger lineNumber;
-    
-    CGContextRef staleContext;
 }
 
 -(id)initWithLine:(NSString*)lineText atIndex:(NSUInteger)index;

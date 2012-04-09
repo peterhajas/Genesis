@@ -37,6 +37,11 @@
         [self setDelegate:self];
         
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reloadData)
+                                                     name:@"kGNTextChanged"
+                                                   object:nil];
     }
     
     return self;
@@ -56,6 +61,13 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [scrollDelegate scrollViewDidScroll:scrollView];
+}
+
+#pragma mark Lifecycle cleanup methods
+
+-(void)cleanUp
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
