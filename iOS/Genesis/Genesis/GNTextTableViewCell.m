@@ -70,9 +70,14 @@
         CGPoint touchLocation = [sender locationInView:self];
         touchLocation.x += [textContainerScrollView contentOffset].x;
         CFIndex indexIntoString = [textLineView indexForTappedPoint:touchLocation];
-                
+        
         [fileRepresentation setInsertionToLineAtIndex:lineNumber
                                  characterIndexInLine:indexIntoString];
+        
+        CGFloat horizontalOffset = [textContainerScrollView contentOffset].x;
+        NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNHorizontalOffsetChanged"
+                                                            object:horizontalOffsetNumber];
         
         [self resignFirstResponder];
     }
