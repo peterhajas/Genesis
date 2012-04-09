@@ -138,7 +138,7 @@
 
 -(void)deleteBackwards
 {
-    if(insertionIndex == 0)
+    if(insertionIndex == 0 && insertionLine == 0)
     {
         // Don't do anything. We can't move back.
         return;
@@ -151,11 +151,42 @@
     // Set the new file contents
     fileContents = [beforeInsertion stringByAppendingString:afterInsertion];
     
+    NSUInteger previousCurrentLineLength = [[self currentLine] length];
+    
     [self textChanged];
     
-    insertionIndex--;
+    if(insertionIndexInLine > 1)
+    {
+        insertionIndex--;
+        [self insertionPointChangedShouldRecomputeIndices:YES];
+    }
     
-    [self insertionPointChangedShouldRecomputeIndices:YES];
+    /*
+     If insertionIndex in the current line is 1, we don't want to back up to
+     the previous line, so we should manually compute the new insertionIndex
+     and insertionIndexInLine.
+     */
+    
+    else if(insertionIndexInLine == 1)
+    {
+        insertionIndex--;
+        insertionIndexInLine--;
+        [self insertionPointChangedShouldRecomputeIndices:NO];
+    }
+    
+    /*
+     If insertionIndexInLine is 0, then we compute the new insertion indices
+     manually. insertionLine will be the previous line. insertionIndexInLine
+     will be the length of the line we're moving to minus the length of the
+     line that is being concatenated with it (previousCurrentLineLength).
+     */
+    
+    else
+    {
+        insertionLine--;
+        insertionIndexInLine = [[self currentLine] length] - previousCurrentLineLength;
+        [self insertionPointChangedShouldRecomputeIndices:NO];
+    }
 }
 
 -(NSString*)lineToInsertionPoint
