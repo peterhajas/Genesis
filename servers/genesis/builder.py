@@ -6,15 +6,11 @@ import yaml
 
 from genesis.shell import ShellProxy, ProcessQuery
 from genesis.utils import expand, is_windows
+from genesis.config import load_yaml
+from genesis.scm import get_scm
 
+# TODO: simplify here
 
-def load_yaml(filename):
-    with open(filename, 'r') as handle:
-        return yaml.load(handle.read())
-
-def save_yaml(filename, obj):
-    with open(filename, 'w+') as handle:
-        handle.write(yaml.dump(obj))
 
 class IgnoreList(object):
     def __init__(self, ignored):
@@ -23,6 +19,7 @@ class IgnoreList(object):
     def __contains__(self, filepath):
         matches = fnmatch.fnmatch if is_windows() else fnmatch.fnmatchcase
         return any(matches(filepath, i) for i in self.ignored)
+
 
 class BuilderConfig(object):
     def __init__(self, config, filepath=None):
@@ -33,14 +30,6 @@ class BuilderConfig(object):
         return expand(string)
 
     @property
-    def mediator(self):
-        mediator = self.config.get('mediator', {})
-        return {
-            'host': mediator.get('host', ''),
-            'port': int(mediator.get('port', 7331)),
-        }
-
-    @property
     def project_names(self):
         return self.config.get('projects', {}).keys()
 
@@ -49,10 +38,6 @@ class BuilderConfig(object):
 
     def get_ignored(self, project):
         return IgnoreList(self._get_project(project).get('ignore', []))
-
-    @property
-    def name(self):
-        return self.config.get('name')
 
     def get_files(self, project):
         ignored = self.get_ignored(project)
@@ -92,13 +77,23 @@ class BuilderConfig(object):
     def to_dict(self):
         return self.config
 
+
 class Project(object):
-    def __init__(self, name, config, shell=None):
+    def __init__(self, name, config, scm=None, shell=None):
         self.name = name
         self.config = config
+        self.scm = scm
         self._shell = shell
         self._query = None # last ProcessQuery instance
         self._last_action = None
+
+    @property
+    def branches(self):
+        return self.scm.branches()
+
+    @property
+    def head(self):
+        return self.scm.current_branch()
 
     @property
     def activity(self):
@@ -141,13 +136,20 @@ class Project(object):
         self._query = ProcessQuery(self.shell.run(actions[name], cwd=cwd))
         return self._query
 
+    def checkout(self, branch):
+        assert not self.is_busy, "Cannot perform checkout, busy running %r" % self._last_action
+        self.scm.checkout(branch)
+
 
 class Builder(object):
     def __init__(self, config):
         self.config = config
         self.projects = {}
         for name in self.config.project_names:
-            self.projects[name] = Project(name, self.config)
+            self.projects[name] = Project(
+                name,
+                self.config,
+                get_scm(self.config.get_location(name)))
 
     @classmethod
     def from_file(cls, filename):
@@ -164,18 +166,6 @@ class Builder(object):
             activities[p.name] = p.activity
         return activities
 
-    @property
-    def name(self):
-        return self.config.name
-
-    @property
-    def host(self):
-        return self.config.mediator['host']
-
-    @property
-    def port(self):
-        return self.config.mediator['port']
-
     def _filepath(self, project, filename):
         location = self.config.get_location(project)
         # TODO: escape parent directory access
@@ -185,8 +175,19 @@ class Builder(object):
         )
         return filepath
 
-    def get_files(self, project):
+    def get_files(self, project, branch=None):
+        if self.checkout(project, branch or ''):
+            return None
         return self.config.get_files(project)
+
+    def checkout(self, project, branch=''):
+        return branch and self.projects[project].checkout(branch or '')
+
+    def get_branches(self, project):
+        return self.projects[project].branches
+
+    def get_current_branch(self, project):
+        return self.projects[project].head
 
     def has_file(self, project, filename):
         ignored = self.config.get_ignored(project)

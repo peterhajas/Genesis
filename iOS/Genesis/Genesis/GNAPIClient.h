@@ -99,6 +99,18 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 // Gets all files from the builder. The callback is invoked either with all the files
 // for the given project or when an error occurs.
 //
+// info is set identically to -[getFilesFromBuilder:forProject:onBranch:withCallback:]
+- (void)getFilesFromBuilder:(NSString *)builder
+                 forProject:(NSString *)project
+               withCallback:(GNClientCallback)callback;
+
+// Gets all files from the builder. The callback is invoked either with all the files
+// for the given project or when an error occurs. If branch is an empty string or nil,
+// the current branch is used.
+//
+// As of now, there should be no pending changes to commit changing branches or else the
+// version control may reject it.
+//
 // info => {"files": [
 //              {"name": "foo.py",
 //               "path": "rel/path/to/foo.py",
@@ -110,10 +122,24 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 //               "size": 54,
 //               "kind": "<TBA/not implemented yet>",
 //               "mimetype": "text/x-python"},
-//          ]}
+//          ],
+//         "branch": "currentBranch"}
 - (void)getFilesFromBuilder:(NSString *)builder
                  forProject:(NSString *)project
+                   onBranch:(NSString *)branch
                withCallback:(GNClientCallback)callback;
+
+// Gets all the branches from the builder. The callback is invoked either with all the branches
+// for the given project or when an error occurs.
+//
+// info => {"branches": [
+//              {"name": "master"},
+//              {"name": "demo1"}
+//          ],
+//         "head": "master"}
+- (void)getBranchesFromBuilder:(NSString*)builder
+                    forProject:(NSString *)project
+                  withCallback:(GNClientCallback)callback;
 
 // Downloads the given file from the project.
 //

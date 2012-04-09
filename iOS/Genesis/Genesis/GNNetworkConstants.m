@@ -30,6 +30,7 @@ NSString * const GN_CLIENTS = @"clients";
 
 NSString * const GN_PROJECTS = @"projects";
 NSString * const GN_FILES = @"files";
+NSString * const GN_BRANCHES = @"branches";
 NSString * const GN_DOWNLOAD = @"download";
 NSString * const GN_UPLOAD = @"upload";
 NSString * const GN_PERFORM = @"perform";
