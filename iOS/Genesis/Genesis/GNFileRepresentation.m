@@ -113,10 +113,27 @@
     fileContents = [fileContents stringByAppendingString:afterInsertion];
     
     [self textChanged];
+        
+    if(![text isEqualToString:@"\n"])
+    {
+        // Increment the insertion index by the length of text
+        insertionIndex += [text length];
+        [self insertionPointChangedShouldRecomputeIndices:YES];
+    }
     
-    // Increment the insertion index by the length of text
-    insertionIndex += [text length];
-    [self insertionPointChangedShouldRecomputeIndices:YES];
+    /*
+     If they typed a newline just now, because fileLines are split by newlines,
+     we must manually compute the new insertion offset. indexLine is one more
+     than it is now, and insertionIndexInLine is 0
+     */
+    
+    else
+    {
+        insertionLine++;
+        insertionIndexInLine = 0;
+        [self insertionPointChangedShouldRecomputeIndices:NO];
+    }
+    
 }
 
 -(void)deleteBackwards
