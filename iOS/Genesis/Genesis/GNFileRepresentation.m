@@ -19,6 +19,7 @@
 @implementation GNFileRepresentation
 
 @synthesize insertionIndex, insertionIndexInLine, insertionLine;
+@synthesize fileType;
 
 -(id)initWithRelativePath:(NSString*)path
 {

@@ -57,5 +57,6 @@
 @property(readonly) NSUInteger insertionIndex;
 @property(readonly) NSUInteger insertionIndexInLine;
 @property(readonly) NSUInteger insertionLine;
+@property(readonly) kGNFileType fileType;
 
 @end
