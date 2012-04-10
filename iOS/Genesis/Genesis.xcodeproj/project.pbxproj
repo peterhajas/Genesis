@@ -22,6 +22,32 @@
 		1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBE80214F4CB7400FC1DF2 /* GNNetworkConstants.m */; };
 		4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */; };
 		4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */; };
+		4F0601361533D2740022187D /* Active4D.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011C1533D2740022187D /* Active4D.tmTheme */; };
+		4F0601371533D2740022187D /* All Hallow's Eve.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */; };
+		4F0601381533D2740022187D /* Amy.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011E1533D2740022187D /* Amy.tmTheme */; };
+		4F0601391533D2740022187D /* Blackboard.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011F1533D2740022187D /* Blackboard.tmTheme */; };
+		4F06013A1533D2740022187D /* Brilliance Black.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601201533D2740022187D /* Brilliance Black.tmTheme */; };
+		4F06013B1533D2740022187D /* Cobalt.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601211533D2740022187D /* Cobalt.tmTheme */; };
+		4F06013C1533D2740022187D /* Dawn.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601221533D2740022187D /* Dawn.tmTheme */; };
+		4F06013D1533D2740022187D /* Dobdark.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601231533D2740022187D /* Dobdark.tmTheme */; };
+		4F06013E1533D2740022187D /* ebundle-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601241533D2740022187D /* ebundle-license.txt */; };
+		4F06013F1533D2740022187D /* Eiffel.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601251533D2740022187D /* Eiffel.tmTheme */; };
+		4F0601401533D2740022187D /* Espresso Libre.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601261533D2740022187D /* Espresso Libre.tmTheme */; };
+		4F0601411533D2740022187D /* IDLE.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601271533D2740022187D /* IDLE.tmTheme */; };
+		4F0601421533D2740022187D /* iLife 05.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601281533D2740022187D /* iLife 05.tmTheme */; };
+		4F0601431533D2740022187D /* iPlastic.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601291533D2740022187D /* iPlastic.tmTheme */; };
+		4F0601441533D2740022187D /* LAZY.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012A1533D2740022187D /* LAZY.tmTheme */; };
+		4F0601451533D2740022187D /* Mac Classic.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012B1533D2740022187D /* Mac Classic.tmTheme */; };
+		4F0601461533D2740022187D /* MagicWB (Amiga).tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */; };
+		4F0601471533D2740022187D /* monoindustrial.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012D1533D2740022187D /* monoindustrial.tmTheme */; };
+		4F0601481533D2740022187D /* Monokai.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012E1533D2740022187D /* Monokai.tmTheme */; };
+		4F0601491533D2740022187D /* Pastels on Dark.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */; };
+		4F06014A1533D2740022187D /* Slush & Poppies.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601301533D2740022187D /* Slush & Poppies.tmTheme */; };
+		4F06014B1533D2740022187D /* SpaceCadet.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601311533D2740022187D /* SpaceCadet.tmTheme */; };
+		4F06014C1533D2740022187D /* Sunburst.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601321533D2740022187D /* Sunburst.tmTheme */; };
+		4F06014D1533D2740022187D /* Twilight.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601331533D2740022187D /* Twilight.tmTheme */; };
+		4F06014E1533D2740022187D /* Vibrant Ink.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601341533D2740022187D /* Vibrant Ink.tmTheme */; };
+		4F06014F1533D2740022187D /* Zenburnesque.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
 		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
@@ -308,6 +334,32 @@
 		4F0216E214D1F3850027DF89 /* GNNewFileEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewFileEntryViewController.h; sourceTree = "<group>"; };
 		4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewFileEntryViewController.m; sourceTree = "<group>"; };
 		4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewFileEntryViewController.xib; sourceTree = "<group>"; };
+		4F06011C1533D2740022187D /* Active4D.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Active4D.tmTheme; sourceTree = "<group>"; };
+		4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "All Hallow's Eve.tmTheme"; sourceTree = "<group>"; };
+		4F06011E1533D2740022187D /* Amy.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Amy.tmTheme; sourceTree = "<group>"; };
+		4F06011F1533D2740022187D /* Blackboard.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Blackboard.tmTheme; sourceTree = "<group>"; };
+		4F0601201533D2740022187D /* Brilliance Black.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Brilliance Black.tmTheme"; sourceTree = "<group>"; };
+		4F0601211533D2740022187D /* Cobalt.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Cobalt.tmTheme; sourceTree = "<group>"; };
+		4F0601221533D2740022187D /* Dawn.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Dawn.tmTheme; sourceTree = "<group>"; };
+		4F0601231533D2740022187D /* Dobdark.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Dobdark.tmTheme; sourceTree = "<group>"; };
+		4F0601241533D2740022187D /* ebundle-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ebundle-license.txt"; sourceTree = "<group>"; };
+		4F0601251533D2740022187D /* Eiffel.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Eiffel.tmTheme; sourceTree = "<group>"; };
+		4F0601261533D2740022187D /* Espresso Libre.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Espresso Libre.tmTheme"; sourceTree = "<group>"; };
+		4F0601271533D2740022187D /* IDLE.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = IDLE.tmTheme; sourceTree = "<group>"; };
+		4F0601281533D2740022187D /* iLife 05.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "iLife 05.tmTheme"; sourceTree = "<group>"; };
+		4F0601291533D2740022187D /* iPlastic.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iPlastic.tmTheme; sourceTree = "<group>"; };
+		4F06012A1533D2740022187D /* LAZY.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LAZY.tmTheme; sourceTree = "<group>"; };
+		4F06012B1533D2740022187D /* Mac Classic.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Mac Classic.tmTheme"; sourceTree = "<group>"; };
+		4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "MagicWB (Amiga).tmTheme"; sourceTree = "<group>"; };
+		4F06012D1533D2740022187D /* monoindustrial.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = monoindustrial.tmTheme; sourceTree = "<group>"; };
+		4F06012E1533D2740022187D /* Monokai.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Monokai.tmTheme; sourceTree = "<group>"; };
+		4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Pastels on Dark.tmTheme"; sourceTree = "<group>"; };
+		4F0601301533D2740022187D /* Slush & Poppies.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Slush & Poppies.tmTheme"; sourceTree = "<group>"; };
+		4F0601311533D2740022187D /* SpaceCadet.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpaceCadet.tmTheme; sourceTree = "<group>"; };
+		4F0601321533D2740022187D /* Sunburst.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Sunburst.tmTheme; sourceTree = "<group>"; };
+		4F0601331533D2740022187D /* Twilight.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Twilight.tmTheme; sourceTree = "<group>"; };
+		4F0601341533D2740022187D /* Vibrant Ink.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vibrant Ink.tmTheme"; sourceTree = "<group>"; };
+		4F0601351533D2740022187D /* Zenburnesque.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Zenburnesque.tmTheme; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
 		4F1F049714E1B127008619C0 /* GNTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextCaretView.h; sourceTree = "<group>"; };
@@ -547,6 +599,39 @@
 			name = "New Filesystem Entry";
 			sourceTree = "<group>";
 		};
+		4F06011B1533D2740022187D /* themes */ = {
+			isa = PBXGroup;
+			children = (
+				4F06011C1533D2740022187D /* Active4D.tmTheme */,
+				4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */,
+				4F06011E1533D2740022187D /* Amy.tmTheme */,
+				4F06011F1533D2740022187D /* Blackboard.tmTheme */,
+				4F0601201533D2740022187D /* Brilliance Black.tmTheme */,
+				4F0601211533D2740022187D /* Cobalt.tmTheme */,
+				4F0601221533D2740022187D /* Dawn.tmTheme */,
+				4F0601231533D2740022187D /* Dobdark.tmTheme */,
+				4F0601241533D2740022187D /* ebundle-license.txt */,
+				4F0601251533D2740022187D /* Eiffel.tmTheme */,
+				4F0601261533D2740022187D /* Espresso Libre.tmTheme */,
+				4F0601271533D2740022187D /* IDLE.tmTheme */,
+				4F0601281533D2740022187D /* iLife 05.tmTheme */,
+				4F0601291533D2740022187D /* iPlastic.tmTheme */,
+				4F06012A1533D2740022187D /* LAZY.tmTheme */,
+				4F06012B1533D2740022187D /* Mac Classic.tmTheme */,
+				4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */,
+				4F06012D1533D2740022187D /* monoindustrial.tmTheme */,
+				4F06012E1533D2740022187D /* Monokai.tmTheme */,
+				4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */,
+				4F0601301533D2740022187D /* Slush & Poppies.tmTheme */,
+				4F0601311533D2740022187D /* SpaceCadet.tmTheme */,
+				4F0601321533D2740022187D /* Sunburst.tmTheme */,
+				4F0601331533D2740022187D /* Twilight.tmTheme */,
+				4F0601341533D2740022187D /* Vibrant Ink.tmTheme */,
+				4F0601351533D2740022187D /* Zenburnesque.tmTheme */,
+			);
+			path = themes;
+			sourceTree = "<group>";
+		};
 		4F1E6ACC14F2167700583852 /* File Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +758,7 @@
 				4F293B8614CCE88100020A09 /* InfoPlist.strings */,
 				4F293B8914CCE88100020A09 /* main.m */,
 				4F293B8B14CCE88100020A09 /* Genesis-Prefix.pch */,
+				4F06011B1533D2740022187D /* themes */,
 				4FA4FF391533AF160054482A /* languages */,
 				4FB4E6E714F73C8D00436618 /* Icons */,
 			);
@@ -1044,6 +1130,32 @@
 				4FA4FFB31533AF160054482A /* XML.plist in Resources */,
 				4FA4FFB41533AF160054482A /* XSL.plist in Resources */,
 				4FA4FFB51533AF160054482A /* YAML.plist in Resources */,
+				4F0601361533D2740022187D /* Active4D.tmTheme in Resources */,
+				4F0601371533D2740022187D /* All Hallow's Eve.tmTheme in Resources */,
+				4F0601381533D2740022187D /* Amy.tmTheme in Resources */,
+				4F0601391533D2740022187D /* Blackboard.tmTheme in Resources */,
+				4F06013A1533D2740022187D /* Brilliance Black.tmTheme in Resources */,
+				4F06013B1533D2740022187D /* Cobalt.tmTheme in Resources */,
+				4F06013C1533D2740022187D /* Dawn.tmTheme in Resources */,
+				4F06013D1533D2740022187D /* Dobdark.tmTheme in Resources */,
+				4F06013E1533D2740022187D /* ebundle-license.txt in Resources */,
+				4F06013F1533D2740022187D /* Eiffel.tmTheme in Resources */,
+				4F0601401533D2740022187D /* Espresso Libre.tmTheme in Resources */,
+				4F0601411533D2740022187D /* IDLE.tmTheme in Resources */,
+				4F0601421533D2740022187D /* iLife 05.tmTheme in Resources */,
+				4F0601431533D2740022187D /* iPlastic.tmTheme in Resources */,
+				4F0601441533D2740022187D /* LAZY.tmTheme in Resources */,
+				4F0601451533D2740022187D /* Mac Classic.tmTheme in Resources */,
+				4F0601461533D2740022187D /* MagicWB (Amiga).tmTheme in Resources */,
+				4F0601471533D2740022187D /* monoindustrial.tmTheme in Resources */,
+				4F0601481533D2740022187D /* Monokai.tmTheme in Resources */,
+				4F0601491533D2740022187D /* Pastels on Dark.tmTheme in Resources */,
+				4F06014A1533D2740022187D /* Slush & Poppies.tmTheme in Resources */,
+				4F06014B1533D2740022187D /* SpaceCadet.tmTheme in Resources */,
+				4F06014C1533D2740022187D /* Sunburst.tmTheme in Resources */,
+				4F06014D1533D2740022187D /* Twilight.tmTheme in Resources */,
+				4F06014E1533D2740022187D /* Vibrant Ink.tmTheme in Resources */,
+				4F06014F1533D2740022187D /* Zenburnesque.tmTheme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
