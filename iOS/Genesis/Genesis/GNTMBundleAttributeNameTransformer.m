@@ -23,12 +23,12 @@
 #define colorAttributes [NSArray arrayWithObjects:(NSString*)kCTForegroundColorAttributeName, nil]
 #define fontAttributes [NSArray arrayWithObjects:(NSString*)kCTFontAttributeName, nil]
 
-+(CGColorRef)colorRefForHexColor:(NSString*)hexColor
++(UIColor*)colorForHexColor:(NSString*)hexColor
 {
     // If hexColor is less than 6 long, we don't know what color it is.
     if([hexColor length] < 6)
     {
-        return [[UIColor blackColor] CGColor];
+        return [UIColor blackColor];
     }
     
     // If hexColor is 7 long (contains the #), trim the first character
@@ -49,10 +49,12 @@
                            16);
     
     
-    return [[UIColor colorWithRed:red / 255.0
-                            green:green / 255.0
-                             blue:blue / 255.0
-                            alpha:1.0] CGColor];
+    UIColor* color = [UIColor colorWithRed:red / 255.0
+                                     green:green / 255.0
+                                      blue:blue / 255.0
+                                     alpha:1.0];
+    
+    return color;
 }
 
 +(id)attributeForFontStyle:(NSString*)fontStyle
@@ -117,7 +119,8 @@
             // a color attribute
             if([colorAttributes containsObject:transformedKey])
             {
-                value = (id)[GNTMBundleAttributeNameTransformer colorRefForHexColor:[tmDictionary valueForKey:key]];
+                UIColor* color = [GNTMBundleAttributeNameTransformer colorForHexColor:[tmDictionary valueForKey:key]];
+                value = (id)[color CGColor];
             }
             // If it is a font attribute, then transform the value
             else if([fontAttributes containsObject:transformedKey])
