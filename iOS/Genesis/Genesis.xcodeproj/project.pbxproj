@@ -22,6 +22,32 @@
 		1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBE80214F4CB7400FC1DF2 /* GNNetworkConstants.m */; };
 		4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */; };
 		4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */; };
+		4F0601521533D3480022187D /* Active4D.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011C1533D2740022187D /* Active4D.tmTheme */; };
+		4F0601531533D3480022187D /* All Hallow's Eve.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */; };
+		4F0601541533D3480022187D /* Amy.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011E1533D2740022187D /* Amy.tmTheme */; };
+		4F0601551533D3480022187D /* Blackboard.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011F1533D2740022187D /* Blackboard.tmTheme */; };
+		4F0601561533D3480022187D /* Brilliance Black.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601201533D2740022187D /* Brilliance Black.tmTheme */; };
+		4F0601571533D3480022187D /* Cobalt.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601211533D2740022187D /* Cobalt.tmTheme */; };
+		4F0601581533D3480022187D /* Dawn.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601221533D2740022187D /* Dawn.tmTheme */; };
+		4F0601591533D3480022187D /* Dobdark.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601231533D2740022187D /* Dobdark.tmTheme */; };
+		4F06015A1533D3480022187D /* ebundle-license.txt in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601241533D2740022187D /* ebundle-license.txt */; };
+		4F06015B1533D3480022187D /* Eiffel.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601251533D2740022187D /* Eiffel.tmTheme */; };
+		4F06015C1533D3480022187D /* Espresso Libre.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601261533D2740022187D /* Espresso Libre.tmTheme */; };
+		4F06015D1533D3480022187D /* IDLE.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601271533D2740022187D /* IDLE.tmTheme */; };
+		4F06015E1533D3480022187D /* iLife 05.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601281533D2740022187D /* iLife 05.tmTheme */; };
+		4F06015F1533D3480022187D /* iPlastic.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601291533D2740022187D /* iPlastic.tmTheme */; };
+		4F0601601533D3480022187D /* LAZY.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012A1533D2740022187D /* LAZY.tmTheme */; };
+		4F0601611533D3480022187D /* Mac Classic.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012B1533D2740022187D /* Mac Classic.tmTheme */; };
+		4F0601621533D3480022187D /* MagicWB (Amiga).tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */; };
+		4F0601631533D3480022187D /* monoindustrial.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012D1533D2740022187D /* monoindustrial.tmTheme */; };
+		4F0601641533D3480022187D /* Monokai.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012E1533D2740022187D /* Monokai.tmTheme */; };
+		4F0601651533D3480022187D /* Pastels on Dark.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */; };
+		4F0601661533D3480022187D /* Slush & Poppies.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601301533D2740022187D /* Slush & Poppies.tmTheme */; };
+		4F0601671533D3480022187D /* SpaceCadet.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601311533D2740022187D /* SpaceCadet.tmTheme */; };
+		4F0601681533D3480022187D /* Sunburst.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601321533D2740022187D /* Sunburst.tmTheme */; };
+		4F0601691533D3480022187D /* Twilight.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601331533D2740022187D /* Twilight.tmTheme */; };
+		4F06016A1533D3480022187D /* Vibrant Ink.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601341533D2740022187D /* Vibrant Ink.tmTheme */; };
+		4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
 		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
@@ -145,6 +171,42 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4F0601511533D32C0022187D /* Copy "themes" files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = themes;
+			dstSubfolderSpec = 7;
+			files = (
+				4F0601521533D3480022187D /* Active4D.tmTheme in Copy "themes" files */,
+				4F0601531533D3480022187D /* All Hallow's Eve.tmTheme in Copy "themes" files */,
+				4F0601541533D3480022187D /* Amy.tmTheme in Copy "themes" files */,
+				4F0601551533D3480022187D /* Blackboard.tmTheme in Copy "themes" files */,
+				4F0601561533D3480022187D /* Brilliance Black.tmTheme in Copy "themes" files */,
+				4F0601571533D3480022187D /* Cobalt.tmTheme in Copy "themes" files */,
+				4F0601581533D3480022187D /* Dawn.tmTheme in Copy "themes" files */,
+				4F0601591533D3480022187D /* Dobdark.tmTheme in Copy "themes" files */,
+				4F06015A1533D3480022187D /* ebundle-license.txt in Copy "themes" files */,
+				4F06015B1533D3480022187D /* Eiffel.tmTheme in Copy "themes" files */,
+				4F06015C1533D3480022187D /* Espresso Libre.tmTheme in Copy "themes" files */,
+				4F06015D1533D3480022187D /* IDLE.tmTheme in Copy "themes" files */,
+				4F06015E1533D3480022187D /* iLife 05.tmTheme in Copy "themes" files */,
+				4F06015F1533D3480022187D /* iPlastic.tmTheme in Copy "themes" files */,
+				4F0601601533D3480022187D /* LAZY.tmTheme in Copy "themes" files */,
+				4F0601611533D3480022187D /* Mac Classic.tmTheme in Copy "themes" files */,
+				4F0601621533D3480022187D /* MagicWB (Amiga).tmTheme in Copy "themes" files */,
+				4F0601631533D3480022187D /* monoindustrial.tmTheme in Copy "themes" files */,
+				4F0601641533D3480022187D /* Monokai.tmTheme in Copy "themes" files */,
+				4F0601651533D3480022187D /* Pastels on Dark.tmTheme in Copy "themes" files */,
+				4F0601661533D3480022187D /* Slush & Poppies.tmTheme in Copy "themes" files */,
+				4F0601671533D3480022187D /* SpaceCadet.tmTheme in Copy "themes" files */,
+				4F0601681533D3480022187D /* Sunburst.tmTheme in Copy "themes" files */,
+				4F0601691533D3480022187D /* Twilight.tmTheme in Copy "themes" files */,
+				4F06016A1533D3480022187D /* Vibrant Ink.tmTheme in Copy "themes" files */,
+				4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */,
+			);
+			name = "Copy \"themes\" files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FA4FFB61533AF4D0054482A /* Copy "languages" files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -911,6 +973,7 @@
 				4F293B7414CCE88100020A09 /* Frameworks */,
 				4F293B7514CCE88100020A09 /* Resources */,
 				4FA4FFB61533AF4D0054482A /* Copy "languages" files */,
+				4F0601511533D32C0022187D /* Copy "themes" files */,
 			);
 			buildRules = (
 			);
