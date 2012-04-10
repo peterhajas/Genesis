@@ -14,12 +14,15 @@
  */
 
 #import "GNSyntaxHighlighter.h"
+#import "GNAppDelegate.h"
+#import "GNTheme.h"
 
 @implementation GNSyntaxHighlighter
 
 +(NSAttributedString*)highlightedSyntaxForAttributedText:(NSAttributedString*)text
 {
-    return nil;
+    GNTheme* theme = [(GNAppDelegate*)[[UIApplication sharedApplication] delegate] theme];
+    return [theme coloredStringForAttributedString:text];
 }
 
 @end

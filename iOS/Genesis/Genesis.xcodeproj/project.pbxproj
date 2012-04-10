@@ -48,6 +48,8 @@
 		4F0601691533D3480022187D /* Twilight.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601331533D2740022187D /* Twilight.tmTheme */; };
 		4F06016A1533D3480022187D /* Vibrant Ink.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601341533D2740022187D /* Vibrant Ink.tmTheme */; };
 		4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
+		4F0601721533D69A0022187D /* GNTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601711533D69A0022187D /* GNTheme.m */; };
+		4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
 		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
@@ -335,6 +337,10 @@
 		4F0601331533D2740022187D /* Twilight.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Twilight.tmTheme; sourceTree = "<group>"; };
 		4F0601341533D2740022187D /* Vibrant Ink.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vibrant Ink.tmTheme"; sourceTree = "<group>"; };
 		4F0601351533D2740022187D /* Zenburnesque.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Zenburnesque.tmTheme; sourceTree = "<group>"; };
+		4F0601701533D69A0022187D /* GNTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTheme.h; sourceTree = "<group>"; };
+		4F0601711533D69A0022187D /* GNTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTheme.m; sourceTree = "<group>"; };
+		4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTMBundleAttributeNameTransformer.h; sourceTree = "<group>"; };
+		4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTMBundleAttributeNameTransformer.m; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
 		4F1F049714E1B127008619C0 /* GNTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextCaretView.h; sourceTree = "<group>"; };
@@ -607,6 +613,25 @@
 			path = themes;
 			sourceTree = "<group>";
 		};
+		4F06016F1533D6190022187D /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				4F0601701533D69A0022187D /* GNTheme.h */,
+				4F0601711533D69A0022187D /* GNTheme.m */,
+				4F0601761533F15F0022187D /* TM Bundle Attribute Name Transformer */,
+			);
+			name = Themes;
+			sourceTree = "<group>";
+		};
+		4F0601761533F15F0022187D /* TM Bundle Attribute Name Transformer */ = {
+			isa = PBXGroup;
+			children = (
+				4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */,
+				4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */,
+			);
+			name = "TM Bundle Attribute Name Transformer";
+			sourceTree = "<group>";
+		};
 		4F1E6ACC14F2167700583852 /* File Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -834,6 +859,7 @@
 		4F77E90414E4C503001A69E8 /* Syntax Highlighting */ = {
 			isa = PBXGroup;
 			children = (
+				4F06016F1533D6190022187D /* Themes */,
 				4F77E90114E4C500001A69E8 /* GNSyntaxHighlighter.h */,
 				4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */,
 				4FA4FF361533ADD70054482A /* GNTextAttributer.h */,
@@ -1115,6 +1141,8 @@
 				4FFF7D63151A2D1600C986A1 /* GNTextGeometry.m in Sources */,
 				4FBD8B8515324BD9006D510E /* GNTextLineView.m in Sources */,
 				4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */,
+				4F0601721533D69A0022187D /* GNTheme.m in Sources */,
+				4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,23 +13,16 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
-#import "GNTheme.h"
+#import <Foundation/Foundation.h>
 
-@interface GNAppDelegate : UIResponder <UIApplicationDelegate>
+#define defaultTheme @"Mac Classic"
+
+@interface GNTheme : NSObject
 {
-    UINavigationController* navigationController;
-    GNTheme* theme;
+    NSMutableDictionary* themeDictionary;
 }
-@property (strong, nonatomic) UIWindow *window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-@property (readonly) GNTheme* theme;
-
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+-(id)initWthThemeName:(NSString*)name;
+-(NSAttributedString*)coloredStringForAttributedString:(NSAttributedString*)attributedString;
 
 @end
