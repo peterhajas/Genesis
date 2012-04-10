@@ -15,6 +15,7 @@
 
 #import "GNLineNumberTableView.h"
 #import "GNTextTableViewDelegate.h"
+#import "GNTextGeometry.h"
 
 @implementation GNLineNumberTableView
 
@@ -51,9 +52,7 @@
 
 -(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    // Create an instance of GNTextTableViewDelegate, and pass the method through
-    GNTextTableViewDelegate* passthroughDestinationDelegate = [[GNTextTableViewDelegate alloc] init];
-    return [passthroughDestinationDelegate tableView:tableView heightForRowAtIndexPath:indexPath];
+    return [GNTextGeometry lineHeight];
 }
 
 #pragma mark UIScrollViewDelegate methods
