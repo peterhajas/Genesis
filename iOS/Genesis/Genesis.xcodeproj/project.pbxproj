@@ -57,68 +57,68 @@
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
 		4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4FF371533ADD70054482A /* GNTextAttributer.m */; };
-		4FA4FFB71533AF6C0054482A /* Ahk.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3A1533AF160054482A /* Ahk.plist */; };
-		4FA4FFB81533AF6C0054482A /* Bibtex.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3B1533AF160054482A /* Bibtex.plist */; };
-		4FA4FFB91533AF6C0054482A /* Blog (HTML).plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3C1533AF160054482A /* Blog (HTML).plist */; };
-		4FA4FFBA1533AF6C0054482A /* Blog (Markdown).plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3D1533AF160054482A /* Blog (Markdown).plist */; };
-		4FA4FFBB1533AF6C0054482A /* Blog (Text).plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3E1533AF160054482A /* Blog (Text).plist */; };
-		4FA4FFBC1533AF6C0054482A /* Blog (Textile).plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3F1533AF160054482A /* Blog (Textile).plist */; };
-		4FA4FFBD1533AF6C0054482A /* Build.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF401533AF160054482A /* Build.tmLanguage */; };
-		4FA4FFBE1533AF6C0054482A /* Bulletin Board.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF411533AF160054482A /* Bulletin Board.plist */; };
-		4FA4FFBF1533AF6C0054482A /* C#.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF421533AF160054482A /* C#.tmLanguage */; };
-		4FA4FFC01533AF6C0054482A /* C++.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF431533AF160054482A /* C++.plist */; };
-		4FA4FFC11533AF6C0054482A /* C.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF441533AF160054482A /* C.plist */; };
-		4FA4FFC21533AF6C0054482A /* CSS Zen.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF451533AF160054482A /* CSS Zen.tmLanguage */; };
-		4FA4FFC31533AF6C0054482A /* CSS.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF461533AF160054482A /* CSS.plist */; };
-		4FA4FFC41533AF6C0054482A /* Diff.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF471533AF160054482A /* Diff.plist */; };
-		4FA4FFC51533AF6C0054482A /* Doxygen.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF481533AF160054482A /* Doxygen.tmLanguage */; };
-		4FA4FFC61533AF6C0054482A /* ExpressionEngine.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF491533AF160054482A /* ExpressionEngine.plist */; };
-		4FA4FFC71533AF6C0054482A /* HTML (Rails).plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF4A1533AF160054482A /* HTML (Rails).plist */; };
-		4FA4FFC81533AF6C0054482A /* HTML Zen.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF4B1533AF160054482A /* HTML Zen.tmLanguage */; };
-		4FA4FFC91533AF6C0054482A /* HTML.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF4C1533AF160054482A /* HTML.plist */; };
-		4FA4FFCA1533AF6C0054482A /* Ini.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF4D1533AF160054482A /* Ini.plist */; };
-		4FA4FFCB1533AF6C0054482A /* Java.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF4E1533AF160054482A /* Java.plist */; };
-		4FA4FFCC1533AF6C0054482A /* JavaProperties.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF4F1533AF160054482A /* JavaProperties.plist */; };
-		4FA4FFCD1533AF6C0054482A /* JavaScript (Rails).tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF501533AF160054482A /* JavaScript (Rails).tmLanguage */; };
-		4FA4FFCE1533AF6C0054482A /* JavaScript.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF511533AF160054482A /* JavaScript.plist */; };
-		4FA4FFCF1533AF6C0054482A /* LanguageGrammar.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF521533AF160054482A /* LanguageGrammar.tmLanguage */; };
-		4FA4FFD01533AF6C0054482A /* LaTeX Beamer.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF531533AF160054482A /* LaTeX Beamer.plist */; };
-		4FA4FFD11533AF6C0054482A /* LaTeX Log.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF541533AF160054482A /* LaTeX Log.plist */; };
-		4FA4FFD21533AF6C0054482A /* LaTeX Memoir.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF551533AF160054482A /* LaTeX Memoir.tmLanguage */; };
-		4FA4FFD31533AF6C0054482A /* LaTeX.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF561533AF160054482A /* LaTeX.plist */; };
-		4FA4FFD41533AF6C0054482A /* Lisp.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF571533AF160054482A /* Lisp.plist */; };
-		4FA4FFD51533AF6C0054482A /* Makefile.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF581533AF160054482A /* Makefile.plist */; };
-		4FA4FFD61533AF6C0054482A /* Markdown.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF591533AF160054482A /* Markdown.plist */; };
-		4FA4FFD71533AF6C0054482A /* Mediawiki.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF5A1533AF160054482A /* Mediawiki.tmLanguage */; };
-		4FA4FFD81533AF6C0054482A /* MSDOS batch file.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF5B1533AF160054482A /* MSDOS batch file.tmLanguage */; };
-		4FA4FFD91533AF6C0054482A /* MultiMarkdown.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF5C1533AF160054482A /* MultiMarkdown.tmLanguage */; };
-		4FA4FFDA1533AF6C0054482A /* OpenGL.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF5D1533AF160054482A /* OpenGL.plist */; };
-		4FA4FFDB1533AF6C0054482A /* Perl.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF5E1533AF160054482A /* Perl.plist */; };
-		4FA4FFDC1533AF6C0054482A /* PHP.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF5F1533AF160054482A /* PHP.plist */; };
-		4FA4FFDD1533AF6C0054482A /* Plain text.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF601533AF160054482A /* Plain text.plist */; };
-		4FA4FFDE1533AF6C0054482A /* Property List.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF611533AF160054482A /* Property List.tmLanguage */; };
-		4FA4FFDF1533AF6C0054482A /* Python.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF621533AF160054482A /* Python.tmLanguage */; };
-		4FA4FFE01533AF6C0054482A /* Regular Expressions (Oniguruma).tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF631533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage */; };
-		4FA4FFE11533AF6C0054482A /* Regular Expressions (Python).tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF641533AF160054482A /* Regular Expressions (Python).tmLanguage */; };
-		4FA4FFE21533AF6C0054482A /* Release Notes.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF651533AF160054482A /* Release Notes.tmLanguage */; };
-		4FA4FFE31533AF6C0054482A /* RJS.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF661533AF160054482A /* RJS.tmLanguage */; };
-		4FA4FFE41533AF6C0054482A /* Ruby on Rails.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF671533AF160054482A /* Ruby on Rails.plist */; };
-		4FA4FFE51533AF6C0054482A /* Ruby Sass.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF681533AF160054482A /* Ruby Sass.tmLanguage */; };
-		4FA4FFE61533AF6C0054482A /* Ruby.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF691533AF160054482A /* Ruby.plist */; };
-		4FA4FFE71533AF6C0054482A /* SCSS.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF6A1533AF160054482A /* SCSS.tmLanguage */; };
-		4FA4FFE81533AF6C0054482A /* Shell-Unix-Generic.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF6B1533AF160054482A /* Shell-Unix-Generic.plist */; };
-		4FA4FFE91533AF6C0054482A /* Smarty.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF6C1533AF160054482A /* Smarty.plist */; };
-		4FA4FFEA1533AF6C0054482A /* Snippet.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF6D1533AF160054482A /* Snippet.tmLanguage */; };
-		4FA4FFEB1533AF6C0054482A /* SQL (Rails).plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF6E1533AF160054482A /* SQL (Rails).plist */; };
-		4FA4FFEC1533AF6C0054482A /* SQL.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF6F1533AF160054482A /* SQL.plist */; };
-		4FA4FFED1533AF6C0054482A /* Subversion commit message.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF701533AF160054482A /* Subversion commit message.plist */; };
-		4FA4FFEE1533AF6C0054482A /* TeX Math.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF711533AF160054482A /* TeX Math.plist */; };
-		4FA4FFEF1533AF6C0054482A /* TeX.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF721533AF160054482A /* TeX.plist */; };
-		4FA4FFF01533AF6C0054482A /* Textile.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF731533AF160054482A /* Textile.plist */; };
-		4FA4FFF11533AF6C0054482A /* Todo.txt.tmLanguage in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF741533AF160054482A /* Todo.txt.tmLanguage */; };
-		4FA4FFF21533AF6C0054482A /* XML.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF751533AF160054482A /* XML.plist */; };
-		4FA4FFF31533AF6C0054482A /* XSL.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF761533AF160054482A /* XSL.plist */; };
-		4FA4FFF41533AF6C0054482A /* YAML.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF771533AF160054482A /* YAML.plist */; };
+		4FA4FFB71533AF6C0054482A /* Ahk.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3A1533AF160054482A /* Ahk.plist */; };
+		4FA4FFB81533AF6C0054482A /* Bibtex.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3B1533AF160054482A /* Bibtex.plist */; };
+		4FA4FFB91533AF6C0054482A /* Blog (HTML).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3C1533AF160054482A /* Blog (HTML).plist */; };
+		4FA4FFBA1533AF6C0054482A /* Blog (Markdown).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3D1533AF160054482A /* Blog (Markdown).plist */; };
+		4FA4FFBB1533AF6C0054482A /* Blog (Text).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3E1533AF160054482A /* Blog (Text).plist */; };
+		4FA4FFBC1533AF6C0054482A /* Blog (Textile).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3F1533AF160054482A /* Blog (Textile).plist */; };
+		4FA4FFBD1533AF6C0054482A /* Build.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF401533AF160054482A /* Build.tmLanguage */; };
+		4FA4FFBE1533AF6C0054482A /* Bulletin Board.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF411533AF160054482A /* Bulletin Board.plist */; };
+		4FA4FFBF1533AF6C0054482A /* C#.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF421533AF160054482A /* C#.tmLanguage */; };
+		4FA4FFC01533AF6C0054482A /* C++.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF431533AF160054482A /* C++.plist */; };
+		4FA4FFC11533AF6C0054482A /* C.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF441533AF160054482A /* C.plist */; };
+		4FA4FFC21533AF6C0054482A /* CSS Zen.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF451533AF160054482A /* CSS Zen.tmLanguage */; };
+		4FA4FFC31533AF6C0054482A /* CSS.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF461533AF160054482A /* CSS.plist */; };
+		4FA4FFC41533AF6C0054482A /* Diff.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF471533AF160054482A /* Diff.plist */; };
+		4FA4FFC51533AF6C0054482A /* Doxygen.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF481533AF160054482A /* Doxygen.tmLanguage */; };
+		4FA4FFC61533AF6C0054482A /* ExpressionEngine.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF491533AF160054482A /* ExpressionEngine.plist */; };
+		4FA4FFC71533AF6C0054482A /* HTML (Rails).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4A1533AF160054482A /* HTML (Rails).plist */; };
+		4FA4FFC81533AF6C0054482A /* HTML Zen.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4B1533AF160054482A /* HTML Zen.tmLanguage */; };
+		4FA4FFC91533AF6C0054482A /* HTML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4C1533AF160054482A /* HTML.plist */; };
+		4FA4FFCA1533AF6C0054482A /* Ini.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4D1533AF160054482A /* Ini.plist */; };
+		4FA4FFCB1533AF6C0054482A /* Java.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4E1533AF160054482A /* Java.plist */; };
+		4FA4FFCC1533AF6C0054482A /* JavaProperties.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4F1533AF160054482A /* JavaProperties.plist */; };
+		4FA4FFCD1533AF6C0054482A /* JavaScript (Rails).tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF501533AF160054482A /* JavaScript (Rails).tmLanguage */; };
+		4FA4FFCE1533AF6C0054482A /* JavaScript.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF511533AF160054482A /* JavaScript.plist */; };
+		4FA4FFCF1533AF6C0054482A /* LanguageGrammar.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF521533AF160054482A /* LanguageGrammar.tmLanguage */; };
+		4FA4FFD01533AF6C0054482A /* LaTeX Beamer.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF531533AF160054482A /* LaTeX Beamer.plist */; };
+		4FA4FFD11533AF6C0054482A /* LaTeX Log.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF541533AF160054482A /* LaTeX Log.plist */; };
+		4FA4FFD21533AF6C0054482A /* LaTeX Memoir.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF551533AF160054482A /* LaTeX Memoir.tmLanguage */; };
+		4FA4FFD31533AF6C0054482A /* LaTeX.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF561533AF160054482A /* LaTeX.plist */; };
+		4FA4FFD41533AF6C0054482A /* Lisp.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF571533AF160054482A /* Lisp.plist */; };
+		4FA4FFD51533AF6C0054482A /* Makefile.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF581533AF160054482A /* Makefile.plist */; };
+		4FA4FFD61533AF6C0054482A /* Markdown.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF591533AF160054482A /* Markdown.plist */; };
+		4FA4FFD71533AF6C0054482A /* Mediawiki.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5A1533AF160054482A /* Mediawiki.tmLanguage */; };
+		4FA4FFD81533AF6C0054482A /* MSDOS batch file.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5B1533AF160054482A /* MSDOS batch file.tmLanguage */; };
+		4FA4FFD91533AF6C0054482A /* MultiMarkdown.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5C1533AF160054482A /* MultiMarkdown.tmLanguage */; };
+		4FA4FFDA1533AF6C0054482A /* OpenGL.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5D1533AF160054482A /* OpenGL.plist */; };
+		4FA4FFDB1533AF6C0054482A /* Perl.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5E1533AF160054482A /* Perl.plist */; };
+		4FA4FFDC1533AF6C0054482A /* PHP.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5F1533AF160054482A /* PHP.plist */; };
+		4FA4FFDD1533AF6C0054482A /* Plain text.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF601533AF160054482A /* Plain text.plist */; };
+		4FA4FFDE1533AF6C0054482A /* Property List.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF611533AF160054482A /* Property List.tmLanguage */; };
+		4FA4FFDF1533AF6C0054482A /* Python.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF621533AF160054482A /* Python.tmLanguage */; };
+		4FA4FFE01533AF6C0054482A /* Regular Expressions (Oniguruma).tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF631533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage */; };
+		4FA4FFE11533AF6C0054482A /* Regular Expressions (Python).tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF641533AF160054482A /* Regular Expressions (Python).tmLanguage */; };
+		4FA4FFE21533AF6C0054482A /* Release Notes.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF651533AF160054482A /* Release Notes.tmLanguage */; };
+		4FA4FFE31533AF6C0054482A /* RJS.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF661533AF160054482A /* RJS.tmLanguage */; };
+		4FA4FFE41533AF6C0054482A /* Ruby on Rails.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF671533AF160054482A /* Ruby on Rails.plist */; };
+		4FA4FFE51533AF6C0054482A /* Ruby Sass.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF681533AF160054482A /* Ruby Sass.tmLanguage */; };
+		4FA4FFE61533AF6C0054482A /* Ruby.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF691533AF160054482A /* Ruby.plist */; };
+		4FA4FFE71533AF6C0054482A /* SCSS.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6A1533AF160054482A /* SCSS.tmLanguage */; };
+		4FA4FFE81533AF6C0054482A /* Shell-Unix-Generic.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6B1533AF160054482A /* Shell-Unix-Generic.plist */; };
+		4FA4FFE91533AF6C0054482A /* Smarty.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6C1533AF160054482A /* Smarty.plist */; };
+		4FA4FFEA1533AF6C0054482A /* Snippet.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6D1533AF160054482A /* Snippet.tmLanguage */; };
+		4FA4FFEB1533AF6C0054482A /* SQL (Rails).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6E1533AF160054482A /* SQL (Rails).plist */; };
+		4FA4FFEC1533AF6C0054482A /* SQL.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6F1533AF160054482A /* SQL.plist */; };
+		4FA4FFED1533AF6C0054482A /* Subversion commit message.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF701533AF160054482A /* Subversion commit message.plist */; };
+		4FA4FFEE1533AF6C0054482A /* TeX Math.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF711533AF160054482A /* TeX Math.plist */; };
+		4FA4FFEF1533AF6C0054482A /* TeX.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF721533AF160054482A /* TeX.plist */; };
+		4FA4FFF01533AF6C0054482A /* Textile.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF731533AF160054482A /* Textile.plist */; };
+		4FA4FFF11533AF6C0054482A /* Todo.txt.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF741533AF160054482A /* Todo.txt.tmLanguage */; };
+		4FA4FFF21533AF6C0054482A /* XML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF751533AF160054482A /* XML.plist */; };
+		4FA4FFF31533AF6C0054482A /* XSL.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF761533AF160054482A /* XSL.plist */; };
+		4FA4FFF41533AF6C0054482A /* YAML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF771533AF160054482A /* YAML.plist */; };
 		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
@@ -145,75 +145,76 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4FA4FFB61533AF4D0054482A /* CopyFiles */ = {
+		4FA4FFB61533AF4D0054482A /* Copy "languages" files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = languages;
 			dstSubfolderSpec = 7;
 			files = (
-				4FA4FFB71533AF6C0054482A /* Ahk.plist in CopyFiles */,
-				4FA4FFB81533AF6C0054482A /* Bibtex.plist in CopyFiles */,
-				4FA4FFB91533AF6C0054482A /* Blog (HTML).plist in CopyFiles */,
-				4FA4FFBA1533AF6C0054482A /* Blog (Markdown).plist in CopyFiles */,
-				4FA4FFBB1533AF6C0054482A /* Blog (Text).plist in CopyFiles */,
-				4FA4FFBC1533AF6C0054482A /* Blog (Textile).plist in CopyFiles */,
-				4FA4FFBD1533AF6C0054482A /* Build.tmLanguage in CopyFiles */,
-				4FA4FFBE1533AF6C0054482A /* Bulletin Board.plist in CopyFiles */,
-				4FA4FFBF1533AF6C0054482A /* C#.tmLanguage in CopyFiles */,
-				4FA4FFC01533AF6C0054482A /* C++.plist in CopyFiles */,
-				4FA4FFC11533AF6C0054482A /* C.plist in CopyFiles */,
-				4FA4FFC21533AF6C0054482A /* CSS Zen.tmLanguage in CopyFiles */,
-				4FA4FFC31533AF6C0054482A /* CSS.plist in CopyFiles */,
-				4FA4FFC41533AF6C0054482A /* Diff.plist in CopyFiles */,
-				4FA4FFC51533AF6C0054482A /* Doxygen.tmLanguage in CopyFiles */,
-				4FA4FFC61533AF6C0054482A /* ExpressionEngine.plist in CopyFiles */,
-				4FA4FFC71533AF6C0054482A /* HTML (Rails).plist in CopyFiles */,
-				4FA4FFC81533AF6C0054482A /* HTML Zen.tmLanguage in CopyFiles */,
-				4FA4FFC91533AF6C0054482A /* HTML.plist in CopyFiles */,
-				4FA4FFCA1533AF6C0054482A /* Ini.plist in CopyFiles */,
-				4FA4FFCB1533AF6C0054482A /* Java.plist in CopyFiles */,
-				4FA4FFCC1533AF6C0054482A /* JavaProperties.plist in CopyFiles */,
-				4FA4FFCD1533AF6C0054482A /* JavaScript (Rails).tmLanguage in CopyFiles */,
-				4FA4FFCE1533AF6C0054482A /* JavaScript.plist in CopyFiles */,
-				4FA4FFCF1533AF6C0054482A /* LanguageGrammar.tmLanguage in CopyFiles */,
-				4FA4FFD01533AF6C0054482A /* LaTeX Beamer.plist in CopyFiles */,
-				4FA4FFD11533AF6C0054482A /* LaTeX Log.plist in CopyFiles */,
-				4FA4FFD21533AF6C0054482A /* LaTeX Memoir.tmLanguage in CopyFiles */,
-				4FA4FFD31533AF6C0054482A /* LaTeX.plist in CopyFiles */,
-				4FA4FFD41533AF6C0054482A /* Lisp.plist in CopyFiles */,
-				4FA4FFD51533AF6C0054482A /* Makefile.plist in CopyFiles */,
-				4FA4FFD61533AF6C0054482A /* Markdown.plist in CopyFiles */,
-				4FA4FFD71533AF6C0054482A /* Mediawiki.tmLanguage in CopyFiles */,
-				4FA4FFD81533AF6C0054482A /* MSDOS batch file.tmLanguage in CopyFiles */,
-				4FA4FFD91533AF6C0054482A /* MultiMarkdown.tmLanguage in CopyFiles */,
-				4FA4FFDA1533AF6C0054482A /* OpenGL.plist in CopyFiles */,
-				4FA4FFDB1533AF6C0054482A /* Perl.plist in CopyFiles */,
-				4FA4FFDC1533AF6C0054482A /* PHP.plist in CopyFiles */,
-				4FA4FFDD1533AF6C0054482A /* Plain text.plist in CopyFiles */,
-				4FA4FFDE1533AF6C0054482A /* Property List.tmLanguage in CopyFiles */,
-				4FA4FFDF1533AF6C0054482A /* Python.tmLanguage in CopyFiles */,
-				4FA4FFE01533AF6C0054482A /* Regular Expressions (Oniguruma).tmLanguage in CopyFiles */,
-				4FA4FFE11533AF6C0054482A /* Regular Expressions (Python).tmLanguage in CopyFiles */,
-				4FA4FFE21533AF6C0054482A /* Release Notes.tmLanguage in CopyFiles */,
-				4FA4FFE31533AF6C0054482A /* RJS.tmLanguage in CopyFiles */,
-				4FA4FFE41533AF6C0054482A /* Ruby on Rails.plist in CopyFiles */,
-				4FA4FFE51533AF6C0054482A /* Ruby Sass.tmLanguage in CopyFiles */,
-				4FA4FFE61533AF6C0054482A /* Ruby.plist in CopyFiles */,
-				4FA4FFE71533AF6C0054482A /* SCSS.tmLanguage in CopyFiles */,
-				4FA4FFE81533AF6C0054482A /* Shell-Unix-Generic.plist in CopyFiles */,
-				4FA4FFE91533AF6C0054482A /* Smarty.plist in CopyFiles */,
-				4FA4FFEA1533AF6C0054482A /* Snippet.tmLanguage in CopyFiles */,
-				4FA4FFEB1533AF6C0054482A /* SQL (Rails).plist in CopyFiles */,
-				4FA4FFEC1533AF6C0054482A /* SQL.plist in CopyFiles */,
-				4FA4FFED1533AF6C0054482A /* Subversion commit message.plist in CopyFiles */,
-				4FA4FFEE1533AF6C0054482A /* TeX Math.plist in CopyFiles */,
-				4FA4FFEF1533AF6C0054482A /* TeX.plist in CopyFiles */,
-				4FA4FFF01533AF6C0054482A /* Textile.plist in CopyFiles */,
-				4FA4FFF11533AF6C0054482A /* Todo.txt.tmLanguage in CopyFiles */,
-				4FA4FFF21533AF6C0054482A /* XML.plist in CopyFiles */,
-				4FA4FFF31533AF6C0054482A /* XSL.plist in CopyFiles */,
-				4FA4FFF41533AF6C0054482A /* YAML.plist in CopyFiles */,
+				4FA4FFB71533AF6C0054482A /* Ahk.plist in Copy "languages" files */,
+				4FA4FFB81533AF6C0054482A /* Bibtex.plist in Copy "languages" files */,
+				4FA4FFB91533AF6C0054482A /* Blog (HTML).plist in Copy "languages" files */,
+				4FA4FFBA1533AF6C0054482A /* Blog (Markdown).plist in Copy "languages" files */,
+				4FA4FFBB1533AF6C0054482A /* Blog (Text).plist in Copy "languages" files */,
+				4FA4FFBC1533AF6C0054482A /* Blog (Textile).plist in Copy "languages" files */,
+				4FA4FFBD1533AF6C0054482A /* Build.tmLanguage in Copy "languages" files */,
+				4FA4FFBE1533AF6C0054482A /* Bulletin Board.plist in Copy "languages" files */,
+				4FA4FFBF1533AF6C0054482A /* C#.tmLanguage in Copy "languages" files */,
+				4FA4FFC01533AF6C0054482A /* C++.plist in Copy "languages" files */,
+				4FA4FFC11533AF6C0054482A /* C.plist in Copy "languages" files */,
+				4FA4FFC21533AF6C0054482A /* CSS Zen.tmLanguage in Copy "languages" files */,
+				4FA4FFC31533AF6C0054482A /* CSS.plist in Copy "languages" files */,
+				4FA4FFC41533AF6C0054482A /* Diff.plist in Copy "languages" files */,
+				4FA4FFC51533AF6C0054482A /* Doxygen.tmLanguage in Copy "languages" files */,
+				4FA4FFC61533AF6C0054482A /* ExpressionEngine.plist in Copy "languages" files */,
+				4FA4FFC71533AF6C0054482A /* HTML (Rails).plist in Copy "languages" files */,
+				4FA4FFC81533AF6C0054482A /* HTML Zen.tmLanguage in Copy "languages" files */,
+				4FA4FFC91533AF6C0054482A /* HTML.plist in Copy "languages" files */,
+				4FA4FFCA1533AF6C0054482A /* Ini.plist in Copy "languages" files */,
+				4FA4FFCB1533AF6C0054482A /* Java.plist in Copy "languages" files */,
+				4FA4FFCC1533AF6C0054482A /* JavaProperties.plist in Copy "languages" files */,
+				4FA4FFCD1533AF6C0054482A /* JavaScript (Rails).tmLanguage in Copy "languages" files */,
+				4FA4FFCE1533AF6C0054482A /* JavaScript.plist in Copy "languages" files */,
+				4FA4FFCF1533AF6C0054482A /* LanguageGrammar.tmLanguage in Copy "languages" files */,
+				4FA4FFD01533AF6C0054482A /* LaTeX Beamer.plist in Copy "languages" files */,
+				4FA4FFD11533AF6C0054482A /* LaTeX Log.plist in Copy "languages" files */,
+				4FA4FFD21533AF6C0054482A /* LaTeX Memoir.tmLanguage in Copy "languages" files */,
+				4FA4FFD31533AF6C0054482A /* LaTeX.plist in Copy "languages" files */,
+				4FA4FFD41533AF6C0054482A /* Lisp.plist in Copy "languages" files */,
+				4FA4FFD51533AF6C0054482A /* Makefile.plist in Copy "languages" files */,
+				4FA4FFD61533AF6C0054482A /* Markdown.plist in Copy "languages" files */,
+				4FA4FFD71533AF6C0054482A /* Mediawiki.tmLanguage in Copy "languages" files */,
+				4FA4FFD81533AF6C0054482A /* MSDOS batch file.tmLanguage in Copy "languages" files */,
+				4FA4FFD91533AF6C0054482A /* MultiMarkdown.tmLanguage in Copy "languages" files */,
+				4FA4FFDA1533AF6C0054482A /* OpenGL.plist in Copy "languages" files */,
+				4FA4FFDB1533AF6C0054482A /* Perl.plist in Copy "languages" files */,
+				4FA4FFDC1533AF6C0054482A /* PHP.plist in Copy "languages" files */,
+				4FA4FFDD1533AF6C0054482A /* Plain text.plist in Copy "languages" files */,
+				4FA4FFDE1533AF6C0054482A /* Property List.tmLanguage in Copy "languages" files */,
+				4FA4FFDF1533AF6C0054482A /* Python.tmLanguage in Copy "languages" files */,
+				4FA4FFE01533AF6C0054482A /* Regular Expressions (Oniguruma).tmLanguage in Copy "languages" files */,
+				4FA4FFE11533AF6C0054482A /* Regular Expressions (Python).tmLanguage in Copy "languages" files */,
+				4FA4FFE21533AF6C0054482A /* Release Notes.tmLanguage in Copy "languages" files */,
+				4FA4FFE31533AF6C0054482A /* RJS.tmLanguage in Copy "languages" files */,
+				4FA4FFE41533AF6C0054482A /* Ruby on Rails.plist in Copy "languages" files */,
+				4FA4FFE51533AF6C0054482A /* Ruby Sass.tmLanguage in Copy "languages" files */,
+				4FA4FFE61533AF6C0054482A /* Ruby.plist in Copy "languages" files */,
+				4FA4FFE71533AF6C0054482A /* SCSS.tmLanguage in Copy "languages" files */,
+				4FA4FFE81533AF6C0054482A /* Shell-Unix-Generic.plist in Copy "languages" files */,
+				4FA4FFE91533AF6C0054482A /* Smarty.plist in Copy "languages" files */,
+				4FA4FFEA1533AF6C0054482A /* Snippet.tmLanguage in Copy "languages" files */,
+				4FA4FFEB1533AF6C0054482A /* SQL (Rails).plist in Copy "languages" files */,
+				4FA4FFEC1533AF6C0054482A /* SQL.plist in Copy "languages" files */,
+				4FA4FFED1533AF6C0054482A /* Subversion commit message.plist in Copy "languages" files */,
+				4FA4FFEE1533AF6C0054482A /* TeX Math.plist in Copy "languages" files */,
+				4FA4FFEF1533AF6C0054482A /* TeX.plist in Copy "languages" files */,
+				4FA4FFF01533AF6C0054482A /* Textile.plist in Copy "languages" files */,
+				4FA4FFF11533AF6C0054482A /* Todo.txt.tmLanguage in Copy "languages" files */,
+				4FA4FFF21533AF6C0054482A /* XML.plist in Copy "languages" files */,
+				4FA4FFF31533AF6C0054482A /* XSL.plist in Copy "languages" files */,
+				4FA4FFF41533AF6C0054482A /* YAML.plist in Copy "languages" files */,
 			);
+			name = "Copy \"languages\" files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -909,7 +910,7 @@
 				4F293B7314CCE88100020A09 /* Sources */,
 				4F293B7414CCE88100020A09 /* Frameworks */,
 				4F293B7514CCE88100020A09 /* Resources */,
-				4FA4FFB61533AF4D0054482A /* CopyFiles */,
+				4FA4FFB61533AF4D0054482A /* Copy "languages" files */,
 			);
 			buildRules = (
 			);
