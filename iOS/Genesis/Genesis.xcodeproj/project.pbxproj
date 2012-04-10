@@ -200,7 +200,6 @@
 		4FA4FFF21533AF6C0054482A /* XML.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF751533AF160054482A /* XML.plist */; };
 		4FA4FFF31533AF6C0054482A /* XSL.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF761533AF160054482A /* XSL.plist */; };
 		4FA4FFF41533AF6C0054482A /* YAML.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF771533AF160054482A /* YAML.plist */; };
-		4FA4FFF61533BD170054482A /* ebuncle-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FFF51533BD170054482A /* ebuncle-license.txt */; };
 		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
@@ -543,7 +542,6 @@
 		4FA4FF751533AF160054482A /* XML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XML.plist; sourceTree = "<group>"; };
 		4FA4FF761533AF160054482A /* XSL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XSL.plist; sourceTree = "<group>"; };
 		4FA4FF771533AF160054482A /* YAML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YAML.plist; sourceTree = "<group>"; };
-		4FA4FFF51533BD170054482A /* ebuncle-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ebuncle-license.txt"; sourceTree = "<group>"; };
 		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
@@ -1047,7 +1045,6 @@
 		4FA4FF391533AF160054482A /* languages */ = {
 			isa = PBXGroup;
 			children = (
-				4FA4FFF51533BD170054482A /* ebuncle-license.txt */,
 				4FA4FF3A1533AF160054482A /* Ahk.plist */,
 				4FA4FF3B1533AF160054482A /* Bibtex.plist */,
 				4FA4FF3C1533AF160054482A /* Blog (HTML).plist */,
@@ -1352,7 +1349,6 @@
 				4FA4FFB31533AF160054482A /* XML.plist in Resources */,
 				4FA4FFB41533AF160054482A /* XSL.plist in Resources */,
 				4FA4FFB51533AF160054482A /* YAML.plist in Resources */,
-				4FA4FFF61533BD170054482A /* ebuncle-license.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
