@@ -70,7 +70,7 @@
 
 -(NSAttributedString*)coloredStringForAttributedString:(NSAttributedString*)attributedString
 {
-    NSMutableAttributedString* coloredString = [[NSMutableAttributedString alloc] initWithString:[attributedString string]];
+    NSMutableAttributedString* coloredString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
     
     for(NSUInteger i = 0; i < [attributedString length]; i++)
     {

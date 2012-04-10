@@ -16,6 +16,7 @@
 #import "GNFileRepresentation.h"
 #import "GNFileManager.h"
 #import "GNTextAttributer.h"
+#import "GNTextGeometry.h"
 
 @implementation GNFileRepresentation
 
@@ -221,6 +222,8 @@
     
     attributedFileContents = [GNTextAttributer attributedStringForText:fileContents
                                                 withLanguageDictionary:languageDictionary];
+    
+    attributedFileContents = [GNTextGeometry attributedStringWithDefaultFontApplied:attributedFileContents];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
                                                         object:self];

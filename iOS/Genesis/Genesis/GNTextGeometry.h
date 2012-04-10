@@ -21,5 +21,6 @@
 +(CGFloat)heightOfCharacter;
 +(CTFontRef)defaultFont;
 +(UIFont*)defaultUIFont;
++(NSAttributedString*)attributedStringWithDefaultFontApplied:(NSAttributedString*)attributedString;
 
 @end

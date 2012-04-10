@@ -41,4 +41,16 @@
                            size:DEFAULT_SIZE];
 }
 
++(NSAttributedString*)attributedStringWithDefaultFontApplied:(NSAttributedString*)attributedString
+{
+    NSMutableAttributedString* fontAppliedMutableString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+    
+    // Apply the default font to the entire string
+    [fontAppliedMutableString addAttributes:[NSDictionary dictionaryWithObject:(id)[GNTextGeometry defaultFont]
+                                                                        forKey:(NSString*)kCTFontAttributeName]
+                                      range:NSMakeRange(0, [attributedString length])];
+    
+    return fontAppliedMutableString;
+}
+
 @end
