@@ -20,7 +20,7 @@
 
 @synthesize fileRepresentation;
 
--(id)initWithLine:(NSString*)lineText atIndex:(NSUInteger)index
+-(id)initWithFileRepresentation:(GNFileRepresentation*)representation andIndex:(NSUInteger)index
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kGNTextTableViewCellReuseIdentifier];
     if(self)
@@ -31,10 +31,11 @@
         
         [textContainerScrollView setDelegate:self];
         
-        textLineView = [[GNTextLineView alloc] initWithLine:lineText
-                                                      frame:[self frame]
-                                          andSizingDelegate:self];
-
+        textLineView = [[GNTextLineView alloc] initWithFileRepresentation:representation
+                                                               lineNumber:index
+                                                                    frame:[self frame]
+                                                        andSizingDelegate:self];
+        
         [textContainerScrollView addSubview:textLineView];
         
         lineNumber = index;

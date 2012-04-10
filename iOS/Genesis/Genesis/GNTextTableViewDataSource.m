@@ -34,10 +34,9 @@
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    // Grab the line for the index path
-    NSString* line = [fileRepresentation lineAtIndex:[indexPath row]];
+    GNTextTableViewCell* cell = [[GNTextTableViewCell alloc] initWithFileRepresentation:fileRepresentation
+                                                                               andIndex:[indexPath row]];
     
-    GNTextTableViewCell* cell = [[GNTextTableViewCell alloc] initWithLine:line atIndex:[indexPath row]];
     [cell setFileRepresentation:fileRepresentation];
     
     return cell;

@@ -14,6 +14,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "GNFileRepresentation.h"
 #import "GNSyntaxHighlighter.h"
 
 @protocol GNTextLineViewSizingDelegate <NSObject>
@@ -24,8 +25,10 @@
 
 @interface GNTextLineView : UIView
 {
-    NSString* representedLineText;
-    NSAttributedString* attributedLine;
+    GNFileRepresentation* fileRepresentation;
+    NSUInteger lineNumber;
+    
+    NSAttributedString* highlightedLine;
         
     CTLineRef line;
     CGContextRef staleContext;
@@ -34,7 +37,7 @@
 }
 
 
--(id)initWithLine:(NSString*)lineText frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate;
+-(id)initWithFileRepresentation:(GNFileRepresentation*)representation lineNumber:(NSUInteger)number frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate;
 -(CFIndex)indexForTappedPoint:(CGPoint)point;
 
 @end

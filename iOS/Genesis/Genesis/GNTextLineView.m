@@ -21,20 +21,22 @@
 
 static CTFontRef defaultFont = nil;
 
--(id)initWithLine:(NSString*)lineText frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate
+-(id)initWithFileRepresentation:(GNFileRepresentation*)representation lineNumber:(NSUInteger)number frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate
 {
     self = [super initWithFrame:frame];
     if(self)
     {
-        representedLineText = lineText;
+        fileRepresentation = representation;
+        lineNumber = number;
         
         // Set our line ivar to nil
         line = nil;
         
         // Attributed string with representedLine's text
-        attributedLine = [[NSAttributedString alloc] initWithString:representedLineText];
+        NSAttributedString* attributedLine = [representation attributedLineAtIndex:lineNumber];
         
-        
+        // Highlight attributedLine
+        highlightedLine = [GNSyntaxHighlighter highlightedSyntaxForAttributedText:attributedLine];
         
         delegate = sizingDelegate;
         
@@ -57,7 +59,7 @@ static CTFontRef defaultFont = nil;
     [super drawRect:rect];
     staleContext = UIGraphicsGetCurrentContext();
     
-    CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)attributedLine;
+    CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)highlightedLine;
     if(line != nil)
     {
         CFRelease(line);
@@ -83,7 +85,7 @@ static CTFontRef defaultFont = nil;
     UIFont* defaultUIFont = [UIFont fontWithName:DEFAULT_FONT_FAMILY
                                             size:DEFAULT_SIZE];
     
-    CGFloat widthRequiredForText = [representedLineText sizeWithFont:defaultUIFont].width;
+    CGFloat widthRequiredForText = [[highlightedLine string] sizeWithFont:defaultUIFont].width;
     
     CGRect oldFrame = [self frame];
     CGRect newFrame = CGRectMake(oldFrame.origin.x,
@@ -107,15 +109,5 @@ static CTFontRef defaultFont = nil;
     
     return indexIntoString;
 }
-
-
-#pragma mark GNSyntaxHighlighterDelegate methods
-
--(void)didHighlightText:(NSAttributedString *)highlightedText
-{
-    attributedLine = highlightedText;
-    [self setNeedsDisplay];
-}
-
 
 @end

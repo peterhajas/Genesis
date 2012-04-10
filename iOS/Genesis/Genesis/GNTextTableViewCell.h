@@ -32,7 +32,7 @@
     NSUInteger lineNumber;
 }
 
--(id)initWithLine:(NSString*)lineText atIndex:(NSUInteger)index;
+-(id)initWithFileRepresentation:(GNFileRepresentation*)representation andIndex:(NSUInteger)index;
 
 @property (nonatomic, retain) GNFileRepresentation* fileRepresentation;
 
