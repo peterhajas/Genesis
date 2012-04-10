@@ -91,6 +91,10 @@
 -(NSAttributedString*)attributedLineAtIndex:(NSUInteger)index
 {
     NSRange lineRange = [fileContents rangeOfString:[self lineAtIndex:index]];
+    if(lineRange.location == NSNotFound)
+    {
+        return [[NSAttributedString alloc] initWithString:@""];
+    }
     return [attributedFileContents attributedSubstringFromRange:lineRange];
 }
 
