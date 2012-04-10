@@ -22,32 +22,6 @@
 		1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBE80214F4CB7400FC1DF2 /* GNNetworkConstants.m */; };
 		4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */; };
 		4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */; };
-		4F0601361533D2740022187D /* Active4D.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011C1533D2740022187D /* Active4D.tmTheme */; };
-		4F0601371533D2740022187D /* All Hallow's Eve.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */; };
-		4F0601381533D2740022187D /* Amy.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011E1533D2740022187D /* Amy.tmTheme */; };
-		4F0601391533D2740022187D /* Blackboard.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06011F1533D2740022187D /* Blackboard.tmTheme */; };
-		4F06013A1533D2740022187D /* Brilliance Black.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601201533D2740022187D /* Brilliance Black.tmTheme */; };
-		4F06013B1533D2740022187D /* Cobalt.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601211533D2740022187D /* Cobalt.tmTheme */; };
-		4F06013C1533D2740022187D /* Dawn.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601221533D2740022187D /* Dawn.tmTheme */; };
-		4F06013D1533D2740022187D /* Dobdark.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601231533D2740022187D /* Dobdark.tmTheme */; };
-		4F06013E1533D2740022187D /* ebundle-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601241533D2740022187D /* ebundle-license.txt */; };
-		4F06013F1533D2740022187D /* Eiffel.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601251533D2740022187D /* Eiffel.tmTheme */; };
-		4F0601401533D2740022187D /* Espresso Libre.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601261533D2740022187D /* Espresso Libre.tmTheme */; };
-		4F0601411533D2740022187D /* IDLE.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601271533D2740022187D /* IDLE.tmTheme */; };
-		4F0601421533D2740022187D /* iLife 05.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601281533D2740022187D /* iLife 05.tmTheme */; };
-		4F0601431533D2740022187D /* iPlastic.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601291533D2740022187D /* iPlastic.tmTheme */; };
-		4F0601441533D2740022187D /* LAZY.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012A1533D2740022187D /* LAZY.tmTheme */; };
-		4F0601451533D2740022187D /* Mac Classic.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012B1533D2740022187D /* Mac Classic.tmTheme */; };
-		4F0601461533D2740022187D /* MagicWB (Amiga).tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */; };
-		4F0601471533D2740022187D /* monoindustrial.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012D1533D2740022187D /* monoindustrial.tmTheme */; };
-		4F0601481533D2740022187D /* Monokai.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012E1533D2740022187D /* Monokai.tmTheme */; };
-		4F0601491533D2740022187D /* Pastels on Dark.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */; };
-		4F06014A1533D2740022187D /* Slush & Poppies.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601301533D2740022187D /* Slush & Poppies.tmTheme */; };
-		4F06014B1533D2740022187D /* SpaceCadet.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601311533D2740022187D /* SpaceCadet.tmTheme */; };
-		4F06014C1533D2740022187D /* Sunburst.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601321533D2740022187D /* Sunburst.tmTheme */; };
-		4F06014D1533D2740022187D /* Twilight.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601331533D2740022187D /* Twilight.tmTheme */; };
-		4F06014E1533D2740022187D /* Vibrant Ink.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601341533D2740022187D /* Vibrant Ink.tmTheme */; };
-		4F06014F1533D2740022187D /* Zenburnesque.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
 		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
@@ -83,68 +57,6 @@
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
 		4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4FF371533ADD70054482A /* GNTextAttributer.m */; };
-		4FA4FF781533AF160054482A /* Ahk.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF3A1533AF160054482A /* Ahk.plist */; };
-		4FA4FF791533AF160054482A /* Bibtex.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF3B1533AF160054482A /* Bibtex.plist */; };
-		4FA4FF7A1533AF160054482A /* Blog (HTML).plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF3C1533AF160054482A /* Blog (HTML).plist */; };
-		4FA4FF7B1533AF160054482A /* Blog (Markdown).plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF3D1533AF160054482A /* Blog (Markdown).plist */; };
-		4FA4FF7C1533AF160054482A /* Blog (Text).plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF3E1533AF160054482A /* Blog (Text).plist */; };
-		4FA4FF7D1533AF160054482A /* Blog (Textile).plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF3F1533AF160054482A /* Blog (Textile).plist */; };
-		4FA4FF7E1533AF160054482A /* Build.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF401533AF160054482A /* Build.tmLanguage */; };
-		4FA4FF7F1533AF160054482A /* Bulletin Board.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF411533AF160054482A /* Bulletin Board.plist */; };
-		4FA4FF801533AF160054482A /* C#.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF421533AF160054482A /* C#.tmLanguage */; };
-		4FA4FF811533AF160054482A /* C++.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF431533AF160054482A /* C++.plist */; };
-		4FA4FF821533AF160054482A /* C.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF441533AF160054482A /* C.plist */; };
-		4FA4FF831533AF160054482A /* CSS Zen.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF451533AF160054482A /* CSS Zen.tmLanguage */; };
-		4FA4FF841533AF160054482A /* CSS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF461533AF160054482A /* CSS.plist */; };
-		4FA4FF851533AF160054482A /* Diff.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF471533AF160054482A /* Diff.plist */; };
-		4FA4FF861533AF160054482A /* Doxygen.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF481533AF160054482A /* Doxygen.tmLanguage */; };
-		4FA4FF871533AF160054482A /* ExpressionEngine.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF491533AF160054482A /* ExpressionEngine.plist */; };
-		4FA4FF881533AF160054482A /* HTML (Rails).plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF4A1533AF160054482A /* HTML (Rails).plist */; };
-		4FA4FF891533AF160054482A /* HTML Zen.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF4B1533AF160054482A /* HTML Zen.tmLanguage */; };
-		4FA4FF8A1533AF160054482A /* HTML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF4C1533AF160054482A /* HTML.plist */; };
-		4FA4FF8B1533AF160054482A /* Ini.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF4D1533AF160054482A /* Ini.plist */; };
-		4FA4FF8C1533AF160054482A /* Java.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF4E1533AF160054482A /* Java.plist */; };
-		4FA4FF8D1533AF160054482A /* JavaProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF4F1533AF160054482A /* JavaProperties.plist */; };
-		4FA4FF8E1533AF160054482A /* JavaScript (Rails).tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF501533AF160054482A /* JavaScript (Rails).tmLanguage */; };
-		4FA4FF8F1533AF160054482A /* JavaScript.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF511533AF160054482A /* JavaScript.plist */; };
-		4FA4FF901533AF160054482A /* LanguageGrammar.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF521533AF160054482A /* LanguageGrammar.tmLanguage */; };
-		4FA4FF911533AF160054482A /* LaTeX Beamer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF531533AF160054482A /* LaTeX Beamer.plist */; };
-		4FA4FF921533AF160054482A /* LaTeX Log.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF541533AF160054482A /* LaTeX Log.plist */; };
-		4FA4FF931533AF160054482A /* LaTeX Memoir.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF551533AF160054482A /* LaTeX Memoir.tmLanguage */; };
-		4FA4FF941533AF160054482A /* LaTeX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF561533AF160054482A /* LaTeX.plist */; };
-		4FA4FF951533AF160054482A /* Lisp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF571533AF160054482A /* Lisp.plist */; };
-		4FA4FF961533AF160054482A /* Makefile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF581533AF160054482A /* Makefile.plist */; };
-		4FA4FF971533AF160054482A /* Markdown.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF591533AF160054482A /* Markdown.plist */; };
-		4FA4FF981533AF160054482A /* Mediawiki.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF5A1533AF160054482A /* Mediawiki.tmLanguage */; };
-		4FA4FF991533AF160054482A /* MSDOS batch file.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF5B1533AF160054482A /* MSDOS batch file.tmLanguage */; };
-		4FA4FF9A1533AF160054482A /* MultiMarkdown.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF5C1533AF160054482A /* MultiMarkdown.tmLanguage */; };
-		4FA4FF9B1533AF160054482A /* OpenGL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF5D1533AF160054482A /* OpenGL.plist */; };
-		4FA4FF9C1533AF160054482A /* Perl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF5E1533AF160054482A /* Perl.plist */; };
-		4FA4FF9D1533AF160054482A /* PHP.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF5F1533AF160054482A /* PHP.plist */; };
-		4FA4FF9E1533AF160054482A /* Plain text.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF601533AF160054482A /* Plain text.plist */; };
-		4FA4FF9F1533AF160054482A /* Property List.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF611533AF160054482A /* Property List.tmLanguage */; };
-		4FA4FFA01533AF160054482A /* Python.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF621533AF160054482A /* Python.tmLanguage */; };
-		4FA4FFA11533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF631533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage */; };
-		4FA4FFA21533AF160054482A /* Regular Expressions (Python).tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF641533AF160054482A /* Regular Expressions (Python).tmLanguage */; };
-		4FA4FFA31533AF160054482A /* Release Notes.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF651533AF160054482A /* Release Notes.tmLanguage */; };
-		4FA4FFA41533AF160054482A /* RJS.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF661533AF160054482A /* RJS.tmLanguage */; };
-		4FA4FFA51533AF160054482A /* Ruby on Rails.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF671533AF160054482A /* Ruby on Rails.plist */; };
-		4FA4FFA61533AF160054482A /* Ruby Sass.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF681533AF160054482A /* Ruby Sass.tmLanguage */; };
-		4FA4FFA71533AF160054482A /* Ruby.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF691533AF160054482A /* Ruby.plist */; };
-		4FA4FFA81533AF160054482A /* SCSS.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF6A1533AF160054482A /* SCSS.tmLanguage */; };
-		4FA4FFA91533AF160054482A /* Shell-Unix-Generic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF6B1533AF160054482A /* Shell-Unix-Generic.plist */; };
-		4FA4FFAA1533AF160054482A /* Smarty.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF6C1533AF160054482A /* Smarty.plist */; };
-		4FA4FFAB1533AF160054482A /* Snippet.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF6D1533AF160054482A /* Snippet.tmLanguage */; };
-		4FA4FFAC1533AF160054482A /* SQL (Rails).plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF6E1533AF160054482A /* SQL (Rails).plist */; };
-		4FA4FFAD1533AF160054482A /* SQL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF6F1533AF160054482A /* SQL.plist */; };
-		4FA4FFAE1533AF160054482A /* Subversion commit message.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF701533AF160054482A /* Subversion commit message.plist */; };
-		4FA4FFAF1533AF160054482A /* TeX Math.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF711533AF160054482A /* TeX Math.plist */; };
-		4FA4FFB01533AF160054482A /* TeX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF721533AF160054482A /* TeX.plist */; };
-		4FA4FFB11533AF160054482A /* Textile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF731533AF160054482A /* Textile.plist */; };
-		4FA4FFB21533AF160054482A /* Todo.txt.tmLanguage in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF741533AF160054482A /* Todo.txt.tmLanguage */; };
-		4FA4FFB31533AF160054482A /* XML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF751533AF160054482A /* XML.plist */; };
-		4FA4FFB41533AF160054482A /* XSL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF761533AF160054482A /* XSL.plist */; };
-		4FA4FFB51533AF160054482A /* YAML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FA4FF771533AF160054482A /* YAML.plist */; };
 		4FA4FFB71533AF6C0054482A /* Ahk.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3A1533AF160054482A /* Ahk.plist */; };
 		4FA4FFB81533AF6C0054482A /* Bibtex.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3B1533AF160054482A /* Bibtex.plist */; };
 		4FA4FFB91533AF6C0054482A /* Blog (HTML).plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FA4FF3C1533AF160054482A /* Blog (HTML).plist */; };
@@ -1068,94 +980,6 @@
 				4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */,
 				4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */,
 				4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */,
-				4FA4FF781533AF160054482A /* Ahk.plist in Resources */,
-				4FA4FF791533AF160054482A /* Bibtex.plist in Resources */,
-				4FA4FF7A1533AF160054482A /* Blog (HTML).plist in Resources */,
-				4FA4FF7B1533AF160054482A /* Blog (Markdown).plist in Resources */,
-				4FA4FF7C1533AF160054482A /* Blog (Text).plist in Resources */,
-				4FA4FF7D1533AF160054482A /* Blog (Textile).plist in Resources */,
-				4FA4FF7E1533AF160054482A /* Build.tmLanguage in Resources */,
-				4FA4FF7F1533AF160054482A /* Bulletin Board.plist in Resources */,
-				4FA4FF801533AF160054482A /* C#.tmLanguage in Resources */,
-				4FA4FF811533AF160054482A /* C++.plist in Resources */,
-				4FA4FF821533AF160054482A /* C.plist in Resources */,
-				4FA4FF831533AF160054482A /* CSS Zen.tmLanguage in Resources */,
-				4FA4FF841533AF160054482A /* CSS.plist in Resources */,
-				4FA4FF851533AF160054482A /* Diff.plist in Resources */,
-				4FA4FF861533AF160054482A /* Doxygen.tmLanguage in Resources */,
-				4FA4FF871533AF160054482A /* ExpressionEngine.plist in Resources */,
-				4FA4FF881533AF160054482A /* HTML (Rails).plist in Resources */,
-				4FA4FF891533AF160054482A /* HTML Zen.tmLanguage in Resources */,
-				4FA4FF8A1533AF160054482A /* HTML.plist in Resources */,
-				4FA4FF8B1533AF160054482A /* Ini.plist in Resources */,
-				4FA4FF8C1533AF160054482A /* Java.plist in Resources */,
-				4FA4FF8D1533AF160054482A /* JavaProperties.plist in Resources */,
-				4FA4FF8E1533AF160054482A /* JavaScript (Rails).tmLanguage in Resources */,
-				4FA4FF8F1533AF160054482A /* JavaScript.plist in Resources */,
-				4FA4FF901533AF160054482A /* LanguageGrammar.tmLanguage in Resources */,
-				4FA4FF911533AF160054482A /* LaTeX Beamer.plist in Resources */,
-				4FA4FF921533AF160054482A /* LaTeX Log.plist in Resources */,
-				4FA4FF931533AF160054482A /* LaTeX Memoir.tmLanguage in Resources */,
-				4FA4FF941533AF160054482A /* LaTeX.plist in Resources */,
-				4FA4FF951533AF160054482A /* Lisp.plist in Resources */,
-				4FA4FF961533AF160054482A /* Makefile.plist in Resources */,
-				4FA4FF971533AF160054482A /* Markdown.plist in Resources */,
-				4FA4FF981533AF160054482A /* Mediawiki.tmLanguage in Resources */,
-				4FA4FF991533AF160054482A /* MSDOS batch file.tmLanguage in Resources */,
-				4FA4FF9A1533AF160054482A /* MultiMarkdown.tmLanguage in Resources */,
-				4FA4FF9B1533AF160054482A /* OpenGL.plist in Resources */,
-				4FA4FF9C1533AF160054482A /* Perl.plist in Resources */,
-				4FA4FF9D1533AF160054482A /* PHP.plist in Resources */,
-				4FA4FF9E1533AF160054482A /* Plain text.plist in Resources */,
-				4FA4FF9F1533AF160054482A /* Property List.tmLanguage in Resources */,
-				4FA4FFA01533AF160054482A /* Python.tmLanguage in Resources */,
-				4FA4FFA11533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage in Resources */,
-				4FA4FFA21533AF160054482A /* Regular Expressions (Python).tmLanguage in Resources */,
-				4FA4FFA31533AF160054482A /* Release Notes.tmLanguage in Resources */,
-				4FA4FFA41533AF160054482A /* RJS.tmLanguage in Resources */,
-				4FA4FFA51533AF160054482A /* Ruby on Rails.plist in Resources */,
-				4FA4FFA61533AF160054482A /* Ruby Sass.tmLanguage in Resources */,
-				4FA4FFA71533AF160054482A /* Ruby.plist in Resources */,
-				4FA4FFA81533AF160054482A /* SCSS.tmLanguage in Resources */,
-				4FA4FFA91533AF160054482A /* Shell-Unix-Generic.plist in Resources */,
-				4FA4FFAA1533AF160054482A /* Smarty.plist in Resources */,
-				4FA4FFAB1533AF160054482A /* Snippet.tmLanguage in Resources */,
-				4FA4FFAC1533AF160054482A /* SQL (Rails).plist in Resources */,
-				4FA4FFAD1533AF160054482A /* SQL.plist in Resources */,
-				4FA4FFAE1533AF160054482A /* Subversion commit message.plist in Resources */,
-				4FA4FFAF1533AF160054482A /* TeX Math.plist in Resources */,
-				4FA4FFB01533AF160054482A /* TeX.plist in Resources */,
-				4FA4FFB11533AF160054482A /* Textile.plist in Resources */,
-				4FA4FFB21533AF160054482A /* Todo.txt.tmLanguage in Resources */,
-				4FA4FFB31533AF160054482A /* XML.plist in Resources */,
-				4FA4FFB41533AF160054482A /* XSL.plist in Resources */,
-				4FA4FFB51533AF160054482A /* YAML.plist in Resources */,
-				4F0601361533D2740022187D /* Active4D.tmTheme in Resources */,
-				4F0601371533D2740022187D /* All Hallow's Eve.tmTheme in Resources */,
-				4F0601381533D2740022187D /* Amy.tmTheme in Resources */,
-				4F0601391533D2740022187D /* Blackboard.tmTheme in Resources */,
-				4F06013A1533D2740022187D /* Brilliance Black.tmTheme in Resources */,
-				4F06013B1533D2740022187D /* Cobalt.tmTheme in Resources */,
-				4F06013C1533D2740022187D /* Dawn.tmTheme in Resources */,
-				4F06013D1533D2740022187D /* Dobdark.tmTheme in Resources */,
-				4F06013E1533D2740022187D /* ebundle-license.txt in Resources */,
-				4F06013F1533D2740022187D /* Eiffel.tmTheme in Resources */,
-				4F0601401533D2740022187D /* Espresso Libre.tmTheme in Resources */,
-				4F0601411533D2740022187D /* IDLE.tmTheme in Resources */,
-				4F0601421533D2740022187D /* iLife 05.tmTheme in Resources */,
-				4F0601431533D2740022187D /* iPlastic.tmTheme in Resources */,
-				4F0601441533D2740022187D /* LAZY.tmTheme in Resources */,
-				4F0601451533D2740022187D /* Mac Classic.tmTheme in Resources */,
-				4F0601461533D2740022187D /* MagicWB (Amiga).tmTheme in Resources */,
-				4F0601471533D2740022187D /* monoindustrial.tmTheme in Resources */,
-				4F0601481533D2740022187D /* Monokai.tmTheme in Resources */,
-				4F0601491533D2740022187D /* Pastels on Dark.tmTheme in Resources */,
-				4F06014A1533D2740022187D /* Slush & Poppies.tmTheme in Resources */,
-				4F06014B1533D2740022187D /* SpaceCadet.tmTheme in Resources */,
-				4F06014C1533D2740022187D /* Sunburst.tmTheme in Resources */,
-				4F06014D1533D2740022187D /* Twilight.tmTheme in Resources */,
-				4F06014E1533D2740022187D /* Vibrant Ink.tmTheme in Resources */,
-				4F06014F1533D2740022187D /* Zenburnesque.tmTheme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
