@@ -18,6 +18,18 @@
 
 @implementation GNTextAttributer
 
++(BOOL)isValidPattern:(NSArray*)patternKeys
+{
+    if(([patternKeys containsObject:@"match"] &&
+        [patternKeys containsObject:@"name"]) ||
+       ([patternKeys containsObject:@"begin"] &&
+        [patternKeys containsObject:@"end"]))
+    {
+        return YES;
+    }
+    return NO;
+}
+
 +(NSAttributedString*)attributedStringForText:(NSString*)text withLanguageDictionary:(NSDictionary*)languageDictionary
 {
     NSMutableAttributedString* attributedText = [[NSMutableAttributedString alloc] initWithString:text];
@@ -32,37 +44,79 @@
     NSArray* languagePatterns = [languageDictionary valueForKey:@"patterns"];
     for(NSDictionary* pattern in languagePatterns)
     {
-        // For each pattern, check if it has a match and a name
-        
-        // If it does not, skip it
-        if(![[pattern allKeys] containsObject:@"match"] ||
-           ![[pattern allKeys] containsObject:@"name"])
+        // For each pattern, check its validity
+        if(![GNTextAttributer isValidPattern:[pattern allKeys]])
         {
             continue;
         }
         
-        // Now that we know it has a match and a name, load both
-        NSRegularExpression* match = [NSRegularExpression regularExpressionWithPattern:[pattern valueForKey:@"match"]
-                                                                               options:0
-                                                                                 error:nil];
-        NSString* name = [pattern valueForKey:@"name"];
-        
-        // Find all the matches in text that match this regular expression
-        
-        NSArray* matches = [match matchesInString:text
-                                          options:0
-                                            range:[text rangeOfString:text]];
-        
-        for(NSTextCheckingResult* regExMatch in matches)
+        // If it has a match and a name, we can do simple regexing
+        if([[pattern allKeys] containsObject:@"match"])
         {
-            NSRange matchRange = [regExMatch range];
-            [attributedText setAttributes:[NSDictionary dictionaryWithObject:name
-                                                                      forKey:GNTextGrammarTypeKey]
-                                    range:matchRange];
+            // Now that we know it has a match and a name, load both
+            NSRegularExpression* match = [NSRegularExpression regularExpressionWithPattern:[pattern valueForKey:@"match"]
+                                                                                   options:0
+                                                                                     error:nil];
+            NSString* name = [pattern valueForKey:@"name"];
+            
+            // Find all the matches in text that match this regular expression
+            
+            NSArray* matches = [match matchesInString:text
+                                              options:0
+                                                range:[text rangeOfString:text]];
+            
+            for(NSTextCheckingResult* regExMatch in matches)
+            {
+                NSRange matchRange = [regExMatch range];
+                [attributedText setAttributes:[NSDictionary dictionaryWithObject:name
+                                                                          forKey:GNTextGrammarTypeKey]
+                                        range:matchRange];
+            }
+        }
+        else
+        {
+            // It's more complex. Find the beginning and ending expressions
+            NSRegularExpression* begin = [NSRegularExpression regularExpressionWithPattern:[pattern valueForKey:@"begin"]
+                                                                                   options:0
+                                                                                     error:nil];
+            NSRegularExpression* end = [NSRegularExpression regularExpressionWithPattern:[pattern valueForKey:@"end"]
+                                                                                 options:0
+                                                                                   error:nil];
+            
+            NSArray* beginCaptures = nil;
+            NSArray* endCaptures = nil;
+            NSArray* captures = nil;
+            
+            if([[pattern allKeys] containsObject:@"beginCaptures"])
+            {
+                beginCaptures = [GNTextAttributer grabCapturesNames:[pattern valueForKey:@"beginCaptures"]];
+            }
+            if([[pattern allKeys] containsObject:@"endCaptures"])
+            {
+                endCaptures = [GNTextAttributer grabCapturesNames:[pattern valueForKey:@"endCaptures"]];
+            }
+            if([[pattern allKeys] containsObject:@"captures"])
+            {
+                captures = [GNTextAttributer grabCapturesNames:[pattern valueForKey:@"captures"]];
+            }
+            
+            
         }
     }
     
     return [[NSAttributedString alloc] initWithAttributedString:attributedText];
+}
+
++(NSArray*)grabCapturesNames:(NSDictionary*)capturesDict
+{
+    NSMutableArray* capturesNames = [[NSMutableArray alloc] init];
+    for(NSString* key in [capturesDict allKeys])
+    {
+        NSDictionary* captureEntry = [capturesDict valueForKey:key];
+        NSString* captureName = [captureEntry valueForKey:@"name"];
+        [capturesNames addObject:captureName];
+    }
+    return [NSArray arrayWithArray:capturesNames];
 }
 
 +(NSDictionary*)languageDictionaryForExtension:(NSString*)extension
