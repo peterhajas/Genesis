@@ -100,7 +100,91 @@
                 captures = [GNTextAttributer grabCapturesNames:[pattern valueForKey:@"captures"]];
             }
             
+            // Find all the elements of text which match begin and end
             
+            NSArray* beginMatches = [begin matchesInString:text
+                                                   options:0
+                                                     range:[text rangeOfString:text]];
+            
+            NSArray* endMatches = [end matchesInString:text
+                                               options:0
+                                                 range:[text rangeOfString:text]];
+            
+            for(NSTextCheckingResult* beginMatch in beginMatches)
+            {                
+                // Find the range of the beginMatch
+                NSRange matchRange = [beginMatch range];
+                
+                if(beginCaptures)
+                {
+                    // For each element in beginCaptures, apply that to the range of beginMatch
+                    for(NSString* beginCapture in beginCaptures)
+                    {
+                        [attributedText setAttributes:[NSDictionary dictionaryWithObject:beginCapture
+                                                                                  forKey:GNTextGrammarTypeKey]
+                                                range:matchRange];
+                    }
+                }
+                
+                if(captures)
+                {
+                    // We need to find, from beginMatch's end to the end of the string, the first
+                    // occurence of an en end match.
+                    NSArray* endMatchesForBeginMatch = [end matchesInString:text
+                                                                    options:0
+                                                                      range:NSMakeRange(matchRange.location + matchRange.length,
+                                                                                        [text length])];
+                    
+                    
+                    NSRange rangeOfMatch;
+                    
+                    // If there are no end matches for this begin match,
+                    // the range of our match goes to the end of the string
+                    if([endMatchesForBeginMatch count] == 0)
+                    {
+                        rangeOfMatch = NSMakeRange(matchRange.location,
+                                                   [text length] - matchRange.location);
+                        
+                    }
+                    else
+                    {
+                        // If it's not empty, then the first end match is the one we'll attribute to
+                        NSTextCheckingResult* endMatchForBeginMatch = [endMatchesForBeginMatch objectAtIndex:0];
+                        
+                        // The endpoint of the attribution range is the end of endMatchForBeginMatch
+                        NSRange endMatchForBeginMatchRange = [endMatchForBeginMatch range];
+                        
+                        // The length our match is the difference between the absolute location of
+                        // endMatchForBeginMatchRange and the absolute location of matchRange.
+                        
+                        rangeOfMatch = NSMakeRange(matchRange.location,
+                                                   (endMatchForBeginMatchRange.location+ endMatchForBeginMatchRange.length) - (matchRange.location + matchRange.length));
+                    }
+                    
+                    for(NSString* capture in captures)
+                    {
+                        [attributedText setAttributes:[NSDictionary dictionaryWithObject:capture
+                                                                                  forKey:GNTextGrammarTypeKey]
+                                                range:rangeOfMatch];
+                    }
+                }
+            }
+            for(NSTextCheckingResult* endMatch in endMatches)
+            {
+                if(endCaptures)
+                {
+                    // Find the range of the endMatch
+                    NSRange matchRange = [endMatch range];
+                    
+                    // For each element in endCaptures, apply that to the range of endMatch
+                    for(NSString* endCapture in endCaptures)
+                    {
+                        [attributedText setAttributes:[NSDictionary dictionaryWithObject:endCapture
+                                                                                  forKey:GNTextGrammarTypeKey]
+                                                range:matchRange];
+                    }
+                }
+            }
         }
     }
     
