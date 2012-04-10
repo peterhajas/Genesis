@@ -24,6 +24,11 @@
         
     // Load the language patterns into an array
     
+    if([text isEqualToString:@""])
+    {
+        return attributedText;
+    }
+    
     NSArray* languagePatterns = [languageDictionary valueForKey:@"patterns"];
     for(NSDictionary* pattern in languagePatterns)
     {
