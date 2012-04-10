@@ -22,13 +22,11 @@
 
 @end
 
-@interface GNTextLineView : UIView <GNSyntaxHighlighterDelegate>
+@interface GNTextLineView : UIView
 {
     NSString* representedLineText;
     NSAttributedString* attributedLine;
-    
-    GNSyntaxHighlighter* syntaxHighlighter;
-    
+        
     CTLineRef line;
     CGContextRef staleContext;
     

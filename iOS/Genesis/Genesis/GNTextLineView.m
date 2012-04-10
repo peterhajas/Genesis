@@ -34,11 +34,8 @@ static CTFontRef defaultFont = nil;
         // Attributed string with representedLine's text
         attributedLine = [[NSAttributedString alloc] initWithString:representedLineText];
         
-        syntaxHighlighter = [[GNSyntaxHighlighter alloc] initWithDelegate:self];
-        [self addSubview:syntaxHighlighter];
         
-        [syntaxHighlighter highlightText:representedLineText];
-                
+        
         delegate = sizingDelegate;
         
         // Re-evaluate our size, in case we need to be larger
