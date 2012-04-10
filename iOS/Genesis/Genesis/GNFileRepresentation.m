@@ -86,6 +86,12 @@
     
 }
 
+-(NSAttributedString*)attributedLineAtIndex:(NSUInteger)index
+{
+    NSRange lineRange = [fileContents rangeOfString:[self lineAtIndex:index]];
+    return [attributedFileContents attributedSubstringFromRange:lineRange];
+}
+
 -(void)setInsertionToLineAtIndex:(NSUInteger)lineIndex characterIndexInLine:(NSUInteger)characterIndex
 {
     insertionIndex = 0;

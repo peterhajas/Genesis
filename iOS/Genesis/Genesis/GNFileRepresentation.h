@@ -40,6 +40,8 @@
 
 -(void)moveLineAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
+-(NSAttributedString*)attributedLineAtIndex:(NSUInteger)index;
+
 -(void)setInsertionToLineAtIndex:(NSUInteger)lineIndex characterIndexInLine:(NSUInteger)characterIndex;
 -(BOOL)hasText;
 -(void)insertText:(NSString*)text;
