@@ -14,7 +14,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "GNFileType.h"
 
 @interface GNFileRepresentation : NSObject
 {
@@ -22,13 +21,13 @@
     NSString* fileContents;
     NSMutableArray* fileLines;
     
+    NSAttributedString* attributedFileContents;
+    
     NSMutableArray* lineHorizontalOffsets;
     
     NSUInteger insertionIndex;
     NSUInteger insertionIndexInLine;
     NSUInteger insertionLine;
-    
-    kGNFileType fileType;
 }
 
 -(id)initWithRelativePath:(NSString*)path;
@@ -57,6 +56,6 @@
 @property(readonly) NSUInteger insertionIndex;
 @property(readonly) NSUInteger insertionIndexInLine;
 @property(readonly) NSUInteger insertionLine;
-@property(readonly) kGNFileType fileType;
+@property(readonly) NSString* fileExtension;
 
 @end

@@ -15,11 +15,11 @@
 
 #import "GNFileRepresentation.h"
 #import "GNFileManager.h"
+#import "GNTextAttributer.h"
 
 @implementation GNFileRepresentation
 
 @synthesize insertionIndex, insertionIndexInLine, insertionLine;
-@synthesize fileType;
 
 -(id)initWithRelativePath:(NSString*)path
 {
@@ -39,10 +39,10 @@
         {
             fileContents = @"";
         }
-        [self textChanged];
         
-        // Set our file type
-        fileType = [GNFileType fileTypeForExtension:[relativePath pathExtension]];
+        attributedFileContents = [[NSAttributedString alloc] initWithString:fileContents];
+        
+        [self textChanged];
         
         lineHorizontalOffsets = [[NSMutableArray alloc] init];
         [self clearHorizontalOffsets];
@@ -212,6 +212,9 @@
     
     [self refreshLineArray];
     
+    attributedFileContents = [GNTextAttributer attributedStringForText:fileContents
+                                                         withExtension:[self fileExtension]];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
                                                         object:self];
 }
@@ -286,6 +289,12 @@
     {
         [lineHorizontalOffsets addObject:[NSNumber numberWithFloat:0.0]];
     }
+}
+
+#pragma mark File extension property
+-(NSString*)fileExtension
+{
+    return [relativePath pathExtension];
 }
 
 @end
