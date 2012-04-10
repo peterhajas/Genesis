@@ -15,11 +15,13 @@
 
 #import "GNTMBundleAttributeNameTransformer.h"
 #import <Foundation/NSAttributedString.h>
+#import "GNTextGeometry.h"
 #include <stdlib.h>
 
 @implementation GNTMBundleAttributeNameTransformer
 
 #define colorAttributes [NSArray arrayWithObjects:(NSString*)kCTForegroundColorAttributeName, nil]
+#define fontAttributes [NSArray arrayWithObjects:(NSString*)kCTFontAttributeName, nil]
 
 +(CGColorRef)colorRefForHexColor:(NSString*)hexColor
 {
@@ -53,6 +55,33 @@
                             alpha:1.0] CGColor];
 }
 
++(id)attributeForFontStyle:(NSString*)fontStyle
+{
+    if([fontStyle isEqualToString:@"bold"])
+    {
+        // Bold the font
+        return (__bridge id)CTFontCreateCopyWithSymbolicTraits([GNTextGeometry defaultFont],
+                                                               0.0,
+                                                               NULL,
+                                                               kCTFontBoldTrait,
+                                                               kCTFontBoldTrait);
+    }
+    else if([fontStyle isEqualToString:@"italic"])
+    {
+        // Italicize the font
+        return (__bridge id)CTFontCreateCopyWithSymbolicTraits([GNTextGeometry defaultFont],
+                                                               0.0,
+                                                               NULL,
+                                                               kCTFontItalicTrait,
+                                                               kCTFontItalicTrait);
+    }
+    else
+    {
+        // Just return the font
+        return (__bridge id)[GNTextGeometry defaultFont];
+    }
+}
+
 +(NSString*)transformedKeyForKey:(NSString*)tmKey
 {
     // Big if-chain statement to return various NSAttributedString keys
@@ -63,6 +92,10 @@
     if([tmKey isEqualToString:@"foreground"])
     {
         return (NSString*)kCTForegroundColorAttributeName;
+    }
+    else if([tmKey isEqualToString:@"fontStyle"])
+    {
+        return (NSString*)kCTFontAttributeName;
     }
     
     // If we didn't find it, return nil
@@ -85,6 +118,11 @@
             if([colorAttributes containsObject:transformedKey])
             {
                 value = (id)[GNTMBundleAttributeNameTransformer colorRefForHexColor:[tmDictionary valueForKey:key]];
+            }
+            // If it is a font attribute, then transform the value
+            else if([fontAttributes containsObject:transformedKey])
+            {
+                value = (id)[GNTMBundleAttributeNameTransformer attributeForFontStyle:[tmDictionary valueForKey:key]];
             }
             else
             {
