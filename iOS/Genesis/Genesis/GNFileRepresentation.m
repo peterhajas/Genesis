@@ -41,6 +41,7 @@
         }
         
         attributedFileContents = [[NSAttributedString alloc] initWithString:fileContents];
+        languageDictionary = [GNTextAttributer languageDictionaryForExtension:[self fileExtension]];
         
         [self textChanged];
         
@@ -219,7 +220,7 @@
     [self refreshLineArray];
     
     attributedFileContents = [GNTextAttributer attributedStringForText:fileContents
-                                                         withExtension:[self fileExtension]];
+                                                withLanguageDictionary:languageDictionary];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
                                                         object:self];

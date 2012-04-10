@@ -19,6 +19,7 @@
 
 @interface GNTextAttributer : NSObject
 
-+(NSAttributedString*)attributedStringForText:(NSString*)text withExtension:(NSString*)extension;
++(NSAttributedString*)attributedStringForText:(NSString*)text withLanguageDictionary:(NSDictionary*)languageDictionary;
++(NSDictionary*)languageDictionaryForExtension:(NSString*)extension;
 
 @end

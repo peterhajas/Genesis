@@ -22,6 +22,7 @@
     NSMutableArray* fileLines;
     
     NSAttributedString* attributedFileContents;
+    NSDictionary* languageDictionary; 
     
     NSMutableArray* lineHorizontalOffsets;
     

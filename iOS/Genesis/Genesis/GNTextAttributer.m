@@ -18,12 +18,10 @@
 
 @implementation GNTextAttributer
 
-+(NSAttributedString*)attributedStringForText:(NSString*)text withExtension:(NSString*)extension
++(NSAttributedString*)attributedStringForText:(NSString*)text withLanguageDictionary:(NSDictionary*)languageDictionary
 {
     NSMutableAttributedString* attributedText = [[NSMutableAttributedString alloc] initWithString:text];
-    
-    NSDictionary* languageDictionary = [GNTextAttributer languageDictionaryForExtension:extension];
-    
+        
     // Load the language patterns into an array
     
     NSArray* languagePatterns = [languageDictionary valueForKey:@"patterns"];
