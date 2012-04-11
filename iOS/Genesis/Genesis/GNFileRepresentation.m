@@ -122,37 +122,25 @@
 
 -(void)insertText:(NSString*)text
 {
-    // Grab the text before and after the insertion point
-    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex + insertionLine];
-    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex + insertionLine];
-    
-    // Concatenate beforeInsertion + text + afterInsertion
-    
-    fileContents = [beforeInsertion stringByAppendingString:text];
-    fileContents = [fileContents stringByAppendingString:afterInsertion];
-    
-    [self textChanged];
-        
     if(![text isEqualToString:@"\n"])
     {
+        // Grab the text before and after the insertion point
+        NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex + insertionLine];
+        NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex + insertionLine];
+        
+        // Concatenate beforeInsertion + text + afterInsertion
+        fileContents = [beforeInsertion stringByAppendingString:text];
+        fileContents = [fileContents stringByAppendingString:afterInsertion];
+        
+        [self textChanged];
+        
         // Increment the insertion index by the length of text
         insertionIndex += [text length];
         [self insertionPointChangedShouldRecomputeIndices:YES];
     }
-    
-    /*
-     If they typed a newline just now, because fileLines are split by newlines,
-     we must manually compute the new insertion offset. indexLine is one more
-     than it is now, and insertionIndexInLine is 0
-     */
-    
     else
     {
-        [self addedLineAtIndex:insertionLine];
-        
-        insertionLine++;
-        insertionIndexInLine = 0;
-        [self insertionPointChangedShouldRecomputeIndices:NO];
+        [self insertNewline];
     }
     
 }
@@ -173,6 +161,9 @@
     fileContents = [beforeInsertion stringByAppendingString:afterInsertion];
     
     NSUInteger previousCurrentLineLength = [[self currentLine] length];
+    
+    NSLog(@"beforeInsertion:%@", beforeInsertion);
+    NSLog(@"afterInsertion:%@", afterInsertion);
     
     [self textChanged];
     
@@ -210,6 +201,70 @@
         insertionIndexInLine = [[self currentLine] length] - previousCurrentLineLength;
         [self insertionPointChangedShouldRecomputeIndices:NO];
     }
+}
+
+-(void)insertNewline
+{
+    NSUInteger start, end;
+    NSString* lineSubstring;
+    NSString *leadingSpaces;
+    NSRange leadingSpacesRange;
+    
+    [fileContents getLineStart:&start 
+                           end:&end
+                   contentsEnd:NULL
+                      forRange:NSMakeRange(insertionIndex, [fileContents length] - insertionIndex)];
+    
+    NSRegularExpression* leadingSpacesRegex = [NSRegularExpression regularExpressionWithPattern:@"^([[:blank:]]*)" 
+                                                                                        options:NSRegularExpressionCaseInsensitive
+                                                                                          error:nil];
+    
+    lineSubstring = [self currentLine];
+    
+    NSString* textToInsert = @"";
+    
+    if([lineSubstring length] > 0)
+    {
+        
+        NSTextCheckingResult* textCheckingResult = [leadingSpacesRegex firstMatchInString:lineSubstring 
+                                                                                  options:NSMatchingAnchored 
+                                                                                    range:[lineSubstring
+                                                                                           rangeOfString:lineSubstring]];
+        
+        leadingSpacesRange = [textCheckingResult range];
+        
+        if(leadingSpacesRange.location != NSNotFound)
+        {
+            leadingSpaces = [lineSubstring substringWithRange:leadingSpacesRange];
+        }
+        else
+        {
+            leadingSpaces = @"";
+        }
+        
+        textToInsert = [@"\n" stringByAppendingString:leadingSpaces];
+        
+    }
+    else
+    {
+        textToInsert = @"\n";
+    }
+    
+    // Grab the text before and after the insertion point
+    NSString* beforeInsertion = [fileContents substringToIndex:insertionIndex + insertionLine];
+    NSString* afterInsertion = [fileContents substringFromIndex:insertionIndex + insertionLine];
+    
+    // Concatenate beforeInsertion + textToInsert + afterInsertion
+    fileContents = [beforeInsertion stringByAppendingString:textToInsert];
+    fileContents = [fileContents stringByAppendingString:afterInsertion];
+    
+    [self textChanged];
+    
+    insertionIndex += [textToInsert length] - 1;
+    insertionIndexInLine = [textToInsert length] - 1;
+    insertionLine++;
+    [self addedLineAtIndex:insertionLine];
+    [self insertionPointChangedShouldRecomputeIndices:NO];
 }
 
 -(NSString*)lineToInsertionPoint
