@@ -16,6 +16,7 @@
 
 #import "GNProjectBrowserViewController.h"
 #import "GNDirectoryViewController.h"
+#import "GNApplicationSettingsViewController.h"
 
 @implementation GNProjectBrowserViewController
 
@@ -44,6 +45,14 @@
         [sender setTitle:@"Edit"];
         [sender setStyle:UIBarButtonItemStylePlain];
     }
+}
+
+-(IBAction)settingsButtonPushed:(id)sender
+{
+    GNApplicationSettingsViewController* applicationSettingsViewController = [[GNApplicationSettingsViewController alloc] initWithNibName:@"GNApplicationSettingsViewController"
+                                                                                                                                   bundle:[NSBundle mainBundle]];
+    
+    [self presentModalViewController:applicationSettingsViewController animated:YES];
 }
 
 -(void)didSelectProject:(GNProject*)project

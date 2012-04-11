@@ -42,8 +42,15 @@
     
     // Set global appearance settings
     [[UINavigationBar appearance] setTintColor:kGNTintColor];
+    [[UIToolbar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
+    
+    // Initialize DropBox session
+    dbSession = [[DBSession alloc] initWithAppKey:@"32ukeqeu6af0cft"
+                                        appSecret:@"secret!"
+                                             root:kDBRootDropbox];
+    [DBSession setSharedSession:dbSession];
     
     // Load the default theme
     theme = [[GNTheme alloc] initWthThemeName:defaultTheme];
@@ -173,6 +180,20 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Dropbox URL Handling
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    if ([[DBSession sharedSession] handleOpenURL:url]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            NSLog(@"App linked successfully!");
+            // At this point you can start making API calls
+        }
+        return YES;
+    }
+    // Add whatever other url handling code your app requires here
+    return NO;
 }
 
 @end

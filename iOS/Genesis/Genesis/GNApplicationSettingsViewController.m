@@ -13,26 +13,38 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
+#import "GNApplicationSettingsViewController.h"
 #import <DropboxSDK/DropboxSDK.h>
-#import "GNTheme.h"
 
-@interface GNAppDelegate : UIResponder <UIApplicationDelegate>
+@implementation GNApplicationSettingsViewController
+
+-(void)viewDidLoad
 {
-    UINavigationController* navigationController;
-    GNTheme* theme;
+    // Set enabled/disabled state of the button
+    // based on Dropbox linked status
     
-    DBSession* dbSession;
+    if(![[DBSession sharedSession] isLinked])
+    {
+        [linkToDropboxButton setEnabled:YES];
+    }
+    else
+    {
+        [linkToDropboxButton setEnabled:NO];
+    }
 }
-@property (strong, nonatomic) UIWindow *window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+-(IBAction)donePushed:(id)sender
+{
+    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
+}
 
-@property (readonly) GNTheme* theme;
-
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+-(IBAction)linkToDropboxPushed:(id)sender
+{
+    // If the DBSession isn't linked, link it
+    if(![[DBSession sharedSession] isLinked])
+    {
+        [[DBSession sharedSession] link];
+    }
+}
 
 @end

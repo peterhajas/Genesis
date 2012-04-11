@@ -14,25 +14,13 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <DropboxSDK/DropboxSDK.h>
-#import "GNTheme.h"
 
-@interface GNAppDelegate : UIResponder <UIApplicationDelegate>
+@interface GNApplicationSettingsViewController : UIViewController
 {
-    UINavigationController* navigationController;
-    GNTheme* theme;
-    
-    DBSession* dbSession;
+    IBOutlet UIButton* linkToDropboxButton;
 }
-@property (strong, nonatomic) UIWindow *window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-@property (readonly) GNTheme* theme;
-
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+-(IBAction)donePushed:(id)sender;
+-(IBAction)linkToDropboxPushed:(id)sender;
 
 @end
