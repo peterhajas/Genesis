@@ -16,20 +16,27 @@
 #import <Foundation/Foundation.h>
 #import <DropboxSDK/DropboxSDK.h>
 
-@protocol GNDropboxClientDelegate <NSObject>
+// Notification names
 
--(void)didLink;
+#define kGNDropboxClientFileListingNotification @"GNDropboxClientFileListingNotification"
+#define kGNDropboxClientFileDownloadCompleteNotification @"GNDropboxClientFileDownloadCompleteNotification"
+#define kGNDropboxClientFileUploadCompleteNotification @"GNDropboxClientFileUploadCompleteNotification"
 
-@end
+// Info dictionary keys
+
+#define kGNDropboxClientFilesAtPath @"GNDropboxClientFilesAtPath"
+#define kGNDropboxClientDirectoriesAtPath @"kGNDropboxClientDirectoriesAtPath"
 
 @interface GNDropboxClient : NSObject <DBRestClientDelegate>
 {
     DBRestClient* restClient;
-    NSObject<GNDropboxClientDelegate>* delegate;
 }
 
 -(void)link;
 
-@property(nonatomic, retain) NSObject<GNDropboxClientDelegate>* delegate;
+-(void)listContentsAtDropboxPath:(NSString*)path;
+
+-(void)downloadFileToLocalAbsolutePath:(NSString*)localPath fromDropboxPath:(NSString*)dropboxPath;
+-(void)uploadFileAtLocalAbsolutePath:(NSString*)localPath toDropboxPath:(NSString*)dropboxPath;
 
 @end
