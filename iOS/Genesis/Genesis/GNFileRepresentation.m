@@ -162,9 +162,6 @@
     
     NSUInteger previousCurrentLineLength = [[self currentLine] length];
     
-    NSLog(@"beforeInsertion:%@", beforeInsertion);
-    NSLog(@"afterInsertion:%@", afterInsertion);
-    
     [self textChanged];
     
     if(insertionIndexInLine > 1)
