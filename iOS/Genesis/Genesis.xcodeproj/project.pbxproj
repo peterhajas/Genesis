@@ -85,6 +85,7 @@
 		4F52CECC15351DB30015226A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F52CECB15351DB20015226A /* Security.framework */; };
 		4F52CEDB153526D10015226A /* GNApplicationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52CED9153526D10015226A /* GNApplicationSettingsViewController.m */; };
 		4F52CEDC153526D10015226A /* GNApplicationSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F52CEDA153526D10015226A /* GNApplicationSettingsViewController.xib */; };
+		4F52CEDF15352D450015226A /* GNDropboxClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52CEDE15352D450015226A /* GNDropboxClient.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
@@ -399,6 +400,8 @@
 		4F52CED8153526D10015226A /* GNApplicationSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNApplicationSettingsViewController.h; sourceTree = "<group>"; };
 		4F52CED9153526D10015226A /* GNApplicationSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNApplicationSettingsViewController.m; sourceTree = "<group>"; };
 		4F52CEDA153526D10015226A /* GNApplicationSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNApplicationSettingsViewController.xib; sourceTree = "<group>"; };
+		4F52CEDD15352D450015226A /* GNDropboxClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNDropboxClient.h; sourceTree = "<group>"; };
+		4F52CEDE15352D450015226A /* GNDropboxClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDropboxClient.m; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
 		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -761,6 +764,7 @@
 				4F21143114DCEF18001EE6C9 /* Text Editing */,
 				4F3F046A150740AE00AA6E95 /* File Representation */,
 				4F1E6ACC14F2167700583852 /* File Manager */,
+				4F52CEE015352D5A0015226A /* Dropbox Support */,
 			);
 			path = Genesis;
 			sourceTree = "<group>";
@@ -869,6 +873,23 @@
 				4F52CEDA153526D10015226A /* GNApplicationSettingsViewController.xib */,
 			);
 			name = "Application Settings View Controller";
+			sourceTree = "<group>";
+		};
+		4F52CEE015352D5A0015226A /* Dropbox Support */ = {
+			isa = PBXGroup;
+			children = (
+				4F52CEE115352D640015226A /* Dropbox Client */,
+			);
+			name = "Dropbox Support";
+			sourceTree = "<group>";
+		};
+		4F52CEE115352D640015226A /* Dropbox Client */ = {
+			isa = PBXGroup;
+			children = (
+				4F52CEDD15352D450015226A /* GNDropboxClient.h */,
+				4F52CEDE15352D450015226A /* GNDropboxClient.m */,
+			);
+			name = "Dropbox Client";
 			sourceTree = "<group>";
 		};
 		4F73FA7014CF294000976824 /* Model */ = {
@@ -1169,6 +1190,7 @@
 				4F0601721533D69A0022187D /* GNTheme.m in Sources */,
 				4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */,
 				4F52CEDB153526D10015226A /* GNApplicationSettingsViewController.m in Sources */,
+				4F52CEDF15352D450015226A /* GNDropboxClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
