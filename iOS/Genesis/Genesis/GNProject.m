@@ -20,6 +20,7 @@
 @implementation GNProject
 
 @dynamic name;
-@dynamic rootFolder;
+@dynamic localRootPath;
+@dynamic remoteRootPath;
 
 @end

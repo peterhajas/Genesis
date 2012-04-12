@@ -20,7 +20,8 @@
 
 @interface GNProject : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSManagedObject *rootFolder;
+@property (nonatomic, retain) NSString* name;
+@property (nonatomic, retain) NSString* localRootPath;
+@property (nonatomic, retain) NSString* remoteRootPath;
 
 @end

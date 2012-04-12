@@ -43,8 +43,14 @@
         
         [managedObjectContext insertObject:project];
         
-        // Set the project name
-        [project setValue:[textField text] forKey:@"name"];
+        NSString* projectName = [textField text];
+        
+        // Set the project name, root path, and remote path
+        [project setValue:projectName forKey:@"name"];
+        [project setValue:projectName
+                   forKey:@"localRootPath"];
+        [project setValue:[@"Genesis" stringByAppendingPathComponent:projectName]
+                   forKey:@"remoteRootPath"];
         
         // Save the context
         [appDelegate saveContext];
