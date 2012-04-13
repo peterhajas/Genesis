@@ -17,8 +17,6 @@
 
 @implementation GNTextLineView
 
-#define DEFAULT_FONT_FAMILY @"Courier"
-
 static CTFontRef defaultFont = nil;
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation lineNumber:(NSUInteger)number frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate
