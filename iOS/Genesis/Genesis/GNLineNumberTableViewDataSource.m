@@ -34,7 +34,7 @@
     UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                    reuseIdentifier:kGNLineNumberTableViewCellReuseIdentifier];
     [[cell textLabel] setText:[NSString stringWithFormat:@"%d",[indexPath row] + 1]];
-    [[cell textLabel] setFont:[UIFont fontWithName:@"Inconsolata" size:10]];
+    [[cell textLabel] setFont:[UIFont fontWithName:DEFAULT_FONT_FAMILY size:10]];
     [[cell textLabel] setTextAlignment:UITextAlignmentRight];
     
     return cell;
