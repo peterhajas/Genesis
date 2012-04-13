@@ -50,13 +50,14 @@
 		4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
 		4F0601721533D69A0022187D /* GNTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601711533D69A0022187D /* GNTheme.m */; };
 		4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */; };
+		4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
 		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
 		4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049E14E1B128008619C0 /* GNTextView.m */; };
 		4F21143614DCF097001EE6C9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F21143514DCF096001EE6C9 /* CoreText.framework */; };
 		4F21143A14DCF0C8001EE6C9 /* GNTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */; };
-		4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */; };
+		4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */; };
 		4F293B7C14CCE88100020A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7B14CCE88100020A09 /* UIKit.framework */; };
 		4F293B7E14CCE88100020A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7D14CCE88100020A09 /* Foundation.framework */; };
 		4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7F14CCE88100020A09 /* CoreGraphics.framework */; };
@@ -342,6 +343,7 @@
 		4F0601711533D69A0022187D /* GNTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTheme.m; sourceTree = "<group>"; };
 		4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTMBundleAttributeNameTransformer.h; sourceTree = "<group>"; };
 		4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTMBundleAttributeNameTransformer.m; sourceTree = "<group>"; };
+		4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iPad.xib"; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
 		4F1F049714E1B127008619C0 /* GNTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextCaretView.h; sourceTree = "<group>"; };
@@ -353,7 +355,7 @@
 		4F21143514DCF096001EE6C9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextViewController.h; sourceTree = "<group>"; };
 		4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextViewController.m; sourceTree = "<group>"; };
-		4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNTextViewController.xib; sourceTree = "<group>"; };
+		4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iphone.xib"; sourceTree = "<group>"; };
 		4F293B7714CCE88100020A09 /* Genesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F293B7B14CCE88100020A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F293B7D14CCE88100020A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -689,7 +691,8 @@
 				4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */,
 				4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */,
 				4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */,
-				4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */,
+				4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */,
+				4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */,
 				4F1F04A314E1B35D008619C0 /* Caret View */,
 				4F1F04A414E1B37E008619C0 /* Text View */,
 				4F1F04A514E1B3A8008619C0 /* Text View TableView */,
@@ -1068,12 +1071,13 @@
 				4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */,
 				4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */,
 				4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */,
-				4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */,
+				4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */,
 				1F7030BE14EFAF36002FEA32 /* README.md in Resources */,
 				4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */,
 				4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */,
 				4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */,
 				4FD614A61536573400D6E859 /* Entitlements.plist in Resources */,
+				4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
