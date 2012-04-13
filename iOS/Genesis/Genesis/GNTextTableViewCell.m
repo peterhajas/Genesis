@@ -89,6 +89,12 @@
     }
 }
 
+-(void)resetScrollPosition
+{
+    [textContainerScrollView setContentOffset:CGPointMake(0, 0)
+                                     animated:YES];
+}
+
 #pragma mark GNTextLineViewSizingDelegate methods
 
 -(void)requiresWidth:(CGFloat)width

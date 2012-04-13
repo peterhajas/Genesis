@@ -14,6 +14,7 @@
  */
 
 #import "GNTextView.h"
+#import "GNTextTableViewCell.h"
 
 @implementation GNTextView
 
@@ -140,6 +141,14 @@
     
     // Dismiss the keyboard
     [textInputManagerView resignFirstResponder];
+    
+    // Scroll any visible lines to their starting offsets
+    NSArray* tableViewIndexPaths = [textTableView indexPathsForVisibleRows];
+    for(NSIndexPath* tableViewCellPath in tableViewIndexPaths)
+    {
+        GNTextTableViewCell* cell = (GNTextTableViewCell*)[textTableView cellForRowAtIndexPath:tableViewCellPath];
+        [cell resetScrollPosition];
+    }
 }
 
 -(void)cleanUp

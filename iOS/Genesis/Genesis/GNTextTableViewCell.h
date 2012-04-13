@@ -33,6 +33,7 @@
 }
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation andIndex:(NSUInteger)index;
+-(void)resetScrollPosition;
 
 @property (nonatomic, retain) GNFileRepresentation* fileRepresentation;
 
