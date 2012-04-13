@@ -25,6 +25,13 @@
     {
         backingPath = path;
         [self setTitle:[backingPath lastPathComponent]];
+        
+        // Subscribe to keyboard notifications
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillChange:)
+                                                     name:UIKeyboardWillChangeFrameNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -41,6 +48,36 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [textView cleanUp];
+}
+
+#pragma mark Keyboard Notification Handling
+
+-(void)keyboardWillChange:(id)object
+{
+    // Grab the dictionary out of the object
+    
+    NSDictionary* keyboardGeometry = [object userInfo];
+    
+    // Get the end frame rectangle of the keyboard
+    
+    NSValue* endFrameValue = [keyboardGeometry valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect endFrame = [endFrameValue CGRectValue];
+    
+    // Convert the rect into view coordinates from the window, this accounts for rotation
+    
+    UIWindow* appWindow = [[[UIApplication sharedApplication] delegate] window];
+    
+    CGRect keyboardFrame = [[self view] convertRect:endFrame fromView:appWindow];
+    
+    // Our new view frame will have an origin of (0,0), a width the same as the keyboard,
+    // and a height that goes until the keyboard starts (same as its y origin)
+    
+    CGRect newFrameForView = CGRectMake(0,
+                                        0,
+                                        keyboardFrame.size.width,
+                                        keyboardFrame.origin.y);
+    
+    [[self view] setFrame:newFrameForView];
 }
 
 #pragma mark Orientation changes
