@@ -29,8 +29,12 @@
         // Subscribe to keyboard notifications
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillChange:)
-                                                     name:UIKeyboardWillChangeFrameNotification
+                                                 selector:@selector(keyboardChanged:)
+                                                     name:UIKeyboardDidHideNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardChanged:)
+                                                     name:UIKeyboardDidShowNotification
                                                    object:nil];
     }
     return self;
@@ -52,7 +56,7 @@
 
 #pragma mark Keyboard Notification Handling
 
--(void)keyboardWillChange:(id)object
+-(void)keyboardChanged:(id)object
 {
     // Grab the dictionary out of the object
     
