@@ -86,7 +86,7 @@
             
             if(attributeForScopeElement != nil)
             {
-                [coloredString setAttributes:attributeForScopeElement
+                [coloredString addAttributes:attributeForScopeElement
                                        range:attributeRange];
             }
         }
