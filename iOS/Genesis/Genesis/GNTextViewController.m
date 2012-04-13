@@ -31,7 +31,7 @@
 
 #pragma mark View lifecycle
 
--(void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
     // Create text view
     textView = [[GNTextView alloc] initWithBackingPath:backingPath andFrame:[textViewContainerView frame]];
