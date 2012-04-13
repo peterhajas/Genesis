@@ -33,6 +33,11 @@
                                                  selector:@selector(reloadData) 
                                                      name:@"kGNTextChanged"
                                                    object:nil];
+        
+        // Set our autoresizing mask
+        [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth |
+                                   UIViewAutoresizingFlexibleHeight |
+                                   UIViewAutoresizingFlexibleRightMargin)];
     }
     return self;
 }

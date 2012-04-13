@@ -33,6 +33,10 @@
                                                    object:nil];
         caretView = [[GNTextCaretView alloc] init];
         [self addSubview:caretView];
+        
+        // Set our autoresizing mask
+        [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth |
+                                   UIViewAutoresizingFlexibleHeight)];
     }
     return self;
 }

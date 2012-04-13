@@ -82,6 +82,7 @@
                                         keyboardFrame.origin.y);
     
     [[self view] setFrame:newFrameForView];
+    [textView setFrame:newFrameForView];
 }
 
 #pragma mark Orientation changes

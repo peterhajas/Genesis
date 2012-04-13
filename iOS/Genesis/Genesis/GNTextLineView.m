@@ -47,6 +47,9 @@ static CTFontRef defaultFont = nil;
                                            NULL);
         
         [self setBackgroundColor:[UIColor clearColor]];
+        
+        // Set our autoresizing mask
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     }
     
     return self;

@@ -44,6 +44,9 @@
         tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                        action:@selector(handleTap:)];
         [self addGestureRecognizer:tapGestureRecognizer];
+        
+        // Set our autoresizing mask
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     }
     
     return self;
