@@ -137,6 +137,9 @@
                                                   verticalContentOffset)];
     
     [textInputManagerView didScrollToVerticalOffset:verticalContentOffset];
+    
+    // Dismiss the keyboard
+    [textInputManagerView resignFirstResponder];
 }
 
 -(void)cleanUp
