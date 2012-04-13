@@ -300,6 +300,13 @@ class BuilderDelegate(MediatorClientDelegateBase):
         ))
 
     @gen.engine
+    def do_diff_stats(self, mclient, request):
+        if self._invalid_project(mclient, request):
+            raise StopIteration
+
+        yield gen.Task(mclient.write_response, ResponseMessage.success(request.id))
+
+    @gen.engine
     def do_upload(self, mclient, request):
         if self._invalid_project(mclient, request):
             raise StopIteration

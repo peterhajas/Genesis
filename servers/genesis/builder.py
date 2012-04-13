@@ -140,6 +140,9 @@ class Project(object):
         assert not self.is_busy, "Cannot perform checkout, busy running %r" % self._last_action
         self.scm.checkout(branch)
 
+    def diff_stats(self):
+        return self.scm.diff_stats()
+
 
 class Builder(object):
     def __init__(self, config):

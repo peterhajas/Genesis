@@ -34,7 +34,7 @@ class SCM(object):
 
 
 def _diff_stats(filediff):
-    data = {'additions': 0, 'deletions': 0, 'old_file': None, 'new_file': None}
+    data = {'additions': 0, 'deletions': 0, 'old': None, 'new': None}
     lines = filediff.split('\n')
     state = 'filename'
     for i, line in enumerate(lines):
@@ -42,18 +42,18 @@ def _diff_stats(filediff):
             state = 'diff'
         if state == 'filename':
             if line.startswith('---'):
-                data['old_file'] = line[len('--- a/'):]
+                data['old'] = line[len('--- a/'):]
             if line.startswith('+++'):
-                data['new_file'] = line[len('+++ b/'):]
-                if data['old_file'] is None:
-                    data['old_file'] = data['new_file']
+                data['new'] = line[len('+++ b/'):]
+                if data['old'] is None:
+                    data['old'] = data['new']
         elif state == 'diff':
             if line.startswith('-'):
                 data['deletions'] += 1
             elif line.startswith('+'):
                 data['additions'] += 1
-    if not data['new_file']:
-        data['new_file'] = data['old_file']
+    if not data['new']:
+        data['new'] = data['old']
     return data
 
 
@@ -76,26 +76,8 @@ def _diff_folder(stats):
         new_stats = {
             "path": {
                 "type": "folder",
-                "children": [
-                    {
-                        "to": {
-                            "type": "folder",
-                            "children": [
-                                {
-                                    "file": "file",
-                                    "new_file": "file",
-                                    "old_file": "file",
-                                    "additions": 10,
-                                    "deletions": 10,
-                                },
-                                ...
-                            ],
-                            "additions": 10,
-                            "deletions": 10,
-                        }
-                    },
-                    ...
-                ],
+                "new_file": "path",
+                "old_file": "path",
                 "additions": 10,
                 "deletions": 10,
             }
@@ -104,7 +86,16 @@ def _diff_folder(stats):
     """
     newstats = {}
     for filepath, fstat in stats.items():
-        pass # TODO: implement
+        name = filepath.split(os.sep, 1)[0]
+        stat = newstats.setdefault(name, {})
+        if name != filepath:
+            stat['type'] = 'file'
+            stat['new'] = stat['old'] = name
+        else:
+            stat['type'] = 'folder'
+            stat['new'], stat['old'] = fstat['new'], fstat['old']
+        stat['additions'] = stat.get('additions', 0) + fstat['additions']
+        stat['deletions'] = stat.get('deletions', 0) + fstat['deletions']
     return newstats
 
 
@@ -131,22 +122,22 @@ class Git(SCM):
     def diff_stats(self):
         "Diff the working tree."
         stats = {} # file => stat
-        diff_index = self.repo.head.index.diff(None, create_patch=True)
+        diff_index = self.repo.index.diff(None, create_patch=True)
         # files added
         for diff_add in diff_index.iter_change_type('A'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
+            fstat = _diff_stats(diff_add.diff)
+            stats[fstat['new']] = fstat
         # files deleted
         for diff_rm in diff_index.iter_change_type('D'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
+            fstat = _diff_stats(diff_rm.diff)
+            stats[fstat['new']] = fstat
         # files moved / renamed
         for diff_mv in diff_index.iter_change_type('R'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
+            fstat = _diff_stats(diff_mv.diff)
+            stats[fstat['new']] = fstat
         # files modified
         for diff_mod in diff_index.iter_change_type('M'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
-        return stats
+            fstat = _diff_stats(diff_mod.diff)
+            stats[fstat['new']] = fstat
+        return _diff_folder(stats)
 
