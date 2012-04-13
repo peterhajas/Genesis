@@ -44,6 +44,10 @@
 	<true/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inconsolata.otf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
