@@ -30,11 +30,11 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(keyboardChanged:)
-                                                     name:UIKeyboardDidHideNotification
+                                                     name:UIKeyboardWillHideNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(keyboardChanged:)
-                                                     name:UIKeyboardDidShowNotification
+                                                     name:UIKeyboardWillShowNotification
                                                    object:nil];
     }
     return self;
