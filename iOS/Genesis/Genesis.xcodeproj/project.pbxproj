@@ -50,13 +50,14 @@
 		4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
 		4F0601721533D69A0022187D /* GNTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601711533D69A0022187D /* GNTheme.m */; };
 		4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */; };
+		4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
 		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
 		4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049E14E1B128008619C0 /* GNTextView.m */; };
 		4F21143614DCF097001EE6C9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F21143514DCF096001EE6C9 /* CoreText.framework */; };
 		4F21143A14DCF0C8001EE6C9 /* GNTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */; };
-		4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */; };
+		4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */; };
 		4F293B7C14CCE88100020A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7B14CCE88100020A09 /* UIKit.framework */; };
 		4F293B7E14CCE88100020A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7D14CCE88100020A09 /* Foundation.framework */; };
 		4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7F14CCE88100020A09 /* CoreGraphics.framework */; };
@@ -156,6 +157,7 @@
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
 		4FBD8B8515324BD9006D510E /* GNTextLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBD8B8415324BD9006D510E /* GNTextLineView.m */; };
+		4FD614A61536573400D6E859 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FD614A51536573400D6E859 /* Entitlements.plist */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
 		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
@@ -346,6 +348,7 @@
 		4F0601711533D69A0022187D /* GNTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTheme.m; sourceTree = "<group>"; };
 		4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTMBundleAttributeNameTransformer.h; sourceTree = "<group>"; };
 		4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTMBundleAttributeNameTransformer.m; sourceTree = "<group>"; };
+		4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iPad.xib"; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
 		4F1F049714E1B127008619C0 /* GNTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextCaretView.h; sourceTree = "<group>"; };
@@ -357,7 +360,7 @@
 		4F21143514DCF096001EE6C9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextViewController.h; sourceTree = "<group>"; };
 		4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextViewController.m; sourceTree = "<group>"; };
-		4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNTextViewController.xib; sourceTree = "<group>"; };
+		4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iphone.xib"; sourceTree = "<group>"; };
 		4F293B7714CCE88100020A09 /* Genesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F293B7B14CCE88100020A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F293B7D14CCE88100020A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -476,6 +479,7 @@
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
 		4FBD8B8315324BD9006D510E /* GNTextLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextLineView.h; sourceTree = "<group>"; };
 		4FBD8B8415324BD9006D510E /* GNTextLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextLineView.m; sourceTree = "<group>"; };
+		4FD614A51536573400D6E859 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
 		4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNScrollViewDelegate.h; sourceTree = "<group>"; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
@@ -701,7 +705,8 @@
 				4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */,
 				4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */,
 				4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */,
-				4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */,
+				4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */,
+				4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */,
 				4F1F04A314E1B35D008619C0 /* Caret View */,
 				4F1F04A414E1B37E008619C0 /* Text View */,
 				4F1F04A514E1B3A8008619C0 /* Text View TableView */,
@@ -774,6 +779,7 @@
 			children = (
 				4F293B8514CCE88100020A09 /* Genesis-Info.plist */,
 				4F293B8614CCE88100020A09 /* InfoPlist.strings */,
+				4FD614A51536573400D6E859 /* Entitlements.plist */,
 				4F293B8914CCE88100020A09 /* main.m */,
 				4F293B8B14CCE88100020A09 /* Genesis-Prefix.pch */,
 				4F06011B1533D2740022187D /* themes */,
@@ -1110,12 +1116,14 @@
 				4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */,
 				4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */,
 				4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */,
-				4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */,
+				4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */,
 				1F7030BE14EFAF36002FEA32 /* README.md in Resources */,
 				4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */,
 				4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */,
 				4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */,
 				4F52CEDC153526D10015226A /* GNApplicationSettingsViewController.xib in Resources */,
+				4FD614A61536573400D6E859 /* Entitlements.plist in Resources */,
+				4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1240,6 +1248,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1266,6 +1275,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1361,6 +1371,66 @@
 			};
 			name = Release;
 		};
+		4FD614A81536577700D6E859 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Peter Hajas (96U34VVBWG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "1B3A005E-ED9C-483F-8B79-F11FA1252027";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		4FD614A91536577700D6E859 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Genesis/Genesis-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../DTCoreText/**",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "Genesis/Genesis-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
+		4FD614AA1536577700D6E859 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Genesis.app/Genesis";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Genesis/Genesis-Prefix.pch";
+				INFOPLIST_FILE = "GenesisTests/GenesisTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1369,6 +1439,7 @@
 			buildConfigurations = (
 				4F293BA814CCE88100020A09 /* Debug */,
 				4F293BA914CCE88100020A09 /* Release */,
+				4FD614A81536577700D6E859 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1378,6 +1449,7 @@
 			buildConfigurations = (
 				4F293BAB14CCE88100020A09 /* Debug */,
 				4F293BAC14CCE88100020A09 /* Release */,
+				4FD614A91536577700D6E859 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1387,6 +1459,7 @@
 			buildConfigurations = (
 				4F293BAE14CCE88100020A09 /* Debug */,
 				4F293BAF14CCE88100020A09 /* Release */,
+				4FD614AA1536577700D6E859 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
