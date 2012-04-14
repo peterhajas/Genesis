@@ -32,7 +32,6 @@ class SCM(object):
     def diff_stats(self):
         raise NotImplemented
 
-
 def _diff_stats(filediff):
     data = {'additions': 0, 'deletions': 0, 'old': None, 'new': None}
     lines = filediff.split('\n')
@@ -96,7 +95,19 @@ def _diff_folder(stats):
             stat['new'], stat['old'] = fstat['new'], fstat['old']
         stat['additions'] = stat.get('additions', 0) + fstat['additions']
         stat['deletions'] = stat.get('deletions', 0) + fstat['deletions']
+        stat['total'] = stat.get('total', 0) + fstat['total']
     return newstats
+
+
+def _line_count(filepath):
+    with open(filepath, 'r') as h:
+        return h.read().count('\n')
+
+
+def _add_line_counts(stats, root_dir='.'):
+    for filepath, fstat in stats.items():
+        fstat['total'] = _line_count(os.path.join(root_dir, filepath))
+    return stats
 
 
 class Git(SCM):
@@ -139,5 +150,6 @@ class Git(SCM):
         for diff_mod in diff_index.iter_change_type('M'):
             fstat = _diff_stats(diff_mod.diff)
             stats[fstat['new']] = fstat
+        stats = _add_line_counts(stats, self.repo.working_dir)
         return _diff_folder(stats)
 
