@@ -37,6 +37,8 @@
     GNLineNumberTableView* lineNumberTableView;
     
     GNFileRepresentation* fileRepresentation;
+    
+    BOOL shouldDismissKeyboard;
 }
 
 -(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame;

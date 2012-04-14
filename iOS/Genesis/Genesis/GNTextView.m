@@ -15,6 +15,7 @@
 
 #import "GNTextView.h"
 #import "GNTextTableViewCell.h"
+#import "GNFileRepresentation.h"
 
 @implementation GNTextView
 
@@ -25,6 +26,16 @@
     {
         // Set file representation
         fileRepresentation = [[GNFileRepresentation alloc] initWithRelativePath:path];
+        
+        // Register for insertion point changes
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(insertionPointWillChange:)
+                                                     name:@"kGNInsertionPointChanged" 
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(insertionPointChanged:)
+                                                     name:@"kGNInsertionPointChanged"
+                                                   object:nil];
     }
     return self;
 }
@@ -69,6 +80,26 @@
     [self addSubview:lineNumberTableView];
         
     [textTableView reloadData];
+    
+    shouldDismissKeyboard = YES;
+}
+
+-(void)insertionPointWillChange:(id)object
+{
+    shouldDismissKeyboard = NO;
+}
+
+-(void)insertionPointChanged:(id)object
+{
+    NSUInteger insertionLine = [(GNFileRepresentation*)[object object] insertionLine];
+    
+    NSIndexPath* insertionPath = [NSIndexPath indexPathForRow:insertionLine inSection:0];
+    
+    shouldDismissKeyboard = NO;
+    
+    [textTableView scrollToRowAtIndexPath:insertionPath
+                         atScrollPosition:UITableViewScrollPositionMiddle
+                                 animated:YES];
 }
 
 #pragma mark GNTextInputManagerViewDelegate methods
@@ -102,8 +133,11 @@
     
     [textInputManagerView didScrollToVerticalOffset:verticalContentOffset];
     
-    // Dismiss the keyboard
-    [textInputManagerView resignFirstResponder];
+    if(shouldDismissKeyboard)
+    {
+        // Dismiss the keyboard
+        [textInputManagerView resignFirstResponder];
+    }
     
     // Scroll any visible lines to their starting offsets
     NSArray* tableViewIndexPaths = [textTableView indexPathsForVisibleRows];
@@ -114,8 +148,19 @@
     }
 }
 
+-(void)hideKeyboardOnScroll:(BOOL)hide
+{
+    shouldDismissKeyboard = YES;
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    shouldDismissKeyboard = YES;
+}
+
 -(void)cleanUp
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [textTableView cleanUp];
     [textInputManagerView cleanUp];
     [lineNumberTableView cleanUp];

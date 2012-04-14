@@ -62,6 +62,7 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    [scrollDelegate hideKeyboardOnScroll:YES];
     [scrollDelegate scrollViewDidScroll:scrollView];
 }
 

@@ -122,6 +122,8 @@
 
 -(void)insertText:(NSString*)text
 {
+    [self insertionPointWillChange];
+    
     if(![text isEqualToString:@"\n"])
     {
         // Grab the text before and after the insertion point
@@ -147,6 +149,8 @@
 
 -(void)deleteBackwards
 {
+    [self insertionPointWillChange];
+    
     if(insertionIndex == 0 && insertionLine == 0)
     {
         // Don't do anything. We can't move back.
@@ -282,6 +286,12 @@
     attributedFileContents = [GNTextGeometry attributedStringWithDefaultFontApplied:attributedFileContents];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
+                                                        object:self];
+}
+
+-(void)insertionPointWillChange
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointWillChange"
                                                         object:self];
 }
 
