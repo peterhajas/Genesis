@@ -47,6 +47,7 @@
         
         // Set our autoresizing mask
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [textContainerScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     }
     
     return self;
