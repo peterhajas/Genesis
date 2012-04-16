@@ -53,7 +53,6 @@
         insertionIndex = 0;
         insertionLine = 0;
         insertionIndexInLine = 0;
-        [self insertionPointChangedShouldRecomputeIndices:NO];
     }
     return self;
 }
