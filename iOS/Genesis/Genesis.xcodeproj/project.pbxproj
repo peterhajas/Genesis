@@ -152,6 +152,8 @@
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
 		4FBD8B8515324BD9006D510E /* GNTextLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBD8B8415324BD9006D510E /* GNTextLineView.m */; };
+		4FD1C2DA153C889100DD4A3D /* GNTextInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */; };
+		4FD1C2DF153C891300DD4A3D /* GNTextInputAccessoryViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */; };
 		4FD614A61536573400D6E859 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FD614A51536573400D6E859 /* Entitlements.plist */; };
 		4FEC7B1A1537D34000AA861F /* Inconsolata.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B181537D34000AA861F /* Inconsolata.otf */; };
 		4FEC7B1C1537D35800AA861F /* Inconsolata Licence (Open Font License).txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */; };
@@ -470,6 +472,10 @@
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
 		4FBD8B8315324BD9006D510E /* GNTextLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextLineView.h; sourceTree = "<group>"; };
 		4FBD8B8415324BD9006D510E /* GNTextLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextLineView.m; sourceTree = "<group>"; };
+		4FD1C2D8153C889100DD4A3D /* GNTextInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryView.h; sourceTree = "<group>"; };
+		4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryView.m; sourceTree = "<group>"; };
+		4FD1C2DD153C891300DD4A3D /* GNTextInputAccessoryViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewButton.h; sourceTree = "<group>"; };
+		4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewButton.m; sourceTree = "<group>"; };
 		4FD614A51536573400D6E859 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
 		4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNScrollViewDelegate.h; sourceTree = "<group>"; };
 		4FEC7B181537D34000AA861F /* Inconsolata.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inconsolata.otf; sourceTree = "<group>"; };
@@ -970,6 +976,25 @@
 			name = "Line View";
 			sourceTree = "<group>";
 		};
+		4FD1C2DC153C889800DD4A3D /* Input Accessory View */ = {
+			isa = PBXGroup;
+			children = (
+				4FD1C2D8153C889100DD4A3D /* GNTextInputAccessoryView.h */,
+				4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */,
+				4FD1C2E0153C891600DD4A3D /* Buttons */,
+			);
+			name = "Input Accessory View";
+			sourceTree = "<group>";
+		};
+		4FD1C2E0153C891600DD4A3D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				4FD1C2DD153C891300DD4A3D /* GNTextInputAccessoryViewButton.h */,
+				4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		4FEC7B161537D34000AA861F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1007,6 +1032,7 @@
 			children = (
 				4FFF7D5C151A106E00C986A1 /* GNTextInputManagerView.h */,
 				4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */,
+				4FD1C2DC153C889800DD4A3D /* Input Accessory View */,
 			);
 			name = Input;
 			sourceTree = "<group>";
@@ -1171,6 +1197,8 @@
 				4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */,
 				4F0601721533D69A0022187D /* GNTheme.m in Sources */,
 				4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */,
+				4FD1C2DA153C889100DD4A3D /* GNTextInputAccessoryView.m in Sources */,
+				4FD1C2DF153C891300DD4A3D /* GNTextInputAccessoryViewButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

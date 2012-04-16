@@ -20,6 +20,7 @@
 @implementation GNTextInputManagerView
 
 @synthesize delegate;
+@synthesize inputAccessoryView;
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation
 {
@@ -37,6 +38,10 @@
         // Set our autoresizing mask
         [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth |
                                    UIViewAutoresizingFlexibleHeight)];
+        
+        // Set our input accessory view
+        inputAccessoryView = [[GNTextInputAccessoryView alloc] initWithDelegate:nil];
+        [self setInputAccessoryView:inputAccessoryView];
     }
     return self;
 }
@@ -131,6 +136,7 @@
 -(void)cleanUp
 {
     [caretView cleanUp];
+    [inputAccessoryView cleanUp];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

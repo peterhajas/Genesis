@@ -13,36 +13,28 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
-#import "GNFileRepresentation.h"
-#import "GNTextCaretView.h"
+#import "GNTextInputAccessoryViewButton.h"
 #import "GNTextInputAccessoryView.h"
 
-@protocol GNTextInputManagerViewDelegate
+@implementation GNTextInputAccessoryViewButton
 
--(CGFloat)verticalScrollOffset;
-
-@end
-
-@interface GNTextInputManagerView : UIView <UIKeyInput,
-                                            UITextInputTraits>
+-(id)init
 {
-    GNFileRepresentation* fileRepresentation;
-    NSUInteger textCaretIndex;
+    self = [UIButton buttonWithType:UIButtonTypeCustom];
+    if(self)
+    {
+        [self setFrame:CGRectMake(0,
+                                  0,
+                                  kGNTextInputAccessoryViewButtonWidth,
+                                  kGNTextInputAccessoryViewHeightTall)];
+    }
     
-    GNTextCaretView* caretView;
-    
-    GNTextInputAccessoryView* inputAccessoryView;
-    
-    id<GNTextInputManagerViewDelegate> delegate;
+    return self;
 }
 
--(id)initWithFileRepresentation:(GNFileRepresentation*)representation;
--(void)insertionPointChanged:(NSNotification*)notification;
--(void)didScrollToVerticalOffset:(CGFloat)offset;
--(void)cleanUp;
-
-@property(nonatomic,retain) id<GNTextInputManagerViewDelegate> delegate;
-@property(readwrite) UIView* inputAccessoryView;
+-(void)drawRect:(CGRect)rect
+{
+    // Draw a gradient to our layer...
+}
 
 @end
