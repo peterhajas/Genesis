@@ -40,7 +40,7 @@
                                    UIViewAutoresizingFlexibleHeight)];
         
         // Set our input accessory view
-        inputAccessoryView = [[GNTextInputAccessoryView alloc] initWithDelegate:nil];
+        inputAccessoryView = [[GNTextInputAccessoryView alloc] initWithDelegate:self];
         [self setInputAccessoryView:inputAccessoryView];
     }
     return self;
@@ -129,6 +129,12 @@
 -(BOOL)canBecomeFirstResponder
 {
     return YES;
+}
+
+#pragma mark GNTextInputAccessoryViewDelegate methods
+-(void)dismissKeyboard
+{
+    [self resignFirstResponder];
 }
 
 #pragma mark Lifecycle cleanup methods

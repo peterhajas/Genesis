@@ -20,21 +20,31 @@
 
 -(id)init
 {
-    self = [UIButton buttonWithType:UIButtonTypeCustom];
+    self = [GNTextInputAccessoryViewButton buttonWithType:UIButtonTypeCustom];
     if(self)
     {
         [self setFrame:CGRectMake(0,
-                                  0,
+                                  kGNTextInputAccessoryViewButtonMargin,
                                   kGNTextInputAccessoryViewButtonWidth,
-                                  kGNTextInputAccessoryViewHeightTall)];
+                                  [GNTextInputAccessoryView appropriateHeight] - (kGNTextInputAccessoryViewButtonMargin * 2))];
+        
+        // Create our gradient layer
+        CAGradientLayer* gradientLayer = [CAGradientLayer layer];
+        [gradientLayer setColors:kGNTextInputAccessoryGradientColors];
+        [gradientLayer setFrame:[self frame]];
+        [[self layer] addSublayer:gradientLayer];
     }
     
     return self;
 }
 
--(void)drawRect:(CGRect)rect
+-(void)setHorizontalPosition:(CGFloat)horizontalPosition
 {
-    // Draw a gradient to our layer...
+    CGRect currentFrame = [self frame];
+    [self setFrame:CGRectMake(horizontalPosition,
+                              currentFrame.origin.y,
+                              currentFrame.size.width,
+                              currentFrame.size.height)];
 }
 
 @end

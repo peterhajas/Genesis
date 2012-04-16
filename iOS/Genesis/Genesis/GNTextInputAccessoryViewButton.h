@@ -14,9 +14,13 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 #define kGNTextInputAccessoryViewButtonWidth 30.0
+#define kGNTextInputAccessoryViewButtonMargin 5.0
 
 @interface GNTextInputAccessoryViewButton : UIButton
+
+-(void)setHorizontalPosition:(CGFloat)horizontalPosition;
 
 @end

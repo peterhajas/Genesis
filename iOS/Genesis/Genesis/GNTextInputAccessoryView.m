@@ -14,6 +14,7 @@
  */
 
 #import "GNTextInputAccessoryView.h"
+#import "GNTextInputAccessoryViewButton.h"
 
 @implementation GNTextInputAccessoryView
 
@@ -22,7 +23,7 @@
     self = [super initWithFrame:CGRectMake(0,
                                            0,
                                            [[UIScreen mainScreen] bounds].size.width,
-                                           [self appropriateHeight])];
+                                           [GNTextInputAccessoryView appropriateHeight])];
     if(self)
     {
         delegate = inputDelegate;
@@ -38,10 +39,18 @@
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         
         // Create our gradient layer
-        gradientLayer = [CAGradientLayer layer];
-        [gradientLayer setFrame:[self frame]];
-        [gradientLayer setColors:kGNTextInputAccessoryGradientColors];
+        gradientLayer = [self gradientLayer];
         [[self layer] addSublayer:gradientLayer];
+        
+        // Set up our buttons
+        
+        // Hide keyboard button
+        GNTextInputAccessoryViewButton* hideKeyboardButton = [[GNTextInputAccessoryViewButton alloc] init];
+        [hideKeyboardButton setHorizontalPosition:[self frame].size.width - kGNTextInputAccessoryViewButtonWidth];
+        [hideKeyboardButton setTitle:@"hk" forState:UIControlStateNormal];
+        [hideKeyboardButton setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin];
+        [hideKeyboardButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:hideKeyboardButton];
     }
     
     return self;
@@ -52,7 +61,13 @@
     [gradientLayer setFrame:[self frame]];
 }
 
--(CGFloat)appropriateHeight
+-(void)hideKeyboard:(id)sender
+{
+    // Tell our delegate to dismiss the keyboard
+    [delegate dismissKeyboard];
+}
+
++(CGFloat)appropriateHeight
 {
     // Grab the device interface idiom
     UIUserInterfaceIdiom interfaceIdiom = [[UIDevice currentDevice] userInterfaceIdiom];
@@ -66,6 +81,14 @@
     {
         return kGNTextInputAccessoryViewHeightShort;
     }
+}
+
+-(CAGradientLayer*)gradientLayer
+{
+    CAGradientLayer* layer = [CAGradientLayer layer];
+    [layer setColors:kGNTextInputAccessoryGradientColors];
+    [layer setFrame:[self frame]];
+    return layer;
 }
 
 -(void)cleanUp

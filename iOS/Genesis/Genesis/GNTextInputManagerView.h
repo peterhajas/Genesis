@@ -25,7 +25,8 @@
 @end
 
 @interface GNTextInputManagerView : UIView <UIKeyInput,
-                                            UITextInputTraits>
+                                            UITextInputTraits,
+                                            GNTextInputAccessoryViewDelegate>
 {
     GNFileRepresentation* fileRepresentation;
     NSUInteger textCaretIndex;
