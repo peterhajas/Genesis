@@ -18,6 +18,6 @@
 @protocol GNScrollViewDelegate <NSObject>
 
 -(void)scrollViewDidScroll:(UIScrollView*)scrollView;
--(void)hideKeyboardOnScroll:(BOOL)hide;
+-(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView;
 
 @end

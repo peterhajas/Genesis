@@ -60,10 +60,14 @@
 
 #pragma mark UIScrollViewDelegate methods
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
-    [scrollDelegate hideKeyboardOnScroll:YES];
     [scrollDelegate scrollViewDidScroll:scrollView];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView
+{
+    [scrollDelegate scrollViewDidEndDecelerating:scrollView];
 }
 
 #pragma mark Lifecycle cleanup methods

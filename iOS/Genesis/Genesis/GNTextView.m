@@ -29,10 +29,6 @@
         
         // Register for insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(insertionPointWillChange:)
-                                                     name:@"kGNInsertionPointChanged" 
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(insertionPointChanged:)
                                                      name:@"kGNInsertionPointChanged"
                                                    object:nil];
@@ -80,13 +76,6 @@
     [self addSubview:lineNumberTableView];
         
     [textTableView reloadData];
-    
-    shouldDismissKeyboard = YES;
-}
-
--(void)insertionPointWillChange:(id)object
-{
-    shouldDismissKeyboard = NO;
 }
 
 -(void)insertionPointChanged:(id)object
@@ -94,8 +83,6 @@
     NSUInteger insertionLine = [(GNFileRepresentation*)[object object] insertionLine];
     
     NSIndexPath* insertionPath = [NSIndexPath indexPathForRow:insertionLine inSection:0];
-    
-    shouldDismissKeyboard = NO;
     
     [textTableView scrollToRowAtIndexPath:insertionPath
                          atScrollPosition:UITableViewScrollPositionMiddle
@@ -112,7 +99,7 @@
 #pragma mark UIScrollViewDelegate methods
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+{    
     // Match the scroll position between textTableView and lineNumberTableView
     
     CGFloat verticalContentOffset = [scrollView contentOffset].y;
@@ -132,30 +119,21 @@
                                                   verticalContentOffset)];
     
     [textInputManagerView didScrollToVerticalOffset:verticalContentOffset];
-    
-    if(shouldDismissKeyboard)
-    {
-        // Dismiss the keyboard
-        [textInputManagerView resignFirstResponder];
-    }
-    
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView
+{
     // Scroll any visible lines to their starting offsets
     NSArray* tableViewIndexPaths = [textTableView indexPathsForVisibleRows];
     for(NSIndexPath* tableViewCellPath in tableViewIndexPaths)
     {
-        GNTextTableViewCell* cell = (GNTextTableViewCell*)[textTableView cellForRowAtIndexPath:tableViewCellPath];
-        [cell resetScrollPosition];
+        if(![tableViewCellPath row] == [fileRepresentation insertionLine])
+        {
+            GNTextTableViewCell* cell = (GNTextTableViewCell*)[textTableView cellForRowAtIndexPath:tableViewCellPath];
+            [cell resetScrollPosition];
+        }
     }
-}
 
--(void)hideKeyboardOnScroll:(BOOL)hide
-{
-    shouldDismissKeyboard = YES;
-}
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    shouldDismissKeyboard = YES;
 }
 
 -(void)cleanUp

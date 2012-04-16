@@ -27,9 +27,14 @@
 }
 
 #pragma mark GNScrollViewDelegate
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
     [scrollDelegate scrollViewDidScroll:scrollView];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView
+{
+    [scrollDelegate scrollViewDidEndDecelerating:scrollView];
 }
 
 @end
