@@ -15,6 +15,7 @@
 
 #import "GNTextLineView.h"
 #import "GNLineNumberTableView.h"
+#import "GNTextGeometry.h"
 
 @implementation GNTextLineView
 
@@ -45,9 +46,7 @@ static CTFontRef defaultFont = nil;
         [self setFrame:frame];
         
         // Create the default font (later should be done in preferences)
-        defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
-                                           DEFAULT_SIZE,
-                                           NULL);
+        defaultFont = [GNTextGeometry defaultFont];
         
         [self setBackgroundColor:[UIColor clearColor]];
         
@@ -92,8 +91,7 @@ static CTFontRef defaultFont = nil;
 
 -(void)fitSizeToText
 {
-    UIFont* defaultUIFont = [UIFont fontWithName:DEFAULT_FONT_FAMILY
-                                            size:DEFAULT_SIZE];
+    UIFont* defaultUIFont = [GNTextGeometry defaultUIFont];
     
     CGFloat widthRequiredForText = [[highlightedLine string] sizeWithFont:defaultUIFont].width;
     
