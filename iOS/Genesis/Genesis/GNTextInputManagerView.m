@@ -63,6 +63,7 @@
                                    lineHeight)];
         
     [self becomeFirstResponder];
+    [self toggleMinimalView:YES];
 }
 
 -(void)didScrollToVerticalOffset:(CGFloat)offset
@@ -124,6 +125,14 @@
     [fileRepresentation deleteBackwards];
 }
 
+-(void)toggleMinimalView:(BOOL)toggle
+{
+    // Show the status bar and navigation bar
+    [[UIApplication sharedApplication] setStatusBarHidden:toggle withAnimation:UIStatusBarAnimationSlide];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNToggleNavigationBar"
+                                                        object:[NSNumber numberWithBool:toggle]];
+}
+
 #pragma mark UIResponder methods
 
 -(BOOL)canBecomeFirstResponder
@@ -135,6 +144,7 @@
 -(void)dismissKeyboard
 {
     [self resignFirstResponder];
+    [self toggleMinimalView:NO];
 }
 
 #pragma mark Lifecycle cleanup methods

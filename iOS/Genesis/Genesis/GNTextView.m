@@ -32,6 +32,9 @@
                                                  selector:@selector(insertionPointChanged:)
                                                      name:@"kGNInsertionPointChanged"
                                                    object:nil];
+        
+        // Set our autoresizing mask
+        [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     }
     return self;
 }

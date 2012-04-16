@@ -36,6 +36,12 @@
                                                  selector:@selector(keyboardChanged:)
                                                      name:UIKeyboardWillShowNotification
                                                    object:nil];
+        
+        // Subscribe to navigation bar hiding notification
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(toggleNavigationBar:)
+                                                     name:@"kGNToggleNavigationBar"
+                                                   object:nil];
     }
     return self;
 }
@@ -83,6 +89,14 @@
     
     [[self view] setFrame:newFrameForView];
     [textView setFrame:newFrameForView];
+}
+
+#pragma mark Navigation bar Notification Handling
+
+-(void)toggleNavigationBar:(id)object
+{
+    BOOL shouldBeHidden = [[object object] boolValue];
+    [[self navigationController] setNavigationBarHidden:shouldBeHidden animated:YES];
 }
 
 #pragma mark Orientation changes
