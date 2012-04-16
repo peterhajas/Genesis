@@ -18,7 +18,7 @@
 
 @interface GNTextTableView : UITableView
 {
-    NSUInteger lastInsertionLine;
+    NSUInteger lastLineCount;
 }
 -(void)cleanUp;
 
