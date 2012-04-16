@@ -34,8 +34,12 @@
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    GNTextTableViewCell* cell = [[GNTextTableViewCell alloc] initWithFileRepresentation:fileRepresentation
-                                                                               andIndex:[indexPath row]];
+    GNTextTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kGNTextTableViewCellReuseIdentifier];
+    if(!cell)
+    {
+        cell = [[GNTextTableViewCell alloc] initWithFileRepresentation:fileRepresentation
+                                                              andIndex:[indexPath row]];
+    }
     
     [cell setFileRepresentation:fileRepresentation];
     
