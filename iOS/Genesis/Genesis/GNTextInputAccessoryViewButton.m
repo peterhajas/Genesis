@@ -24,10 +24,10 @@
     if(self)
     {
         [self setFrame:CGRectMake(0,
-                                  kGNTextInputAccessoryViewButtonMargin,
+                                  0,
                                   kGNTextInputAccessoryViewButtonWidth,
-                                  [GNTextInputAccessoryView appropriateHeight] - (kGNTextInputAccessoryViewButtonMargin * 2))];
-        
+                                  kGNTextInputAccessoryViewHeight)];
+
         // Create our gradient layer
         CAGradientLayer* gradientLayer = [CAGradientLayer layer];
         [gradientLayer setColors:kGNTextInputAccessoryGradientColors];

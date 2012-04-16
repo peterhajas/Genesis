@@ -23,7 +23,7 @@
     self = [super initWithFrame:CGRectMake(0,
                                            0,
                                            [[UIScreen mainScreen] bounds].size.width,
-                                           [GNTextInputAccessoryView appropriateHeight])];
+                                           kGNTextInputAccessoryViewHeight)];
     if(self)
     {
         delegate = inputDelegate;
@@ -65,22 +65,6 @@
 {
     // Tell our delegate to dismiss the keyboard
     [delegate dismissKeyboard];
-}
-
-+(CGFloat)appropriateHeight
-{
-    // Grab the device interface idiom
-    UIUserInterfaceIdiom interfaceIdiom = [[UIDevice currentDevice] userInterfaceIdiom];
-    
-    // If this device is an iPad, always return the "tall" height
-    if(interfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        return kGNTextInputAccessoryViewHeightTall;
-    }
-    else
-    {
-        return kGNTextInputAccessoryViewHeightShort;
-    }
 }
 
 -(CAGradientLayer*)gradientLayer
