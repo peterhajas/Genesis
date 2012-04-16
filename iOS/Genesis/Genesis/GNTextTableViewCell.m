@@ -129,17 +129,21 @@
         /*
          We need to scroll our scrollview to meet the new insertion point of
          our file representation.
-        */        
-        CGRect lineBounds = CTLineGetImageBounds([textLineView line],
-                                                 [textLineView staleContext]);
+        */
         
-        CGFloat horizontalOffset = lineBounds.size.width + lineBounds.origin.x;
-                
-        if(horizontalOffset > [self frame].size.width * (5.0/6.0))
+        if([textLineView line] != NULL)
         {
-            CGFloat newHorizontalPosition = (horizontalOffset - [self frame].size.width * (5.0/6.0));
-            [textContainerScrollView setContentOffset:CGPointMake(newHorizontalPosition,
-                                                                  [textContainerScrollView contentOffset].y)];
+            CGRect lineBounds = CTLineGetImageBounds([textLineView line],
+                                                     [textLineView staleContext]);
+            
+            CGFloat horizontalOffset = lineBounds.size.width + lineBounds.origin.x;
+                    
+            if(horizontalOffset > [self frame].size.width * (5.0/6.0))
+            {
+                CGFloat newHorizontalPosition = (horizontalOffset - [self frame].size.width * (5.0/6.0));
+                [textContainerScrollView setContentOffset:CGPointMake(newHorizontalPosition,
+                                                                      [textContainerScrollView contentOffset].y)];
+            }
         }
     }
 }
