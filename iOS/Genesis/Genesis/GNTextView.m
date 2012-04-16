@@ -82,11 +82,14 @@
 {
     NSUInteger insertionLine = [(GNFileRepresentation*)[object object] insertionLine];
     
-    NSIndexPath* insertionPath = [NSIndexPath indexPathForRow:insertionLine inSection:0];
-    
-    [textTableView scrollToRowAtIndexPath:insertionPath
-                         atScrollPosition:UITableViewScrollPositionMiddle
-                                 animated:YES];
+    if(insertionLine < [textTableView numberOfRowsInSection:0])
+    {
+        NSIndexPath* insertionPath = [NSIndexPath indexPathForRow:insertionLine inSection:0];
+        
+        [textTableView scrollToRowAtIndexPath:insertionPath
+                             atScrollPosition:UITableViewScrollPositionMiddle
+                                     animated:YES];
+    }
 }
 
 #pragma mark GNTextInputManagerViewDelegate methods

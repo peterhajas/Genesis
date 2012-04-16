@@ -52,6 +52,12 @@ static CTFontRef defaultFont = nil;
         
         // Set our autoresizing mask
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
+        // Subscribe to text notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textChanged)
+                                                     name:@"kGNTextChanged"
+                                                   object:nil];
     }
     
     return self;
@@ -104,13 +110,24 @@ static CTFontRef defaultFont = nil;
 {
     // Our line number has changed.
     lineNumber = lineIndex;
-    
+    [self textChanged];
+}
+
+-(void)textChanged
+{
     // Grab our new attributedLine
-    NSAttributedString* attributedLine = [fileRepresentation attributedLineAtIndex:lineNumber];
-    
-    // Highlight attributedLine
-    highlightedLine = [GNSyntaxHighlighter highlightedSyntaxForAttributedText:attributedLine];
-    
+    if(lineNumber < [fileRepresentation lineCount])
+    {
+        NSAttributedString* attributedLine = [fileRepresentation attributedLineAtIndex:lineNumber];
+        // Highlight attributedLine
+        highlightedLine = [GNSyntaxHighlighter highlightedSyntaxForAttributedText:attributedLine];
+    }
+    else
+    {
+        // If they're asking for a line that doesn't exist, make it a blank string
+        highlightedLine = [[NSAttributedString alloc] initWithString:@""];
+    }
+        
     // Re-evaluate our size
     [self setFrame:[self frame]];
     [self setNeedsDisplay];

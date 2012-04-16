@@ -320,7 +320,11 @@
 
 -(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index
 {
-    return [[lineHorizontalOffsets objectAtIndex:index] floatValue];
+    if(index < [lineHorizontalOffsets count])
+    {
+        return [[lineHorizontalOffsets objectAtIndex:index] floatValue];
+    }
+    return 0.0;
 }
 
 

@@ -14,6 +14,7 @@
  */
 
 #import "GNTextTableView.h"
+#import "GNFileRepresentation.h"
 
 @implementation GNTextTableView
 
@@ -30,7 +31,7 @@
         
         // Subscribe to notifications about text changing
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(reloadData) 
+                                                 selector:@selector(textChanged:) 
                                                      name:@"kGNTextChanged"
                                                    object:nil];
         
@@ -40,6 +41,16 @@
                                    UIViewAutoresizingFlexibleRightMargin)];
     }
     return self;
+}
+
+-(void)textChanged:(NSNotification*)notification
+{
+    GNFileRepresentation* fileRepresentation = [notification object];
+    if([fileRepresentation insertionLine] != lastInsertionLine)
+    {
+        lastInsertionLine = [fileRepresentation insertionLine];
+        [self reloadData];
+    }
 }
 
 #pragma mark Lifecycle cleanup methods

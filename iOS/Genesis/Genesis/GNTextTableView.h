@@ -17,7 +17,9 @@
 #import <CoreText/CoreText.h>
 
 @interface GNTextTableView : UITableView
-
+{
+    NSUInteger lastInsertionLine;
+}
 -(void)cleanUp;
 
 @end

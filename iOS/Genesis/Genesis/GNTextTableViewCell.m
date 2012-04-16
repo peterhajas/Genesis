@@ -61,7 +61,6 @@
 
 -(void)prepareForReuse
 {
-    NSLog(@"reusing cell at index: %d", lineNumber);
     [super prepareForReuse];
     [self resetScrollPosition];
 }
@@ -124,6 +123,7 @@
 
 -(void)insertionPointChanged:(id)object
 {
+    return;
     // If the insertion point changed to us
     if([fileRepresentation insertionLine] == lineNumber)
     {
