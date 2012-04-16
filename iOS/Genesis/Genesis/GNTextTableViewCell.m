@@ -48,6 +48,12 @@
         // Set our autoresizing mask
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [textContainerScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
+        // Subscribe to insertion point changes
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(insertionPointChanged:)
+                                                     name:@"kGNInsertionPointChanged"
+                                                   object:nil];
     }
     
     return self;
@@ -55,6 +61,7 @@
 
 -(void)prepareForReuse
 {
+    NSLog(@"reusing cell at index: %d", lineNumber);
     [super prepareForReuse];
     [self resetScrollPosition];
 }
@@ -101,8 +108,11 @@
 
 -(void)resetScrollPosition
 {
-    [textContainerScrollView setContentOffset:CGPointMake(0, 0)
-                                     animated:YES];
+    if([fileRepresentation insertionLine] != lineNumber)
+    {
+        [textContainerScrollView setContentOffset:CGPointMake(0, 0)
+                                         animated:YES];
+    }
 }
 
 -(void)setLineNumber:(NSUInteger)line
@@ -110,6 +120,31 @@
     // Change the index of us and our line view
     lineNumber = line;
     [textLineView setLineNumber:line];
+}
+
+-(void)insertionPointChanged:(id)object
+{
+    // If the insertion point changed to us
+    if([fileRepresentation insertionLine] == lineNumber)
+    {
+        /*
+         We need to scroll our scrollview to meet the new insertion point of
+         our file representation.
+        */
+        NSUInteger insertionIndexInLine = [fileRepresentation insertionIndexInLine];
+        
+        CGRect lineBounds = CTLineGetImageBounds([textLineView line],
+                                                 [textLineView staleContext]);
+        
+        CGFloat horizontalOffset = (lineBounds.size.width / [[fileRepresentation currentLine] length]) * (insertionIndexInLine + 1);
+        
+        if(horizontalOffset > [self frame].size.width)
+        {
+            CGFloat newHorizontalPosition = horizontalOffset + [self frame].size.width / 2;
+            [textContainerScrollView setContentOffset:CGPointMake(newHorizontalPosition,
+                                                                  [textContainerScrollView contentOffset].y)];
+        }
+    }
 }
 
 #pragma mark GNTextLineViewSizingDelegate methods

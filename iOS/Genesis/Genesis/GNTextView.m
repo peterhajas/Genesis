@@ -127,11 +127,8 @@
     NSArray* tableViewIndexPaths = [textTableView indexPathsForVisibleRows];
     for(NSIndexPath* tableViewCellPath in tableViewIndexPaths)
     {
-        if(![tableViewCellPath row] == [fileRepresentation insertionLine])
-        {
-            GNTextTableViewCell* cell = (GNTextTableViewCell*)[textTableView cellForRowAtIndexPath:tableViewCellPath];
-            [cell resetScrollPosition];
-        }
+        GNTextTableViewCell* cell = (GNTextTableViewCell*)[textTableView cellForRowAtIndexPath:tableViewCellPath];
+        [cell resetScrollPosition];
     }
 
 }

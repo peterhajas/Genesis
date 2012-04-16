@@ -54,6 +54,9 @@
 -(void)insertionPointChangedShouldRecomputeIndices:(BOOL)shouldRecompute;
 
 -(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index;
+
+-(NSString*)currentLine;
+
 -(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index;
 
 @property(readonly) NSUInteger insertionIndex;

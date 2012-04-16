@@ -41,4 +41,7 @@
 -(CFIndex)indexForTappedPoint:(CGPoint)point;
 -(void)setLineNumber:(NSUInteger)lineIndex;
 
+@property (readonly) CTLineRef line;
+@property (readonly) CGContextRef staleContext;
+
 @end
