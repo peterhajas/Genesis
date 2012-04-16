@@ -134,14 +134,10 @@
                                                  [textLineView staleContext]);
         
         CGFloat horizontalOffset = lineBounds.size.width + lineBounds.origin.x;
-        
-        NSLog(@"I think horizontal offset is %f our frame width is %f", horizontalOffset, [self frame].size.width);
-        
+                
         if(horizontalOffset > [self frame].size.width * (5.0/6.0))
         {
-            NSLog(@"we should move! horizontal offset is %f 5/6 frame width is %f", horizontalOffset, [self frame].size.width * (5.0/6.0));
             CGFloat newHorizontalPosition = (horizontalOffset - [self frame].size.width * (5.0/6.0));
-            NSLog(@"new horizontal position is %f", newHorizontalPosition);
             [textContainerScrollView setContentOffset:CGPointMake(newHorizontalPosition,
                                                                   [textContainerScrollView contentOffset].y)];
         }
