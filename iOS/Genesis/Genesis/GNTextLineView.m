@@ -14,6 +14,7 @@
  */
 
 #import "GNTextLineView.h"
+#import "GNLineNumberTableView.h"
 
 @implementation GNTextLineView
 
@@ -95,6 +96,11 @@ static CTFontRef defaultFont = nil;
                                             size:DEFAULT_SIZE];
     
     CGFloat widthRequiredForText = [[highlightedLine string] sizeWithFont:defaultUIFont].width;
+    
+    if(widthRequiredForText > [[self superview] frame].size.width)
+    {
+        widthRequiredForText += kGNLineNumberTableViewWidth;
+    }
     
     CGRect oldFrame = [self frame];
     CGRect newFrame = CGRectMake(oldFrame.origin.x,

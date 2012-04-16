@@ -51,8 +51,8 @@
         
         // Subscribe to insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(insertionPointChanged:)
-                                                     name:@"kGNInsertionPointChanged"
+                                                 selector:@selector(textChanged:)
+                                                     name:@"kGNTextChanged"
                                                    object:nil];
     }
     
@@ -121,26 +121,27 @@
     [textLineView setLineNumber:line];
 }
 
--(void)insertionPointChanged:(id)object
+-(void)textChanged:(id)object
 {
-    return;
-    // If the insertion point changed to us
+    // If the insertion point is on our line
     if([fileRepresentation insertionLine] == lineNumber)
     {
         /*
          We need to scroll our scrollview to meet the new insertion point of
          our file representation.
-        */
-        NSUInteger insertionIndexInLine = [fileRepresentation insertionIndexInLine];
-        
+        */        
         CGRect lineBounds = CTLineGetImageBounds([textLineView line],
                                                  [textLineView staleContext]);
         
-        CGFloat horizontalOffset = (lineBounds.size.width / [[fileRepresentation currentLine] length]) * (insertionIndexInLine + 1);
+        CGFloat horizontalOffset = lineBounds.size.width + lineBounds.origin.x;
         
-        if(horizontalOffset > [self frame].size.width)
+        NSLog(@"I think horizontal offset is %f our frame width is %f", horizontalOffset, [self frame].size.width);
+        
+        if(horizontalOffset > [self frame].size.width * (5.0/6.0))
         {
-            CGFloat newHorizontalPosition = horizontalOffset + [self frame].size.width / 2;
+            NSLog(@"we should move! horizontal offset is %f 5/6 frame width is %f", horizontalOffset, [self frame].size.width * (5.0/6.0));
+            CGFloat newHorizontalPosition = (horizontalOffset - [self frame].size.width * (5.0/6.0));
+            NSLog(@"new horizontal position is %f", newHorizontalPosition);
             [textContainerScrollView setContentOffset:CGPointMake(newHorizontalPosition,
                                                                   [textContainerScrollView contentOffset].y)];
         }
