@@ -98,6 +98,22 @@ static CTFontRef defaultFont = nil;
     [delegate requiresWidth:widthRequiredForText];
 }
 
+-(void)setLineNumber:(NSUInteger)lineIndex
+{
+    // Our line number has changed.
+    lineNumber = lineIndex;
+    
+    // Grab our new attributedLine
+    NSAttributedString* attributedLine = [fileRepresentation attributedLineAtIndex:lineNumber];
+    
+    // Highlight attributedLine
+    highlightedLine = [GNSyntaxHighlighter highlightedSyntaxForAttributedText:attributedLine];
+    
+    // Re-evaluate our size
+    [self setFrame:[self frame]];
+    [self setNeedsDisplay];
+}
+
 #pragma mark Hit-testing
 -(CFIndex)indexForTappedPoint:(CGPoint)point
 {

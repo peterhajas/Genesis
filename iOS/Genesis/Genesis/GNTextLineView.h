@@ -39,5 +39,6 @@
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation lineNumber:(NSUInteger)number frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate;
 -(CFIndex)indexForTappedPoint:(CGPoint)point;
+-(void)setLineNumber:(NSUInteger)lineIndex;
 
 @end

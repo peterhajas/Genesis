@@ -53,6 +53,12 @@
     return self;
 }
 
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    [self resetScrollPosition];
+}
+
 -(void)didMoveToSuperview
 {
     [textContainerScrollView setFrame:CGRectMake(0,
@@ -97,6 +103,13 @@
 {
     [textContainerScrollView setContentOffset:CGPointMake(0, 0)
                                      animated:YES];
+}
+
+-(void)setLineNumber:(NSUInteger)line
+{
+    // Change the index of us and our line view
+    lineNumber = line;
+    [textLineView setLineNumber:line];
 }
 
 #pragma mark GNTextLineViewSizingDelegate methods

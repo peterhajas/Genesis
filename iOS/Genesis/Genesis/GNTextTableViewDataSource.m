@@ -35,7 +35,12 @@
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     GNTextTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kGNTextTableViewCellReuseIdentifier];
-    if(!cell)
+    if(cell)
+    {
+        // Recompute our cell's ivars
+        [cell setLineNumber:[indexPath row]];
+    }
+    else
     {
         cell = [[GNTextTableViewCell alloc] initWithFileRepresentation:fileRepresentation
                                                               andIndex:[indexPath row]];

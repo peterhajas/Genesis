@@ -34,6 +34,7 @@
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation andIndex:(NSUInteger)index;
 -(void)resetScrollPosition;
+-(void)setLineNumber:(NSUInteger)line;
 
 @property (nonatomic, retain) GNFileRepresentation* fileRepresentation;
 
