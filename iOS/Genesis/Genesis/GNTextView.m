@@ -145,6 +145,10 @@
     [textTableView cleanUp];
     [textInputManagerView cleanUp];
     [lineNumberTableView cleanUp];
+    
+    [textTableView removeFromSuperview];
+    [textInputManagerView removeFromSuperview];
+    [lineNumberTableView removeFromSuperview];
 }
 
 @end

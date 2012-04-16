@@ -140,11 +140,18 @@
     return YES;
 }
 
+-(BOOL)becomeFirstResponder
+{
+    [caretView setHidden:NO];
+    return [super becomeFirstResponder];
+}
+
 #pragma mark GNTextInputAccessoryViewDelegate methods
 -(void)dismissKeyboard
 {
     [self resignFirstResponder];
     [self toggleMinimalView:NO];
+    [caretView setHidden:YES];
 }
 
 #pragma mark Lifecycle cleanup methods
@@ -153,6 +160,7 @@
 {
     [caretView cleanUp];
     [inputAccessoryView cleanUp];
+    [caretView removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
