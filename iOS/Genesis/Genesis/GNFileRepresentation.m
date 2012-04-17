@@ -352,6 +352,7 @@
         
     NSMutableCharacterSet* stoppingCharacters = [NSMutableCharacterSet whitespaceCharacterSet];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+    [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
     
     NSUInteger leftBound, rightBound;
     leftBound = rightBound = insertionIndexInLine;
