@@ -13,23 +13,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextInputAccessoryViewButton.h"
+#import "GNTextAlternateInputView.h"
 
-@protocol GNAutoCompleteButtonDelegate <NSObject>
-
--(void)changeToAutoCompleteKeyboard;
-
-@end
-
-@interface GNTextInputAccessoryViewAutocompleteButton : GNTextInputAccessoryViewButton
+@interface GNTextAutocompleteInputView : GNTextAlternateInputView <UITableViewDelegate,
+                                                                   UITableViewDataSource>
 {
-    UISwipeGestureRecognizer* swipeGestureRecognizer;
-    
-    NSObject<GNAutoCompleteButtonDelegate>* delegate;
+    NSArray* autocompleteSuggestionsForCurrentWord;
+    UITableView* autocompleteSuggestions;
 }
-
--(void)textChanged:(id)object;
-
-@property(nonatomic,retain) NSObject<GNAutoCompleteButtonDelegate>* delegate;
-
 @end

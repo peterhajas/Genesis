@@ -17,6 +17,9 @@
 #import "GNFileRepresentation.h"
 #import "GNTextCaretView.h"
 #import "GNTextInputAccessoryView.h"
+#import "GNTextAlternateInputView.h"
+
+#import "GNTextAutocompleteInputView.h"
 
 @protocol GNTextInputManagerViewDelegate
 
@@ -26,13 +29,15 @@
 
 @interface GNTextInputManagerView : UIView <UIKeyInput,
                                             UITextInputTraits,
-                                            GNTextInputAccessoryViewDelegate>
+                                            GNTextInputAccessoryViewDelegate,
+                                            GNTextAlternateInputViewDelegate>
 {
     GNFileRepresentation* fileRepresentation;
     NSUInteger textCaretIndex;
     
     GNTextCaretView* caretView;
     
+    GNTextAlternateInputView* alternateInputView;
     GNTextInputAccessoryView* inputAccessoryView;
     
     id<GNTextInputManagerViewDelegate> delegate;
@@ -44,6 +49,7 @@
 -(void)cleanUp;
 
 @property(nonatomic,retain) id<GNTextInputManagerViewDelegate> delegate;
+@property(readwrite) UIView* inputView;
 @property(readwrite) UIView* inputAccessoryView;
 
 @end

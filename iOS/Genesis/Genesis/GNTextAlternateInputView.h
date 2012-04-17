@@ -13,23 +13,26 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextInputAccessoryViewButton.h"
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "GNFileRepresentation.h"
 
-@protocol GNAutoCompleteButtonDelegate <NSObject>
+@protocol GNTextAlternateInputViewDelegate
 
--(void)changeToAutoCompleteKeyboard;
+-(void)insertText:(NSString*)text indexDelta:(NSInteger)indexDelta;
+-(void)replaceTextInRange:(NSRange)range withText:(NSString*)text;
 
 @end
 
-@interface GNTextInputAccessoryViewAutocompleteButton : GNTextInputAccessoryViewButton
+@interface GNTextAlternateInputView : UIView
 {
-    UISwipeGestureRecognizer* swipeGestureRecognizer;
+    CAGradientLayer* gradientLayer;
     
-    NSObject<GNAutoCompleteButtonDelegate>* delegate;
+    NSObject<GNTextAlternateInputViewDelegate>* delegate;
+    
+    GNFileRepresentation* fileRepresentation;
 }
 
--(void)textChanged:(id)object;
-
-@property(nonatomic,retain) NSObject<GNAutoCompleteButtonDelegate>* delegate;
+-(id)initWithDelegate:(NSObject<GNTextAlternateInputViewDelegate>*)alternateDelegate andFileRepresentation:(GNFileRepresentation*)representation;
 
 @end

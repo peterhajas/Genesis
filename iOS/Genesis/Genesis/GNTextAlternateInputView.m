@@ -13,44 +13,29 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import "GNTextInputAccessoryView.h"
 #import "GNTextAlternateInputView.h"
+#import "GNTextInputAccessoryView.h"
 
-@implementation GNTextInputAccessoryView
+@implementation GNTextAlternateInputView
 
--(id)initWithDelegate:(NSObject<GNTextInputAccessoryViewDelegate>*)inputDelegate
+-(id)initWithDelegate:(NSObject<GNTextAlternateInputViewDelegate>*)alternateDelegate andFileRepresentation:(GNFileRepresentation*)representation
 {
     self = [super initWithFrame:CGRectMake(0,
                                            0,
                                            [[UIScreen mainScreen] bounds].size.width,
-                                           kGNTextInputAccessoryViewHeight)];
+                                           216)];
     if(self)
     {
-        delegate = inputDelegate;
-        
-        // Set our autoresize mask
-        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-        
         // Create our gradient layer
         gradientLayer = [self gradientLayer];
         [[self layer] addSublayer:gradientLayer];
         
-        // Set up our buttons
+        fileRepresentation = representation;
         
-        // Hide keyboard button
-        hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
-        [hideKeyboardButton setHorizontalPosition:[self frame].size.width - kGNTextInputAccessoryViewButtonWidth];
-        [hideKeyboardButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:hideKeyboardButton];
+        delegate = alternateDelegate;
         
-        // Auto complete button
-        autoCompleteButton = [[GNTextInputAccessoryViewAutocompleteButton alloc] init];
-        [autoCompleteButton setHorizontalPosition:0];
-        [autoCompleteButton setDelegate:self];
-        
-        [self addSubview:autoCompleteButton];
+        [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     }
-    
     return self;
 }
 
@@ -59,25 +44,12 @@
     [gradientLayer setFrame:[self frame]];
 }
 
--(void)hideKeyboard:(id)sender
-{
-    // Tell our delegate to dismiss the keyboard
-    [delegate dismissKeyboard];
-}
-
 -(CAGradientLayer*)gradientLayer
 {
     CAGradientLayer* layer = [CAGradientLayer layer];
     [layer setColors:kGNTextInputAccessoryGradientColors];
     [layer setFrame:[self frame]];
     return layer;
-}
-
-#pragma mark GNAutoCompleteButtonDelegate methods
-
--(void)changeToAutoCompleteKeyboard
-{
-    [delegate switchToAutocompleteKeyboard];
 }
 
 @end

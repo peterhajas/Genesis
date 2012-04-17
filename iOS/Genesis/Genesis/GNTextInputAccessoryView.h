@@ -30,10 +30,12 @@
 @protocol GNTextInputAccessoryViewDelegate <NSObject>
 
 -(void)dismissKeyboard;
+-(void)switchToAutocompleteKeyboard;
+-(void)switchToSystemKeyboard;
 
 @end
 
-@interface GNTextInputAccessoryView : UIView
+@interface GNTextInputAccessoryView : UIView <GNAutoCompleteButtonDelegate>
 {
     CAGradientLayer* gradientLayer;
     

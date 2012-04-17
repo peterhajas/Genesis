@@ -16,10 +16,12 @@
 #import "GNTextInputManagerView.h"
 #import "GNTextGeometry.h"
 #import "GNLineNumberTableView.h"
+#import "GNTextAlternateInputView.h"
 
 @implementation GNTextInputManagerView
 
 @synthesize delegate;
+@synthesize inputView;
 @synthesize inputAccessoryView;
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation
@@ -152,6 +154,32 @@
     [self resignFirstResponder];
     [self toggleMinimalView:NO];
     [caretView setHidden:YES];
+}
+
+-(void)switchToAutocompleteKeyboard;
+{
+    alternateInputView = [[GNTextAutocompleteInputView alloc] initWithDelegate:self
+                                                         andFileRepresentation:fileRepresentation];
+    [self resignFirstResponder];
+    [self setInputView:alternateInputView];
+    [self becomeFirstResponder];
+}
+
+-(void)switchToSystemKeyboard
+{
+    [self setInputView:nil];
+}
+
+#pragma mark GNTextAlternateInputViewDelegate methods
+
+-(void)insertText:(NSString*)text indexDelta:(NSInteger)indexDelta
+{
+    
+}
+
+-(void)replaceTextInRange:(NSRange)range withText:(NSString*)text
+{
+    
 }
 
 #pragma mark Lifecycle cleanup methods

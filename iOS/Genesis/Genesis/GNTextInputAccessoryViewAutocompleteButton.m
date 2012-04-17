@@ -18,11 +18,19 @@
 
 @implementation GNTextInputAccessoryViewAutocompleteButton
 
+@synthesize delegate;
+
 -(id)init
 {
     self = [super init];
     if(self)
     {
+        // Create our swipe gesture recognizer
+        swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                           action:@selector(didSwipe:)];
+        [swipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
+        [self addGestureRecognizer:swipeGestureRecognizer];
+        
         // Subscribe to the text changed notification
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged:)
@@ -30,6 +38,12 @@
                                                    object:nil];
     }
     return self;
+}
+
+-(void)didSwipe:(UIGestureRecognizer*)gestureRecognizer
+{
+    NSLog(@"swiped");
+    [delegate changeToAutoCompleteKeyboard];
 }
 
 -(void)textChanged:(id)object
