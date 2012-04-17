@@ -20,7 +20,7 @@
 
 -(id)init
 {
-    self = [GNTextInputAccessoryViewButton buttonWithType:UIButtonTypeCustom];
+    self = [super init];
     if(self)
     {
         [self setFrame:CGRectMake(0,
@@ -33,6 +33,12 @@
         [gradientLayer setColors:kGNTextInputAccessoryGradientColors];
         [gradientLayer setFrame:[self frame]];
         [[self layer] addSublayer:gradientLayer];
+        
+        // Create our button
+        button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setFrame:[self frame]];
+        [button setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+        [self addSubview:button];
     }
     
     return self;
@@ -45,6 +51,18 @@
                               currentFrame.origin.y,
                               currentFrame.size.width,
                               currentFrame.size.height)];
+}
+
+-(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
+{
+    [button addTarget:target
+               action:action
+     forControlEvents:controlEvents];
+}
+
+-(void)setTitle:(NSString*)title forState:(UIControlState)state;
+{
+    [button setTitle:title forState:state];
 }
 
 @end
