@@ -41,6 +41,8 @@
             fileContents = @"";
         }
         
+        autoCompleteDictionary = [[GNAutocompleteDictionary alloc] init];
+        
         attributedFileContents = [[NSAttributedString alloc] initWithString:fileContents];
         languageDictionary = [GNTextAttributer languageDictionaryForExtension:[self fileExtension]];
         
@@ -282,6 +284,8 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
                                                         object:self];
+    
+    [autoCompleteDictionary addTextToBackingStore:fileLines];
 }
 
 -(void)insertionPointChangedShouldRecomputeIndices:(BOOL)shouldRecompute

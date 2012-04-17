@@ -14,6 +14,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "GNAutocompleteDictionary.h"
 
 @interface GNFileRepresentation : NSObject
 {
@@ -29,6 +30,8 @@
     NSUInteger insertionIndex;
     NSUInteger insertionIndexInLine;
     NSUInteger insertionLine;
+    
+    GNAutocompleteDictionary* autoCompleteDictionary;
 }
 
 -(id)initWithRelativePath:(NSString*)path;
