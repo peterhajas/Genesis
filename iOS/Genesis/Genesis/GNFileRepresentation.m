@@ -320,9 +320,6 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointChanged"
                                                         object:self];
-    
-    // Test the current word stuff
-    NSLog(@"our current word is: %@", [self currentWord]);
 }
 
 -(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index
