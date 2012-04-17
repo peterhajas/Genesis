@@ -34,21 +34,19 @@
     // Empty the previous backing store
     [backingStore setSet:[NSSet set]];
     
+    NSMutableCharacterSet* stoppingCharacters = [NSMutableCharacterSet whitespaceCharacterSet];
+    [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+    [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
+    
     for(NSString* text in lines)
     {
-        // Split the text by spaces
-        NSArray* textSplitBySpaces = [text componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        for(NSString* textSplitBySpace in textSplitBySpaces)
+        NSArray* splitText = [text componentsSeparatedByCharactersInSet:stoppingCharacters];
+        for(NSString* textElement in splitText)
         {
-            // Split again by punctuation
-            NSArray* textSplitBySpaceSplitByPunctuation = [textSplitBySpace componentsSeparatedByCharactersInSet:[NSCharacterSet punctuationCharacterSet]];
-            for(NSString* textElement in textSplitBySpaceSplitByPunctuation)
+            if([numberFormatter numberFromString:textElement] == nil)
             {
-                if([numberFormatter numberFromString:textElement] == nil)
-                {
-                    // Ok, this *should* be sane stuff, that's not a number
-                    [backingStore addObject:textElement];
-                }
+                // Ok, this *should* be sane stuff, that's not a number
+                [backingStore addObject:textElement];
             }
         }
     }
