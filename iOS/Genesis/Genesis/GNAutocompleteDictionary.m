@@ -57,7 +57,7 @@
 -(NSArray*)orderedMatchesForText:(NSString*)text
 {
     // Filter our internal backing store based on starting with text
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"SELF beginswith '%@",text];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"SELF beginswith '%@'",text];
     
     NSMutableArray* elementsMatchingText = [NSMutableArray arrayWithArray:[[backingStore filteredSetUsingPredicate:predicate] allObjects]];
     
