@@ -20,6 +20,7 @@
 // Types of buttons
 
 #import "GNTextInputAccessoryViewHideKeyboardButton.h"
+#import "GNTextInputAccessoryViewAutocompleteButton.h"
 
 #define kGNTextInputAccessoryViewHeight 35
 #define kGNTextInputAccessoryStartingGradientColor [[UIColor colorWithRed:143/255.0 green:150/255.0 blue:159/255.0 alpha:1.0] CGColor]
@@ -37,6 +38,7 @@
     CAGradientLayer* gradientLayer;
     
     GNTextInputAccessoryViewHideKeyboardButton* hideKeyboardButton;
+    GNTextInputAccessoryViewAutocompleteButton* autoCompleteButton;
     
     NSObject<GNTextInputAccessoryViewDelegate>* delegate;
 }
