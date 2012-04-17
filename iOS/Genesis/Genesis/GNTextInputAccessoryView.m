@@ -37,10 +37,8 @@
         // Set up our buttons
         
         // Hide keyboard button
-        hideKeyboardButton = [[GNTextInputAccessoryViewButton alloc] init];
+        hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
         [hideKeyboardButton setHorizontalPosition:[self frame].size.width - kGNTextInputAccessoryViewButtonWidth];
-        [hideKeyboardButton setTitle:@"hk" forState:UIControlStateNormal];
-        [hideKeyboardButton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [hideKeyboardButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:hideKeyboardButton];
     }

@@ -85,6 +85,7 @@
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
+		4FA2C3B0153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C3AF153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m */; };
 		4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4FF371533ADD70054482A /* GNTextAttributer.m */; };
 		4FA4FFB71533AF6C0054482A /* Ahk.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3A1533AF160054482A /* Ahk.plist */; };
 		4FA4FFB81533AF6C0054482A /* Bibtex.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3B1533AF160054482A /* Bibtex.plist */; };
@@ -403,6 +404,8 @@
 		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4F77E90114E4C500001A69E8 /* GNSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSyntaxHighlighter.h; sourceTree = "<group>"; };
 		4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNSyntaxHighlighter.m; sourceTree = "<group>"; };
+		4FA2C3AE153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewHideKeyboardButton.h; sourceTree = "<group>"; };
+		4FA2C3AF153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewHideKeyboardButton.m; sourceTree = "<group>"; };
 		4FA4FF361533ADD70054482A /* GNTextAttributer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextAttributer.h; sourceTree = "<group>"; };
 		4FA4FF371533ADD70054482A /* GNTextAttributer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAttributer.m; sourceTree = "<group>"; };
 		4FA4FF3A1533AF160054482A /* Ahk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ahk.plist; sourceTree = "<group>"; };
@@ -887,6 +890,15 @@
 			name = "Syntax Highlighting";
 			sourceTree = "<group>";
 		};
+		4FA2C3B2153CECC300D7B5B2 /* Hide Keyboard Button */ = {
+			isa = PBXGroup;
+			children = (
+				4FA2C3AE153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.h */,
+				4FA2C3AF153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m */,
+			);
+			name = "Hide Keyboard Button";
+			sourceTree = "<group>";
+		};
 		4FA4FF391533AF160054482A /* languages */ = {
 			isa = PBXGroup;
 			children = (
@@ -991,6 +1003,7 @@
 			children = (
 				4FD1C2DD153C891300DD4A3D /* GNTextInputAccessoryViewButton.h */,
 				4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */,
+				4FA2C3B2153CECC300D7B5B2 /* Hide Keyboard Button */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -1199,6 +1212,7 @@
 				4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */,
 				4FD1C2DA153C889100DD4A3D /* GNTextInputAccessoryView.m in Sources */,
 				4FD1C2DF153C891300DD4A3D /* GNTextInputAccessoryViewButton.m in Sources */,
+				4FA2C3B0153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
