@@ -19,8 +19,13 @@
 #define kGNTextInputAccessoryViewButtonWidth 60.0
 #define kGNTextInputAccessoryViewButtonMargin 5.0
 
-@interface GNTextInputAccessoryViewButton : UIButton
+@interface GNTextInputAccessoryViewButton : UIView
+{
+    UIButton* button;
+}
 
 -(void)setHorizontalPosition:(CGFloat)horizontalPosition;
+-(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+-(void)setTitle:(NSString*)title forState:(UIControlState)state;
 
 @end
