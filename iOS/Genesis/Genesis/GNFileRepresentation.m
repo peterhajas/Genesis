@@ -21,6 +21,7 @@
 @implementation GNFileRepresentation
 
 @synthesize insertionIndex, insertionIndexInLine, insertionLine;
+@synthesize autoCompleteDictionary;
 
 -(id)initWithRelativePath:(NSString*)path
 {

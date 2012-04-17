@@ -69,5 +69,6 @@
 @property(readonly) NSUInteger insertionIndexInLine;
 @property(readonly) NSUInteger insertionLine;
 @property(readonly) NSString* fileExtension;
+@property(readonly) GNAutocompleteDictionary* autoCompleteDictionary;
 
 @end
