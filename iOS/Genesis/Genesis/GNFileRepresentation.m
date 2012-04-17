@@ -365,16 +365,12 @@
         return NSMakeRange(0, 0);
     }
     
-    if(leftBound >= [currentLine length])
+    if(insertionIndexInLine > [currentLine length])
     {
         leftBound--;
-    }
-    
-    if(rightBound > [currentLine length])
-    {
         rightBound--;
     }
-    
+        
     // Find our left bound
     while(leftBound > 0)
     {
@@ -391,12 +387,12 @@
             break;
         }
     }
-    
     // Find our right bound
-    while(rightBound < [currentLine length] - 2)
+    while(rightBound < [currentLine length])
     {
-        if(rightBound + 1 >= [currentLine length])
+        if(rightBound+1 == [currentLine length])
         {
+            rightBound++;
             break;
         }
         // Check ahead of right bound, to see if we can move it over
