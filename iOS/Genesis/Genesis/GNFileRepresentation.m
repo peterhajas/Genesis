@@ -367,6 +367,16 @@
         return NSMakeRange(0, 0);
     }
     
+    if(leftBound >= [currentLine length])
+    {
+        leftBound--;
+    }
+    
+    if(rightBound > [currentLine length])
+    {
+        rightBound--;
+    }
+    
     // Find our left bound
     while(leftBound > 0)
     {
@@ -380,14 +390,17 @@
         else
         {
             // Even better! This is our right boundary
-            leftBound--;
             break;
         }
     }
     
     // Find our right bound
-    while(rightBound < [currentLine length] - 1)
+    while(rightBound < [currentLine length] - 2)
     {
+        if(rightBound + 1 >= [currentLine length])
+        {
+            break;
+        }
         // Check ahead of right bound, to see if we can move it over
         unichar aheadRightBound = [currentLine characterAtIndex:rightBound+1];
         if(![stoppingCharacters characterIsMember:aheadRightBound])
