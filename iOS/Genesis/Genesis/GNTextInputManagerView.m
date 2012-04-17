@@ -159,7 +159,6 @@
 -(void)cleanUp
 {
     [caretView cleanUp];
-    [inputAccessoryView cleanUp];
     [caretView removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

@@ -27,13 +27,6 @@
     {
         delegate = inputDelegate;
         
-        
-        // Observe keyboard events
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardChanged:)
-                                                     name:UIKeyboardWillShowNotification
-                                                   object:nil];
-        
         // Set our autoresize mask
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         
@@ -55,7 +48,7 @@
     return self;
 }
 
--(void)keyboardChanged:(id)object
+-(void)layoutSubviews
 {
     [gradientLayer setFrame:[self frame]];
 }
@@ -72,11 +65,6 @@
     [layer setColors:kGNTextInputAccessoryGradientColors];
     [layer setFrame:[self frame]];
     return layer;
-}
-
--(void)cleanUp
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

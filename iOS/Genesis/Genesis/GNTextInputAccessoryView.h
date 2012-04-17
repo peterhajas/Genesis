@@ -38,6 +38,5 @@
 }
 
 -(id)initWithDelegate:(NSObject<GNTextInputAccessoryViewDelegate>*)inputDelegate;
--(void)cleanUp;
 
 @end
