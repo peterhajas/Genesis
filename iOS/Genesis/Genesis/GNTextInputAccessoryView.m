@@ -40,12 +40,12 @@
         hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
         [hideKeyboardButton setHorizontalPosition:[self frame].size.width - kGNTextInputAccessoryViewButtonWidth];
         [hideKeyboardButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:hideKeyboardButton];
         
         // Auto complete button
         autoCompleteButton = [[GNTextInputAccessoryViewAutocompleteButton alloc] init];
         [autoCompleteButton setHorizontalPosition:0];
-        
-        [self addSubview:hideKeyboardButton];
+        [self addSubview:autoCompleteButton];
     }
     
     return self;
