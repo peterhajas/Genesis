@@ -39,12 +39,17 @@
     NSString* currentWord = [fileRepresentation currentWord];
     
     NSArray* autocorrectionSuggestions = [[fileRepresentation autoCompleteDictionary] orderedMatchesForText:currentWord];
-    
+        
     // Set our title to the top autocorrection match
     if([autocorrectionSuggestions count] > 0)
     {
         NSString* firstMatch = [autocorrectionSuggestions objectAtIndex:0];
         [self setTitle:firstMatch
+              forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self setTitle:@""
               forState:UIControlStateNormal];
     }
 }
