@@ -319,6 +319,9 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointChanged"
                                                         object:self];
+    
+    // Test the current word stuff
+    NSLog(@"our current word is: %@", [self currentWord]);
 }
 
 -(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index
@@ -334,6 +337,76 @@
 -(NSString*)currentLine
 {
     return [fileLines objectAtIndex:insertionLine];
+}
+
+-(NSString*)currentWord
+{
+    return [[self currentLine] substringWithRange:[self rangeOfCurrentWordInCurrentLine]];
+}
+
+-(NSRange)rangeOfCurrentWordInCurrentLine
+{
+    /*
+     We need to grow out from the insertionIndexInLine until we hit a stopping character
+     That's how we'll know if we hit the bounds of our word. We'll need a left and right
+     bound marker, and we'll continue to grow them.
+     */
+        
+    NSMutableCharacterSet* stoppingCharacters = [NSMutableCharacterSet whitespaceCharacterSet];
+    [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+    
+    NSUInteger leftBound, rightBound;
+    leftBound = rightBound = insertionIndexInLine;
+    
+    NSString* currentLine = [self currentLine];
+    
+    // If the string is empty, return a zero length range
+    if([currentLine isEqualToString:@""])
+    {
+        return NSMakeRange(0, 0);
+    }
+    
+    // Find our left bound
+    while(leftBound > 0)
+    {
+        // Check behind left bound, to see if we can move it over
+        unichar behindLeftBound = [currentLine characterAtIndex:leftBound-1];
+        if(![stoppingCharacters characterIsMember:behindLeftBound])
+        {
+            // Good! Decrement leftBound
+            leftBound--;
+        }
+        else
+        {
+            // Even better! This is our right boundary
+            leftBound--;
+            break;
+        }
+    }
+    
+    // Find our right bound
+    while(rightBound < [currentLine length] - 1)
+    {
+        // Check ahead of right bound, to see if we can move it over
+        unichar aheadRightBound = [currentLine characterAtIndex:rightBound+1];
+        if(![stoppingCharacters characterIsMember:aheadRightBound])
+        {
+            // Cool! Increment rightBound
+            rightBound++;
+        }
+        else
+        {
+            // Awesome, we've found our right boundary
+            rightBound++;
+            break;
+        }
+    }
+    
+    // Now, we have our left and right bounds.
+    // The location of our range is simply leftBound.
+    // The length of our range is rightBound - leftBound
+    
+    return NSMakeRange(leftBound, rightBound - leftBound);
 }
 
 #pragma mark Horizontal Offset Management

@@ -60,6 +60,9 @@
 
 -(NSString*)currentLine;
 
+-(NSString*)currentWord;
+-(NSRange)rangeOfCurrentWordInCurrentLine;
+
 -(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index;
 
 @property(readonly) NSUInteger insertionIndex;
