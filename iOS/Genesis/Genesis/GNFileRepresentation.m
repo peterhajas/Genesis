@@ -283,10 +283,10 @@
     
     attributedFileContents = [GNTextGeometry attributedStringWithDefaultFontApplied:attributedFileContents];
     
+    [autoCompleteDictionary addTextToBackingStore:fileLines];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
                                                         object:self];
-    
-    [autoCompleteDictionary addTextToBackingStore:fileLines];
 }
 
 -(void)insertionPointChangedShouldRecomputeIndices:(BOOL)shouldRecompute
