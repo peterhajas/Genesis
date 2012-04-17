@@ -339,13 +339,13 @@
 
 -(NSString*)currentWord
 {
-    return [[self currentLine] substringWithRange:[self rangeOfCurrentWordInCurrentLine]];
+    return [fileContents substringWithRange:[self rangeOfCurrentWord]];
 }
 
--(NSRange)rangeOfCurrentWordInCurrentLine
+-(NSRange)rangeOfCurrentWord
 {
     /*
-     We need to grow out from the insertionIndexInLine until we hit a stopping character
+     We need to grow out from the insertionIndex until we hit a stopping character
      That's how we'll know if we hit the bounds of our word. We'll need a left and right
      bound marker, and we'll continue to grow them.
      */
@@ -353,19 +353,18 @@
     NSMutableCharacterSet* stoppingCharacters = [NSMutableCharacterSet whitespaceCharacterSet];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
+    [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
     
     NSUInteger leftBound, rightBound;
-    leftBound = rightBound = insertionIndexInLine;
-    
-    NSString* currentLine = [self currentLine];
+    leftBound = rightBound = insertionIndex;
     
     // If the string is empty, return a zero length range
-    if([currentLine isEqualToString:@""])
+    if([fileContents isEqualToString:@""])
     {
         return NSMakeRange(0, 0);
     }
     
-    if(insertionIndexInLine > [currentLine length])
+    if(insertionIndexInLine > [fileContents length])
     {
         leftBound--;
         rightBound--;
@@ -375,7 +374,7 @@
     while(leftBound > 0)
     {
         // Check behind left bound, to see if we can move it over
-        unichar behindLeftBound = [currentLine characterAtIndex:leftBound-1];
+        unichar behindLeftBound = [fileContents characterAtIndex:leftBound-1];
         if(![stoppingCharacters characterIsMember:behindLeftBound])
         {
             // Good! Decrement leftBound
@@ -388,15 +387,15 @@
         }
     }
     // Find our right bound
-    while(rightBound < [currentLine length])
+    while(rightBound < [fileContents length])
     {
-        if(rightBound+1 == [currentLine length])
+        if(rightBound+1 == [fileContents length])
         {
             rightBound++;
             break;
         }
         // Check ahead of right bound, to see if we can move it over
-        unichar aheadRightBound = [currentLine characterAtIndex:rightBound+1];
+        unichar aheadRightBound = [fileContents characterAtIndex:rightBound+1];
         if(![stoppingCharacters characterIsMember:aheadRightBound])
         {
             // Cool! Increment rightBound
