@@ -458,7 +458,7 @@
     // The location of our range is simply leftBound.
     // The length of our range is rightBound - leftBound
     
-    return NSMakeRange(leftBound, rightBound - leftBound);
+    return NSMakeRange(leftBound, rightBound - leftBound + 1);
 }
 
 -(void)insertText:(NSString *)text indexDelta:(NSInteger)delta
