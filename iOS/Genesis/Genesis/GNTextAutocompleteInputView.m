@@ -49,6 +49,7 @@
 {
     NSString* selectedSuggestion = [autocompleteSuggestionsForCurrentWord objectAtIndex:[indexPath row]];
     [delegate replaceTextInRange:[fileRepresentation rangeOfCurrentWord] withText:selectedSuggestion];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNSystemKeyboard" object:nil];
 }
 
 #pragma mark UITableViewDataSource methods
