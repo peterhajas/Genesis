@@ -53,8 +53,12 @@
 
 -(void)layoutSubviews
 {
-    [autoCompleteButton registerForNotifications];
     [gradientLayer setFrame:[self frame]];
+}
+
+-(void)didMoveToSuperview
+{
+    [autoCompleteButton registerForNotifications];
 }
 
 -(void)hideKeyboard
@@ -72,6 +76,7 @@
 
 -(void)removeFromSuperview
 {
+    [super removeFromSuperview];
     [autoCompleteButton cleanUp];
 }
 
