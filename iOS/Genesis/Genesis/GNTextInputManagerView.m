@@ -195,12 +195,12 @@
 
 -(void)insertText:(NSString*)text indexDelta:(NSInteger)indexDelta
 {
-    
+    [fileRepresentation insertText:text indexDelta:indexDelta];
 }
 
 -(void)replaceTextInRange:(NSRange)range withText:(NSString*)text
 {
-    
+    [fileRepresentation replaceTextInRange:range withText:text];
 }
 
 #pragma mark Lifecycle cleanup methods
