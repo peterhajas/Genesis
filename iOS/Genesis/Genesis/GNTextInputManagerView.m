@@ -51,6 +51,12 @@
                                                      name:@"kGNSystemKeyboard"
                                                    object:nil];
         
+        // (hacky) Subscribe to replacement notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(replaceCurrentWord:)
+                                                     name:@"kGNReplaceCurrentWord"
+                                                   object:nil];
+        
         
         
         caretView = [[GNTextCaretView alloc] init];
@@ -152,6 +158,12 @@
     [[UIApplication sharedApplication] setStatusBarHidden:toggle withAnimation:UIStatusBarAnimationSlide];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNToggleNavigationBar"
                                                         object:[NSNumber numberWithBool:toggle]];
+}
+
+-(void)replaceCurrentWord:(id)object
+{
+    NSString* toReplace = [object object];
+    [self replaceTextInRange:[fileRepresentation rangeOfCurrentWord] withText:toReplace];
 }
 
 #pragma mark UIResponder methods

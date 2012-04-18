@@ -17,6 +17,7 @@
 #import "GNFileRepresentation.h"
 
 @implementation GNTextInputAccessoryViewAutocompleteButton
+@synthesize topAutocompleteSuggestion;
 
 -(id)init
 {
@@ -33,6 +34,13 @@
                                                                              action:@selector(didSwipeUp:)];
         [swipeUpGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
         [self addGestureRecognizer:swipeUpGestureRecognizer];
+        
+        topAutocompleteSuggestion = @"";
+        
+        // Configure our button to point to us
+        [button addTarget:self
+                   action:@selector(buttonPushed)
+         forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -58,6 +66,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNSystemKeyboard" object:nil];
 }
 
+-(void)buttonPushed
+{
+    // Right now, be hacky, and announce this over a notification
+    // TODO: wrap this in something more sane
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNReplaceCurrentWord" object:topAutocompleteSuggestion];
+}
+
 -(void)textChanged:(id)object
 {
     GNFileRepresentation* fileRepresentation = [object object];
@@ -72,11 +87,15 @@
         NSString* firstMatch = [autocorrectionSuggestions objectAtIndex:0];
         [self setTitle:firstMatch
               forState:UIControlStateNormal];
+        
+        topAutocompleteSuggestion = firstMatch;
     }
     else
     {
         [self setTitle:@""
               forState:UIControlStateNormal];
+        
+        topAutocompleteSuggestion = @"";
     }
 }
 

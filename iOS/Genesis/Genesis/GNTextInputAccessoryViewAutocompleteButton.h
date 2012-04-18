@@ -20,9 +20,13 @@
 {
     UISwipeGestureRecognizer* swipeDownGestureRecognizer;
     UISwipeGestureRecognizer* swipeUpGestureRecognizer;
+    
+    NSString* topAutocompleteSuggestion;
 }
 
 -(void)textChanged:(id)object;
 -(void)cleanUp;
+
+@property(readonly) NSString* topAutocompleteSuggestion;
 
 @end
