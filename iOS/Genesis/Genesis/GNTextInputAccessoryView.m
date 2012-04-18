@@ -53,6 +53,7 @@
 
 -(void)layoutSubviews
 {
+    [autoCompleteButton registerForNotifications];
     [gradientLayer setFrame:[self frame]];
 }
 

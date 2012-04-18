@@ -45,15 +45,6 @@
     return self;
 }
 
--(void)didMoveToSuperview
-{
-    // Subscribe to the text changed notification
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textChanged:)
-                                                 name:@"kGNTextChanged"
-                                               object:nil];
-}
-
 -(void)didSwipeDown:(UIGestureRecognizer*)gestureRecognizer
 {
     // Switch to the autocomplete keyboard
@@ -97,6 +88,15 @@
         
         topAutocompleteSuggestion = @"";
     }
+}
+
+-(void)registerForNotifications
+{
+    // Subscribe to the text changed notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textChanged:)
+                                                 name:@"kGNTextChanged"
+                                               object:nil];
 }
 
 -(void)cleanUp
