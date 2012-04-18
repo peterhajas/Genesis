@@ -416,6 +416,24 @@
     return NSMakeRange(leftBound, rightBound - leftBound);
 }
 
+-(void)insertText:(NSString *)text indexDelta:(NSInteger)delta
+{
+    [self insertText:text];
+    insertionIndex += delta;
+    [self insertionPointChangedShouldRecomputeIndices:YES];
+}
+
+-(void)replaceTextInRange:(NSRange)range withText:(NSString*)text
+{
+    // Compute how far we'll have to move our insertion index
+    NSInteger delta = [text length] - range.length;
+    
+    fileContents = [fileContents stringByReplacingCharactersInRange:range withString:text];
+    [self textChanged];
+    insertionIndex += delta;
+    [self insertionPointChangedShouldRecomputeIndices:YES];
+}
+
 #pragma mark Horizontal Offset Management
 
 -(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index

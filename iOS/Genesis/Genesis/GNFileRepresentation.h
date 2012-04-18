@@ -63,6 +63,9 @@
 -(NSString*)currentWord;
 -(NSRange)rangeOfCurrentWord;
 
+-(void)insertText:(NSString *)text indexDelta:(NSInteger)delta;
+-(void)replaceTextInRange:(NSRange)range withText:(NSString*)text;
+
 -(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index;
 
 @property(readonly) NSUInteger insertionIndex;
