@@ -355,7 +355,7 @@
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
     
-    NSUInteger leftBound, rightBound;
+    NSInteger leftBound, rightBound;
     leftBound = rightBound = insertionIndex;
     
     // If the string is empty, return a zero length range
@@ -364,51 +364,96 @@
         return NSMakeRange(0, 0);
     }
     
-    if(insertionIndexInLine > [fileContents length])
+    if(insertionIndex == [fileContents length])
     {
-        leftBound--;
+        leftBound-=2;
         rightBound--;
+    }
+    if(insertionIndex > [fileContents length])
+    {
+        leftBound-=3;
+        rightBound-=2;
+    }
+    
+    if(leftBound < 0)
+    {
+        leftBound = 0;
     }
         
     // Find our left bound
-    while(leftBound > 0)
+    while(1)
     {
-        // Check behind left bound, to see if we can move it over
-        unichar behindLeftBound = [fileContents characterAtIndex:leftBound-1];
-        if(![stoppingCharacters characterIsMember:behindLeftBound])
+        unichar leftBoundChar = [fileContents characterAtIndex:leftBound];
+        if([stoppingCharacters characterIsMember:leftBoundChar])
         {
-            // Good! Decrement leftBound
-            leftBound--;
+            // The left bound character is a stopping character.
+            // See if we can move it to the right.
+            if(leftBound+1 >= [fileContents length])
+            {
+                // We can't move it to the right. There is no current word.
+                return NSMakeRange(0, 0);
+            }
+            else
+            {
+                // We can move it right
+                leftBound++;
+                break;
+            }
         }
         else
         {
-            // Even better! This is our right boundary
-            break;
-        }
-    }
-    // Find our right bound
-    while(rightBound < [fileContents length])
-    {
-        if(rightBound+1 == [fileContents length])
-        {
-            rightBound++;
-            break;
-        }
-        // Check ahead of right bound, to see if we can move it over
-        unichar aheadRightBound = [fileContents characterAtIndex:rightBound+1];
-        if(![stoppingCharacters characterIsMember:aheadRightBound])
-        {
-            // Cool! Increment rightBound
-            rightBound++;
-        }
-        else
-        {
-            // Awesome, we've found our right boundary
-            rightBound++;
-            break;
+            // Left bound character is not a stopping character.
+            // See if we can move it to the left
+            if(leftBound == 0)
+            {
+                // We can't. This is it.
+                break;
+            }
+            else
+            {
+                // We can move it left
+                leftBound--;
+            }
         }
     }
     
+    // Find our right bound
+    while(1)
+    {
+        unichar rightBoundChar = [fileContents characterAtIndex:rightBound];
+        if([stoppingCharacters characterIsMember:rightBoundChar])
+        {
+            // The right bound character is a stopping character.
+            // See if we can move it to the left
+            if((rightBound-1 < 0) || (rightBound-1 <=leftBound))
+            {
+                // We can't, there is no current word
+                return NSMakeRange(0, 0);
+            }
+            else
+            {
+                // We can move it left
+                rightBound--;
+                break;
+            }
+        }
+        else
+        {
+            // Right bound character is not a stopping character.
+            // See if we can move it to the right
+            if(rightBound == [fileContents length] - 1)
+            {
+                // We can't. This is it.
+                break;
+            }
+            else
+            {
+                // We can move it right
+                rightBound++;
+            }
+        }
+    }
+        
     // Now, we have our left and right bounds.
     // The location of our range is simply leftBound.
     // The length of our range is rightBound - leftBound
