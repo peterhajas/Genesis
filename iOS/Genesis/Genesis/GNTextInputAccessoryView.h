@@ -27,24 +27,12 @@
 #define kGNTextInputAccessoryEndingGradientColor [[UIColor colorWithRed:153/255.0 green:160/255.0 blue:169/255.0 alpha:1.0] CGColor]
 #define kGNTextInputAccessoryGradientColors [NSArray arrayWithObjects:(__bridge id)kGNTextInputAccessoryStartingGradientColor, (__bridge id)kGNTextInputAccessoryEndingGradientColor, nil]
 
-@protocol GNTextInputAccessoryViewDelegate <NSObject>
-
--(void)dismissKeyboard;
--(void)switchToAutocompleteKeyboard;
--(void)switchToSystemKeyboard;
-
-@end
-
-@interface GNTextInputAccessoryView : UIView <GNAutoCompleteButtonDelegate>
+@interface GNTextInputAccessoryView : UIView
 {
     CAGradientLayer* gradientLayer;
     
     GNTextInputAccessoryViewHideKeyboardButton* hideKeyboardButton;
     GNTextInputAccessoryViewAutocompleteButton* autoCompleteButton;
-    
-    NSObject<GNTextInputAccessoryViewDelegate>* delegate;
 }
-
--(id)initWithDelegate:(NSObject<GNTextInputAccessoryViewDelegate>*)inputDelegate;
 
 @end

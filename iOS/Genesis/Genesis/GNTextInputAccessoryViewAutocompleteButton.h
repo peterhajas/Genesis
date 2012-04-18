@@ -15,21 +15,14 @@
 
 #import "GNTextInputAccessoryViewButton.h"
 
-@protocol GNAutoCompleteButtonDelegate <NSObject>
-
--(void)changeToAutoCompleteKeyboard;
-
-@end
 
 @interface GNTextInputAccessoryViewAutocompleteButton : GNTextInputAccessoryViewButton
 {
-    UISwipeGestureRecognizer* swipeGestureRecognizer;
-    
-    NSObject<GNAutoCompleteButtonDelegate>* delegate;
+    UISwipeGestureRecognizer* swipeDownGestureRecognizer;
+    UISwipeGestureRecognizer* swipeUpGestureRecognizer;
 }
 
 -(void)textChanged:(id)object;
-
-@property(nonatomic,retain) NSObject<GNAutoCompleteButtonDelegate>* delegate;
+-(void)cleanUp;
 
 @end

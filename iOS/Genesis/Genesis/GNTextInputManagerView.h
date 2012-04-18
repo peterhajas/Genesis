@@ -29,7 +29,6 @@
 
 @interface GNTextInputManagerView : UIView <UIKeyInput,
                                             UITextInputTraits,
-                                            GNTextInputAccessoryViewDelegate,
                                             GNTextAlternateInputViewDelegate>
 {
     GNFileRepresentation* fileRepresentation;

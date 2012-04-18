@@ -18,7 +18,7 @@
 
 @implementation GNTextInputAccessoryView
 
--(id)initWithDelegate:(NSObject<GNTextInputAccessoryViewDelegate>*)inputDelegate
+-(id)init
 {
     self = [super initWithFrame:CGRectMake(0,
                                            0,
@@ -26,8 +26,6 @@
                                            kGNTextInputAccessoryViewHeight)];
     if(self)
     {
-        delegate = inputDelegate;
-        
         // Set our autoresize mask
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         
@@ -40,13 +38,12 @@
         // Hide keyboard button
         hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
         [hideKeyboardButton setHorizontalPosition:[self frame].size.width - kGNTextInputAccessoryViewButtonWidth];
-        [hideKeyboardButton addTarget:self action:@selector(hideKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+        [hideKeyboardButton addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:hideKeyboardButton];
         
         // Auto complete button
         autoCompleteButton = [[GNTextInputAccessoryViewAutocompleteButton alloc] init];
         [autoCompleteButton setHorizontalPosition:0];
-        [autoCompleteButton setDelegate:self];
         
         [self addSubview:autoCompleteButton];
     }
@@ -59,10 +56,9 @@
     [gradientLayer setFrame:[self frame]];
 }
 
--(void)hideKeyboard:(id)sender
+-(void)hideKeyboard
 {
-    // Tell our delegate to dismiss the keyboard
-    [delegate dismissKeyboard];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNDismissKeyboard" object:nil];
 }
 
 -(CAGradientLayer*)gradientLayer
@@ -73,11 +69,9 @@
     return layer;
 }
 
-#pragma mark GNAutoCompleteButtonDelegate methods
-
--(void)changeToAutoCompleteKeyboard
+-(void)removeFromSuperview
 {
-    [delegate switchToAutocompleteKeyboard];
+    [autoCompleteButton cleanUp];
 }
 
 @end

@@ -30,10 +30,29 @@
     if(self)
     {
         fileRepresentation = representation;
+        
+        // Subscribe to insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(insertionPointChanged:)
                                                      name:@"kGNInsertionPointChanged"
                                                    object:nil];
+        
+        // Subscribe to keyboard command changes
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(dismissKeyboard)
+                                                     name:@"kGNDismissKeyboard"
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(switchToAutocompleteKeyboard)
+                                                     name:@"kGNAutocompleteKeyboard"
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(switchToSystemKeyboard)
+                                                     name:@"kGNSystemKeyboard"
+                                                   object:nil];
+        
+        
+        
         caretView = [[GNTextCaretView alloc] init];
         [self addSubview:caretView];
         
@@ -42,7 +61,7 @@
                                    UIViewAutoresizingFlexibleHeight)];
         
         // Set our input accessory view
-        inputAccessoryView = [[GNTextInputAccessoryView alloc] initWithDelegate:self];
+        inputAccessoryView = [[GNTextInputAccessoryView alloc] init];
         [self setInputAccessoryView:inputAccessoryView];
     }
     return self;
@@ -148,7 +167,6 @@
     return [super becomeFirstResponder];
 }
 
-#pragma mark GNTextInputAccessoryViewDelegate methods
 -(void)dismissKeyboard
 {
     [self resignFirstResponder];
@@ -167,7 +185,10 @@
 
 -(void)switchToSystemKeyboard
 {
+    alternateInputView = nil;
+    [self resignFirstResponder];
     [self setInputView:nil];
+    [self becomeFirstResponder];
 }
 
 #pragma mark GNTextAlternateInputViewDelegate methods
@@ -188,6 +209,9 @@
 {
     [caretView cleanUp];
     [caretView removeFromSuperview];
+    alternateInputView = nil;
+    
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

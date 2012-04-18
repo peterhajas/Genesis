@@ -18,32 +18,44 @@
 
 @implementation GNTextInputAccessoryViewAutocompleteButton
 
-@synthesize delegate;
-
 -(id)init
 {
     self = [super init];
     if(self)
     {
-        // Create our swipe gesture recognizer
-        swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                           action:@selector(didSwipe:)];
-        [swipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
-        [self addGestureRecognizer:swipeGestureRecognizer];
+        // Create our swipe gesture recognizers
+        swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                               action:@selector(didSwipeDown:)];
+        [swipeDownGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
+        [self addGestureRecognizer:swipeDownGestureRecognizer];
         
-        // Subscribe to the text changed notification
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(textChanged:)
-                                                     name:@"kGNTextChanged"
-                                                   object:nil];
+        swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                             action:@selector(didSwipeUp:)];
+        [swipeUpGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
+        [self addGestureRecognizer:swipeUpGestureRecognizer];
     }
     return self;
 }
 
--(void)didSwipe:(UIGestureRecognizer*)gestureRecognizer
+-(void)didMoveToSuperview
 {
-    NSLog(@"swiped");
-    [delegate changeToAutoCompleteKeyboard];
+    // Subscribe to the text changed notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textChanged:)
+                                                 name:@"kGNTextChanged"
+                                               object:nil];
+}
+
+-(void)didSwipeDown:(UIGestureRecognizer*)gestureRecognizer
+{
+    // Switch to the autocomplete keyboard
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNAutocompleteKeyboard" object:nil];
+}
+
+-(void)didSwipeUp:(UIGestureRecognizer*)gestureRecognizer
+{
+    // Switch to the system keyboard
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNSystemKeyboard" object:nil];
 }
 
 -(void)textChanged:(id)object
@@ -66,6 +78,11 @@
         [self setTitle:@""
               forState:UIControlStateNormal];
     }
+}
+
+-(void)cleanUp
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
