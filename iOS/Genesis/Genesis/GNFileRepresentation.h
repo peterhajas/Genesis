@@ -54,7 +54,7 @@
 -(NSString*)lineToInsertionPoint;
 
 -(void)textChanged;
--(void)insertionPointChangedShouldRecomputeIndices:(BOOL)shouldRecompute;
+-(void)insertionPointChanged;
 
 -(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index;
 
