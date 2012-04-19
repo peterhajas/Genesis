@@ -41,7 +41,7 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reloadData)
-                                                     name:@"kGNTextChanged"
+                                                     name:GNTextChangedNotification
                                                    object:nil];
         
         // Set our autoresizing mask

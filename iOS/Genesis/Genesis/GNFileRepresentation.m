@@ -304,13 +304,13 @@
     
     [autoCompleteDictionary addTextToBackingStore:fileLines];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNTextChanged"
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNTextChangedNotification
                                                         object:self];
 }
 
 -(void)insertionPointChanged
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNInsertionPointChanged"
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNInsertionPointChangedNotification
                                                         object:self];
 }
 

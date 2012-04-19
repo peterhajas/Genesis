@@ -40,7 +40,7 @@
         // Subscribe to navigation bar hiding notification
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(toggleNavigationBar:)
-                                                     name:@"kGNToggleNavigationBar"
+                                                     name:GNToggleNavigationBarNotification
                                                    object:nil];
     }
     return self;

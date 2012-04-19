@@ -17,6 +17,7 @@
 #import "GNTextGeometry.h"
 #import "GNLineNumberTableView.h"
 #import "GNTextAlternateInputView.h"
+#import "GNFileRepresentation.h"
 
 @implementation GNTextInputManagerView
 
@@ -34,27 +35,27 @@
         // Subscribe to insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(insertionPointChanged:)
-                                                     name:@"kGNInsertionPointChanged"
+                                                     name:GNInsertionPointChangedNotification
                                                    object:nil];
         
         // Subscribe to keyboard command changes
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(dismissKeyboard)
-                                                     name:@"kGNDismissKeyboard"
+                                                     name:GNDismissKeyboardNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(switchToAutocompleteKeyboard)
-                                                     name:@"kGNAutocompleteKeyboard"
+                                                     name:GNSwitchToAutoCompleteKeyboardNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(switchToSystemKeyboard)
-                                                     name:@"kGNSystemKeyboard"
+                                                     name:GNSwitchToSystemKeyboardNotification
                                                    object:nil];
         
         // (hacky) Subscribe to replacement notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(replaceCurrentWord:)
-                                                     name:@"kGNReplaceCurrentWord"
+                                                     name:GNReplaceCurrentWordNotification
                                                    object:nil];
         
         
@@ -156,7 +157,7 @@
 {
     // Show the status bar and navigation bar
     [[UIApplication sharedApplication] setStatusBarHidden:toggle withAnimation:UIStatusBarAnimationSlide];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNToggleNavigationBar"
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNToggleNavigationBarNotification
                                                         object:[NSNumber numberWithBool:toggle]];
 }
 

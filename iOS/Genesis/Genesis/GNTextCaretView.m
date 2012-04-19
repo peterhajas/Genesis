@@ -29,7 +29,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(horizontalOffsetChanged:)
-                                                 name:@"kGNHorizontalOffsetChanged"
+                                                 name:GNHorizontalOffsetChangedNotification
                                                object:nil];
     
     return self;

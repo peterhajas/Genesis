@@ -485,6 +485,7 @@
 		4FA4FF751533AF160054482A /* XML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XML.plist; sourceTree = "<group>"; };
 		4FA4FF761533AF160054482A /* XSL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XSL.plist; sourceTree = "<group>"; };
 		4FA4FF771533AF160054482A /* YAML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YAML.plist; sourceTree = "<group>"; };
+		4FB2674C15408FDB0086B994 /* GNNotificationNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNotificationNames.h; sourceTree = "<group>"; };
 		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
@@ -789,6 +790,7 @@
 		4F293B8414CCE88100020A09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4FB2674C15408FDB0086B994 /* GNNotificationNames.h */,
 				4F293B8514CCE88100020A09 /* Genesis-Info.plist */,
 				4F293B8614CCE88100020A09 /* InfoPlist.strings */,
 				4FD614A51536573400D6E859 /* Entitlements.plist */,

@@ -56,7 +56,7 @@ static CTFontRef defaultFont = nil;
         // Subscribe to text notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged)
-                                                     name:@"kGNTextChanged"
+                                                     name:GNTextChangedNotification
                                                    object:nil];
     }
     

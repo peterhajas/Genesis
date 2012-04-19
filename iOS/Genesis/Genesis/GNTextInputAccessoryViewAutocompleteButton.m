@@ -48,20 +48,20 @@
 -(void)didSwipeDown:(UIGestureRecognizer*)gestureRecognizer
 {
     // Switch to the autocomplete keyboard
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNAutocompleteKeyboard" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToAutoCompleteKeyboardNotification object:nil];
 }
 
 -(void)didSwipeUp:(UIGestureRecognizer*)gestureRecognizer
 {
     // Switch to the system keyboard
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNSystemKeyboard" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToSystemKeyboardNotification object:nil];
 }
 
 -(void)buttonPushed
 {
     // Right now, be hacky, and announce this over a notification
     // TODO: wrap this in something more sane
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNReplaceCurrentWord" object:topAutocompleteSuggestion];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNReplaceCurrentWordNotification object:topAutocompleteSuggestion];
 }
 
 -(void)insertionPointChanged:(id)object
@@ -95,7 +95,7 @@
     // Subscribe to the text changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(insertionPointChanged:)
-                                                 name:@"kGNInsertionPointChanged"
+                                                 name:GNInsertionPointChangedNotification
                                                object:nil];
 }
 

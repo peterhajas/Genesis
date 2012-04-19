@@ -30,7 +30,7 @@
         // Register for insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(insertionPointChanged:)
-                                                     name:@"kGNInsertionPointChanged"
+                                                     name:GNInsertionPointChangedNotification
                                                    object:nil];
         
         // Set our autoresizing mask

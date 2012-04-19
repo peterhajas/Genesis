@@ -52,7 +52,7 @@
         // Subscribe to insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged:)
-                                                     name:@"kGNTextChanged"
+                                                     name:GNTextChangedNotification
                                                    object:nil];
     }
     
@@ -98,7 +98,7 @@
         
         CGFloat horizontalOffset = [textContainerScrollView contentOffset].x;
         NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNHorizontalOffsetChanged"
+        [[NSNotificationCenter defaultCenter] postNotificationName:GNHorizontalOffsetChangedNotification
                                                             object:horizontalOffsetNumber];
         
         [self resignFirstResponder];
@@ -164,7 +164,7 @@
     if(lineNumber == [fileRepresentation insertionLine])
     {
         NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNHorizontalOffsetChanged"
+        [[NSNotificationCenter defaultCenter] postNotificationName:GNHorizontalOffsetChangedNotification
                                                             object:horizontalOffsetNumber];
     }
     

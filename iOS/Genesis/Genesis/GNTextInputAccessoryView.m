@@ -63,7 +63,7 @@
 
 -(void)hideKeyboard
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNDismissKeyboard" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNDismissKeyboardNotification object:nil];
 }
 
 -(CAGradientLayer*)gradientLayer

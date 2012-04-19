@@ -32,7 +32,7 @@
         // Subscribe to notifications about text changing
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged:) 
-                                                     name:@"kGNTextChanged"
+                                                     name:GNTextChangedNotification
                                                    object:nil];
         
         // Set our autoresizing mask
