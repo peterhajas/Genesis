@@ -24,7 +24,6 @@
     NSString* topAutocompleteSuggestion;
 }
 
--(void)textChanged:(id)object;
 -(void)registerForNotifications;
 -(void)cleanUp;
 

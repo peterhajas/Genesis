@@ -388,7 +388,8 @@
 {
     [self insertText:text];
     insertionIndex += delta;
-    [self insertionPointChangedShouldRecomputeIndices:YES];
+    insertionIndexInLine += delta;
+    [self insertionPointChanged];
 }
 
 -(void)replaceTextInRange:(NSRange)range withText:(NSString*)text
@@ -399,7 +400,8 @@
     fileContents = [fileContents stringByReplacingCharactersInRange:range withString:text];
     [self textChanged];
     insertionIndex += delta;
-    [self insertionPointChangedShouldRecomputeIndices:YES];
+    insertionIndexInLine += delta;
+    [self insertionPointChanged];
 }
 
 #pragma mark Horizontal Offset Management
