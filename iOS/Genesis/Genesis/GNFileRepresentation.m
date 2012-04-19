@@ -99,8 +99,6 @@
 
 -(void)setInsertionToLineAtIndex:(NSUInteger)lineIndex characterIndexInLine:(NSUInteger)characterIndex
 {
-    insertionIndex = 0;
-    
     for(NSUInteger i = 0; i < lineIndex; i++)
     {
         insertionIndex += [[fileLines objectAtIndex:i] length];
@@ -108,13 +106,17 @@
     
     insertionLine = lineIndex;
     
-    if(insertionIndex + characterIndex < [fileContents length])
-    {
-        insertionIndex += characterIndex;
+    NSInteger delta = characterIndex - insertionIndexInLine;
+    insertionIndex += delta;
     
-        insertionIndexInLine = characterIndex;
+    insertionIndexInLine = characterIndex;
+    
+    if(insertionIndex > [fileContents length])
+    {
+        insertionIndex--;
+        insertionIndexInLine--;
     }
-        
+    
     [self insertionPointChanged];
 }
 
