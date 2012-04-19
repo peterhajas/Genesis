@@ -343,122 +343,55 @@
 }
 
 -(NSRange)rangeOfCurrentWord
-{
-    /*
-     We need to grow out from the insertionIndex until we hit a stopping character
-     That's how we'll know if we hit the bounds of our word. We'll need a left and right
-     bound marker, and we'll continue to grow them.
-     */
-        
+{        
     NSMutableCharacterSet* stoppingCharacters = [NSMutableCharacterSet whitespaceCharacterSet];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
+        
+    NSInteger location = insertionIndex;
     
-    NSInteger leftBound, rightBound;
-    leftBound = rightBound = insertionIndex;
-    
-    // If the string is empty, return a zero length range
     if([fileContents isEqualToString:@""])
     {
+        // No current word
         return NSMakeRange(0, 0);
     }
     
-    if(insertionIndex == [fileContents length])
+    if(location > 0)
     {
-        leftBound-=2;
-        rightBound--;
-    }
-    if(insertionIndex > [fileContents length])
-    {
-        leftBound-=3;
-        rightBound-=2;
+        location--;
     }
     
-    if(leftBound < 0)
+    while(![stoppingCharacters characterIsMember:[fileContents characterAtIndex:location]])
     {
-        leftBound = 0;
-    }
-        
-    // Find our left bound
-    while(1)
-    {
-        unichar leftBoundChar = [fileContents characterAtIndex:leftBound];
-        if([stoppingCharacters characterIsMember:leftBoundChar])
+        if(location > 0)
         {
-            // The left bound character is a stopping character.
-            // See if we can move it to the right.
-            if(leftBound+1 >= [fileContents length])
-            {
-                // We can't move it to the right. There is no current word.
-                return NSMakeRange(0, 0);
-            }
-            else
-            {
-                // We can move it right
-                leftBound++;
-                break;
-            }
+            location--;
         }
         else
         {
-            // Left bound character is not a stopping character.
-            // See if we can move it to the left
-            if(leftBound == 0)
-            {
-                // We can't. This is it.
-                break;
-            }
-            else
-            {
-                // We can move it left
-                leftBound--;
-            }
+            break;
         }
     }
     
-    // Find our right bound
-    while(1)
+    if((location < [fileContents length] - 1) && (location != 0))
     {
-        unichar rightBoundChar = [fileContents characterAtIndex:rightBound];
-        if([stoppingCharacters characterIsMember:rightBoundChar])
-        {
-            // The right bound character is a stopping character.
-            // See if we can move it to the left
-            if((rightBound-1 < 0) || (rightBound-1 <=leftBound))
-            {
-                // We can't, there is no current word
-                return NSMakeRange(0, 0);
-            }
-            else
-            {
-                // We can move it left
-                rightBound--;
-                break;
-            }
-        }
-        else
-        {
-            // Right bound character is not a stopping character.
-            // See if we can move it to the right
-            if(rightBound == [fileContents length] - 1)
-            {
-                // We can't. This is it.
-                break;
-            }
-            else
-            {
-                // We can move it right
-                rightBound++;
-            }
-        }
+        location++;
+    }
+    
+    if([stoppingCharacters characterIsMember:[fileContents characterAtIndex:location]])
+    {
+        // No current word
+        return NSMakeRange(0, 0);
     }
         
-    // Now, we have our left and right bounds.
-    // The location of our range is simply leftBound.
-    // The length of our range is rightBound - leftBound
-    
-    return NSMakeRange(leftBound, rightBound - leftBound + 1);
+    NSInteger length = 0;
+    while(location + length < [fileContents length] && ![stoppingCharacters characterIsMember:[fileContents characterAtIndex:location+length]])
+    {
+        length++;
+    }
+        
+    return NSMakeRange(location, length);
 }
 
 -(void)insertText:(NSString *)text indexDelta:(NSInteger)delta
