@@ -18,6 +18,7 @@
 @implementation GNInsertionPointManager
 
 @synthesize stringLength;
+@synthesize announcerDelegate;
 @synthesize delegate;
 
 -(id)init
@@ -40,7 +41,7 @@
     if(isNewLine)
     {
         insertionIndex--;
-        insertionIndexInLine--;
+        insertionIndexInLine = 0;
         insertionLine++;
     }
     [self insertionPointChanged];
@@ -76,8 +77,7 @@
     
     insertionLine = lineIndex;
     
-    NSInteger delta = characterIndex - insertionIndexInLine;
-    insertionIndex += delta;
+    insertionIndex+=characterIndex;
     
     insertionIndexInLine = characterIndex;
     
@@ -130,8 +130,7 @@
 
 -(void)insertionPointChanged
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:GNInsertionPointChangedNotification
-                                                        object:self];
+    [announcerDelegate insertionPointDidChange];
 }
 
 @end

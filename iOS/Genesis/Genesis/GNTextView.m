@@ -83,7 +83,7 @@
 
 -(void)insertionPointChanged:(id)object
 {
-    NSUInteger insertionLine = [(GNInsertionPointManager*)[object object] insertionLine];
+    NSUInteger insertionLine = [[fileRepresentation insertionPointManager] insertionLine];
     
     if(insertionLine < [textTableView numberOfRowsInSection:0])
     {

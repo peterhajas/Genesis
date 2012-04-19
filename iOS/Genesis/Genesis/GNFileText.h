@@ -14,7 +14,55 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "GNHorizontalOffsetManager.h"
+#import "GNInsertionPointManager.h"
 
-@interface GNFileText : NSObject
+@protocol GNFileTextDelegate <NSObject>
+
+-(void)textDidChange;
+-(void)horizontalOffsetManagerShouldInsertLineAtIndex:(NSUInteger)index;
+-(void)horizontalOffsetManagerShouldRemoveLineAtIndex:(NSUInteger)index;
+
+@end
+
+@interface GNFileText : NSObject <GNHorizontalOffsetManagerDelegate,
+                                  GNInsertionPointManagerDelegate>
+{
+    NSString* fileText;
+    NSMutableArray* fileLines;
+    
+    GNInsertionPointManager* insertionPointManager;
+    GNHorizontalOffsetManager* horizontalOffsetManager;
+    
+    NSObject<GNFileTextDelegate>* fileTextDelegate;
+}
+
+-(id)initWithData:(NSData*)contents;
+
+// Text
+-(BOOL)hasText;
+-(void)insertText:(NSString*)text;
+-(void)insertText:(NSString *)text indexDelta:(NSInteger)delta;
+-(void)replaceTextInRange:(NSRange)range withText:(NSString*)text;
+-(void)deleteBackwards;
+-(void)textChanged;
+
+// Lines
+-(NSString*)currentLine;
+-(NSUInteger)lineCount;
+-(NSString*)lineAtIndex:(NSUInteger)index;
+-(NSString*)lineToInsertionPoint;
+
+// Current word
+-(NSString*)currentWord;
+-(NSRange)rangeOfCurrentWord;
+
+@property(readonly) NSString* fileText;
+@property(readonly) NSArray* fileLines;
+
+@property(nonatomic,retain) GNInsertionPointManager* insertionPointManager;
+@property(nonatomic,retain) GNHorizontalOffsetManager* horizontalOffsetManager;
+
+@property(nonatomic,retain) NSObject<GNFileTextDelegate>* fileTextDelegate;
 
 @end

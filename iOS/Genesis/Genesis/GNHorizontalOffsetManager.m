@@ -57,7 +57,7 @@
 
 -(void)clearHorizontalOffsets
 {
-    for(NSUInteger i = 0; i < [delegate numberOfLines]; i++)
+    for(NSUInteger i = 0; i < [delegate lineCount]; i++)
     {
         [horizontalOffsets addObject:[NSNumber numberWithFloat:0.0]];
     }

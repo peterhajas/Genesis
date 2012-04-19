@@ -15,6 +15,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol GNInsertionPointAnnouncerDelegate <NSObject>
+
+-(void)insertionPointDidChange;
+
+@end
+
 @protocol GNInsertionPointManagerDelegate <NSObject>
 
 -(NSUInteger)characterCountToLineAtIndex:(NSUInteger)lineIndex;
@@ -29,6 +35,7 @@
     
     NSUInteger stringLength;
     
+    NSObject<GNInsertionPointAnnouncerDelegate>* announcerDelegate;
     NSObject<GNInsertionPointManagerDelegate>* delegate;
 }
 
@@ -52,6 +59,7 @@
 @property(readonly)  NSUInteger absoluteInsertionIndex; // insertionIndex + insertionLine, for appropriate newline management
 @property(readwrite) NSUInteger stringLength;
 
+@property(nonatomic,retain) NSObject<GNInsertionPointAnnouncerDelegate>* announcerDelegate;
 @property(nonatomic,retain) NSObject<GNInsertionPointManagerDelegate>* delegate;
 
 @end

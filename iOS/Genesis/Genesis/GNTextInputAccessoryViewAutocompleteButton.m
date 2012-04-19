@@ -69,7 +69,7 @@
     return;
     GNFileRepresentation* fileRepresentation = [object object];
     
-    NSString* currentWord = [fileRepresentation currentWord];
+    NSString* currentWord = [[fileRepresentation fileText] currentWord];
     
     NSArray* autocorrectionSuggestions = [[fileRepresentation autoCompleteDictionary] orderedMatchesForText:currentWord];
         

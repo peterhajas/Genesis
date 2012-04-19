@@ -60,7 +60,7 @@
 -(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of lines in the file representation
-    return [fileRepresentation lineCount];
+    return [[fileRepresentation fileText] lineCount];
 }
 
 #pragma mark UITableViewDataSource Table View Insertion / Deletion

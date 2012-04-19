@@ -80,7 +80,7 @@
     
     CGFloat lineHeight = [GNTextGeometry lineHeight];
     
-    NSString* lineToInsertionIndex = [fileRepresentation lineToInsertionPoint];
+    NSString* lineToInsertionIndex = [[fileRepresentation fileText] lineToInsertionPoint];
     CGSize sizeOfLineToInsertionIndex = [lineToInsertionIndex sizeWithFont:[GNTextGeometry defaultUIFont]];    
     
     CGFloat newCaretViewXLocation = sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth;
@@ -140,17 +140,17 @@
 
 -(BOOL)hasText
 {
-    return [fileRepresentation hasText];
+    return [[fileRepresentation fileText] hasText];
 }
 
 -(void)insertText:(NSString *)text
 {
-    [fileRepresentation insertText:text];
+    [[fileRepresentation fileText] insertText:text];
 }
 
 -(void)deleteBackward
 {
-    [fileRepresentation deleteBackwards];
+    [[fileRepresentation fileText] deleteBackwards];
 }
 
 -(void)toggleMinimalView:(BOOL)toggle
@@ -164,7 +164,7 @@
 -(void)replaceCurrentWord:(id)object
 {
     NSString* toReplace = [object object];
-    [self replaceTextInRange:[fileRepresentation rangeOfCurrentWord] withText:toReplace];
+    [self replaceTextInRange:[[fileRepresentation fileText] rangeOfCurrentWord] withText:toReplace];
 }
 
 #pragma mark UIResponder methods
@@ -208,12 +208,12 @@
 
 -(void)insertText:(NSString*)text indexDelta:(NSInteger)indexDelta
 {
-    [fileRepresentation insertText:text indexDelta:indexDelta];
+    [[fileRepresentation fileText] insertText:text indexDelta:indexDelta];
 }
 
 -(void)replaceTextInRange:(NSRange)range withText:(NSString*)text
 {
-    [fileRepresentation replaceTextInRange:range withText:text];
+    [[fileRepresentation fileText] replaceTextInRange:range withText:text];
 }
 
 #pragma mark Lifecycle cleanup methods

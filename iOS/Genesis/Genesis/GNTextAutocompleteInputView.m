@@ -40,7 +40,7 @@
 
 -(void)textChanged:(id)object
 {
-    autocompleteSuggestionsForCurrentWord = [[fileRepresentation autoCompleteDictionary] orderedMatchesForText:[fileRepresentation currentWord]];
+    autocompleteSuggestionsForCurrentWord = [[fileRepresentation autoCompleteDictionary] orderedMatchesForText:[[fileRepresentation fileText] currentWord]];
     [autocompleteSuggestions reloadData];
 }
 
@@ -49,7 +49,7 @@
 -(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString* selectedSuggestion = [autocompleteSuggestionsForCurrentWord objectAtIndex:[indexPath row]];
-    [delegate replaceTextInRange:[fileRepresentation rangeOfCurrentWord] withText:selectedSuggestion];
+    [delegate replaceTextInRange:[[fileRepresentation fileText] rangeOfCurrentWord] withText:selectedSuggestion];
     [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToSystemKeyboardNotification object:nil];
 }
 

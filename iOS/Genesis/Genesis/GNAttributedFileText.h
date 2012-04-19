@@ -14,28 +14,18 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "GNFileText.h"
 
-@protocol GNHorizontalOffsetManagerDelegate <NSObject>
-
--(NSUInteger)lineCount;
-
-@end
-
-@interface GNHorizontalOffsetManager : NSObject
+@interface GNAttributedFileText : NSObject
 {
-    NSMutableArray* horizontalOffsets;
+    NSAttributedString* attributedFileContents;
+    NSDictionary* languageDictionary; 
     
-    NSObject<GNHorizontalOffsetManagerDelegate>* delegate;
+    GNFileText* file;
 }
 
--(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index;
--(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index;
-
--(void)insertLineWithEmptyHorizontalOffsetAtIndex:(NSUInteger)index;
--(void)removeLineWithEmptyHorizontalOffsetAtIndex:(NSUInteger)index;
-
--(void)clearHorizontalOffsets;
-
-@property(nonatomic,retain) NSObject<GNHorizontalOffsetManagerDelegate>* delegate;
+-(id)initWithText:(NSString*)text fileText:(GNFileText*)fileText andFileExtension:(NSString*)fileExtension;
+-(void)updateWithText:(NSString*)text;
+-(NSAttributedString*)attributedLineAtIndex:(NSUInteger)index;
 
 @end

@@ -35,7 +35,7 @@ static CTFontRef defaultFont = nil;
         line = nil;
         
         // Attributed string with representedLine's text
-        NSAttributedString* attributedLine = [representation attributedLineAtIndex:lineNumber];
+        NSAttributedString* attributedLine = [[representation attributedFileText] attributedLineAtIndex:lineNumber];
         
         // Highlight attributedLine
         highlightedLine = [GNSyntaxHighlighter highlightedSyntaxForAttributedText:attributedLine];
@@ -120,9 +120,9 @@ static CTFontRef defaultFont = nil;
 -(void)textChanged
 {
     // Grab our new attributedLine
-    if(lineNumber < [fileRepresentation lineCount])
+    if(lineNumber < [[fileRepresentation fileText] lineCount])
     {
-        NSAttributedString* attributedLine = [fileRepresentation attributedLineAtIndex:lineNumber];
+        NSAttributedString* attributedLine = [[fileRepresentation attributedFileText] attributedLineAtIndex:lineNumber];
         // Highlight attributedLine
         highlightedLine = [GNSyntaxHighlighter highlightedSyntaxForAttributedText:attributedLine];
     }

@@ -46,9 +46,9 @@
 -(void)textChanged:(NSNotification*)notification
 {
     GNFileRepresentation* fileRepresentation = [notification object];
-    if([fileRepresentation lineCount] > lastLineCount)
+    if([[fileRepresentation fileText] lineCount] > lastLineCount)
     {
-        lastLineCount = [fileRepresentation lineCount];
+        lastLineCount = [[fileRepresentation fileText] lineCount];
         [self reloadData];
     }
 }

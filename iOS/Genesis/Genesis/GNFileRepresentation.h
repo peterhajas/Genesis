@@ -14,59 +14,36 @@
  */
 
 #import <Foundation/Foundation.h>
+
+#import "GNFileText.h"
 #import "GNHorizontalOffsetManager.h"
 #import "GNInsertionPointManager.h"
+#import "GNAttributedFileText.h"
 #import "GNAutocompleteDictionary.h"
 
-@interface GNFileRepresentation : NSObject <GNHorizontalOffsetManagerDelegate,
-                                            GNInsertionPointManagerDelegate>
+@interface GNFileRepresentation : NSObject <GNFileTextDelegate,
+                                            GNInsertionPointAnnouncerDelegate>
 {
     NSString* relativePath;
-    NSString* fileContents;
-    NSMutableArray* fileLines;
     
-    NSAttributedString* attributedFileContents;
-    NSDictionary* languageDictionary; 
-    
-    NSMutableArray* lineHorizontalOffsets;
-    
+    GNFileText* fileText;
     GNHorizontalOffsetManager* horizontalOffsetManager;
     GNInsertionPointManager* insertionPointManager;
+    GNAttributedFileText* attributedFileText;
     GNAutocompleteDictionary* autoCompleteDictionary;
 }
 
 -(id)initWithRelativePath:(NSString*)path;
 
--(NSUInteger)lineCount;
-
--(NSString*)lineAtIndex:(NSUInteger)index;
--(void)insertLineWithText:(NSString*)text afterLineAtIndex:(NSUInteger)index;
--(void)removeLineAtIndex:(NSUInteger)index;
-
--(void)moveLineAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
-
--(NSAttributedString*)attributedLineAtIndex:(NSUInteger)index;
-
--(BOOL)hasText;
--(void)insertText:(NSString*)text;
--(void)deleteBackwards;
-
--(NSString*)lineToInsertionPoint;
-
--(void)textChanged;
-
--(NSString*)currentLine;
-
--(NSString*)currentWord;
--(NSRange)rangeOfCurrentWord;
-
--(void)insertText:(NSString *)text indexDelta:(NSInteger)delta;
--(void)replaceTextInRange:(NSRange)range withText:(NSString*)text;
+-(void)textDidChange;
+-(void)insertionPointDidChange;
 
 @property(readonly) NSString* fileExtension;
 
+@property(readonly) GNFileText* fileText;
 @property(readonly) GNHorizontalOffsetManager* horizontalOffsetManager;
 @property(readonly) GNInsertionPointManager* insertionPointManager;
+@property(readonly) GNAttributedFileText* attributedFileText;
 @property(readonly) GNAutocompleteDictionary* autoCompleteDictionary;
 
 @end

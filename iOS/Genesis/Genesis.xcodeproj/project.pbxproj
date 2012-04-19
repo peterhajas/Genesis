@@ -157,6 +157,7 @@
 		4FB2674F154093730086B994 /* GNInsertionPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2674E154093730086B994 /* GNInsertionPointManager.m */; };
 		4FB267531540A43F0086B994 /* GNFileText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB267521540A43F0086B994 /* GNFileText.m */; };
 		4FB267571540A4690086B994 /* GNHorizontalOffsetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */; };
+		4FB2675B1540AC550086B994 /* GNAttributedFileText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2675A1540AC550086B994 /* GNAttributedFileText.m */; };
 		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
@@ -495,6 +496,8 @@
 		4FB267521540A43F0086B994 /* GNFileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileText.m; sourceTree = "<group>"; };
 		4FB267551540A4690086B994 /* GNHorizontalOffsetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNHorizontalOffsetManager.h; sourceTree = "<group>"; };
 		4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNHorizontalOffsetManager.m; sourceTree = "<group>"; };
+		4FB267591540AC540086B994 /* GNAttributedFileText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAttributedFileText.h; sourceTree = "<group>"; };
+		4FB2675A1540AC550086B994 /* GNAttributedFileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAttributedFileText.m; sourceTree = "<group>"; };
 		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
@@ -853,6 +856,7 @@
 				4F3F0466150740A300AA6E95 /* GNFileRepresentation.h */,
 				4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */,
 				4FB267541540A4420086B994 /* File Text */,
+				4FB2675C1540AC580086B994 /* Attributed File Text */,
 				4FB267581540A46D0086B994 /* Horizontal Offset Management */,
 				4FB267501540937D0086B994 /* Insertion Point Management */,
 				4F984EDA153D24E200B5FB3B /* Autocomplete Dictionary */,
@@ -1071,6 +1075,15 @@
 				4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */,
 			);
 			name = "Horizontal Offset Management";
+			sourceTree = "<group>";
+		};
+		4FB2675C1540AC580086B994 /* Attributed File Text */ = {
+			isa = PBXGroup;
+			children = (
+				4FB267591540AC540086B994 /* GNAttributedFileText.h */,
+				4FB2675A1540AC550086B994 /* GNAttributedFileText.m */,
+			);
+			name = "Attributed File Text";
 			sourceTree = "<group>";
 		};
 		4FB4E6E714F73C8D00436618 /* Icons */ = {
@@ -1327,6 +1340,7 @@
 				4FB2674F154093730086B994 /* GNInsertionPointManager.m in Sources */,
 				4FB267531540A43F0086B994 /* GNFileText.m in Sources */,
 				4FB267571540A4690086B994 /* GNHorizontalOffsetManager.m in Sources */,
+				4FB2675B1540AC550086B994 /* GNAttributedFileText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
