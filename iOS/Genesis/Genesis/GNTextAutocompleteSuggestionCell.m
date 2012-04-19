@@ -71,16 +71,19 @@
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
     [self gradientUpsideDown];
+    [super touchesBegan:touches withEvent:event];
 }
 
 -(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
     [self gradientRightSideUp];
+    [super touchesEnded:touches withEvent:event];
 }
 
 -(void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event
 {
     [self gradientRightSideUp];
+    [super touchesCancelled:touches withEvent:event];
 }
 
 @end
