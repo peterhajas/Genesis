@@ -64,7 +64,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kGNReplaceCurrentWord" object:topAutocompleteSuggestion];
 }
 
--(void)textChanged:(id)object
+-(void)insertionPointChanged:(id)object
 {
     GNFileRepresentation* fileRepresentation = [object object];
     
@@ -94,8 +94,8 @@
 {
     // Subscribe to the text changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textChanged:)
-                                                 name:@"kGNTextChanged"
+                                             selector:@selector(insertionPointChanged:)
+                                                 name:@"kGNInsertionPointChanged"
                                                object:nil];
 }
 
