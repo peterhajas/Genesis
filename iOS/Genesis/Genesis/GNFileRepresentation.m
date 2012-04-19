@@ -20,6 +20,7 @@
 
 @implementation GNFileRepresentation
 
+@synthesize horizontalOffsetManager;
 @synthesize insertionPointManager;
 @synthesize autoCompleteDictionary;
 
@@ -42,6 +43,9 @@
             fileContents = @"";
         }
         
+        horizontalOffsetManager = [[GNHorizontalOffsetManager alloc] init];
+        [horizontalOffsetManager setDelegate:self];
+        
         insertionPointManager = [[GNInsertionPointManager alloc] init];
         [insertionPointManager setDelegate:self];
         
@@ -51,9 +55,6 @@
         languageDictionary = [GNTextAttributer languageDictionaryForExtension:[self fileExtension]];
         
         [self textChanged];
-        
-        lineHorizontalOffsets = [[NSMutableArray alloc] init];
-        [self clearHorizontalOffsets];
     }
     return self;
 }
@@ -169,7 +170,7 @@
         NSString* newLine = [fileLines objectAtIndex:[insertionPointManager insertionLine]-1];
         NSUInteger newLineLength = [newLine length];
         
-        [self removedLineAtIndex:[insertionPointManager insertionLine]];
+        [horizontalOffsetManager removeLineWithEmptyHorizontalOffsetAtIndex:[insertionPointManager insertionLine]];
         
         [insertionPointManager decrementToPreviousLineWithOldLineLength:previousCurrentLineLength newLineLength:newLineLength];
     }
@@ -234,7 +235,7 @@
     [self textChanged];
     
     [insertionPointManager incrementInsertionByLength:[textToInsert length] isNewLine:YES];
-    [self addedLineAtIndex:[insertionPointManager insertionLine]];
+    [horizontalOffsetManager insertLineWithEmptyHorizontalOffsetAtIndex:[insertionPointManager insertionLine]];
 }
 
 -(NSString*)lineToInsertionPoint
@@ -264,16 +265,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:GNTextChangedNotification
                                                         object:self];
 }
-
--(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index
-{
-    if(index < [lineHorizontalOffsets count])
-    {
-        return [[lineHorizontalOffsets objectAtIndex:index] floatValue];
-    }
-    return 0.0;
-}
-
 
 -(NSString*)currentLine
 {
@@ -353,32 +344,10 @@
     [insertionPointManager incrementInsertionByLength:delta isNewLine:NO];
 }
 
-#pragma mark Horizontal Offset Management
-
--(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index
+#pragma mark GNHorizontalOffsetManagerDelegate methods
+-(NSUInteger)numberOfLines;
 {
-    NSNumber* newHorizontalOffset = [NSNumber numberWithFloat:scrollOffset];
-    [lineHorizontalOffsets replaceObjectAtIndex:index withObject:newHorizontalOffset];
-}
-
--(void)addedLineAtIndex:(NSUInteger)index
-{
-    [lineHorizontalOffsets insertObject:[NSNumber numberWithFloat:0.0]
-                                atIndex:index];
-}
-
--(void)removedLineAtIndex:(NSUInteger)index
-{
-    [lineHorizontalOffsets removeObjectAtIndex:index];
-}
-
-
--(void)clearHorizontalOffsets
-{
-    for(NSUInteger i = 0; i < [fileLines count]; i++)
-    {
-        [lineHorizontalOffsets addObject:[NSNumber numberWithFloat:0.0]];
-    }
+    return [self lineCount];
 }
 
 #pragma mark GNInsertionPointManagerDelegate methods

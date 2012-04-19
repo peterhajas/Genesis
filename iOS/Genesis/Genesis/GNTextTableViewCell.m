@@ -79,8 +79,9 @@
                                       [self frame].size.width,
                                       [self frame].size.height)];
     
-    // Set the scrollview content offset
-    CGFloat horizontalOffset = [fileRepresentation horizontalOffsetForLineAtIndex:lineNumber];
+    // Set the scrollview content offset    
+    CGFloat horizontalOffset = [[fileRepresentation horizontalOffsetManager] horizontalOffsetForLineAtIndex:lineNumber];
+    
     [textContainerScrollView setContentOffset:CGPointMake(horizontalOffset,
                                                           [textContainerScrollView contentOffset].y)];
 }
@@ -168,8 +169,8 @@
                                                             object:horizontalOffsetNumber];
     }
     
-    [fileRepresentation setHorizontalOffset:horizontalOffset
-                             forLineAtIndex:lineNumber];
+    [[fileRepresentation horizontalOffsetManager] setHorizontalOffset:horizontalOffset
+                                                       forLineAtIndex:lineNumber];
 }
 
 @end
