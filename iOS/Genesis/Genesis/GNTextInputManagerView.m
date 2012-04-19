@@ -77,6 +77,7 @@
 -(void)insertionPointChanged:(NSNotification*)notification
 {
     NSUInteger insertionLine = [[fileRepresentation insertionPointManager] insertionLine];
+    NSUInteger insertionIndexInLine = [[fileRepresentation insertionPointManager] insertionIndexInLine];
     
     CGFloat lineHeight = [GNTextGeometry lineHeight];
     
@@ -85,10 +86,21 @@
     
     CGFloat newCaretViewXLocation = sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth;
     
-    [caretView setFrame:CGRectMake(newCaretViewXLocation,
-                                   lineHeight * insertionLine,
-                                   kGNTextCaretViewWidth,
-                                   lineHeight)];
+    if(insertionIndexInLine != 0)
+    {
+        [caretView setFrame:CGRectMake(newCaretViewXLocation,
+                                       lineHeight * insertionLine,
+                                       kGNTextCaretViewWidth,
+                                       lineHeight)];
+    }
+    else
+    {
+        [caretView setHorizontalOffset:0.0];
+        [caretView setFrame:CGRectMake(newCaretViewXLocation,
+                                       lineHeight * insertionLine,
+                                       kGNTextCaretViewWidth,
+                                       lineHeight)];
+    }
         
     [self becomeFirstResponder];
     [self toggleMinimalView:YES];

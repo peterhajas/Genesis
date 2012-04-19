@@ -19,6 +19,7 @@
 @implementation GNTextTableViewCell
 
 @synthesize fileRepresentation;
+@synthesize lineNumber;
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation andIndex:(NSUInteger)index
 {
@@ -51,8 +52,8 @@
         
         // Subscribe to insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(textChanged:)
-                                                     name:GNTextChangedNotification
+                                                 selector:@selector(insertionPointChanged:)
+                                                     name:GNInsertionPointChangedNotification
                                                    object:nil];
     }
     
@@ -122,7 +123,7 @@
     [textLineView setLineNumber:line];
 }
 
--(void)textChanged:(id)object
+-(void)insertionPointChanged:(id)object
 {
     // If the insertion point is on our line
     if([[fileRepresentation insertionPointManager] insertionLine] == lineNumber)
@@ -146,6 +147,11 @@
                                                                       [textContainerScrollView contentOffset].y)];
             }
         }
+    }
+    // Otherwise, reset our scroll position
+    else
+    {
+        [self resetScrollPosition];
     }
 }
 

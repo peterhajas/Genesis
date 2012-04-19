@@ -125,18 +125,18 @@
                                                   verticalContentOffset)];
     
     [textInputManagerView didScrollToVerticalOffset:verticalContentOffset];
-}
-
--(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView
-{
-    // Scroll any visible lines to their starting offsets
+    
+    // Scroll all table view cells that do not represent the current line to their starting offsets
+    
     NSArray* tableViewIndexPaths = [textTableView indexPathsForVisibleRows];
     for(NSIndexPath* tableViewCellPath in tableViewIndexPaths)
     {
         GNTextTableViewCell* cell = (GNTextTableViewCell*)[textTableView cellForRowAtIndexPath:tableViewCellPath];
-        [cell resetScrollPosition];
+        if([cell lineNumber] != [[fileRepresentation insertionPointManager] insertionLine])
+        {
+            [cell resetScrollPosition];
+        }
     }
-
 }
 
 -(void)cleanUp

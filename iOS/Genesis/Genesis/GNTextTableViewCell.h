@@ -37,5 +37,6 @@
 -(void)setLineNumber:(NSUInteger)line;
 
 @property (nonatomic, retain) GNFileRepresentation* fileRepresentation;
+@property (readonly) NSUInteger lineNumber;
 
 @end
