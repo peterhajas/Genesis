@@ -26,10 +26,11 @@
     {
         // Create a UIView for our content
         UIView* content = [[UIView alloc] initWithFrame:[self frame]];
+        [content setAutoresizingMask:(UIViewAutoresizingFlexibleWidth)];
         
         // Set background gradient
         gradient = [CAGradientLayer layer];
-        [gradient setFrame:[self bounds]];
+        [gradient setFrame:[self frame]];
         [gradient setColors:[NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor],
                                                    (id)[[UIColor lightGrayColor] CGColor],
                                                    nil]];
@@ -44,12 +45,19 @@
         [textLabel setText:text];
         [textLabel setFont:[UIFont fontWithName:DEFAULT_FONT_FAMILY size:20]];
         [textLabel setBackgroundColor:[UIColor clearColor]];
+        [textLabel setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin)];
         
         [content addSubview:textLabel];
         
         [self addSubview:content];
     }
     return self;
+}
+
+-(void)layoutSubviews
+{
+    [gradient setFrame:[self frame]];
+    [super layoutSubviews];
 }
 
 -(void)gradientUpsideDown
