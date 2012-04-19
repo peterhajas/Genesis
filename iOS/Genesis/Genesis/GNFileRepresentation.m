@@ -349,7 +349,7 @@
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
     [stoppingCharacters formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
         
-    NSInteger location = insertionIndex;
+    NSInteger location = insertionIndex + insertionLine;
     
     if([fileContents isEqualToString:@""])
     {
