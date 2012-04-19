@@ -92,9 +92,9 @@
         CGPoint touchLocation = [sender locationInView:self];
         touchLocation.x += [textContainerScrollView contentOffset].x;
         CFIndex indexIntoString = [textLineView indexForTappedPoint:touchLocation];
-        
-        [fileRepresentation setInsertionToLineAtIndex:lineNumber
-                                 characterIndexInLine:indexIntoString];
+                
+        [[fileRepresentation insertionPointManager] setInsertionToLineAtIndex:lineNumber
+                                                         characterIndexInLine:indexIntoString];
         
         CGFloat horizontalOffset = [textContainerScrollView contentOffset].x;
         NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
@@ -107,7 +107,7 @@
 
 -(void)resetScrollPosition
 {
-    if([fileRepresentation insertionLine] != lineNumber)
+    if([[fileRepresentation insertionPointManager] insertionLine] != lineNumber)
     {
         [textContainerScrollView setContentOffset:CGPointMake(0, 0)
                                          animated:YES];
@@ -124,7 +124,7 @@
 -(void)textChanged:(id)object
 {
     // If the insertion point is on our line
-    if([fileRepresentation insertionLine] == lineNumber)
+    if([[fileRepresentation insertionPointManager] insertionLine] == lineNumber)
     {
         /*
          We need to scroll our scrollview to meet the new insertion point of
@@ -161,7 +161,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat horizontalOffset = [scrollView contentOffset].x;
-    if(lineNumber == [fileRepresentation insertionLine])
+    if(lineNumber == [[fileRepresentation insertionPointManager] insertionLine])
     {
         NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];
         [[NSNotificationCenter defaultCenter] postNotificationName:GNHorizontalOffsetChangedNotification

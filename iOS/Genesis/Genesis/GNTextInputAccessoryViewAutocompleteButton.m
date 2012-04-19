@@ -66,6 +66,7 @@
 
 -(void)insertionPointChanged:(id)object
 {
+    return;
     GNFileRepresentation* fileRepresentation = [object object];
     
     NSString* currentWord = [fileRepresentation currentWord];

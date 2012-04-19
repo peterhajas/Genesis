@@ -76,7 +76,7 @@
 
 -(void)insertionPointChanged:(NSNotification*)notification
 {
-    NSUInteger insertionLine = [fileRepresentation insertionLine];
+    NSUInteger insertionLine = [[fileRepresentation insertionPointManager] insertionLine];
     
     CGFloat lineHeight = [GNTextGeometry lineHeight];
     

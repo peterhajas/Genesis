@@ -14,9 +14,10 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "GNInsertionPointManager.h"
 #import "GNAutocompleteDictionary.h"
 
-@interface GNFileRepresentation : NSObject
+@interface GNFileRepresentation : NSObject <GNInsertionPointManagerDelegate>
 {
     NSString* relativePath;
     NSString* fileContents;
@@ -27,10 +28,7 @@
     
     NSMutableArray* lineHorizontalOffsets;
     
-    NSUInteger insertionIndex;
-    NSUInteger insertionIndexInLine;
-    NSUInteger insertionLine;
-    
+    GNInsertionPointManager* insertionPointManager;
     GNAutocompleteDictionary* autoCompleteDictionary;
 }
 
@@ -46,7 +44,6 @@
 
 -(NSAttributedString*)attributedLineAtIndex:(NSUInteger)index;
 
--(void)setInsertionToLineAtIndex:(NSUInteger)lineIndex characterIndexInLine:(NSUInteger)characterIndex;
 -(BOOL)hasText;
 -(void)insertText:(NSString*)text;
 -(void)deleteBackwards;
@@ -54,7 +51,6 @@
 -(NSString*)lineToInsertionPoint;
 
 -(void)textChanged;
--(void)insertionPointChanged;
 
 -(CGFloat)horizontalOffsetForLineAtIndex:(NSUInteger)index;
 
@@ -68,10 +64,9 @@
 
 -(void)setHorizontalOffset:(CGFloat)scrollOffset forLineAtIndex:(NSUInteger)index;
 
-@property(readonly) NSUInteger insertionIndex;
-@property(readonly) NSUInteger insertionIndexInLine;
-@property(readonly) NSUInteger insertionLine;
 @property(readonly) NSString* fileExtension;
+
+@property(readonly) GNInsertionPointManager* insertionPointManager;
 @property(readonly) GNAutocompleteDictionary* autoCompleteDictionary;
 
 @end

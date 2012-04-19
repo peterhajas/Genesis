@@ -154,6 +154,7 @@
 		4FA4FFF21533AF6C0054482A /* XML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF751533AF160054482A /* XML.plist */; };
 		4FA4FFF31533AF6C0054482A /* XSL.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF761533AF160054482A /* XSL.plist */; };
 		4FA4FFF41533AF6C0054482A /* YAML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF771533AF160054482A /* YAML.plist */; };
+		4FB2674F154093730086B994 /* GNInsertionPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2674E154093730086B994 /* GNInsertionPointManager.m */; };
 		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
@@ -486,6 +487,8 @@
 		4FA4FF761533AF160054482A /* XSL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XSL.plist; sourceTree = "<group>"; };
 		4FA4FF771533AF160054482A /* YAML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YAML.plist; sourceTree = "<group>"; };
 		4FB2674C15408FDB0086B994 /* GNNotificationNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNotificationNames.h; sourceTree = "<group>"; };
+		4FB2674D154093730086B994 /* GNInsertionPointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNInsertionPointManager.h; sourceTree = "<group>"; };
+		4FB2674E154093730086B994 /* GNInsertionPointManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNInsertionPointManager.m; sourceTree = "<group>"; };
 		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
@@ -843,6 +846,7 @@
 			children = (
 				4F3F0466150740A300AA6E95 /* GNFileRepresentation.h */,
 				4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */,
+				4FB267501540937D0086B994 /* Insertion Point Management */,
 				4F984EDA153D24E200B5FB3B /* Autocomplete Dictionary */,
 			);
 			name = "File Representation";
@@ -1032,6 +1036,15 @@
 				4FA4FF771533AF160054482A /* YAML.plist */,
 			);
 			path = languages;
+			sourceTree = "<group>";
+		};
+		4FB267501540937D0086B994 /* Insertion Point Management */ = {
+			isa = PBXGroup;
+			children = (
+				4FB2674D154093730086B994 /* GNInsertionPointManager.h */,
+				4FB2674E154093730086B994 /* GNInsertionPointManager.m */,
+			);
+			name = "Insertion Point Management";
 			sourceTree = "<group>";
 		};
 		4FB4E6E714F73C8D00436618 /* Icons */ = {
@@ -1285,6 +1298,7 @@
 				4F806FF9153DFDFB0072AED2 /* GNTextAlternateInputView.m in Sources */,
 				4F806FFD153E04AE0072AED2 /* GNTextAutocompleteInputView.m in Sources */,
 				4F921DCE153FC940004C8B3B /* GNTextAutocompleteSuggestionCell.m in Sources */,
+				4FB2674F154093730086B994 /* GNInsertionPointManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
