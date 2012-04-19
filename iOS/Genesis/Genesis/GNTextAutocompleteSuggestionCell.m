@@ -30,7 +30,7 @@
         
         // Set background gradient
         gradient = [CAGradientLayer layer];
-        [gradient setFrame:[self frame]];
+        [gradient setFrame:[self bounds]];
         [gradient setColors:[NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor],
                                                    (id)[[UIColor lightGrayColor] CGColor],
                                                    nil]];
@@ -56,7 +56,7 @@
 
 -(void)layoutSubviews
 {
-    [gradient setFrame:[self frame]];
+    [gradient setFrame:[self bounds]];
     [super layoutSubviews];
 }
 
