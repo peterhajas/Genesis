@@ -14,6 +14,7 @@
  */
 
 #import "GNTextAutocompleteInputView.h"
+#import "GNTextAutocompleteSuggestionCell.h"
 
 @implementation GNTextAutocompleteInputView
 
@@ -56,9 +57,9 @@
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                   reuseIdentifier:@"kGNAutoCompleteTableViewCellIdentifier"];
-    [[cell textLabel] setText:[autocompleteSuggestionsForCurrentWord objectAtIndex:[indexPath row]]];
+    NSString* suggestion = [autocompleteSuggestionsForCurrentWord objectAtIndex:[indexPath row]];
+    GNTextAutocompleteSuggestionCell* cell = [[GNTextAutocompleteSuggestionCell alloc] initWithText:suggestion];
+    
     return cell;
 }
 

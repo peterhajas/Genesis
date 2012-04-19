@@ -88,6 +88,7 @@
 		4F806FF5153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F806FF4153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m */; };
 		4F806FF9153DFDFB0072AED2 /* GNTextAlternateInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F806FF8153DFDFA0072AED2 /* GNTextAlternateInputView.m */; };
 		4F806FFD153E04AE0072AED2 /* GNTextAutocompleteInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F806FFC153E04AE0072AED2 /* GNTextAutocompleteInputView.m */; };
+		4F921DCE153FC940004C8B3B /* GNTextAutocompleteSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F921DCD153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.m */; };
 		4F984ED8153D24DF00B5FB3B /* GNAutocompleteDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F984ED7153D24DF00B5FB3B /* GNAutocompleteDictionary.m */; };
 		4FA2C3B0153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C3AF153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m */; };
 		4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4FF371533ADD70054482A /* GNTextAttributer.m */; };
@@ -414,6 +415,8 @@
 		4F806FF8153DFDFA0072AED2 /* GNTextAlternateInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAlternateInputView.m; sourceTree = "<group>"; };
 		4F806FFB153E04AE0072AED2 /* GNTextAutocompleteInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextAutocompleteInputView.h; sourceTree = "<group>"; };
 		4F806FFC153E04AE0072AED2 /* GNTextAutocompleteInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAutocompleteInputView.m; sourceTree = "<group>"; };
+		4F921DCC153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextAutocompleteSuggestionCell.h; sourceTree = "<group>"; };
+		4F921DCD153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAutocompleteSuggestionCell.m; sourceTree = "<group>"; };
 		4F984ED6153D24DF00B5FB3B /* GNAutocompleteDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAutocompleteDictionary.h; sourceTree = "<group>"; };
 		4F984ED7153D24DF00B5FB3B /* GNAutocompleteDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAutocompleteDictionary.m; sourceTree = "<group>"; };
 		4FA2C3AE153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewHideKeyboardButton.h; sourceTree = "<group>"; };
@@ -927,8 +930,18 @@
 			children = (
 				4F806FFB153E04AE0072AED2 /* GNTextAutocompleteInputView.h */,
 				4F806FFC153E04AE0072AED2 /* GNTextAutocompleteInputView.m */,
+				4F921DD0153FC943004C8B3B /* Cell */,
 			);
 			name = "Autocomplete View";
+			sourceTree = "<group>";
+		};
+		4F921DD0153FC943004C8B3B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4F921DCC153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.h */,
+				4F921DCD153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.m */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		4F984EDA153D24E200B5FB3B /* Autocomplete Dictionary */ = {
@@ -1269,6 +1282,7 @@
 				4F806FF5153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m in Sources */,
 				4F806FF9153DFDFB0072AED2 /* GNTextAlternateInputView.m in Sources */,
 				4F806FFD153E04AE0072AED2 /* GNTextAutocompleteInputView.m in Sources */,
+				4F921DCE153FC940004C8B3B /* GNTextAutocompleteSuggestionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
