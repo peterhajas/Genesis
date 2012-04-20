@@ -17,7 +17,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kGNTextInputAccessoryViewButtonWidth 60.0
-#define kGNTextInputAccessoryViewButtonMargin 5.0
+#define kGNTextInputAccessoryViewButtonMargin 3.0
 
 @interface GNTextInputAccessoryViewButton : UIView
 {
