@@ -14,7 +14,6 @@
  */
 
 #import "GNMediatorClient.h"
-#import "JSONKit.h"
 #import "NSData+GNNSDataCategory.h"
 
 #define TAG_VERSION 1
@@ -121,7 +120,9 @@ const NSInteger GNErrorBadProtocol = 2;
     }
     
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    id object = [jsonString objectFromJSONString];
+    id object = [NSJSONSerialization JSONObjectWithData:data
+                                                options:0
+                                                  error:nil];
     if (![object isKindOfClass:[NSDictionary class]])
     {
         NSLog(@"Message was not an object (aka, NSDictionary): %@", object);
@@ -187,7 +188,16 @@ const NSInteger GNErrorBadProtocol = 2;
 
 - (NSData *)dataFromDictionary:(NSDictionary *)dictionary
 {
-    NSData *jsonData = [[NSData alloc] initWithData:[dictionary JSONData]];
+    NSError* error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                       options:0
+                                                         error:&error];
+    
+    if (error)
+    {
+        NSLog(@"Error in -[dataFromDictionary:] : %@ domain: %@", error, [error domain]);
+    }
+    
     if (self.compress)
     {
         NSData *compressedData = [jsonData zlibDeflate];

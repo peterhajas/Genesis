@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F3D21D914F4B5840096FD17 /* NSString+GNNSStringHashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D21D814F4B5840096FD17 /* NSString+GNNSStringHashes.m */; };
 		1F5997BD14F4C5AD005FE26F /* GNAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */; };
-		1F7030BD14EFAF36002FEA32 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030BB14EFAF36002FEA32 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1F7030BE14EFAF36002FEA32 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F7030BC14EFAF36002FEA32 /* README.md */; };
 		1F7030CB14F04042002FEA32 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030C914F04036002FEA32 /* CFNetwork.framework */; };
 		1F7030CD14F0406A002FEA32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030CC14F0406A002FEA32 /* libz.dylib */; };
 		1F7030CE14F04558002FEA32 /* GNNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030C014EFB13C002FEA32 /* GNNetworkResponse.m */; };
@@ -308,9 +306,6 @@
 		1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAPIClient.m; sourceTree = "<group>"; };
 		1F7030B514EFA785002FEA32 /* NSData+GNNSDataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GNNSDataCategory.h"; sourceTree = "<group>"; };
 		1F7030B614EFA785002FEA32 /* NSData+GNNSDataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GNNSDataCategory.m"; sourceTree = "<group>"; };
-		1F7030BA14EFAF36002FEA32 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		1F7030BB14EFAF36002FEA32 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		1F7030BC14EFAF36002FEA32 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1F7030BF14EFB13C002FEA32 /* GNNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkResponse.h; sourceTree = "<group>"; };
 		1F7030C014EFB13C002FEA32 /* GNNetworkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNetworkResponse.m; sourceTree = "<group>"; };
 		1F7030C314EFB50D002FEA32 /* GNNetworkNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkNotification.h; sourceTree = "<group>"; };
@@ -558,16 +553,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F7030B914EFAF1A002FEA32 /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				1F7030BA14EFAF36002FEA32 /* JSONKit.h */,
-				1F7030BB14EFAF36002FEA32 /* JSONKit.m */,
-				1F7030BC14EFAF36002FEA32 /* README.md */,
-			);
-			name = JSONKit;
-			sourceTree = "<group>";
-		};
 		1F7030C214EFB4B6002FEA32 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,7 +572,6 @@
 		1FEEBE9514EEC8F800C6E099 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				1F7030B914EFAF1A002FEA32 /* JSONKit */,
 				1FEEBE9E14EECBBF00C6E099 /* CocoaAsyncSockets */,
 				1F7030C214EFB4B6002FEA32 /* Model */,
 				1FFBE81214F5F1A800FC1DF2 /* Internals */,
@@ -1258,7 +1242,6 @@
 				4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */,
 				4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */,
 				4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */,
-				1F7030BE14EFAF36002FEA32 /* README.md in Resources */,
 				4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */,
 				4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */,
 				4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */,
@@ -1318,7 +1301,6 @@
 				4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */,
 				4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */,
 				4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */,
-				1F7030BD14EFAF36002FEA32 /* JSONKit.m in Sources */,
 				1FE09E2314F2466A004D6B2B /* AsyncSocket.m in Sources */,
 				1FE09E3214F491B6004D6B2B /* NSData+GNNSDataCategory.m in Sources */,
 				1F7030CE14F04558002FEA32 /* GNNetworkResponse.m in Sources */,
