@@ -24,7 +24,7 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<GNNetworkNotification(id=%@, name=%@, params=%@)>",
-            self.identifier, self.name, self.params, nil];
+            self.identifier, self.name, self.params];
 }
 
 @end

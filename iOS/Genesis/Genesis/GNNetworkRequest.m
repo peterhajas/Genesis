@@ -109,7 +109,7 @@ NSString* generateUUID(void){
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<GNNetworkRequest(id=%@, name=%@, params=%@)>",
-            self.identifier, self.name, self.params, nil];
+            self.identifier, self.name, self.params];
 }
 
 @end
