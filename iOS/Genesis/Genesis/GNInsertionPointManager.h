@@ -48,6 +48,7 @@
  */
 
 -(void)decrement;
+-(void)decrementByCount:(NSUInteger)count;
 -(void)decrementToPreviousLineWithOldLineLength:(NSUInteger)oldLineLength newLineLength:(NSUInteger)newLineLength;
 
 -(BOOL)insertionIsAtStartOfFile;

@@ -58,6 +58,17 @@
     [self insertionPointChanged];
 }
 
+-(void)decrementByCount:(NSUInteger)count
+{
+    if(insertionIndexInLine >= count)
+    {
+        insertionIndex-=count;
+        insertionIndexInLine-=count;
+    }
+    
+    [self insertionPointChanged];
+}
+
 -(void)decrementToPreviousLineWithOldLineLength:(NSUInteger)oldLineLength newLineLength:(NSUInteger)newLineLength
 {
     insertionLine--;
