@@ -142,6 +142,7 @@
 -(void)cleanUp
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [fileRepresentation cleanUp];
     [textTableView cleanUp];
     [textInputManagerView cleanUp];
     [lineNumberTableView cleanUp];

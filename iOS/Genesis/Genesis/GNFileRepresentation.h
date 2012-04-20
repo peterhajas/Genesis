@@ -38,6 +38,8 @@
 -(void)textDidChange;
 -(void)insertionPointDidChange;
 
+-(void)cleanUp;
+
 @property(readonly) NSString* fileExtension;
 
 @property(readonly) GNFileText* fileText;

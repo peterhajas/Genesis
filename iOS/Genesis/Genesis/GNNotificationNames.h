@@ -20,6 +20,7 @@
 
 #define GNTextChangedNotification @"GNTextChangedNotification"
 #define GNInsertionPointChangedNotification @"GNInsertionPointChangedNotification"
+#define GNInsertTabAtInsertionPointNotification @"GNInsertTabAtInsertionPointNotification"
 
 // Keyboard management
 

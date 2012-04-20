@@ -93,6 +93,11 @@
     [horizontalOffsetManager removeLineWithEmptyHorizontalOffsetAtIndex:index];
 }
 
+-(void)cleanUp
+{
+    [fileText cleanUp];
+}
+
 #pragma mark File extension property
 -(NSString*)fileExtension
 {

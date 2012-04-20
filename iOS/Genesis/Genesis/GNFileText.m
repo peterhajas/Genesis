@@ -33,6 +33,12 @@
     {
         fileText = [[NSString alloc] initWithData:contents
                                          encoding:NSUTF8StringEncoding];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(insertTabAtInsertionPoint)
+                                                     name:GNInsertTabAtInsertionPointNotification
+                                                   object:nil];
+        
         [self textChanged];
     }
     return self;
@@ -331,6 +337,24 @@
     }
     
     return NSMakeRange(location, length);
+}
+
+-(void)insertTabAtInsertionPoint
+{
+    NSRange rangeOfInsertionLine = [self rangeOfLineAtIndex:[insertionPointManager insertionLine]];
+    rangeOfInsertionLine.location += [insertionPointManager insertionIndexInLine];
+    
+    NSString* indentedPartialLine = [[GNTextGeometry tabString] stringByAppendingString:[fileText substringWithRange:rangeOfInsertionLine]];
+    fileText = [fileText stringByReplacingCharactersInRange:rangeOfInsertionLine withString:indentedPartialLine];
+    
+    [self textChanged];
+    [insertionPointManager incrementInsertionByLength:[GNTextGeometry tabWidth]
+                                            isNewLine:NO];
+}
+
+-(void)cleanUp
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark GNInsertionPointManagerDelegate methods

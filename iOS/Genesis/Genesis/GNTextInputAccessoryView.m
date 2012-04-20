@@ -35,17 +35,22 @@
         
         // Set up our buttons
         
+        // Tab button
+        tabButton = [[GNTextInputAccessoryViewTabButton alloc] init];
+        [tabButton setHorizontalPosition:0];
+        [tabButton addTarget:self action:@selector(tabPushed) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:tabButton];
+        
+        // Auto complete button
+        autoCompleteButton = [[GNTextInputAccessoryViewAutocompleteButton alloc] init];
+        [autoCompleteButton setHorizontalPosition:kGNTextInputAccessoryViewButtonWidth/2];
+        [self addSubview:autoCompleteButton];
+        
         // Hide keyboard button
         hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
         [hideKeyboardButton setHorizontalPosition:[self frame].size.width - kGNTextInputAccessoryViewButtonWidth];
         [hideKeyboardButton addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:hideKeyboardButton];
-        
-        // Auto complete button
-        autoCompleteButton = [[GNTextInputAccessoryViewAutocompleteButton alloc] init];
-        [autoCompleteButton setHorizontalPosition:0];
-        
-        [self addSubview:autoCompleteButton];
     }
     
     return self;
@@ -59,6 +64,11 @@
 -(void)didMoveToSuperview
 {
     [autoCompleteButton registerForNotifications];
+}
+
+-(void)tabPushed
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNInsertTabAtInsertionPointNotification object:nil];
 }
 
 -(void)hideKeyboard

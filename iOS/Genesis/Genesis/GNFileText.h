@@ -60,6 +60,9 @@
 -(NSString*)currentWord;
 -(NSRange)rangeOfCurrentWord;
 
+// NSNotificationCenter management
+-(void)cleanUp;
+
 @property(readonly) NSString* fileText;
 @property(readonly) NSArray* fileLines;
 

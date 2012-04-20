@@ -20,6 +20,7 @@
 		1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBE80214F4CB7400FC1DF2 /* GNNetworkConstants.m */; };
 		4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */; };
 		4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */; };
+		4F04814415413C3400467E06 /* GNTabArrowGlyphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04814315413C3300467E06 /* GNTabArrowGlyphView.m */; };
 		4F0601521533D3480022187D /* Active4D.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011C1533D2740022187D /* Active4D.tmTheme */; };
 		4F0601531533D3480022187D /* All Hallow's Eve.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */; };
 		4F0601541533D3480022187D /* Amy.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011E1533D2740022187D /* Amy.tmTheme */; };
@@ -164,6 +165,7 @@
 		4FD1C2DA153C889100DD4A3D /* GNTextInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */; };
 		4FD1C2DF153C891300DD4A3D /* GNTextInputAccessoryViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */; };
 		4FD614A61536573400D6E859 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FD614A51536573400D6E859 /* Entitlements.plist */; };
+		4FE4278E154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4278D154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m */; };
 		4FEC7B1A1537D34000AA861F /* Inconsolata.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B181537D34000AA861F /* Inconsolata.otf */; };
 		4FEC7B1C1537D35800AA861F /* Inconsolata Licence (Open Font License).txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */; };
 		4FEC7B1E1537D3A800AA861F /* ebundle-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B1D1537D3A800AA861F /* ebundle-license.txt */; };
@@ -324,6 +326,8 @@
 		4F0216E214D1F3850027DF89 /* GNNewFileEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewFileEntryViewController.h; sourceTree = "<group>"; };
 		4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewFileEntryViewController.m; sourceTree = "<group>"; };
 		4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewFileEntryViewController.xib; sourceTree = "<group>"; };
+		4F04814215413C3300467E06 /* GNTabArrowGlyphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTabArrowGlyphView.h; sourceTree = "<group>"; };
+		4F04814315413C3300467E06 /* GNTabArrowGlyphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTabArrowGlyphView.m; sourceTree = "<group>"; };
 		4F06011C1533D2740022187D /* Active4D.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Active4D.tmTheme; sourceTree = "<group>"; };
 		4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "All Hallow's Eve.tmTheme"; sourceTree = "<group>"; };
 		4F06011E1533D2740022187D /* Amy.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Amy.tmTheme; sourceTree = "<group>"; };
@@ -505,6 +509,8 @@
 		4FD1C2DD153C891300DD4A3D /* GNTextInputAccessoryViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewButton.h; sourceTree = "<group>"; };
 		4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewButton.m; sourceTree = "<group>"; };
 		4FD614A51536573400D6E859 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
+		4FE4278C154133A100E843F0 /* GNTextInputAccessoryViewTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewTabButton.h; sourceTree = "<group>"; };
+		4FE4278D154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewTabButton.m; sourceTree = "<group>"; };
 		4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNScrollViewDelegate.h; sourceTree = "<group>"; };
 		4FEC7B181537D34000AA861F /* Inconsolata.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inconsolata.otf; sourceTree = "<group>"; };
 		4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Inconsolata Licence (Open Font License).txt"; sourceTree = "<group>"; };
@@ -611,6 +617,15 @@
 				4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */,
 			);
 			name = "New Filesystem Entry";
+			sourceTree = "<group>";
+		};
+		4F04814615413C3600467E06 /* Tab Arrow Glyph View */ = {
+			isa = PBXGroup;
+			children = (
+				4F04814215413C3300467E06 /* GNTabArrowGlyphView.h */,
+				4F04814315413C3300467E06 /* GNTabArrowGlyphView.m */,
+			);
+			name = "Tab Arrow Glyph View";
 			sourceTree = "<group>";
 		};
 		4F06011B1533D2740022187D /* themes */ = {
@@ -1117,8 +1132,19 @@
 				4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */,
 				4FA2C3B2153CECC300D7B5B2 /* Hide Keyboard Button */,
 				4F806FF6153D44950072AED2 /* Autocomplete Button */,
+				4FE42790154133A500E843F0 /* Tab Button */,
 			);
 			name = Buttons;
+			sourceTree = "<group>";
+		};
+		4FE42790154133A500E843F0 /* Tab Button */ = {
+			isa = PBXGroup;
+			children = (
+				4FE4278C154133A100E843F0 /* GNTextInputAccessoryViewTabButton.h */,
+				4FE4278D154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m */,
+				4F04814615413C3600467E06 /* Tab Arrow Glyph View */,
+			);
+			name = "Tab Button";
 			sourceTree = "<group>";
 		};
 		4FEC7B161537D34000AA861F /* Fonts */ = {
@@ -1335,6 +1361,8 @@
 				4FB267531540A43F0086B994 /* GNFileText.m in Sources */,
 				4FB267571540A4690086B994 /* GNHorizontalOffsetManager.m in Sources */,
 				4FB2675B1540AC550086B994 /* GNAttributedFileText.m in Sources */,
+				4FE4278E154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m in Sources */,
+				4F04814415413C3400467E06 /* GNTabArrowGlyphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
