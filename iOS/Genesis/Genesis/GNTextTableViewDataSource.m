@@ -72,7 +72,7 @@
 
 -(BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark UITableViewDataSource Reordering Table Rows
