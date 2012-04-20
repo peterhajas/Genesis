@@ -41,7 +41,7 @@
     if(isNewLine)
     {
         insertionIndex--;
-        insertionIndexInLine = 0;
+        insertionIndexInLine = length - 1;
         insertionLine++;
     }
     [self insertionPointChanged];
