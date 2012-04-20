@@ -15,13 +15,16 @@
 
 #import "GNTextInputAccessoryViewButton.h"
 
-
 @interface GNTextInputAccessoryViewAutocompleteButton : GNTextInputAccessoryViewButton
 {
-    UISwipeGestureRecognizer* swipeDownGestureRecognizer;
-    UISwipeGestureRecognizer* swipeUpGestureRecognizer;
-    
     NSString* topAutocompleteSuggestion;
+    UILabel* topAutocompleteSuggestionLabel;
+    BOOL multipleSuggestions;
+    
+    UIView* numberOfSuggestions;
+    UILabel* numberOfSuggestionsLabel;
+    
+    BOOL isShowingAlternateView;
 }
 
 -(void)registerForNotifications;

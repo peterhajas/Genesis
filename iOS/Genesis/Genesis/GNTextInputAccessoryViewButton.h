@@ -22,6 +22,7 @@
 @interface GNTextInputAccessoryViewButton : UIView
 {
     UIButton* button;
+    CAGradientLayer* gradientLayer;
 }
 
 -(void)setHorizontalPosition:(CGFloat)horizontalPosition;

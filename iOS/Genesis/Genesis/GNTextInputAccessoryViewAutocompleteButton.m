@@ -15,6 +15,7 @@
 
 #import "GNTextInputAccessoryViewAutocompleteButton.h"
 #import "GNFileRepresentation.h"
+#import "GNTextGeometry.h"
 
 @implementation GNTextInputAccessoryViewAutocompleteButton
 @synthesize topAutocompleteSuggestion;
@@ -24,18 +25,49 @@
     self = [super init];
     if(self)
     {
-        // Create our swipe gesture recognizers
-        swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                               action:@selector(didSwipeDown:)];
-        [swipeDownGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
-        [self addGestureRecognizer:swipeDownGestureRecognizer];
-        
-        swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                             action:@selector(didSwipeUp:)];
-        [swipeUpGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
-        [self addGestureRecognizer:swipeUpGestureRecognizer];
-        
+        [self setFrame:CGRectMake([self frame].origin.x,
+                                  [self frame].origin.y,
+                                  2 * kGNTextInputAccessoryViewButtonWidth,
+                                  [self frame].size.height)];
+        [button setFrame:[self frame]];
+                
         topAutocompleteSuggestion = @"";
+        
+        isShowingAlternateView = NO;
+        multipleSuggestions = NO;
+        
+        // Create the top suggestion label
+        topAutocompleteSuggestionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kGNTextInputAccessoryViewButtonMargin,
+                                                                                   [self frame].origin.y,
+                                                                                   [self frame].size.width - (0.5 * kGNTextInputAccessoryViewButtonWidth) - kGNTextInputAccessoryViewButtonMargin,
+                                                                                   [self frame].size.height)];
+        [topAutocompleteSuggestionLabel setBackgroundColor:[UIColor clearColor]];
+        [topAutocompleteSuggestionLabel setFont:[GNTextGeometry defaultUIFont]];
+        [topAutocompleteSuggestionLabel setTextAlignment:UITextAlignmentLeft];
+        [topAutocompleteSuggestionLabel setTextColor:[UIColor blackColor]];
+        [topAutocompleteSuggestionLabel setText:@""];
+        [self insertSubview:topAutocompleteSuggestionLabel belowSubview:button];
+        
+        // Create the "number of suggestions" view
+        numberOfSuggestions = [[UIView alloc] initWithFrame:CGRectMake(0.75 * kGNTextInputAccessoryViewButtonWidth,
+                                                                       [self frame].origin.y,
+                                                                       0.5 * kGNTextInputAccessoryViewButtonWidth,
+                                                                       [self frame].size.height)];
+        
+        CAGradientLayer* numberOfSuggestionsGradient = [CAGradientLayer layer];
+        [numberOfSuggestionsGradient setFrame:[numberOfSuggestions frame]];
+        [numberOfSuggestionsGradient setColors:[NSArray arrayWithObjects:(id)[[UIColor darkGrayColor] CGColor],
+                                                                         (id)[[UIColor blackColor] CGColor],
+                                                                         nil]];
+        
+        [[numberOfSuggestions layer] addSublayer:numberOfSuggestionsGradient];
+        numberOfSuggestionsLabel = [[UILabel alloc] initWithFrame:[numberOfSuggestions frame]];
+        [numberOfSuggestionsLabel setBackgroundColor:[UIColor clearColor]];
+        [numberOfSuggestionsLabel setFont:[UIFont systemFontOfSize:20.0]];
+        [numberOfSuggestionsLabel setTextAlignment:UITextAlignmentCenter];
+        [numberOfSuggestionsLabel setTextColor:[UIColor whiteColor]];
+        [numberOfSuggestionsLabel setText:@"1"];
+        [numberOfSuggestions addSubview:numberOfSuggestionsLabel];
         
         // Configure our button to point to us
         [button addTarget:self
@@ -45,23 +77,64 @@
     return self;
 }
 
--(void)didSwipeDown:(UIGestureRecognizer*)gestureRecognizer
+-(void)layoutSubviews
 {
-    // Switch to the autocomplete keyboard
-    [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToAutoCompleteKeyboardNotification object:nil];
-}
-
--(void)didSwipeUp:(UIGestureRecognizer*)gestureRecognizer
-{
-    // Switch to the system keyboard
-    [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToSystemKeyboardNotification object:nil];
+    [super layoutSubviews];
+    [gradientLayer setFrame:[self frame]];
 }
 
 -(void)buttonPushed
 {
-    // Right now, be hacky, and announce this over a notification
-    // TODO: wrap this in something more sane
-    [[NSNotificationCenter defaultCenter] postNotificationName:GNReplaceCurrentWordNotification object:topAutocompleteSuggestion];
+    if(isShowingAlternateView)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToSystemKeyboardNotification object:nil];
+        isShowingAlternateView = NO;
+    }
+    else
+    {
+        if(multipleSuggestions)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToAutoCompleteKeyboardNotification object:nil];
+            isShowingAlternateView = YES;
+
+        }
+        else
+        {
+            // Right now, be hacky, and announce this over a notification
+            // TODO: wrap this in something more sane
+            [[NSNotificationCenter defaultCenter] postNotificationName:GNReplaceCurrentWordNotification object:topAutocompleteSuggestion];
+        }
+    }
+}
+
+-(void)setNumberOfSuggestions:(NSUInteger)suggestions
+{
+    NSString* numberOfSuggestionsString;
+    if(suggestions < 10)
+    {
+        numberOfSuggestionsString = [[NSNumber numberWithInt:suggestions] stringValue];
+    }
+    else
+    {
+        numberOfSuggestionsString = @"9+";
+    }
+    [numberOfSuggestionsLabel setText:numberOfSuggestionsString];
+}
+
+-(void)showNumberOfSuggestions
+{
+    if(![numberOfSuggestions superview])
+    {
+        [self insertSubview:numberOfSuggestions belowSubview:topAutocompleteSuggestionLabel];
+    }
+}
+
+-(void)hideNumberOfSuggestions
+{
+    if([numberOfSuggestions superview])
+    {
+        [numberOfSuggestions removeFromSuperview];
+    }
 }
 
 -(void)insertionPointChanged:(id)object
@@ -71,23 +144,33 @@
     NSString* currentWord = [[fileRepresentation fileText] currentWord];
     
     NSArray* autocorrectionSuggestions = [[fileRepresentation autoCompleteDictionary] orderedMatchesForText:currentWord];
-        
+    
+    [self setNumberOfSuggestions:[autocorrectionSuggestions count]];
+    
     // Set our title to the top autocorrection match
     if([autocorrectionSuggestions count] > 0)
     {
         NSString* firstMatch = [autocorrectionSuggestions objectAtIndex:0];
-        [self setTitle:firstMatch
-              forState:UIControlStateNormal];
         
         topAutocompleteSuggestion = firstMatch;
+        if([autocorrectionSuggestions count] > 1)
+        {   
+            [self showNumberOfSuggestions];
+            multipleSuggestions = YES;
+        }
+        else
+        {
+            [self hideNumberOfSuggestions];
+            multipleSuggestions = NO;
+        }
     }
     else
     {
-        [self setTitle:@""
-              forState:UIControlStateNormal];
-        
         topAutocompleteSuggestion = @"";
+        [self hideNumberOfSuggestions];
     }
+    
+    [topAutocompleteSuggestionLabel setText:topAutocompleteSuggestion];
 }
 
 -(void)registerForNotifications

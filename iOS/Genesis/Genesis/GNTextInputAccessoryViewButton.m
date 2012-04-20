@@ -29,7 +29,7 @@
                                   kGNTextInputAccessoryViewHeight)];
 
         // Create our gradient layer
-        CAGradientLayer* gradientLayer = [CAGradientLayer layer];
+        gradientLayer = [CAGradientLayer layer];
         [gradientLayer setColors:[NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor],
                                                            (id)[[UIColor lightGrayColor] CGColor],
                                                            nil]];
