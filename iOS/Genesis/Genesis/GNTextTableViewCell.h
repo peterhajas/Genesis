@@ -29,6 +29,9 @@
     
     UITapGestureRecognizer* tapGestureRecognizer;
     
+    UISwipeGestureRecognizer* swipeRightGestureRecognizer;
+    UISwipeGestureRecognizer* swipeLeftGestureRecognizer;
+    
     NSUInteger lineNumber;
 }
 

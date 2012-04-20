@@ -52,6 +52,9 @@
 -(NSUInteger)lineCount;
 -(NSString*)lineAtIndex:(NSUInteger)index;
 -(NSString*)lineToInsertionPoint;
+-(NSRange)rangeOfLineAtIndex:(NSUInteger)index;
+-(void)indentLineAtIndex:(NSUInteger)index;
+-(void)unindentLineAtIndex:(NSUInteger)index;
 
 // Current word
 -(NSString*)currentWord;

@@ -46,6 +46,19 @@
                                                                        action:@selector(handleTap:)];
         [self addGestureRecognizer:tapGestureRecognizer];
         
+        // Create our swipe gesture recognizers
+        swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(didSwipeRight:)];
+        [swipeRightGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+        [swipeRightGestureRecognizer setNumberOfTouchesRequired:2];
+        [self addGestureRecognizer:swipeRightGestureRecognizer];
+        
+        swipeLeftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                               action:@selector(didSwipeLeft:)];
+        [swipeLeftGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [swipeLeftGestureRecognizer setNumberOfTouchesRequired:2];
+        [self addGestureRecognizer:swipeLeftGestureRecognizer];
+        
         // Set our autoresizing mask
         [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [textContainerScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
@@ -105,6 +118,16 @@
         
         [self resignFirstResponder];
     }
+}
+
+-(void)didSwipeRight:(UISwipeGestureRecognizer*)sender
+{
+    [[fileRepresentation fileText] indentLineAtIndex:lineNumber];
+}
+
+-(void)didSwipeLeft:(UISwipeGestureRecognizer*)sender
+{
+    [[fileRepresentation fileText] unindentLineAtIndex:lineNumber];
 }
 
 -(void)resetScrollPosition

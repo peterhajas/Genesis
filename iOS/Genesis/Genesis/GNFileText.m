@@ -14,6 +14,7 @@
  */
 
 #import "GNFileText.h"
+#import "GNTextGeometry.h"
 
 @implementation GNFileText
 
@@ -223,6 +224,51 @@
         return @"";
     }
     return [[self currentLine] substringToIndex:[insertionPointManager insertionIndexInLine]];
+}
+
+-(NSRange)rangeOfLineAtIndex:(NSUInteger)index
+{
+    NSUInteger location = 0;
+    // For location, count up the length of all lines up until the line at index
+    for(NSUInteger i = 0; i < index; i++)
+    {
+        location += [[fileLines objectAtIndex:i] length];
+    }
+    
+    // For length, it's simply the length of the line at index
+    NSUInteger length = [[fileLines objectAtIndex:index] length];
+    return NSMakeRange(location, length);
+}
+
+-(void)indentLineAtIndex:(NSUInteger)index
+{
+    NSString* indentedLineAtIndex = [[GNTextGeometry tabString] stringByAppendingString:[self lineAtIndex:index]];
+    fileText = [fileText stringByReplacingCharactersInRange:[self rangeOfLineAtIndex:index]
+                                                 withString:indentedLineAtIndex];
+    
+    [insertionPointManager incrementInsertionByLength:[GNTextGeometry tabWidth]
+                                            isNewLine:NO];
+    
+    [self textChanged];
+}
+
+-(void)unindentLineAtIndex:(NSUInteger)index
+{
+    NSString* lineAtIndex = [self lineAtIndex:index];
+    NSRange rangeOfTab = [lineAtIndex rangeOfString:[GNTextGeometry tabString]];
+    if((rangeOfTab.location != NSNotFound) && (rangeOfTab.location == 0))
+    {
+        // There is a tab on this line, and it's at the very beginning of the line
+        NSString* unindentedLineAtIndex = [lineAtIndex stringByReplacingCharactersInRange:NSMakeRange(0, [GNTextGeometry tabWidth])
+                                                                               withString:@""];
+        fileText = [fileText stringByReplacingCharactersInRange:[self rangeOfLineAtIndex:index]
+                                                     withString:unindentedLineAtIndex];
+        for(NSUInteger i = 0; i < [GNTextGeometry tabWidth]; i++)
+        {
+            [insertionPointManager decrement];
+        }
+        [self textChanged];
+    }
 }
 
 -(void)refreshFileLines
