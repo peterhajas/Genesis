@@ -18,6 +18,7 @@
 
 #define kGNTextInputAccessoryViewButtonWidth 60.0
 #define kGNTextInputAccessoryViewButtonMargin 3.0
+#define kGNTextInputAccessoryViewButtonDefaultColors [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor lightGrayColor] CGColor], nil]
 
 @interface GNTextInputAccessoryViewButton : UIView
 {

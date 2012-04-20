@@ -30,9 +30,7 @@
 
         // Create our gradient layer
         gradientLayer = [CAGradientLayer layer];
-        [gradientLayer setColors:[NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor],
-                                                           (id)[[UIColor lightGrayColor] CGColor],
-                                                           nil]];
+        [gradientLayer setColors:kGNTextInputAccessoryViewButtonDefaultColors];
         [gradientLayer setFrame:[self frame]];
         
         [gradientLayer setBorderColor:[[UIColor darkGrayColor] CGColor]];
