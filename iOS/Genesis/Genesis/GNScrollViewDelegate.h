@@ -18,6 +18,5 @@
 @protocol GNScrollViewDelegate <NSObject>
 
 -(void)scrollViewDidScroll:(UIScrollView*)scrollView;
--(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView;
 
 @end

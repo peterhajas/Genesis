@@ -32,9 +32,4 @@
     [scrollDelegate scrollViewDidScroll:scrollView];
 }
 
--(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView
-{
-    [scrollDelegate scrollViewDidEndDecelerating:scrollView];
-}
-
 @end

@@ -65,11 +65,6 @@
     [scrollDelegate scrollViewDidScroll:scrollView];
 }
 
--(void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView
-{
-    [scrollDelegate scrollViewDidEndDecelerating:scrollView];
-}
-
 #pragma mark Lifecycle cleanup methods
 
 -(void)cleanUp
