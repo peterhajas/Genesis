@@ -53,4 +53,23 @@
     return fontAppliedMutableString;
 }
 
++(NSUInteger)tabWidth
+{
+    // 4 for now
+    return 4;
+}
+
++(NSString*)stringBySanitizingTabsInString:(NSString*)string
+{
+    NSString* sanitizedString;
+    NSString* tabString = @"";
+    for(NSUInteger i = 0; i < [GNTextGeometry tabWidth]; i++)
+    {
+        tabString = [tabString stringByAppendingString:@" "];
+    }
+    
+    sanitizedString = [string stringByReplacingOccurrencesOfString:@"\t" withString:tabString];
+    return sanitizedString;
+}
+
 @end

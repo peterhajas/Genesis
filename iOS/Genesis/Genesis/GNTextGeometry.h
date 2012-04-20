@@ -22,5 +22,7 @@
 +(CTFontRef)defaultFont;
 +(UIFont*)defaultUIFont;
 +(NSAttributedString*)attributedStringWithDefaultFontApplied:(NSAttributedString*)attributedString;
++(NSUInteger)tabWidth;
++(NSString*)stringBySanitizingTabsInString:(NSString*)string;
 
 @end
