@@ -255,9 +255,6 @@
     fileText = [fileText stringByReplacingCharactersInRange:[self rangeOfLineAtIndex:index]
                                                  withString:indentedLineAtIndex];
     
-    [insertionPointManager incrementInsertionByLength:[GNTextGeometry tabWidth]
-                                            isNewLine:NO];
-    
     [self textChanged];
 }
 
@@ -272,10 +269,7 @@
                                                                                withString:@""];
         fileText = [fileText stringByReplacingCharactersInRange:[self rangeOfLineAtIndex:index]
                                                      withString:unindentedLineAtIndex];
-        for(NSUInteger i = 0; i < [GNTextGeometry tabWidth]; i++)
-        {
-            [insertionPointManager decrement];
-        }
+        
         [self textChanged];
     }
 }
