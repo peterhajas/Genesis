@@ -26,6 +26,7 @@
     {
         [self setBackgroundColor:[UIColor clearColor]];
         [[self layer] setRasterizationScale:[[UIScreen mainScreen] scale]];
+        [self setUserInteractionEnabled:NO];
     }
     return self;
 }
@@ -116,6 +117,11 @@
     CGContextAddLineToPoint(context, lowerLeftEnd.x, lowerLeftEnd.y);
     CGContextStrokePath(context);
     CGContextRestoreGState(context);
+}
+
+-(BOOL)canBecomeFirstResponder
+{
+    return NO;
 }
 
 @end
