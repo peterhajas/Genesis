@@ -31,9 +31,7 @@
         // Set background gradient
         gradient = [CAGradientLayer layer];
         [gradient setFrame:[self bounds]];
-        [gradient setColors:[NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor],
-                                                   (id)[[UIColor lightGrayColor] CGColor],
-                                                   nil]];
+        [gradient setColors:kGNTextAutocompleteCellDefaultGradientColors];
         
         [[content layer] addSublayer:gradient];
         
@@ -62,18 +60,12 @@
 
 -(void)gradientUpsideDown
 {
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-    [gradient setTransform:CATransform3DMakeRotation(M_PI, 0.0, 0.0, 1.0)];
-    [CATransaction commit];
+    [gradient setColors:kGNTextAutocompleteCellInvertedGradientColors];
 }
 
 -(void)gradientRightSideUp
 {
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-    [gradient setTransform:CATransform3DMakeRotation(0.0, 0.0, 0.0, 1.0)];
-    [CATransaction commit];
+    [gradient setColors:kGNTextAutocompleteCellDefaultGradientColors];
 }
 
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event

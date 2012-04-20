@@ -18,6 +18,9 @@
 
 #define kGNTextAutocompleteCellLabelMargin 30
 
+#define kGNTextAutocompleteCellDefaultGradientColors [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor lightGrayColor] CGColor], nil]
+#define kGNTextAutocompleteCellInvertedGradientColors [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil]
+
 @interface GNTextAutocompleteSuggestionCell : UITableViewCell
 {
     CAGradientLayer* gradient;
