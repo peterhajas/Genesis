@@ -243,6 +243,9 @@
     
     // For length, it's simply the length of the line at index
     NSUInteger length = [[fileLines objectAtIndex:index] length];
+    
+    location += index;
+    
     return NSMakeRange(location, length);
 }
 
@@ -343,8 +346,10 @@
 {
     NSRange rangeOfInsertionLine = [self rangeOfLineAtIndex:[insertionPointManager insertionLine]];
     rangeOfInsertionLine.location += [insertionPointManager insertionIndexInLine];
-    
+    rangeOfInsertionLine.length -= [insertionPointManager insertionIndexInLine];
+        
     NSString* indentedPartialLine = [[GNTextGeometry tabString] stringByAppendingString:[fileText substringWithRange:rangeOfInsertionLine]];
+    
     fileText = [fileText stringByReplacingCharactersInRange:rangeOfInsertionLine withString:indentedPartialLine];
     
     [self textChanged];
