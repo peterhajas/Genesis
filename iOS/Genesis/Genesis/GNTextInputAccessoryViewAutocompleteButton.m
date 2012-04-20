@@ -88,14 +88,23 @@
     if(isShowingAlternateView)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToSystemKeyboardNotification object:nil];
+        [gradientLayer setColors:kGNTextInputAccessoryViewButtonDefaultColors];
+        if(multipleSuggestions)
+        {
+            [self showNumberOfSuggestions];
+        }
         isShowingAlternateView = NO;
+        [topAutocompleteSuggestionLabel setText:topAutocompleteSuggestion];
     }
     else
     {
         if(multipleSuggestions)
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:GNSwitchToAutoCompleteKeyboardNotification object:nil];
+            [gradientLayer setColors:kGNTextInputAccessoryViewAutocompleteButtonCancelColors];
+            [self hideNumberOfSuggestions];
             isShowingAlternateView = YES;
+            [topAutocompleteSuggestionLabel setText:kGNTextInputAccessoryViewAutocompleteButtonCancelText];
 
         }
         else
@@ -103,6 +112,7 @@
             // Right now, be hacky, and announce this over a notification
             // TODO: wrap this in something more sane
             [[NSNotificationCenter defaultCenter] postNotificationName:GNReplaceCurrentWordNotification object:topAutocompleteSuggestion];
+            [gradientLayer setColors:kGNTextInputAccessoryViewButtonDefaultColors];
         }
     }
 }
