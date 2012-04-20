@@ -256,6 +256,17 @@
                                                  withString:indentedLineAtIndex];
     
     [self textChanged];
+    
+    if(index == [insertionPointManager insertionLine])
+    {
+        [insertionPointManager incrementInsertionByLength:[GNTextGeometry tabWidth]
+                                                isNewLine:NO];
+    }
+    else if(index < [insertionPointManager insertionLine])
+    {
+        // Increment the insertion index
+        [insertionPointManager setInsertionIndex:[insertionPointManager insertionIndex] + [GNTextGeometry tabWidth]];
+    }
 }
 
 -(void)unindentLineAtIndex:(NSUInteger)index
@@ -271,6 +282,15 @@
                                                      withString:unindentedLineAtIndex];
         
         [self textChanged];
+        
+        if(index == [insertionPointManager insertionLine])
+        {
+            [insertionPointManager decrementByCount:[GNTextGeometry tabWidth]];
+        }
+        else if(index < [insertionPointManager insertionLine])
+        {
+            [insertionPointManager setInsertionIndex:[insertionPointManager insertionIndex] - [GNTextGeometry tabWidth]];
+        }
     }
 }
 
