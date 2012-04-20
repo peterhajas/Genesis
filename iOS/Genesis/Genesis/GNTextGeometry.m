@@ -59,16 +59,21 @@
     return 4;
 }
 
-+(NSString*)stringBySanitizingTabsInString:(NSString*)string
++(NSString*)tabString
 {
-    NSString* sanitizedString;
     NSString* tabString = @"";
     for(NSUInteger i = 0; i < [GNTextGeometry tabWidth]; i++)
     {
         tabString = [tabString stringByAppendingString:@" "];
     }
+    return tabString;
+}
+
++(NSString*)stringBySanitizingTabsInString:(NSString*)string
+{
+    NSString* sanitizedString;
     
-    sanitizedString = [string stringByReplacingOccurrencesOfString:@"\t" withString:tabString];
+    sanitizedString = [string stringByReplacingOccurrencesOfString:@"\t" withString:[self tabString]];
     return sanitizedString;
 }
 
