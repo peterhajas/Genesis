@@ -28,6 +28,9 @@
         [autocompleteSuggestions setDelegate:self];
         [autocompleteSuggestions setDataSource:self];
         [autocompleteSuggestions setAutoresizingMask:[self autoresizingMask]];
+        [autocompleteSuggestions setBackgroundColor:[UIColor lightGrayColor]];
+        [autocompleteSuggestions setSeparatorColor:[UIColor darkGrayColor]];
+        
         [self addSubview:autocompleteSuggestions];
         
         // Initialize the autocomplete suggestions array
