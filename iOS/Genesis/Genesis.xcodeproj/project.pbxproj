@@ -158,6 +158,7 @@
 		4FB267531540A43F0086B994 /* GNFileText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB267521540A43F0086B994 /* GNFileText.m */; };
 		4FB267571540A4690086B994 /* GNHorizontalOffsetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */; };
 		4FB2675B1540AC550086B994 /* GNAttributedFileText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2675A1540AC550086B994 /* GNAttributedFileText.m */; };
+		4FB2676A1540F2310086B994 /* HideKeyboardButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB267691540F2310086B994 /* HideKeyboardButton.png */; };
 		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
@@ -498,6 +499,7 @@
 		4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNHorizontalOffsetManager.m; sourceTree = "<group>"; };
 		4FB267591540AC540086B994 /* GNAttributedFileText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAttributedFileText.h; sourceTree = "<group>"; };
 		4FB2675A1540AC550086B994 /* GNAttributedFileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAttributedFileText.m; sourceTree = "<group>"; };
+		4FB267691540F2310086B994 /* HideKeyboardButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HideKeyboardButton.png; sourceTree = "<group>"; };
 		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
@@ -808,6 +810,7 @@
 				4FD614A51536573400D6E859 /* Entitlements.plist */,
 				4F293B8914CCE88100020A09 /* main.m */,
 				4F293B8B14CCE88100020A09 /* Genesis-Prefix.pch */,
+				4FB267681540EFD30086B994 /* Images */,
 				4FEC7B161537D34000AA861F /* Fonts */,
 				4F06011B1533D2740022187D /* themes */,
 				4FA4FF391533AF160054482A /* languages */,
@@ -1086,6 +1089,14 @@
 			name = "Attributed File Text";
 			sourceTree = "<group>";
 		};
+		4FB267681540EFD30086B994 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4FB267691540F2310086B994 /* HideKeyboardButton.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		4FB4E6E714F73C8D00436618 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1256,6 +1267,7 @@
 				4FEC7B1A1537D34000AA861F /* Inconsolata.otf in Resources */,
 				4FEC7B1C1537D35800AA861F /* Inconsolata Licence (Open Font License).txt in Resources */,
 				4FEC7B1E1537D3A800AA861F /* ebundle-license.txt in Resources */,
+				4FB2676A1540F2310086B994 /* HideKeyboardButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

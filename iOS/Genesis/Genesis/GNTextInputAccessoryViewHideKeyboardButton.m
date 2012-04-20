@@ -22,7 +22,18 @@
     self = [super init];
     if(self)
     {
-        [self setTitle:@"hk" forState:UIControlStateNormal];
+        UIImage* hideKeyboardButtonImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HideKeyboardButton"
+                                                                                                            ofType:@"png"]];
+        
+        UIImageView* hideKeyboardButtonImageView = [[UIImageView alloc] initWithImage:hideKeyboardButtonImage];
+        
+        [hideKeyboardButtonImageView setFrame:CGRectMake([self frame].origin.x + kGNTextInputAccessoryViewButtonMargin,
+                                                         [self frame].origin.y + kGNTextInputAccessoryViewButtonMargin,
+                                                         [self frame].size.width - 2 * kGNTextInputAccessoryViewButtonMargin,
+                                                         [self frame].size.height - 2 * kGNTextInputAccessoryViewButtonMargin)];
+        
+        [self addSubview:hideKeyboardButtonImageView];
+        
         [self setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
     }
     return self;
