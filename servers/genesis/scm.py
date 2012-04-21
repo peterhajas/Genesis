@@ -32,6 +32,15 @@ class SCM(object):
     def diff_stats(self):
         raise NotImplemented
 
+    def add_to_index(self, file):
+        raise NotImplemented
+
+    def remove_from_index(self, file):
+        raise NotImplemented
+
+    def commit(self, message):
+        raise NotImplemented
+
 def _diff_stats(filediff):
     data = {'additions': 0, 'deletions': 0, 'old': None, 'new': None}
     lines = filediff.split('\n')
@@ -66,6 +75,7 @@ def _diff_folder(stats):
                 "old_file": "path/to/old_file",
                 "additions": 10,
                 "deletions": 10,
+                "total": 100,
             },
             ...
         }
@@ -79,6 +89,7 @@ def _diff_folder(stats):
                 "old_file": "path",
                 "additions": 10,
                 "deletions": 10,
+                "total": 100,
             }
             ...
         }
@@ -100,7 +111,7 @@ def _diff_folder(stats):
 
 
 def _line_count(filepath):
-    with open(filepath, 'r') as h:
+    with open(filepath, 'rb') as h:
         return h.read().count('\n')
 
 
@@ -135,21 +146,17 @@ class Git(SCM):
         stats = {} # file => stat
         diff_index = self.repo.index.diff(None, create_patch=True)
         # files added
-        for diff_add in diff_index.iter_change_type('A'):
-            fstat = _diff_stats(diff_add.diff)
-            stats[fstat['new']] = fstat
-        # files deleted
-        for diff_rm in diff_index.iter_change_type('D'):
-            fstat = _diff_stats(diff_rm.diff)
-            stats[fstat['new']] = fstat
-        # files moved / renamed
-        for diff_mv in diff_index.iter_change_type('R'):
-            fstat = _diff_stats(diff_mv.diff)
-            stats[fstat['new']] = fstat
-        # files modified
-        for diff_mod in diff_index.iter_change_type('M'):
-            fstat = _diff_stats(diff_mod.diff)
-            stats[fstat['new']] = fstat
+        # added, deleted, moved / renamed, modified
+        for chg_type in ('A', 'D', 'R', 'M'):
+            for diff in diff_index.iter_change_type('A'):
+                fstat = _diff_stats(diff.diff)
+                stats[fstat['new']] = fstat
         stats = _add_line_counts(stats, self.repo.working_dir)
         return _diff_folder(stats)
+
+    def add_to_index(self, filepath):
+        self.repo.index.add([filepath])
+
+    def commit(self, message):
+        self.repo.index.commit(message)
 

@@ -206,9 +206,17 @@ class PerformMessage(InvocationMessage):
     name = 'perform'
     MAPPING = ('project', 'action')
 
-class GitMessage(InvocationMessage):
-    name = 'git',
-    MAPPING = ('project', 'action')
+class DiffStatsMessage(InvocationMessage):
+    name = 'diff_stats'
+    MAPPING = ('project',)
+
+class StageFileMessage(InvocationMessage):
+    name = 'stage_file'
+    MAPPING = ('project', 'filepath')
+
+class CommitMessage(InvocationMessage):
+    name = 'commit'
+    MAPPING = ('project', 'message')
 
 class SendMessage(InvocationMessage):
     name = 'send'

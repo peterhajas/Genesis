@@ -143,6 +143,12 @@ class Project(object):
     def diff_stats(self):
         return self.scm.diff_stats()
 
+    def add_file(self, filename):
+        self.scm.add_to_index(filename)
+
+    def commit(self, message):
+        self.scm.commit(message)
+
 
 class Builder(object):
     def __init__(self, config):

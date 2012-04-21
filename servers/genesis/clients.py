@@ -304,7 +304,10 @@ class BuilderDelegate(MediatorClientDelegateBase):
         if self._invalid_project(mclient, request):
             raise StopIteration
 
-        yield gen.Task(mclient.write_response, ResponseMessage.success(request.id))
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
+            request.id,
+            stats=self.builder.diff_stats()
+        ))
 
     @gen.engine
     def do_upload(self, mclient, request):
@@ -371,11 +374,23 @@ class BuilderDelegate(MediatorClientDelegateBase):
         ))
 
     @gen.engine
-    def do_git(self, mclient, request):
-        yield gen.Task(mclient.write_response, ResponseMessage.error(
+    def do_index(self, mclient, request):
+        if self._invalid_project(mclient, request):
+            raise StopIteration
+
+        self.builder.add_to_index(request['filepath'])
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
             request.id,
-            reason="Not yet supported.",
-            code=ErrorCodes.INTERNAL_ERROR,
+        ))
+
+    @gen.engine
+    def do_commit(self, mclient, request):
+        if self._invalid_project(mclient, request):
+            raise StopIteration
+
+        self.builder.commit(request['message'])
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
+            request.id,
         ))
 
     @gen.engine
