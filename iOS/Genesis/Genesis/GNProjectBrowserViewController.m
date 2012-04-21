@@ -102,7 +102,7 @@
         
     // Create our "add" and "edit" buttons for projects
     UIBarButtonItem* addButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addProjectButtonPressed:)];
-    UIBarButtonItem* editButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
+    UIBarButtonItem* editButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editButtonPressed:)];
     
     [[self navigationItem] setRightBarButtonItem:addButtonItem animated:YES];
     [[self navigationItem] setLeftBarButtonItem:editButtonItem animated:YES];

@@ -14,16 +14,20 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "GNTheme.h"
 
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController* navigationController;
+    GNTheme* theme;
 }
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@property (readonly) GNTheme* theme;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

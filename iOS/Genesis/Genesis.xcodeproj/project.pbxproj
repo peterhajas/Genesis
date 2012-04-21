@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F3D21D914F4B5840096FD17 /* NSString+GNNSStringHashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D21D814F4B5840096FD17 /* NSString+GNNSStringHashes.m */; };
 		1F5997BD14F4C5AD005FE26F /* GNAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */; };
-		1F7030BD14EFAF36002FEA32 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030BB14EFAF36002FEA32 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1F7030BE14EFAF36002FEA32 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F7030BC14EFAF36002FEA32 /* README.md */; };
 		1F7030CB14F04042002FEA32 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030C914F04036002FEA32 /* CFNetwork.framework */; };
 		1F7030CD14F0406A002FEA32 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030CC14F0406A002FEA32 /* libz.dylib */; };
 		1F7030CE14F04558002FEA32 /* GNNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7030C014EFB13C002FEA32 /* GNNetworkResponse.m */; };
@@ -22,15 +20,43 @@
 		1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBE80214F4CB7400FC1DF2 /* GNNetworkConstants.m */; };
 		4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */; };
 		4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */; };
-		4F1DCC7C14EA234800811CFA /* parsecode.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DCC7A14E9DFEA00811CFA /* parsecode.js */; };
+		4F04814415413C3400467E06 /* GNTabArrowGlyphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04814315413C3300467E06 /* GNTabArrowGlyphView.m */; };
+		4F0601521533D3480022187D /* Active4D.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011C1533D2740022187D /* Active4D.tmTheme */; };
+		4F0601531533D3480022187D /* All Hallow's Eve.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */; };
+		4F0601541533D3480022187D /* Amy.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011E1533D2740022187D /* Amy.tmTheme */; };
+		4F0601551533D3480022187D /* Blackboard.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06011F1533D2740022187D /* Blackboard.tmTheme */; };
+		4F0601561533D3480022187D /* Brilliance Black.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601201533D2740022187D /* Brilliance Black.tmTheme */; };
+		4F0601571533D3480022187D /* Cobalt.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601211533D2740022187D /* Cobalt.tmTheme */; };
+		4F0601581533D3480022187D /* Dawn.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601221533D2740022187D /* Dawn.tmTheme */; };
+		4F0601591533D3480022187D /* Dobdark.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601231533D2740022187D /* Dobdark.tmTheme */; };
+		4F06015A1533D3480022187D /* ebundle-license.txt in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601241533D2740022187D /* ebundle-license.txt */; };
+		4F06015B1533D3480022187D /* Eiffel.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601251533D2740022187D /* Eiffel.tmTheme */; };
+		4F06015C1533D3480022187D /* Espresso Libre.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601261533D2740022187D /* Espresso Libre.tmTheme */; };
+		4F06015D1533D3480022187D /* IDLE.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601271533D2740022187D /* IDLE.tmTheme */; };
+		4F06015E1533D3480022187D /* iLife 05.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601281533D2740022187D /* iLife 05.tmTheme */; };
+		4F06015F1533D3480022187D /* iPlastic.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601291533D2740022187D /* iPlastic.tmTheme */; };
+		4F0601601533D3480022187D /* LAZY.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012A1533D2740022187D /* LAZY.tmTheme */; };
+		4F0601611533D3480022187D /* Mac Classic.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012B1533D2740022187D /* Mac Classic.tmTheme */; };
+		4F0601621533D3480022187D /* MagicWB (Amiga).tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */; };
+		4F0601631533D3480022187D /* monoindustrial.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012D1533D2740022187D /* monoindustrial.tmTheme */; };
+		4F0601641533D3480022187D /* Monokai.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012E1533D2740022187D /* Monokai.tmTheme */; };
+		4F0601651533D3480022187D /* Pastels on Dark.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */; };
+		4F0601661533D3480022187D /* Slush & Poppies.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601301533D2740022187D /* Slush & Poppies.tmTheme */; };
+		4F0601671533D3480022187D /* SpaceCadet.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601311533D2740022187D /* SpaceCadet.tmTheme */; };
+		4F0601681533D3480022187D /* Sunburst.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601321533D2740022187D /* Sunburst.tmTheme */; };
+		4F0601691533D3480022187D /* Twilight.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601331533D2740022187D /* Twilight.tmTheme */; };
+		4F06016A1533D3480022187D /* Vibrant Ink.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601341533D2740022187D /* Vibrant Ink.tmTheme */; };
+		4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
+		4F0601721533D69A0022187D /* GNTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601711533D69A0022187D /* GNTheme.m */; };
+		4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */; };
+		4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
-		4F1F04A014E1B128008619C0 /* GNTextInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextInnerView.m */; };
-		4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049C14E1B127008619C0 /* GNTextRange.m */; };
+		4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049A14E1B127008619C0 /* GNTextTableView.m */; };
 		4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049E14E1B128008619C0 /* GNTextView.m */; };
 		4F21143614DCF097001EE6C9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F21143514DCF096001EE6C9 /* CoreText.framework */; };
 		4F21143A14DCF0C8001EE6C9 /* GNTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */; };
-		4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */; };
+		4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */; };
 		4F293B7C14CCE88100020A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7B14CCE88100020A09 /* UIKit.framework */; };
 		4F293B7E14CCE88100020A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7D14CCE88100020A09 /* Foundation.framework */; };
 		4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7F14CCE88100020A09 /* CoreGraphics.framework */; };
@@ -49,60 +75,109 @@
 		4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E371F14CFA90D00E91A1A /* GNDirectoryViewController.xib */; };
 		4F3E372614CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */; };
 		4F3E372914CFB6BC00E91A1A /* GNDirectoryContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */; };
+		4F3F0468150740A300AA6E95 /* GNFileRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */; };
+		4F3F046D150744ED00AA6E95 /* GNTextTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */; };
+		4F3F0471150745D300AA6E95 /* GNTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */; };
+		4F3F047D15074E4700AA6E95 /* GNTextTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F047C15074E4700AA6E95 /* GNTextTableViewDelegate.m */; };
+		4F3F04821507519F00AA6E95 /* GNLineNumberTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F04811507519F00AA6E95 /* GNLineNumberTableView.m */; };
+		4F3F0486150752A600AA6E95 /* GNLineNumberTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0485150752A600AA6E95 /* GNLineNumberTableViewDataSource.m */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
 		4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */; };
-		4F77E99B14E4C696001A69E8 /* base.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F77E99A14E4C696001A69E8 /* base.html */; };
-		4F99F2B414EA3FC1005E8D91 /* CHANGES.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26614EA3FC1005E8D91 /* CHANGES.html */; };
-		4F99F2B814EA3FC1005E8D91 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26B14EA3FC1005E8D91 /* COPYING */; };
-		4F99F2D014EA3FC1005E8D91 /* extractSourceSpans_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28614EA3FC1005E8D91 /* extractSourceSpans_test.html */; };
-		4F99F2D214EA3FC1005E8D91 /* numberLines_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28814EA3FC1005E8D91 /* numberLines_test.html */; };
-		4F99F2D514EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28B14EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html */; };
-		4F99F2D614EA3FC1005E8D91 /* regexpPrecederPatterns.pl in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28C14EA3FC1005E8D91 /* regexpPrecederPatterns.pl */; };
-		4F99F2EC14EA3FC1005E8D91 /* prettify.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A314EA3FC1005E8D91 /* prettify.css */; };
-		4F99F2EE14EA3FC1005E8D91 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A614EA3FC1005E8D91 /* demo.html */; };
-		4F99F2EF14EA3FC1005E8D91 /* desert.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A714EA3FC1005E8D91 /* desert.css */; };
-		4F99F2F014EA3FC1005E8D91 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A814EA3FC1005E8D91 /* index.html */; };
-		4F99F2F114EA3FC1005E8D91 /* sunburst.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A914EA3FC1005E8D91 /* sunburst.css */; };
-		4F99F2F214EA3FC1005E8D91 /* ie-newline-copy-paste.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2AB14EA3FC1005E8D91 /* ie-newline-copy-paste.html */; };
-		4F99F2F314EA3FC1005E8D91 /* large_input_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2AC14EA3FC1005E8D91 /* large_input_test.html */; };
-		4F99F2F414EA3FC1005E8D91 /* prettify_test.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2AD14EA3FC1005E8D91 /* prettify_test.html */; };
-		4F99F2F514EA3FC1005E8D91 /* prettify_test_2.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2AE14EA3FC1005E8D91 /* prettify_test_2.html */; };
-		4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B014EA3FC1005E8D91 /* test_styles.css */; };
-		4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2B214EA3FC1005E8D91 /* LICENSE.TXT */; };
+		4F806FF5153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F806FF4153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m */; };
+		4F806FF9153DFDFB0072AED2 /* GNTextAlternateInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F806FF8153DFDFA0072AED2 /* GNTextAlternateInputView.m */; };
+		4F806FFD153E04AE0072AED2 /* GNTextAutocompleteInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F806FFC153E04AE0072AED2 /* GNTextAutocompleteInputView.m */; };
+		4F921DCE153FC940004C8B3B /* GNTextAutocompleteSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F921DCD153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.m */; };
+		4F984ED8153D24DF00B5FB3B /* GNAutocompleteDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F984ED7153D24DF00B5FB3B /* GNAutocompleteDictionary.m */; };
+		4FA2C3B0153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA2C3AF153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m */; };
+		4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4FF371533ADD70054482A /* GNTextAttributer.m */; };
+		4FA4FFB71533AF6C0054482A /* Ahk.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3A1533AF160054482A /* Ahk.plist */; };
+		4FA4FFB81533AF6C0054482A /* Bibtex.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3B1533AF160054482A /* Bibtex.plist */; };
+		4FA4FFB91533AF6C0054482A /* Blog (HTML).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3C1533AF160054482A /* Blog (HTML).plist */; };
+		4FA4FFBA1533AF6C0054482A /* Blog (Markdown).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3D1533AF160054482A /* Blog (Markdown).plist */; };
+		4FA4FFBB1533AF6C0054482A /* Blog (Text).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3E1533AF160054482A /* Blog (Text).plist */; };
+		4FA4FFBC1533AF6C0054482A /* Blog (Textile).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF3F1533AF160054482A /* Blog (Textile).plist */; };
+		4FA4FFBD1533AF6C0054482A /* Build.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF401533AF160054482A /* Build.tmLanguage */; };
+		4FA4FFBE1533AF6C0054482A /* Bulletin Board.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF411533AF160054482A /* Bulletin Board.plist */; };
+		4FA4FFBF1533AF6C0054482A /* C#.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF421533AF160054482A /* C#.tmLanguage */; };
+		4FA4FFC01533AF6C0054482A /* C++.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF431533AF160054482A /* C++.plist */; };
+		4FA4FFC11533AF6C0054482A /* C.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF441533AF160054482A /* C.plist */; };
+		4FA4FFC21533AF6C0054482A /* CSS Zen.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF451533AF160054482A /* CSS Zen.tmLanguage */; };
+		4FA4FFC31533AF6C0054482A /* CSS.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF461533AF160054482A /* CSS.plist */; };
+		4FA4FFC41533AF6C0054482A /* Diff.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF471533AF160054482A /* Diff.plist */; };
+		4FA4FFC51533AF6C0054482A /* Doxygen.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF481533AF160054482A /* Doxygen.tmLanguage */; };
+		4FA4FFC61533AF6C0054482A /* ExpressionEngine.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF491533AF160054482A /* ExpressionEngine.plist */; };
+		4FA4FFC71533AF6C0054482A /* HTML (Rails).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4A1533AF160054482A /* HTML (Rails).plist */; };
+		4FA4FFC81533AF6C0054482A /* HTML Zen.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4B1533AF160054482A /* HTML Zen.tmLanguage */; };
+		4FA4FFC91533AF6C0054482A /* HTML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4C1533AF160054482A /* HTML.plist */; };
+		4FA4FFCA1533AF6C0054482A /* Ini.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4D1533AF160054482A /* Ini.plist */; };
+		4FA4FFCB1533AF6C0054482A /* Java.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4E1533AF160054482A /* Java.plist */; };
+		4FA4FFCC1533AF6C0054482A /* JavaProperties.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF4F1533AF160054482A /* JavaProperties.plist */; };
+		4FA4FFCD1533AF6C0054482A /* JavaScript (Rails).tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF501533AF160054482A /* JavaScript (Rails).tmLanguage */; };
+		4FA4FFCE1533AF6C0054482A /* JavaScript.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF511533AF160054482A /* JavaScript.plist */; };
+		4FA4FFCF1533AF6C0054482A /* LanguageGrammar.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF521533AF160054482A /* LanguageGrammar.tmLanguage */; };
+		4FA4FFD01533AF6C0054482A /* LaTeX Beamer.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF531533AF160054482A /* LaTeX Beamer.plist */; };
+		4FA4FFD11533AF6C0054482A /* LaTeX Log.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF541533AF160054482A /* LaTeX Log.plist */; };
+		4FA4FFD21533AF6C0054482A /* LaTeX Memoir.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF551533AF160054482A /* LaTeX Memoir.tmLanguage */; };
+		4FA4FFD31533AF6C0054482A /* LaTeX.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF561533AF160054482A /* LaTeX.plist */; };
+		4FA4FFD41533AF6C0054482A /* Lisp.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF571533AF160054482A /* Lisp.plist */; };
+		4FA4FFD51533AF6C0054482A /* Makefile.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF581533AF160054482A /* Makefile.plist */; };
+		4FA4FFD61533AF6C0054482A /* Markdown.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF591533AF160054482A /* Markdown.plist */; };
+		4FA4FFD71533AF6C0054482A /* Mediawiki.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5A1533AF160054482A /* Mediawiki.tmLanguage */; };
+		4FA4FFD81533AF6C0054482A /* MSDOS batch file.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5B1533AF160054482A /* MSDOS batch file.tmLanguage */; };
+		4FA4FFD91533AF6C0054482A /* MultiMarkdown.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5C1533AF160054482A /* MultiMarkdown.tmLanguage */; };
+		4FA4FFDA1533AF6C0054482A /* OpenGL.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5D1533AF160054482A /* OpenGL.plist */; };
+		4FA4FFDB1533AF6C0054482A /* Perl.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5E1533AF160054482A /* Perl.plist */; };
+		4FA4FFDC1533AF6C0054482A /* PHP.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF5F1533AF160054482A /* PHP.plist */; };
+		4FA4FFDD1533AF6C0054482A /* Plain text.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF601533AF160054482A /* Plain text.plist */; };
+		4FA4FFDE1533AF6C0054482A /* Property List.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF611533AF160054482A /* Property List.tmLanguage */; };
+		4FA4FFDF1533AF6C0054482A /* Python.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF621533AF160054482A /* Python.tmLanguage */; };
+		4FA4FFE01533AF6C0054482A /* Regular Expressions (Oniguruma).tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF631533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage */; };
+		4FA4FFE11533AF6C0054482A /* Regular Expressions (Python).tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF641533AF160054482A /* Regular Expressions (Python).tmLanguage */; };
+		4FA4FFE21533AF6C0054482A /* Release Notes.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF651533AF160054482A /* Release Notes.tmLanguage */; };
+		4FA4FFE31533AF6C0054482A /* RJS.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF661533AF160054482A /* RJS.tmLanguage */; };
+		4FA4FFE41533AF6C0054482A /* Ruby on Rails.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF671533AF160054482A /* Ruby on Rails.plist */; };
+		4FA4FFE51533AF6C0054482A /* Ruby Sass.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF681533AF160054482A /* Ruby Sass.tmLanguage */; };
+		4FA4FFE61533AF6C0054482A /* Ruby.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF691533AF160054482A /* Ruby.plist */; };
+		4FA4FFE71533AF6C0054482A /* SCSS.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6A1533AF160054482A /* SCSS.tmLanguage */; };
+		4FA4FFE81533AF6C0054482A /* Shell-Unix-Generic.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6B1533AF160054482A /* Shell-Unix-Generic.plist */; };
+		4FA4FFE91533AF6C0054482A /* Smarty.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6C1533AF160054482A /* Smarty.plist */; };
+		4FA4FFEA1533AF6C0054482A /* Snippet.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6D1533AF160054482A /* Snippet.tmLanguage */; };
+		4FA4FFEB1533AF6C0054482A /* SQL (Rails).plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6E1533AF160054482A /* SQL (Rails).plist */; };
+		4FA4FFEC1533AF6C0054482A /* SQL.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF6F1533AF160054482A /* SQL.plist */; };
+		4FA4FFED1533AF6C0054482A /* Subversion commit message.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF701533AF160054482A /* Subversion commit message.plist */; };
+		4FA4FFEE1533AF6C0054482A /* TeX Math.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF711533AF160054482A /* TeX Math.plist */; };
+		4FA4FFEF1533AF6C0054482A /* TeX.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF721533AF160054482A /* TeX.plist */; };
+		4FA4FFF01533AF6C0054482A /* Textile.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF731533AF160054482A /* Textile.plist */; };
+		4FA4FFF11533AF6C0054482A /* Todo.txt.tmLanguage in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF741533AF160054482A /* Todo.txt.tmLanguage */; };
+		4FA4FFF21533AF6C0054482A /* XML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF751533AF160054482A /* XML.plist */; };
+		4FA4FFF31533AF6C0054482A /* XSL.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF761533AF160054482A /* XSL.plist */; };
+		4FA4FFF41533AF6C0054482A /* YAML.plist in Copy "languages" files */ = {isa = PBXBuildFile; fileRef = 4FA4FF771533AF160054482A /* YAML.plist */; };
+		4FB2674F154093730086B994 /* GNInsertionPointManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2674E154093730086B994 /* GNInsertionPointManager.m */; };
+		4FB267531540A43F0086B994 /* GNFileText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB267521540A43F0086B994 /* GNFileText.m */; };
+		4FB267571540A4690086B994 /* GNHorizontalOffsetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */; };
+		4FB2675B1540AC550086B994 /* GNAttributedFileText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2675A1540AC550086B994 /* GNAttributedFileText.m */; };
+		4FB2676A1540F2310086B994 /* HideKeyboardButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB267691540F2310086B994 /* HideKeyboardButton.png */; };
 		4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F014F73D8100436618 /* Genesis_57.png */; };
 		4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F214F73D8700436618 /* Genesis_114.png */; };
 		4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4E6F614F73DF400436618 /* Genesis_72.png */; };
-		4FF3637714EAECB900125C74 /* console-externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F26814EA3FC1005E8D91 /* console-externs.js */; };
-		4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28314EA3FC1005E8D91 /* combinePrefixPatterns.js */; };
-		4FF3638C14EAECB900125C74 /* externs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28414EA3FC1005E8D91 /* externs.js */; };
-		4FF3638D14EAECB900125C74 /* extractSourceSpans.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28514EA3FC1005E8D91 /* extractSourceSpans.js */; };
-		4FF3638E14EAECB900125C74 /* numberLines.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28714EA3FC1005E8D91 /* numberLines.js */; };
-		4FF3639014EAECB900125C74 /* recombineTagsAndDecorations.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F28A14EA3FC1005E8D91 /* recombineTagsAndDecorations.js */; };
-		4FF3639114EAECB900125C74 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29114EA3FC1005E8D91 /* lang-apollo.js */; };
-		4FF3639214EAECB900125C74 /* lang-clj.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29214EA3FC1005E8D91 /* lang-clj.js */; };
-		4FF3639314EAECB900125C74 /* lang-css.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29314EA3FC1005E8D91 /* lang-css.js */; };
-		4FF3639414EAECB900125C74 /* lang-go.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29414EA3FC1005E8D91 /* lang-go.js */; };
-		4FF3639514EAECB900125C74 /* lang-hs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29514EA3FC1005E8D91 /* lang-hs.js */; };
-		4FF3639614EAECB900125C74 /* lang-lisp.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29614EA3FC1005E8D91 /* lang-lisp.js */; };
-		4FF3639714EAECB900125C74 /* lang-lua.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29714EA3FC1005E8D91 /* lang-lua.js */; };
-		4FF3639814EAECB900125C74 /* lang-ml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29814EA3FC1005E8D91 /* lang-ml.js */; };
-		4FF3639914EAECB900125C74 /* lang-n.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29914EA3FC1005E8D91 /* lang-n.js */; };
-		4FF3639A14EAECB900125C74 /* lang-proto.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29A14EA3FC1005E8D91 /* lang-proto.js */; };
-		4FF3639B14EAECB900125C74 /* lang-scala.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29B14EA3FC1005E8D91 /* lang-scala.js */; };
-		4FF3639C14EAECB900125C74 /* lang-sql.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29C14EA3FC1005E8D91 /* lang-sql.js */; };
-		4FF3639D14EAECB900125C74 /* lang-tex.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29D14EA3FC1005E8D91 /* lang-tex.js */; };
-		4FF3639E14EAECB900125C74 /* lang-vb.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29E14EA3FC1005E8D91 /* lang-vb.js */; };
-		4FF3639F14EAECB900125C74 /* lang-vhdl.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F29F14EA3FC1005E8D91 /* lang-vhdl.js */; };
-		4FF363A014EAECB900125C74 /* lang-wiki.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A014EA3FC1005E8D91 /* lang-wiki.js */; };
-		4FF363A114EAECB900125C74 /* lang-xq.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A114EA3FC1005E8D91 /* lang-xq.js */; };
-		4FF363A214EAECB900125C74 /* lang-yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A214EA3FC1005E8D91 /* lang-yaml.js */; };
-		4FF363A314EAECB900125C74 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F99F2A414EA3FC1005E8D91 /* prettify.js */; };
+		4FBD8B8515324BD9006D510E /* GNTextLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBD8B8415324BD9006D510E /* GNTextLineView.m */; };
+		4FD1C2DA153C889100DD4A3D /* GNTextInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */; };
+		4FD1C2DF153C891300DD4A3D /* GNTextInputAccessoryViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */; };
+		4FD614A61536573400D6E859 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FD614A51536573400D6E859 /* Entitlements.plist */; };
+		4FE4278E154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4278D154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m */; };
+		4FEC7B1A1537D34000AA861F /* Inconsolata.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B181537D34000AA861F /* Inconsolata.otf */; };
+		4FEC7B1C1537D35800AA861F /* Inconsolata Licence (Open Font License).txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */; };
+		4FEC7B1E1537D3A800AA861F /* ebundle-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B1D1537D3A800AA861F /* ebundle-license.txt */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
 		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
 		4FFDA04414CCF2E300422FF5 /* GNNewProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA04214CCF2E300422FF5 /* GNNewProjectViewController.m */; };
 		4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA04314CCF2E300422FF5 /* GNNewProjectViewController.xib */; };
+		4FFF7D5E151A106E00C986A1 /* GNTextInputManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */; };
+		4FFF7D5F151A106E00C986A1 /* GNTextInputManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */; };
+		4FFF7D63151A2D1600C986A1 /* GNTextGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF7D62151A2D1600C986A1 /* GNTextGeometry.m */; };
+		4FFF7D64151A2D1600C986A1 /* GNTextGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF7D62151A2D1600C986A1 /* GNTextGeometry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +190,117 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4F0601511533D32C0022187D /* Copy "themes" files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = themes;
+			dstSubfolderSpec = 7;
+			files = (
+				4F0601521533D3480022187D /* Active4D.tmTheme in Copy "themes" files */,
+				4F0601531533D3480022187D /* All Hallow's Eve.tmTheme in Copy "themes" files */,
+				4F0601541533D3480022187D /* Amy.tmTheme in Copy "themes" files */,
+				4F0601551533D3480022187D /* Blackboard.tmTheme in Copy "themes" files */,
+				4F0601561533D3480022187D /* Brilliance Black.tmTheme in Copy "themes" files */,
+				4F0601571533D3480022187D /* Cobalt.tmTheme in Copy "themes" files */,
+				4F0601581533D3480022187D /* Dawn.tmTheme in Copy "themes" files */,
+				4F0601591533D3480022187D /* Dobdark.tmTheme in Copy "themes" files */,
+				4F06015A1533D3480022187D /* ebundle-license.txt in Copy "themes" files */,
+				4F06015B1533D3480022187D /* Eiffel.tmTheme in Copy "themes" files */,
+				4F06015C1533D3480022187D /* Espresso Libre.tmTheme in Copy "themes" files */,
+				4F06015D1533D3480022187D /* IDLE.tmTheme in Copy "themes" files */,
+				4F06015E1533D3480022187D /* iLife 05.tmTheme in Copy "themes" files */,
+				4F06015F1533D3480022187D /* iPlastic.tmTheme in Copy "themes" files */,
+				4F0601601533D3480022187D /* LAZY.tmTheme in Copy "themes" files */,
+				4F0601611533D3480022187D /* Mac Classic.tmTheme in Copy "themes" files */,
+				4F0601621533D3480022187D /* MagicWB (Amiga).tmTheme in Copy "themes" files */,
+				4F0601631533D3480022187D /* monoindustrial.tmTheme in Copy "themes" files */,
+				4F0601641533D3480022187D /* Monokai.tmTheme in Copy "themes" files */,
+				4F0601651533D3480022187D /* Pastels on Dark.tmTheme in Copy "themes" files */,
+				4F0601661533D3480022187D /* Slush & Poppies.tmTheme in Copy "themes" files */,
+				4F0601671533D3480022187D /* SpaceCadet.tmTheme in Copy "themes" files */,
+				4F0601681533D3480022187D /* Sunburst.tmTheme in Copy "themes" files */,
+				4F0601691533D3480022187D /* Twilight.tmTheme in Copy "themes" files */,
+				4F06016A1533D3480022187D /* Vibrant Ink.tmTheme in Copy "themes" files */,
+				4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */,
+			);
+			name = "Copy \"themes\" files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA4FFB61533AF4D0054482A /* Copy "languages" files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = languages;
+			dstSubfolderSpec = 7;
+			files = (
+				4FA4FFB71533AF6C0054482A /* Ahk.plist in Copy "languages" files */,
+				4FA4FFB81533AF6C0054482A /* Bibtex.plist in Copy "languages" files */,
+				4FA4FFB91533AF6C0054482A /* Blog (HTML).plist in Copy "languages" files */,
+				4FA4FFBA1533AF6C0054482A /* Blog (Markdown).plist in Copy "languages" files */,
+				4FA4FFBB1533AF6C0054482A /* Blog (Text).plist in Copy "languages" files */,
+				4FA4FFBC1533AF6C0054482A /* Blog (Textile).plist in Copy "languages" files */,
+				4FA4FFBD1533AF6C0054482A /* Build.tmLanguage in Copy "languages" files */,
+				4FA4FFBE1533AF6C0054482A /* Bulletin Board.plist in Copy "languages" files */,
+				4FA4FFBF1533AF6C0054482A /* C#.tmLanguage in Copy "languages" files */,
+				4FA4FFC01533AF6C0054482A /* C++.plist in Copy "languages" files */,
+				4FA4FFC11533AF6C0054482A /* C.plist in Copy "languages" files */,
+				4FA4FFC21533AF6C0054482A /* CSS Zen.tmLanguage in Copy "languages" files */,
+				4FA4FFC31533AF6C0054482A /* CSS.plist in Copy "languages" files */,
+				4FA4FFC41533AF6C0054482A /* Diff.plist in Copy "languages" files */,
+				4FA4FFC51533AF6C0054482A /* Doxygen.tmLanguage in Copy "languages" files */,
+				4FA4FFC61533AF6C0054482A /* ExpressionEngine.plist in Copy "languages" files */,
+				4FA4FFC71533AF6C0054482A /* HTML (Rails).plist in Copy "languages" files */,
+				4FA4FFC81533AF6C0054482A /* HTML Zen.tmLanguage in Copy "languages" files */,
+				4FA4FFC91533AF6C0054482A /* HTML.plist in Copy "languages" files */,
+				4FA4FFCA1533AF6C0054482A /* Ini.plist in Copy "languages" files */,
+				4FA4FFCB1533AF6C0054482A /* Java.plist in Copy "languages" files */,
+				4FA4FFCC1533AF6C0054482A /* JavaProperties.plist in Copy "languages" files */,
+				4FA4FFCD1533AF6C0054482A /* JavaScript (Rails).tmLanguage in Copy "languages" files */,
+				4FA4FFCE1533AF6C0054482A /* JavaScript.plist in Copy "languages" files */,
+				4FA4FFCF1533AF6C0054482A /* LanguageGrammar.tmLanguage in Copy "languages" files */,
+				4FA4FFD01533AF6C0054482A /* LaTeX Beamer.plist in Copy "languages" files */,
+				4FA4FFD11533AF6C0054482A /* LaTeX Log.plist in Copy "languages" files */,
+				4FA4FFD21533AF6C0054482A /* LaTeX Memoir.tmLanguage in Copy "languages" files */,
+				4FA4FFD31533AF6C0054482A /* LaTeX.plist in Copy "languages" files */,
+				4FA4FFD41533AF6C0054482A /* Lisp.plist in Copy "languages" files */,
+				4FA4FFD51533AF6C0054482A /* Makefile.plist in Copy "languages" files */,
+				4FA4FFD61533AF6C0054482A /* Markdown.plist in Copy "languages" files */,
+				4FA4FFD71533AF6C0054482A /* Mediawiki.tmLanguage in Copy "languages" files */,
+				4FA4FFD81533AF6C0054482A /* MSDOS batch file.tmLanguage in Copy "languages" files */,
+				4FA4FFD91533AF6C0054482A /* MultiMarkdown.tmLanguage in Copy "languages" files */,
+				4FA4FFDA1533AF6C0054482A /* OpenGL.plist in Copy "languages" files */,
+				4FA4FFDB1533AF6C0054482A /* Perl.plist in Copy "languages" files */,
+				4FA4FFDC1533AF6C0054482A /* PHP.plist in Copy "languages" files */,
+				4FA4FFDD1533AF6C0054482A /* Plain text.plist in Copy "languages" files */,
+				4FA4FFDE1533AF6C0054482A /* Property List.tmLanguage in Copy "languages" files */,
+				4FA4FFDF1533AF6C0054482A /* Python.tmLanguage in Copy "languages" files */,
+				4FA4FFE01533AF6C0054482A /* Regular Expressions (Oniguruma).tmLanguage in Copy "languages" files */,
+				4FA4FFE11533AF6C0054482A /* Regular Expressions (Python).tmLanguage in Copy "languages" files */,
+				4FA4FFE21533AF6C0054482A /* Release Notes.tmLanguage in Copy "languages" files */,
+				4FA4FFE31533AF6C0054482A /* RJS.tmLanguage in Copy "languages" files */,
+				4FA4FFE41533AF6C0054482A /* Ruby on Rails.plist in Copy "languages" files */,
+				4FA4FFE51533AF6C0054482A /* Ruby Sass.tmLanguage in Copy "languages" files */,
+				4FA4FFE61533AF6C0054482A /* Ruby.plist in Copy "languages" files */,
+				4FA4FFE71533AF6C0054482A /* SCSS.tmLanguage in Copy "languages" files */,
+				4FA4FFE81533AF6C0054482A /* Shell-Unix-Generic.plist in Copy "languages" files */,
+				4FA4FFE91533AF6C0054482A /* Smarty.plist in Copy "languages" files */,
+				4FA4FFEA1533AF6C0054482A /* Snippet.tmLanguage in Copy "languages" files */,
+				4FA4FFEB1533AF6C0054482A /* SQL (Rails).plist in Copy "languages" files */,
+				4FA4FFEC1533AF6C0054482A /* SQL.plist in Copy "languages" files */,
+				4FA4FFED1533AF6C0054482A /* Subversion commit message.plist in Copy "languages" files */,
+				4FA4FFEE1533AF6C0054482A /* TeX Math.plist in Copy "languages" files */,
+				4FA4FFEF1533AF6C0054482A /* TeX.plist in Copy "languages" files */,
+				4FA4FFF01533AF6C0054482A /* Textile.plist in Copy "languages" files */,
+				4FA4FFF11533AF6C0054482A /* Todo.txt.tmLanguage in Copy "languages" files */,
+				4FA4FFF21533AF6C0054482A /* XML.plist in Copy "languages" files */,
+				4FA4FFF31533AF6C0054482A /* XSL.plist in Copy "languages" files */,
+				4FA4FFF41533AF6C0054482A /* YAML.plist in Copy "languages" files */,
+			);
+			name = "Copy \"languages\" files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1F3D21D714F4B5840096FD17 /* NSString+GNNSStringHashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GNNSStringHashes.h"; sourceTree = "<group>"; };
 		1F3D21D814F4B5840096FD17 /* NSString+GNNSStringHashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GNNSStringHashes.m"; sourceTree = "<group>"; };
@@ -122,9 +308,6 @@
 		1F5997BC14F4C5AD005FE26F /* GNAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAPIClient.m; sourceTree = "<group>"; };
 		1F7030B514EFA785002FEA32 /* NSData+GNNSDataCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GNNSDataCategory.h"; sourceTree = "<group>"; };
 		1F7030B614EFA785002FEA32 /* NSData+GNNSDataCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GNNSDataCategory.m"; sourceTree = "<group>"; };
-		1F7030BA14EFAF36002FEA32 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		1F7030BB14EFAF36002FEA32 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		1F7030BC14EFAF36002FEA32 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1F7030BF14EFB13C002FEA32 /* GNNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkResponse.h; sourceTree = "<group>"; };
 		1F7030C014EFB13C002FEA32 /* GNNetworkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNetworkResponse.m; sourceTree = "<group>"; };
 		1F7030C314EFB50D002FEA32 /* GNNetworkNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkNotification.h; sourceTree = "<group>"; };
@@ -143,21 +326,51 @@
 		4F0216E214D1F3850027DF89 /* GNNewFileEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewFileEntryViewController.h; sourceTree = "<group>"; };
 		4F0216E314D1F3850027DF89 /* GNNewFileEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewFileEntryViewController.m; sourceTree = "<group>"; };
 		4F0216E414D1F3850027DF89 /* GNNewFileEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewFileEntryViewController.xib; sourceTree = "<group>"; };
-		4F1DCC7A14E9DFEA00811CFA /* parsecode.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = parsecode.js; sourceTree = "<group>"; };
+		4F04814215413C3300467E06 /* GNTabArrowGlyphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTabArrowGlyphView.h; sourceTree = "<group>"; };
+		4F04814315413C3300467E06 /* GNTabArrowGlyphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTabArrowGlyphView.m; sourceTree = "<group>"; };
+		4F06011C1533D2740022187D /* Active4D.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Active4D.tmTheme; sourceTree = "<group>"; };
+		4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "All Hallow's Eve.tmTheme"; sourceTree = "<group>"; };
+		4F06011E1533D2740022187D /* Amy.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Amy.tmTheme; sourceTree = "<group>"; };
+		4F06011F1533D2740022187D /* Blackboard.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Blackboard.tmTheme; sourceTree = "<group>"; };
+		4F0601201533D2740022187D /* Brilliance Black.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Brilliance Black.tmTheme"; sourceTree = "<group>"; };
+		4F0601211533D2740022187D /* Cobalt.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Cobalt.tmTheme; sourceTree = "<group>"; };
+		4F0601221533D2740022187D /* Dawn.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Dawn.tmTheme; sourceTree = "<group>"; };
+		4F0601231533D2740022187D /* Dobdark.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Dobdark.tmTheme; sourceTree = "<group>"; };
+		4F0601241533D2740022187D /* ebundle-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ebundle-license.txt"; sourceTree = "<group>"; };
+		4F0601251533D2740022187D /* Eiffel.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Eiffel.tmTheme; sourceTree = "<group>"; };
+		4F0601261533D2740022187D /* Espresso Libre.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Espresso Libre.tmTheme"; sourceTree = "<group>"; };
+		4F0601271533D2740022187D /* IDLE.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = IDLE.tmTheme; sourceTree = "<group>"; };
+		4F0601281533D2740022187D /* iLife 05.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "iLife 05.tmTheme"; sourceTree = "<group>"; };
+		4F0601291533D2740022187D /* iPlastic.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iPlastic.tmTheme; sourceTree = "<group>"; };
+		4F06012A1533D2740022187D /* LAZY.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LAZY.tmTheme; sourceTree = "<group>"; };
+		4F06012B1533D2740022187D /* Mac Classic.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Mac Classic.tmTheme"; sourceTree = "<group>"; };
+		4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "MagicWB (Amiga).tmTheme"; sourceTree = "<group>"; };
+		4F06012D1533D2740022187D /* monoindustrial.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = monoindustrial.tmTheme; sourceTree = "<group>"; };
+		4F06012E1533D2740022187D /* Monokai.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Monokai.tmTheme; sourceTree = "<group>"; };
+		4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Pastels on Dark.tmTheme"; sourceTree = "<group>"; };
+		4F0601301533D2740022187D /* Slush & Poppies.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Slush & Poppies.tmTheme"; sourceTree = "<group>"; };
+		4F0601311533D2740022187D /* SpaceCadet.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpaceCadet.tmTheme; sourceTree = "<group>"; };
+		4F0601321533D2740022187D /* Sunburst.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Sunburst.tmTheme; sourceTree = "<group>"; };
+		4F0601331533D2740022187D /* Twilight.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Twilight.tmTheme; sourceTree = "<group>"; };
+		4F0601341533D2740022187D /* Vibrant Ink.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vibrant Ink.tmTheme"; sourceTree = "<group>"; };
+		4F0601351533D2740022187D /* Zenburnesque.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Zenburnesque.tmTheme; sourceTree = "<group>"; };
+		4F0601701533D69A0022187D /* GNTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTheme.h; sourceTree = "<group>"; };
+		4F0601711533D69A0022187D /* GNTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTheme.m; sourceTree = "<group>"; };
+		4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTMBundleAttributeNameTransformer.h; sourceTree = "<group>"; };
+		4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTMBundleAttributeNameTransformer.m; sourceTree = "<group>"; };
+		4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iPad.xib"; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
 		4F1F049714E1B127008619C0 /* GNTextCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextCaretView.h; sourceTree = "<group>"; };
 		4F1F049814E1B127008619C0 /* GNTextCaretView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextCaretView.m; sourceTree = "<group>"; };
-		4F1F049914E1B127008619C0 /* GNTextInnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInnerView.h; sourceTree = "<group>"; };
-		4F1F049A14E1B127008619C0 /* GNTextInnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInnerView.m; sourceTree = "<group>"; };
-		4F1F049B14E1B127008619C0 /* GNTextRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextRange.h; sourceTree = "<group>"; };
-		4F1F049C14E1B127008619C0 /* GNTextRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextRange.m; sourceTree = "<group>"; };
+		4F1F049914E1B127008619C0 /* GNTextTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableView.h; sourceTree = "<group>"; };
+		4F1F049A14E1B127008619C0 /* GNTextTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableView.m; sourceTree = "<group>"; };
 		4F1F049D14E1B128008619C0 /* GNTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextView.h; sourceTree = "<group>"; };
 		4F1F049E14E1B128008619C0 /* GNTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextView.m; sourceTree = "<group>"; };
 		4F21143514DCF096001EE6C9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextViewController.h; sourceTree = "<group>"; };
 		4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextViewController.m; sourceTree = "<group>"; };
-		4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNTextViewController.xib; sourceTree = "<group>"; };
+		4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iphone.xib"; sourceTree = "<group>"; };
 		4F293B7714CCE88100020A09 /* Genesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F293B7B14CCE88100020A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F293B7D14CCE88100020A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -183,85 +396,125 @@
 		4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewController.m; sourceTree = "<group>"; };
 		4F3E372714CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNDirectoryContentsTableViewCell.h; sourceTree = "<group>"; };
 		4F3E372814CFB6BB00E91A1A /* GNDirectoryContentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNDirectoryContentsTableViewCell.m; sourceTree = "<group>"; };
+		4F3F0466150740A300AA6E95 /* GNFileRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileRepresentation.h; sourceTree = "<group>"; };
+		4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileRepresentation.m; sourceTree = "<group>"; };
+		4F3F046B150744ED00AA6E95 /* GNTextTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableViewDataSource.h; sourceTree = "<group>"; };
+		4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewDataSource.m; sourceTree = "<group>"; };
+		4F3F046F150745D300AA6E95 /* GNTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableViewCell.h; sourceTree = "<group>"; };
+		4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewCell.m; sourceTree = "<group>"; };
+		4F3F047B15074E4700AA6E95 /* GNTextTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextTableViewDelegate.h; sourceTree = "<group>"; };
+		4F3F047C15074E4700AA6E95 /* GNTextTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextTableViewDelegate.m; sourceTree = "<group>"; };
+		4F3F04801507519F00AA6E95 /* GNLineNumberTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNLineNumberTableView.h; sourceTree = "<group>"; };
+		4F3F04811507519F00AA6E95 /* GNLineNumberTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNLineNumberTableView.m; sourceTree = "<group>"; };
+		4F3F0484150752A600AA6E95 /* GNLineNumberTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNLineNumberTableViewDataSource.h; sourceTree = "<group>"; };
+		4F3F0485150752A600AA6E95 /* GNLineNumberTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNLineNumberTableViewDataSource.m; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
 		4F73FA6D14CF293A00976824 /* GNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProject.m; sourceTree = "<group>"; };
 		4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4F77E90114E4C500001A69E8 /* GNSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSyntaxHighlighter.h; sourceTree = "<group>"; };
 		4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNSyntaxHighlighter.m; sourceTree = "<group>"; };
-		4F77E99A14E4C696001A69E8 /* base.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = base.html; sourceTree = "<group>"; };
-		4F99F26614EA3FC1005E8D91 /* CHANGES.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CHANGES.html; sourceTree = "<group>"; };
-		4F99F26814EA3FC1005E8D91 /* console-externs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "console-externs.js"; sourceTree = "<group>"; };
-		4F99F26914EA3FC1005E8D91 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		4F99F26A14EA3FC1005E8D91 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		4F99F26B14EA3FC1005E8D91 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		4F99F26E14EA3FC1005E8D91 /* lang-apollo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-apollo.js"; sourceTree = "<group>"; };
-		4F99F26F14EA3FC1005E8D91 /* lang-clj.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-clj.js"; sourceTree = "<group>"; };
-		4F99F27014EA3FC1005E8D91 /* lang-css.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-css.js"; sourceTree = "<group>"; };
-		4F99F27114EA3FC1005E8D91 /* lang-go.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-go.js"; sourceTree = "<group>"; };
-		4F99F27214EA3FC1005E8D91 /* lang-hs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-hs.js"; sourceTree = "<group>"; };
-		4F99F27314EA3FC1005E8D91 /* lang-lisp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lisp.js"; sourceTree = "<group>"; };
-		4F99F27414EA3FC1005E8D91 /* lang-lua.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lua.js"; sourceTree = "<group>"; };
-		4F99F27514EA3FC1005E8D91 /* lang-ml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-ml.js"; sourceTree = "<group>"; };
-		4F99F27614EA3FC1005E8D91 /* lang-n.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-n.js"; sourceTree = "<group>"; };
-		4F99F27714EA3FC1005E8D91 /* lang-proto.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-proto.js"; sourceTree = "<group>"; };
-		4F99F27814EA3FC1005E8D91 /* lang-scala.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-scala.js"; sourceTree = "<group>"; };
-		4F99F27914EA3FC1005E8D91 /* lang-sql.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-sql.js"; sourceTree = "<group>"; };
-		4F99F27A14EA3FC1005E8D91 /* lang-tex.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-tex.js"; sourceTree = "<group>"; };
-		4F99F27B14EA3FC1005E8D91 /* lang-vb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vb.js"; sourceTree = "<group>"; };
-		4F99F27C14EA3FC1005E8D91 /* lang-vhdl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vhdl.js"; sourceTree = "<group>"; };
-		4F99F27D14EA3FC1005E8D91 /* lang-wiki.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-wiki.js"; sourceTree = "<group>"; };
-		4F99F27E14EA3FC1005E8D91 /* lang-xq.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-xq.js"; sourceTree = "<group>"; };
-		4F99F27F14EA3FC1005E8D91 /* lang-yaml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-yaml.js"; sourceTree = "<group>"; };
-		4F99F28014EA3FC1005E8D91 /* prettify.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = prettify.css; sourceTree = "<group>"; };
-		4F99F28114EA3FC1005E8D91 /* prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prettify.js; sourceTree = "<group>"; };
-		4F99F28314EA3FC1005E8D91 /* combinePrefixPatterns.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = combinePrefixPatterns.js; sourceTree = "<group>"; };
-		4F99F28414EA3FC1005E8D91 /* externs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = externs.js; sourceTree = "<group>"; };
-		4F99F28514EA3FC1005E8D91 /* extractSourceSpans.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = extractSourceSpans.js; sourceTree = "<group>"; };
-		4F99F28614EA3FC1005E8D91 /* extractSourceSpans_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = extractSourceSpans_test.html; sourceTree = "<group>"; };
-		4F99F28714EA3FC1005E8D91 /* numberLines.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = numberLines.js; sourceTree = "<group>"; };
-		4F99F28814EA3FC1005E8D91 /* numberLines_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = numberLines_test.html; sourceTree = "<group>"; };
-		4F99F28914EA3FC1005E8D91 /* prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prettify.js; sourceTree = "<group>"; };
-		4F99F28A14EA3FC1005E8D91 /* recombineTagsAndDecorations.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = recombineTagsAndDecorations.js; sourceTree = "<group>"; };
-		4F99F28B14EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = recombineTagsAndDecorations_test.html; sourceTree = "<group>"; };
-		4F99F28C14EA3FC1005E8D91 /* regexpPrecederPatterns.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = regexpPrecederPatterns.pl; sourceTree = "<group>"; };
-		4F99F28D14EA3FC1005E8D91 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		4F99F28E14EA3FC1005E8D91 /* README-zh-Hans.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "README-zh-Hans.html"; sourceTree = "<group>"; };
-		4F99F28F14EA3FC1005E8D91 /* README.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = README.html; sourceTree = "<group>"; };
-		4F99F29114EA3FC1005E8D91 /* lang-apollo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-apollo.js"; sourceTree = "<group>"; };
-		4F99F29214EA3FC1005E8D91 /* lang-clj.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-clj.js"; sourceTree = "<group>"; };
-		4F99F29314EA3FC1005E8D91 /* lang-css.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-css.js"; sourceTree = "<group>"; };
-		4F99F29414EA3FC1005E8D91 /* lang-go.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-go.js"; sourceTree = "<group>"; };
-		4F99F29514EA3FC1005E8D91 /* lang-hs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-hs.js"; sourceTree = "<group>"; };
-		4F99F29614EA3FC1005E8D91 /* lang-lisp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lisp.js"; sourceTree = "<group>"; };
-		4F99F29714EA3FC1005E8D91 /* lang-lua.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-lua.js"; sourceTree = "<group>"; };
-		4F99F29814EA3FC1005E8D91 /* lang-ml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-ml.js"; sourceTree = "<group>"; };
-		4F99F29914EA3FC1005E8D91 /* lang-n.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-n.js"; sourceTree = "<group>"; };
-		4F99F29A14EA3FC1005E8D91 /* lang-proto.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-proto.js"; sourceTree = "<group>"; };
-		4F99F29B14EA3FC1005E8D91 /* lang-scala.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-scala.js"; sourceTree = "<group>"; };
-		4F99F29C14EA3FC1005E8D91 /* lang-sql.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-sql.js"; sourceTree = "<group>"; };
-		4F99F29D14EA3FC1005E8D91 /* lang-tex.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-tex.js"; sourceTree = "<group>"; };
-		4F99F29E14EA3FC1005E8D91 /* lang-vb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vb.js"; sourceTree = "<group>"; };
-		4F99F29F14EA3FC1005E8D91 /* lang-vhdl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-vhdl.js"; sourceTree = "<group>"; };
-		4F99F2A014EA3FC1005E8D91 /* lang-wiki.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-wiki.js"; sourceTree = "<group>"; };
-		4F99F2A114EA3FC1005E8D91 /* lang-xq.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-xq.js"; sourceTree = "<group>"; };
-		4F99F2A214EA3FC1005E8D91 /* lang-yaml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-yaml.js"; sourceTree = "<group>"; };
-		4F99F2A314EA3FC1005E8D91 /* prettify.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = prettify.css; sourceTree = "<group>"; };
-		4F99F2A414EA3FC1005E8D91 /* prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prettify.js; sourceTree = "<group>"; };
-		4F99F2A614EA3FC1005E8D91 /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
-		4F99F2A714EA3FC1005E8D91 /* desert.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = desert.css; sourceTree = "<group>"; };
-		4F99F2A814EA3FC1005E8D91 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		4F99F2A914EA3FC1005E8D91 /* sunburst.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = sunburst.css; sourceTree = "<group>"; };
-		4F99F2AB14EA3FC1005E8D91 /* ie-newline-copy-paste.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "ie-newline-copy-paste.html"; sourceTree = "<group>"; };
-		4F99F2AC14EA3FC1005E8D91 /* large_input_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = large_input_test.html; sourceTree = "<group>"; };
-		4F99F2AD14EA3FC1005E8D91 /* prettify_test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = prettify_test.html; sourceTree = "<group>"; };
-		4F99F2AE14EA3FC1005E8D91 /* prettify_test_2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = prettify_test_2.html; sourceTree = "<group>"; };
-		4F99F2AF14EA3FC1005E8D91 /* test_base.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test_base.js; sourceTree = "<group>"; };
-		4F99F2B014EA3FC1005E8D91 /* test_styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = test_styles.css; sourceTree = "<group>"; };
-		4F99F2B214EA3FC1005E8D91 /* LICENSE.TXT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.TXT; sourceTree = "<group>"; };
-		4F99F2B314EA3FC1005E8D91 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		4F806FF3153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewAutocompleteButton.h; sourceTree = "<group>"; };
+		4F806FF4153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewAutocompleteButton.m; sourceTree = "<group>"; };
+		4F806FF7153DFDFA0072AED2 /* GNTextAlternateInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextAlternateInputView.h; sourceTree = "<group>"; };
+		4F806FF8153DFDFA0072AED2 /* GNTextAlternateInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAlternateInputView.m; sourceTree = "<group>"; };
+		4F806FFB153E04AE0072AED2 /* GNTextAutocompleteInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextAutocompleteInputView.h; sourceTree = "<group>"; };
+		4F806FFC153E04AE0072AED2 /* GNTextAutocompleteInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAutocompleteInputView.m; sourceTree = "<group>"; };
+		4F921DCC153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextAutocompleteSuggestionCell.h; sourceTree = "<group>"; };
+		4F921DCD153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAutocompleteSuggestionCell.m; sourceTree = "<group>"; };
+		4F984ED6153D24DF00B5FB3B /* GNAutocompleteDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAutocompleteDictionary.h; sourceTree = "<group>"; };
+		4F984ED7153D24DF00B5FB3B /* GNAutocompleteDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAutocompleteDictionary.m; sourceTree = "<group>"; };
+		4FA2C3AE153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewHideKeyboardButton.h; sourceTree = "<group>"; };
+		4FA2C3AF153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewHideKeyboardButton.m; sourceTree = "<group>"; };
+		4FA4FF361533ADD70054482A /* GNTextAttributer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextAttributer.h; sourceTree = "<group>"; };
+		4FA4FF371533ADD70054482A /* GNTextAttributer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextAttributer.m; sourceTree = "<group>"; };
+		4FA4FF3A1533AF160054482A /* Ahk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ahk.plist; sourceTree = "<group>"; };
+		4FA4FF3B1533AF160054482A /* Bibtex.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Bibtex.plist; sourceTree = "<group>"; };
+		4FA4FF3C1533AF160054482A /* Blog (HTML).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Blog (HTML).plist"; sourceTree = "<group>"; };
+		4FA4FF3D1533AF160054482A /* Blog (Markdown).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Blog (Markdown).plist"; sourceTree = "<group>"; };
+		4FA4FF3E1533AF160054482A /* Blog (Text).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Blog (Text).plist"; sourceTree = "<group>"; };
+		4FA4FF3F1533AF160054482A /* Blog (Textile).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Blog (Textile).plist"; sourceTree = "<group>"; };
+		4FA4FF401533AF160054482A /* Build.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Build.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF411533AF160054482A /* Bulletin Board.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Bulletin Board.plist"; sourceTree = "<group>"; };
+		4FA4FF421533AF160054482A /* C#.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "C#.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF431533AF160054482A /* C++.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "C++.plist"; sourceTree = "<group>"; };
+		4FA4FF441533AF160054482A /* C.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = C.plist; sourceTree = "<group>"; };
+		4FA4FF451533AF160054482A /* CSS Zen.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "CSS Zen.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF461533AF160054482A /* CSS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CSS.plist; sourceTree = "<group>"; };
+		4FA4FF471533AF160054482A /* Diff.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Diff.plist; sourceTree = "<group>"; };
+		4FA4FF481533AF160054482A /* Doxygen.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Doxygen.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF491533AF160054482A /* ExpressionEngine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ExpressionEngine.plist; sourceTree = "<group>"; };
+		4FA4FF4A1533AF160054482A /* HTML (Rails).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HTML (Rails).plist"; sourceTree = "<group>"; };
+		4FA4FF4B1533AF160054482A /* HTML Zen.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "HTML Zen.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF4C1533AF160054482A /* HTML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HTML.plist; sourceTree = "<group>"; };
+		4FA4FF4D1533AF160054482A /* Ini.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ini.plist; sourceTree = "<group>"; };
+		4FA4FF4E1533AF160054482A /* Java.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Java.plist; sourceTree = "<group>"; };
+		4FA4FF4F1533AF160054482A /* JavaProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = JavaProperties.plist; sourceTree = "<group>"; };
+		4FA4FF501533AF160054482A /* JavaScript (Rails).tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "JavaScript (Rails).tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF511533AF160054482A /* JavaScript.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = JavaScript.plist; sourceTree = "<group>"; };
+		4FA4FF521533AF160054482A /* LanguageGrammar.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LanguageGrammar.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF531533AF160054482A /* LaTeX Beamer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LaTeX Beamer.plist"; sourceTree = "<group>"; };
+		4FA4FF541533AF160054482A /* LaTeX Log.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LaTeX Log.plist"; sourceTree = "<group>"; };
+		4FA4FF551533AF160054482A /* LaTeX Memoir.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "LaTeX Memoir.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF561533AF160054482A /* LaTeX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LaTeX.plist; sourceTree = "<group>"; };
+		4FA4FF571533AF160054482A /* Lisp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lisp.plist; sourceTree = "<group>"; };
+		4FA4FF581533AF160054482A /* Makefile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Makefile.plist; sourceTree = "<group>"; };
+		4FA4FF591533AF160054482A /* Markdown.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Markdown.plist; sourceTree = "<group>"; };
+		4FA4FF5A1533AF160054482A /* Mediawiki.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Mediawiki.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF5B1533AF160054482A /* MSDOS batch file.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "MSDOS batch file.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF5C1533AF160054482A /* MultiMarkdown.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MultiMarkdown.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF5D1533AF160054482A /* OpenGL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OpenGL.plist; sourceTree = "<group>"; };
+		4FA4FF5E1533AF160054482A /* Perl.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Perl.plist; sourceTree = "<group>"; };
+		4FA4FF5F1533AF160054482A /* PHP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PHP.plist; sourceTree = "<group>"; };
+		4FA4FF601533AF160054482A /* Plain text.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Plain text.plist"; sourceTree = "<group>"; };
+		4FA4FF611533AF160054482A /* Property List.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Property List.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF621533AF160054482A /* Python.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Python.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF631533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Regular Expressions (Oniguruma).tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF641533AF160054482A /* Regular Expressions (Python).tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Regular Expressions (Python).tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF651533AF160054482A /* Release Notes.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Release Notes.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF661533AF160054482A /* RJS.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RJS.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF671533AF160054482A /* Ruby on Rails.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ruby on Rails.plist"; sourceTree = "<group>"; };
+		4FA4FF681533AF160054482A /* Ruby Sass.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Ruby Sass.tmLanguage"; sourceTree = "<group>"; };
+		4FA4FF691533AF160054482A /* Ruby.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Ruby.plist; sourceTree = "<group>"; };
+		4FA4FF6A1533AF160054482A /* SCSS.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SCSS.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF6B1533AF160054482A /* Shell-Unix-Generic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Shell-Unix-Generic.plist"; sourceTree = "<group>"; };
+		4FA4FF6C1533AF160054482A /* Smarty.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Smarty.plist; sourceTree = "<group>"; };
+		4FA4FF6D1533AF160054482A /* Snippet.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Snippet.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF6E1533AF160054482A /* SQL (Rails).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SQL (Rails).plist"; sourceTree = "<group>"; };
+		4FA4FF6F1533AF160054482A /* SQL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SQL.plist; sourceTree = "<group>"; };
+		4FA4FF701533AF160054482A /* Subversion commit message.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Subversion commit message.plist"; sourceTree = "<group>"; };
+		4FA4FF711533AF160054482A /* TeX Math.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TeX Math.plist"; sourceTree = "<group>"; };
+		4FA4FF721533AF160054482A /* TeX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TeX.plist; sourceTree = "<group>"; };
+		4FA4FF731533AF160054482A /* Textile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Textile.plist; sourceTree = "<group>"; };
+		4FA4FF741533AF160054482A /* Todo.txt.tmLanguage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Todo.txt.tmLanguage; sourceTree = "<group>"; };
+		4FA4FF751533AF160054482A /* XML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XML.plist; sourceTree = "<group>"; };
+		4FA4FF761533AF160054482A /* XSL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XSL.plist; sourceTree = "<group>"; };
+		4FA4FF771533AF160054482A /* YAML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YAML.plist; sourceTree = "<group>"; };
+		4FB2674C15408FDB0086B994 /* GNNotificationNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNotificationNames.h; sourceTree = "<group>"; };
+		4FB2674D154093730086B994 /* GNInsertionPointManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNInsertionPointManager.h; sourceTree = "<group>"; };
+		4FB2674E154093730086B994 /* GNInsertionPointManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNInsertionPointManager.m; sourceTree = "<group>"; };
+		4FB267511540A43F0086B994 /* GNFileText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileText.h; sourceTree = "<group>"; };
+		4FB267521540A43F0086B994 /* GNFileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileText.m; sourceTree = "<group>"; };
+		4FB267551540A4690086B994 /* GNHorizontalOffsetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNHorizontalOffsetManager.h; sourceTree = "<group>"; };
+		4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNHorizontalOffsetManager.m; sourceTree = "<group>"; };
+		4FB267591540AC540086B994 /* GNAttributedFileText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAttributedFileText.h; sourceTree = "<group>"; };
+		4FB2675A1540AC550086B994 /* GNAttributedFileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAttributedFileText.m; sourceTree = "<group>"; };
+		4FB267691540F2310086B994 /* HideKeyboardButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HideKeyboardButton.png; sourceTree = "<group>"; };
 		4FB4E6F014F73D8100436618 /* Genesis_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_57.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F214F73D8700436618 /* Genesis_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_114.png; sourceTree = SOURCE_ROOT; };
 		4FB4E6F614F73DF400436618 /* Genesis_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Genesis_72.png; sourceTree = SOURCE_ROOT; };
+		4FBD8B8315324BD9006D510E /* GNTextLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextLineView.h; sourceTree = "<group>"; };
+		4FBD8B8415324BD9006D510E /* GNTextLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextLineView.m; sourceTree = "<group>"; };
+		4FD1C2D8153C889100DD4A3D /* GNTextInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryView.h; sourceTree = "<group>"; };
+		4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryView.m; sourceTree = "<group>"; };
+		4FD1C2DD153C891300DD4A3D /* GNTextInputAccessoryViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewButton.h; sourceTree = "<group>"; };
+		4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewButton.m; sourceTree = "<group>"; };
+		4FD614A51536573400D6E859 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
+		4FE4278C154133A100E843F0 /* GNTextInputAccessoryViewTabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewTabButton.h; sourceTree = "<group>"; };
+		4FE4278D154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewTabButton.m; sourceTree = "<group>"; };
+		4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNScrollViewDelegate.h; sourceTree = "<group>"; };
+		4FEC7B181537D34000AA861F /* Inconsolata.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inconsolata.otf; sourceTree = "<group>"; };
+		4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Inconsolata Licence (Open Font License).txt"; sourceTree = "<group>"; };
+		4FEC7B1D1537D3A800AA861F /* ebundle-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ebundle-license.txt"; sourceTree = "<group>"; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
 		4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNProjectBrowserViewController.xib; sourceTree = "<group>"; };
@@ -270,6 +523,10 @@
 		4FFDA04114CCF2E300422FF5 /* GNNewProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNewProjectViewController.h; sourceTree = "<group>"; };
 		4FFDA04214CCF2E300422FF5 /* GNNewProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNewProjectViewController.m; sourceTree = "<group>"; };
 		4FFDA04314CCF2E300422FF5 /* GNNewProjectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNNewProjectViewController.xib; sourceTree = "<group>"; };
+		4FFF7D5C151A106E00C986A1 /* GNTextInputManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputManagerView.h; sourceTree = "<group>"; };
+		4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputManagerView.m; sourceTree = "<group>"; };
+		4FFF7D61151A2D1600C986A1 /* GNTextGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextGeometry.h; sourceTree = "<group>"; };
+		4FFF7D62151A2D1600C986A1 /* GNTextGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextGeometry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,16 +559,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F7030B914EFAF1A002FEA32 /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				1F7030BA14EFAF36002FEA32 /* JSONKit.h */,
-				1F7030BB14EFAF36002FEA32 /* JSONKit.m */,
-				1F7030BC14EFAF36002FEA32 /* README.md */,
-			);
-			name = JSONKit;
-			sourceTree = "<group>";
-		};
 		1F7030C214EFB4B6002FEA32 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,7 +578,6 @@
 		1FEEBE9514EEC8F800C6E099 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				1F7030B914EFAF1A002FEA32 /* JSONKit */,
 				1FEEBE9E14EECBBF00C6E099 /* CocoaAsyncSockets */,
 				1F7030C214EFB4B6002FEA32 /* Model */,
 				1FFBE81214F5F1A800FC1DF2 /* Internals */,
@@ -373,6 +619,67 @@
 			name = "New Filesystem Entry";
 			sourceTree = "<group>";
 		};
+		4F04814615413C3600467E06 /* Tab Arrow Glyph View */ = {
+			isa = PBXGroup;
+			children = (
+				4F04814215413C3300467E06 /* GNTabArrowGlyphView.h */,
+				4F04814315413C3300467E06 /* GNTabArrowGlyphView.m */,
+			);
+			name = "Tab Arrow Glyph View";
+			sourceTree = "<group>";
+		};
+		4F06011B1533D2740022187D /* themes */ = {
+			isa = PBXGroup;
+			children = (
+				4F06011C1533D2740022187D /* Active4D.tmTheme */,
+				4F06011D1533D2740022187D /* All Hallow's Eve.tmTheme */,
+				4F06011E1533D2740022187D /* Amy.tmTheme */,
+				4F06011F1533D2740022187D /* Blackboard.tmTheme */,
+				4F0601201533D2740022187D /* Brilliance Black.tmTheme */,
+				4F0601211533D2740022187D /* Cobalt.tmTheme */,
+				4F0601221533D2740022187D /* Dawn.tmTheme */,
+				4F0601231533D2740022187D /* Dobdark.tmTheme */,
+				4F0601241533D2740022187D /* ebundle-license.txt */,
+				4F0601251533D2740022187D /* Eiffel.tmTheme */,
+				4F0601261533D2740022187D /* Espresso Libre.tmTheme */,
+				4F0601271533D2740022187D /* IDLE.tmTheme */,
+				4F0601281533D2740022187D /* iLife 05.tmTheme */,
+				4F0601291533D2740022187D /* iPlastic.tmTheme */,
+				4F06012A1533D2740022187D /* LAZY.tmTheme */,
+				4F06012B1533D2740022187D /* Mac Classic.tmTheme */,
+				4F06012C1533D2740022187D /* MagicWB (Amiga).tmTheme */,
+				4F06012D1533D2740022187D /* monoindustrial.tmTheme */,
+				4F06012E1533D2740022187D /* Monokai.tmTheme */,
+				4F06012F1533D2740022187D /* Pastels on Dark.tmTheme */,
+				4F0601301533D2740022187D /* Slush & Poppies.tmTheme */,
+				4F0601311533D2740022187D /* SpaceCadet.tmTheme */,
+				4F0601321533D2740022187D /* Sunburst.tmTheme */,
+				4F0601331533D2740022187D /* Twilight.tmTheme */,
+				4F0601341533D2740022187D /* Vibrant Ink.tmTheme */,
+				4F0601351533D2740022187D /* Zenburnesque.tmTheme */,
+			);
+			path = themes;
+			sourceTree = "<group>";
+		};
+		4F06016F1533D6190022187D /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				4F0601701533D69A0022187D /* GNTheme.h */,
+				4F0601711533D69A0022187D /* GNTheme.m */,
+				4F0601761533F15F0022187D /* TM Bundle Attribute Name Transformer */,
+			);
+			name = Themes;
+			sourceTree = "<group>";
+		};
+		4F0601761533F15F0022187D /* TM Bundle Attribute Name Transformer */ = {
+			isa = PBXGroup;
+			children = (
+				4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */,
+				4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */,
+			);
+			name = "TM Bundle Attribute Name Transformer";
+			sourceTree = "<group>";
+		};
 		4F1E6ACC14F2167700583852 /* File Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,29 +698,33 @@
 			name = "Caret View";
 			sourceTree = "<group>";
 		};
-		4F1F04A414E1B37E008619C0 /* Text Container View */ = {
+		4F1F04A414E1B37E008619C0 /* Text View */ = {
 			isa = PBXGroup;
 			children = (
 				4F1F049D14E1B128008619C0 /* GNTextView.h */,
 				4F1F049E14E1B128008619C0 /* GNTextView.m */,
+				4FFF7D60151A107200C986A1 /* Input */,
 			);
-			name = "Text Container View";
+			name = "Text View";
 			sourceTree = "<group>";
 		};
-		4F1F04A514E1B3A8008619C0 /* Text Rendering / UITextInput */ = {
+		4F1F04A514E1B3A8008619C0 /* Text View TableView */ = {
 			isa = PBXGroup;
 			children = (
-				4F1F049914E1B127008619C0 /* GNTextInnerView.h */,
-				4F1F049A14E1B127008619C0 /* GNTextInnerView.m */,
+				4F1F049914E1B127008619C0 /* GNTextTableView.h */,
+				4F1F049A14E1B127008619C0 /* GNTextTableView.m */,
+				4F3F046E150744F000AA6E95 /* Data Source */,
+				4F3F047F15074E4B00AA6E95 /* Delegate */,
+				4F3F0472150745D600AA6E95 /* Cell */,
 			);
-			name = "Text Rendering / UITextInput";
+			name = "Text View TableView";
 			sourceTree = "<group>";
 		};
 		4F1F04A614E1B3B9008619C0 /* Text Geometry */ = {
 			isa = PBXGroup;
 			children = (
-				4F1F049B14E1B127008619C0 /* GNTextRange.h */,
-				4F1F049C14E1B127008619C0 /* GNTextRange.m */,
+				4FFF7D61151A2D1600C986A1 /* GNTextGeometry.h */,
+				4FFF7D62151A2D1600C986A1 /* GNTextGeometry.m */,
 			);
 			name = "Text Geometry";
 			sourceTree = "<group>";
@@ -421,12 +732,15 @@
 		4F21143114DCEF18001EE6C9 /* Text Editing */ = {
 			isa = PBXGroup;
 			children = (
+				4FEBDE7A15075A6B005FA523 /* GNScrollViewDelegate.h */,
 				4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */,
 				4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */,
-				4F21143914DCF0C8001EE6C9 /* GNTextViewController.xib */,
+				4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */,
+				4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */,
 				4F1F04A314E1B35D008619C0 /* Caret View */,
-				4F1F04A414E1B37E008619C0 /* Text Container View */,
-				4F1F04A514E1B3A8008619C0 /* Text Rendering / UITextInput */,
+				4F1F04A414E1B37E008619C0 /* Text View */,
+				4F1F04A514E1B3A8008619C0 /* Text View TableView */,
+				4F3F0483150751A200AA6E95 /* Line Numbers */,
 				4F1F04A614E1B3B9008619C0 /* Text Geometry */,
 				4F77E90414E4C503001A69E8 /* Syntax Highlighting */,
 			);
@@ -480,6 +794,7 @@
 				4FFDA03D14CCEB3C00422FF5 /* Project Browser */,
 				4F3E372314CFA91000E91A1A /* Project Viewing */,
 				4F21143114DCEF18001EE6C9 /* Text Editing */,
+				4F3F046A150740AE00AA6E95 /* File Representation */,
 				4F1E6ACC14F2167700583852 /* File Manager */,
 			);
 			path = Genesis;
@@ -488,11 +803,16 @@
 		4F293B8414CCE88100020A09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F26514EA3FC1005E8D91 /* google-code-prettify */,
+				4FB2674C15408FDB0086B994 /* GNNotificationNames.h */,
 				4F293B8514CCE88100020A09 /* Genesis-Info.plist */,
 				4F293B8614CCE88100020A09 /* InfoPlist.strings */,
+				4FD614A51536573400D6E859 /* Entitlements.plist */,
 				4F293B8914CCE88100020A09 /* main.m */,
 				4F293B8B14CCE88100020A09 /* Genesis-Prefix.pch */,
+				4FB267681540EFD30086B994 /* Images */,
+				4FEC7B161537D34000AA861F /* Fonts */,
+				4F06011B1533D2740022187D /* themes */,
+				4FA4FF391533AF160054482A /* languages */,
 				4FB4E6E714F73C8D00436618 /* Icons */,
 			);
 			name = "Supporting Files";
@@ -532,6 +852,59 @@
 			name = "Project Viewing";
 			sourceTree = "<group>";
 		};
+		4F3F046A150740AE00AA6E95 /* File Representation */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F0466150740A300AA6E95 /* GNFileRepresentation.h */,
+				4F3F0467150740A300AA6E95 /* GNFileRepresentation.m */,
+				4FB267541540A4420086B994 /* File Text */,
+				4FB2675C1540AC580086B994 /* Attributed File Text */,
+				4FB267581540A46D0086B994 /* Horizontal Offset Management */,
+				4FB267501540937D0086B994 /* Insertion Point Management */,
+				4F984EDA153D24E200B5FB3B /* Autocomplete Dictionary */,
+			);
+			name = "File Representation";
+			sourceTree = "<group>";
+		};
+		4F3F046E150744F000AA6E95 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F046B150744ED00AA6E95 /* GNTextTableViewDataSource.h */,
+				4F3F046C150744ED00AA6E95 /* GNTextTableViewDataSource.m */,
+			);
+			name = "Data Source";
+			sourceTree = "<group>";
+		};
+		4F3F0472150745D600AA6E95 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F046F150745D300AA6E95 /* GNTextTableViewCell.h */,
+				4F3F0470150745D300AA6E95 /* GNTextTableViewCell.m */,
+				4FBD8B8715324BDC006D510E /* Line View */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		4F3F047F15074E4B00AA6E95 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F047B15074E4700AA6E95 /* GNTextTableViewDelegate.h */,
+				4F3F047C15074E4700AA6E95 /* GNTextTableViewDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		4F3F0483150751A200AA6E95 /* Line Numbers */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F04801507519F00AA6E95 /* GNLineNumberTableView.h */,
+				4F3F04811507519F00AA6E95 /* GNLineNumberTableView.m */,
+				4F3F0484150752A600AA6E95 /* GNLineNumberTableViewDataSource.h */,
+				4F3F0485150752A600AA6E95 /* GNLineNumberTableViewDataSource.m */,
+			);
+			name = "Line Numbers";
+			sourceTree = "<group>";
+		};
 		4F73FA7014CF294000976824 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,154 +917,183 @@
 		4F77E90414E4C503001A69E8 /* Syntax Highlighting */ = {
 			isa = PBXGroup;
 			children = (
+				4F06016F1533D6190022187D /* Themes */,
 				4F77E90114E4C500001A69E8 /* GNSyntaxHighlighter.h */,
 				4F77E90214E4C500001A69E8 /* GNSyntaxHighlighter.m */,
-				4F77E99A14E4C696001A69E8 /* base.html */,
-				4F1DCC7A14E9DFEA00811CFA /* parsecode.js */,
+				4FA4FF361533ADD70054482A /* GNTextAttributer.h */,
+				4FA4FF371533ADD70054482A /* GNTextAttributer.m */,
 			);
 			name = "Syntax Highlighting";
 			sourceTree = "<group>";
 		};
-		4F99F26514EA3FC1005E8D91 /* google-code-prettify */ = {
+		4F806FF6153D44950072AED2 /* Autocomplete Button */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F26614EA3FC1005E8D91 /* CHANGES.html */,
-				4F99F26714EA3FC1005E8D91 /* closure-compiler */,
-				4F99F26B14EA3FC1005E8D91 /* COPYING */,
-				4F99F26C14EA3FC1005E8D91 /* distrib */,
-				4F99F28214EA3FC1005E8D91 /* js-modules */,
-				4F99F28D14EA3FC1005E8D91 /* Makefile */,
-				4F99F28E14EA3FC1005E8D91 /* README-zh-Hans.html */,
-				4F99F28F14EA3FC1005E8D91 /* README.html */,
-				4F99F29014EA3FC1005E8D91 /* src */,
-				4F99F2A514EA3FC1005E8D91 /* styles */,
-				4F99F2AA14EA3FC1005E8D91 /* tests */,
-				4F99F2B114EA3FC1005E8D91 /* yui-compressor */,
+				4F806FF3153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.h */,
+				4F806FF4153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m */,
 			);
-			name = "google-code-prettify";
-			path = "../../google-code-prettify";
+			name = "Autocomplete Button";
 			sourceTree = "<group>";
 		};
-		4F99F26714EA3FC1005E8D91 /* closure-compiler */ = {
+		4F806FFA153DFE0B0072AED2 /* Alternate Input Views */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F26814EA3FC1005E8D91 /* console-externs.js */,
-				4F99F26914EA3FC1005E8D91 /* COPYING */,
-				4F99F26A14EA3FC1005E8D91 /* README */,
+				4F806FF7153DFDFA0072AED2 /* GNTextAlternateInputView.h */,
+				4F806FF8153DFDFA0072AED2 /* GNTextAlternateInputView.m */,
+				4F806FFE153E04B30072AED2 /* Autocomplete View */,
 			);
-			path = "closure-compiler";
+			name = "Alternate Input Views";
 			sourceTree = "<group>";
 		};
-		4F99F26C14EA3FC1005E8D91 /* distrib */ = {
+		4F806FFE153E04B30072AED2 /* Autocomplete View */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F26D14EA3FC1005E8D91 /* google-code-prettify */,
+				4F806FFB153E04AE0072AED2 /* GNTextAutocompleteInputView.h */,
+				4F806FFC153E04AE0072AED2 /* GNTextAutocompleteInputView.m */,
+				4F921DD0153FC943004C8B3B /* Cell */,
 			);
-			path = distrib;
+			name = "Autocomplete View";
 			sourceTree = "<group>";
 		};
-		4F99F26D14EA3FC1005E8D91 /* google-code-prettify */ = {
+		4F921DD0153FC943004C8B3B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F26E14EA3FC1005E8D91 /* lang-apollo.js */,
-				4F99F26F14EA3FC1005E8D91 /* lang-clj.js */,
-				4F99F27014EA3FC1005E8D91 /* lang-css.js */,
-				4F99F27114EA3FC1005E8D91 /* lang-go.js */,
-				4F99F27214EA3FC1005E8D91 /* lang-hs.js */,
-				4F99F27314EA3FC1005E8D91 /* lang-lisp.js */,
-				4F99F27414EA3FC1005E8D91 /* lang-lua.js */,
-				4F99F27514EA3FC1005E8D91 /* lang-ml.js */,
-				4F99F27614EA3FC1005E8D91 /* lang-n.js */,
-				4F99F27714EA3FC1005E8D91 /* lang-proto.js */,
-				4F99F27814EA3FC1005E8D91 /* lang-scala.js */,
-				4F99F27914EA3FC1005E8D91 /* lang-sql.js */,
-				4F99F27A14EA3FC1005E8D91 /* lang-tex.js */,
-				4F99F27B14EA3FC1005E8D91 /* lang-vb.js */,
-				4F99F27C14EA3FC1005E8D91 /* lang-vhdl.js */,
-				4F99F27D14EA3FC1005E8D91 /* lang-wiki.js */,
-				4F99F27E14EA3FC1005E8D91 /* lang-xq.js */,
-				4F99F27F14EA3FC1005E8D91 /* lang-yaml.js */,
-				4F99F28014EA3FC1005E8D91 /* prettify.css */,
-				4F99F28114EA3FC1005E8D91 /* prettify.js */,
+				4F921DCC153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.h */,
+				4F921DCD153FC93F004C8B3B /* GNTextAutocompleteSuggestionCell.m */,
 			);
-			path = "google-code-prettify";
+			name = Cell;
 			sourceTree = "<group>";
 		};
-		4F99F28214EA3FC1005E8D91 /* js-modules */ = {
+		4F984EDA153D24E200B5FB3B /* Autocomplete Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F28314EA3FC1005E8D91 /* combinePrefixPatterns.js */,
-				4F99F28414EA3FC1005E8D91 /* externs.js */,
-				4F99F28514EA3FC1005E8D91 /* extractSourceSpans.js */,
-				4F99F28614EA3FC1005E8D91 /* extractSourceSpans_test.html */,
-				4F99F28714EA3FC1005E8D91 /* numberLines.js */,
-				4F99F28814EA3FC1005E8D91 /* numberLines_test.html */,
-				4F99F28914EA3FC1005E8D91 /* prettify.js */,
-				4F99F28A14EA3FC1005E8D91 /* recombineTagsAndDecorations.js */,
-				4F99F28B14EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html */,
-				4F99F28C14EA3FC1005E8D91 /* regexpPrecederPatterns.pl */,
+				4F984ED6153D24DF00B5FB3B /* GNAutocompleteDictionary.h */,
+				4F984ED7153D24DF00B5FB3B /* GNAutocompleteDictionary.m */,
 			);
-			path = "js-modules";
+			name = "Autocomplete Dictionary";
 			sourceTree = "<group>";
 		};
-		4F99F29014EA3FC1005E8D91 /* src */ = {
+		4FA2C3B2153CECC300D7B5B2 /* Hide Keyboard Button */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F29114EA3FC1005E8D91 /* lang-apollo.js */,
-				4F99F29214EA3FC1005E8D91 /* lang-clj.js */,
-				4F99F29314EA3FC1005E8D91 /* lang-css.js */,
-				4F99F29414EA3FC1005E8D91 /* lang-go.js */,
-				4F99F29514EA3FC1005E8D91 /* lang-hs.js */,
-				4F99F29614EA3FC1005E8D91 /* lang-lisp.js */,
-				4F99F29714EA3FC1005E8D91 /* lang-lua.js */,
-				4F99F29814EA3FC1005E8D91 /* lang-ml.js */,
-				4F99F29914EA3FC1005E8D91 /* lang-n.js */,
-				4F99F29A14EA3FC1005E8D91 /* lang-proto.js */,
-				4F99F29B14EA3FC1005E8D91 /* lang-scala.js */,
-				4F99F29C14EA3FC1005E8D91 /* lang-sql.js */,
-				4F99F29D14EA3FC1005E8D91 /* lang-tex.js */,
-				4F99F29E14EA3FC1005E8D91 /* lang-vb.js */,
-				4F99F29F14EA3FC1005E8D91 /* lang-vhdl.js */,
-				4F99F2A014EA3FC1005E8D91 /* lang-wiki.js */,
-				4F99F2A114EA3FC1005E8D91 /* lang-xq.js */,
-				4F99F2A214EA3FC1005E8D91 /* lang-yaml.js */,
-				4F99F2A314EA3FC1005E8D91 /* prettify.css */,
-				4F99F2A414EA3FC1005E8D91 /* prettify.js */,
+				4FA2C3AE153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.h */,
+				4FA2C3AF153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m */,
 			);
-			path = src;
+			name = "Hide Keyboard Button";
 			sourceTree = "<group>";
 		};
-		4F99F2A514EA3FC1005E8D91 /* styles */ = {
+		4FA4FF391533AF160054482A /* languages */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F2A614EA3FC1005E8D91 /* demo.html */,
-				4F99F2A714EA3FC1005E8D91 /* desert.css */,
-				4F99F2A814EA3FC1005E8D91 /* index.html */,
-				4F99F2A914EA3FC1005E8D91 /* sunburst.css */,
+				4FA4FF3A1533AF160054482A /* Ahk.plist */,
+				4FA4FF3B1533AF160054482A /* Bibtex.plist */,
+				4FA4FF3C1533AF160054482A /* Blog (HTML).plist */,
+				4FA4FF3D1533AF160054482A /* Blog (Markdown).plist */,
+				4FA4FF3E1533AF160054482A /* Blog (Text).plist */,
+				4FA4FF3F1533AF160054482A /* Blog (Textile).plist */,
+				4FA4FF401533AF160054482A /* Build.tmLanguage */,
+				4FA4FF411533AF160054482A /* Bulletin Board.plist */,
+				4FA4FF421533AF160054482A /* C#.tmLanguage */,
+				4FA4FF431533AF160054482A /* C++.plist */,
+				4FA4FF441533AF160054482A /* C.plist */,
+				4FA4FF451533AF160054482A /* CSS Zen.tmLanguage */,
+				4FA4FF461533AF160054482A /* CSS.plist */,
+				4FA4FF471533AF160054482A /* Diff.plist */,
+				4FA4FF481533AF160054482A /* Doxygen.tmLanguage */,
+				4FEC7B1D1537D3A800AA861F /* ebundle-license.txt */,
+				4FA4FF491533AF160054482A /* ExpressionEngine.plist */,
+				4FA4FF4A1533AF160054482A /* HTML (Rails).plist */,
+				4FA4FF4B1533AF160054482A /* HTML Zen.tmLanguage */,
+				4FA4FF4C1533AF160054482A /* HTML.plist */,
+				4FA4FF4D1533AF160054482A /* Ini.plist */,
+				4FA4FF4E1533AF160054482A /* Java.plist */,
+				4FA4FF4F1533AF160054482A /* JavaProperties.plist */,
+				4FA4FF501533AF160054482A /* JavaScript (Rails).tmLanguage */,
+				4FA4FF511533AF160054482A /* JavaScript.plist */,
+				4FA4FF521533AF160054482A /* LanguageGrammar.tmLanguage */,
+				4FA4FF531533AF160054482A /* LaTeX Beamer.plist */,
+				4FA4FF541533AF160054482A /* LaTeX Log.plist */,
+				4FA4FF551533AF160054482A /* LaTeX Memoir.tmLanguage */,
+				4FA4FF561533AF160054482A /* LaTeX.plist */,
+				4FA4FF571533AF160054482A /* Lisp.plist */,
+				4FA4FF581533AF160054482A /* Makefile.plist */,
+				4FA4FF591533AF160054482A /* Markdown.plist */,
+				4FA4FF5A1533AF160054482A /* Mediawiki.tmLanguage */,
+				4FA4FF5B1533AF160054482A /* MSDOS batch file.tmLanguage */,
+				4FA4FF5C1533AF160054482A /* MultiMarkdown.tmLanguage */,
+				4FA4FF5D1533AF160054482A /* OpenGL.plist */,
+				4FA4FF5E1533AF160054482A /* Perl.plist */,
+				4FA4FF5F1533AF160054482A /* PHP.plist */,
+				4FA4FF601533AF160054482A /* Plain text.plist */,
+				4FA4FF611533AF160054482A /* Property List.tmLanguage */,
+				4FA4FF621533AF160054482A /* Python.tmLanguage */,
+				4FA4FF631533AF160054482A /* Regular Expressions (Oniguruma).tmLanguage */,
+				4FA4FF641533AF160054482A /* Regular Expressions (Python).tmLanguage */,
+				4FA4FF651533AF160054482A /* Release Notes.tmLanguage */,
+				4FA4FF661533AF160054482A /* RJS.tmLanguage */,
+				4FA4FF671533AF160054482A /* Ruby on Rails.plist */,
+				4FA4FF681533AF160054482A /* Ruby Sass.tmLanguage */,
+				4FA4FF691533AF160054482A /* Ruby.plist */,
+				4FA4FF6A1533AF160054482A /* SCSS.tmLanguage */,
+				4FA4FF6B1533AF160054482A /* Shell-Unix-Generic.plist */,
+				4FA4FF6C1533AF160054482A /* Smarty.plist */,
+				4FA4FF6D1533AF160054482A /* Snippet.tmLanguage */,
+				4FA4FF6E1533AF160054482A /* SQL (Rails).plist */,
+				4FA4FF6F1533AF160054482A /* SQL.plist */,
+				4FA4FF701533AF160054482A /* Subversion commit message.plist */,
+				4FA4FF711533AF160054482A /* TeX Math.plist */,
+				4FA4FF721533AF160054482A /* TeX.plist */,
+				4FA4FF731533AF160054482A /* Textile.plist */,
+				4FA4FF741533AF160054482A /* Todo.txt.tmLanguage */,
+				4FA4FF751533AF160054482A /* XML.plist */,
+				4FA4FF761533AF160054482A /* XSL.plist */,
+				4FA4FF771533AF160054482A /* YAML.plist */,
 			);
-			path = styles;
+			path = languages;
 			sourceTree = "<group>";
 		};
-		4F99F2AA14EA3FC1005E8D91 /* tests */ = {
+		4FB267501540937D0086B994 /* Insertion Point Management */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F2AB14EA3FC1005E8D91 /* ie-newline-copy-paste.html */,
-				4F99F2AC14EA3FC1005E8D91 /* large_input_test.html */,
-				4F99F2AD14EA3FC1005E8D91 /* prettify_test.html */,
-				4F99F2AE14EA3FC1005E8D91 /* prettify_test_2.html */,
-				4F99F2AF14EA3FC1005E8D91 /* test_base.js */,
-				4F99F2B014EA3FC1005E8D91 /* test_styles.css */,
+				4FB2674D154093730086B994 /* GNInsertionPointManager.h */,
+				4FB2674E154093730086B994 /* GNInsertionPointManager.m */,
 			);
-			path = tests;
+			name = "Insertion Point Management";
 			sourceTree = "<group>";
 		};
-		4F99F2B114EA3FC1005E8D91 /* yui-compressor */ = {
+		4FB267541540A4420086B994 /* File Text */ = {
 			isa = PBXGroup;
 			children = (
-				4F99F2B214EA3FC1005E8D91 /* LICENSE.TXT */,
-				4F99F2B314EA3FC1005E8D91 /* README */,
+				4FB267511540A43F0086B994 /* GNFileText.h */,
+				4FB267521540A43F0086B994 /* GNFileText.m */,
 			);
-			path = "yui-compressor";
+			name = "File Text";
+			sourceTree = "<group>";
+		};
+		4FB267581540A46D0086B994 /* Horizontal Offset Management */ = {
+			isa = PBXGroup;
+			children = (
+				4FB267551540A4690086B994 /* GNHorizontalOffsetManager.h */,
+				4FB267561540A4690086B994 /* GNHorizontalOffsetManager.m */,
+			);
+			name = "Horizontal Offset Management";
+			sourceTree = "<group>";
+		};
+		4FB2675C1540AC580086B994 /* Attributed File Text */ = {
+			isa = PBXGroup;
+			children = (
+				4FB267591540AC540086B994 /* GNAttributedFileText.h */,
+				4FB2675A1540AC550086B994 /* GNAttributedFileText.m */,
+			);
+			name = "Attributed File Text";
+			sourceTree = "<group>";
+		};
+		4FB267681540EFD30086B994 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4FB267691540F2310086B994 /* HideKeyboardButton.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		4FB4E6E714F73C8D00436618 /* Icons */ = {
@@ -702,6 +1104,56 @@
 				4FB4E6F214F73D8700436618 /* Genesis_114.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		4FBD8B8715324BDC006D510E /* Line View */ = {
+			isa = PBXGroup;
+			children = (
+				4FBD8B8315324BD9006D510E /* GNTextLineView.h */,
+				4FBD8B8415324BD9006D510E /* GNTextLineView.m */,
+			);
+			name = "Line View";
+			sourceTree = "<group>";
+		};
+		4FD1C2DC153C889800DD4A3D /* Input Accessory View */ = {
+			isa = PBXGroup;
+			children = (
+				4FD1C2D8153C889100DD4A3D /* GNTextInputAccessoryView.h */,
+				4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */,
+				4FD1C2E0153C891600DD4A3D /* Buttons */,
+			);
+			name = "Input Accessory View";
+			sourceTree = "<group>";
+		};
+		4FD1C2E0153C891600DD4A3D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				4FD1C2DD153C891300DD4A3D /* GNTextInputAccessoryViewButton.h */,
+				4FD1C2DE153C891300DD4A3D /* GNTextInputAccessoryViewButton.m */,
+				4FA2C3B2153CECC300D7B5B2 /* Hide Keyboard Button */,
+				4F806FF6153D44950072AED2 /* Autocomplete Button */,
+				4FE42790154133A500E843F0 /* Tab Button */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		4FE42790154133A500E843F0 /* Tab Button */ = {
+			isa = PBXGroup;
+			children = (
+				4FE4278C154133A100E843F0 /* GNTextInputAccessoryViewTabButton.h */,
+				4FE4278D154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m */,
+				4F04814615413C3600467E06 /* Tab Arrow Glyph View */,
+			);
+			name = "Tab Button";
+			sourceTree = "<group>";
+		};
+		4FEC7B161537D34000AA861F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC7B181537D34000AA861F /* Inconsolata.otf */,
+				4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		4FFDA03D14CCEB3C00422FF5 /* Project Browser */ = {
@@ -727,6 +1179,17 @@
 			name = "New Project";
 			sourceTree = "<group>";
 		};
+		4FFF7D60151A107200C986A1 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				4FFF7D5C151A106E00C986A1 /* GNTextInputManagerView.h */,
+				4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */,
+				4F806FFA153DFE0B0072AED2 /* Alternate Input Views */,
+				4FD1C2DC153C889800DD4A3D /* Input Accessory View */,
+			);
+			name = Input;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -737,6 +1200,8 @@
 				4F293B7314CCE88100020A09 /* Sources */,
 				4F293B7414CCE88100020A09 /* Frameworks */,
 				4F293B7514CCE88100020A09 /* Resources */,
+				4FA4FFB61533AF4D0054482A /* Copy "languages" files */,
+				4F0601511533D32C0022187D /* Copy "themes" files */,
 			);
 			buildRules = (
 			);
@@ -797,60 +1262,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FF3637714EAECB900125C74 /* console-externs.js in Resources */,
-				4FF3638B14EAECB900125C74 /* combinePrefixPatterns.js in Resources */,
-				4FF3638C14EAECB900125C74 /* externs.js in Resources */,
-				4FF3638D14EAECB900125C74 /* extractSourceSpans.js in Resources */,
-				4FF3638E14EAECB900125C74 /* numberLines.js in Resources */,
-				4FF3639014EAECB900125C74 /* recombineTagsAndDecorations.js in Resources */,
-				4FF3639114EAECB900125C74 /* lang-apollo.js in Resources */,
-				4FF3639214EAECB900125C74 /* lang-clj.js in Resources */,
-				4FF3639314EAECB900125C74 /* lang-css.js in Resources */,
-				4FF3639414EAECB900125C74 /* lang-go.js in Resources */,
-				4FF3639514EAECB900125C74 /* lang-hs.js in Resources */,
-				4FF3639614EAECB900125C74 /* lang-lisp.js in Resources */,
-				4FF3639714EAECB900125C74 /* lang-lua.js in Resources */,
-				4FF3639814EAECB900125C74 /* lang-ml.js in Resources */,
-				4FF3639914EAECB900125C74 /* lang-n.js in Resources */,
-				4FF3639A14EAECB900125C74 /* lang-proto.js in Resources */,
-				4FF3639B14EAECB900125C74 /* lang-scala.js in Resources */,
-				4FF3639C14EAECB900125C74 /* lang-sql.js in Resources */,
-				4FF3639D14EAECB900125C74 /* lang-tex.js in Resources */,
-				4FF3639E14EAECB900125C74 /* lang-vb.js in Resources */,
-				4FF3639F14EAECB900125C74 /* lang-vhdl.js in Resources */,
-				4FF363A014EAECB900125C74 /* lang-wiki.js in Resources */,
-				4FF363A114EAECB900125C74 /* lang-xq.js in Resources */,
-				4FF363A214EAECB900125C74 /* lang-yaml.js in Resources */,
-				4FF363A314EAECB900125C74 /* prettify.js in Resources */,
-				4F1DCC7C14EA234800811CFA /* parsecode.js in Resources */,
 				4F293B8814CCE88100020A09 /* InfoPlist.strings in Resources */,
 				4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */,
 				4FFDA04514CCF2E300422FF5 /* GNNewProjectViewController.xib in Resources */,
 				4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */,
 				4F0216E614D1F3850027DF89 /* GNNewFileEntryViewController.xib in Resources */,
-				4F21143B14DCF0C8001EE6C9 /* GNTextViewController.xib in Resources */,
-				4F77E99B14E4C696001A69E8 /* base.html in Resources */,
-				4F99F2B414EA3FC1005E8D91 /* CHANGES.html in Resources */,
-				4F99F2B814EA3FC1005E8D91 /* COPYING in Resources */,
-				4F99F2D014EA3FC1005E8D91 /* extractSourceSpans_test.html in Resources */,
-				4F99F2D214EA3FC1005E8D91 /* numberLines_test.html in Resources */,
-				4F99F2D514EA3FC1005E8D91 /* recombineTagsAndDecorations_test.html in Resources */,
-				4F99F2D614EA3FC1005E8D91 /* regexpPrecederPatterns.pl in Resources */,
-				4F99F2EC14EA3FC1005E8D91 /* prettify.css in Resources */,
-				4F99F2EE14EA3FC1005E8D91 /* demo.html in Resources */,
-				4F99F2EF14EA3FC1005E8D91 /* desert.css in Resources */,
-				4F99F2F014EA3FC1005E8D91 /* index.html in Resources */,
-				4F99F2F114EA3FC1005E8D91 /* sunburst.css in Resources */,
-				4F99F2F214EA3FC1005E8D91 /* ie-newline-copy-paste.html in Resources */,
-				4F99F2F314EA3FC1005E8D91 /* large_input_test.html in Resources */,
-				4F99F2F414EA3FC1005E8D91 /* prettify_test.html in Resources */,
-				4F99F2F514EA3FC1005E8D91 /* prettify_test_2.html in Resources */,
-				4F99F2F714EA3FC1005E8D91 /* test_styles.css in Resources */,
-				4F99F2F814EA3FC1005E8D91 /* LICENSE.TXT in Resources */,
-				1F7030BE14EFAF36002FEA32 /* README.md in Resources */,
+				4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */,
 				4FB4E6F114F73D8100436618 /* Genesis_57.png in Resources */,
 				4FB4E6F314F73D8700436618 /* Genesis_114.png in Resources */,
 				4FB4E6F714F73DF400436618 /* Genesis_72.png in Resources */,
+				4FD614A61536573400D6E859 /* Entitlements.plist in Resources */,
+				4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */,
+				4FEC7B1A1537D34000AA861F /* Inconsolata.otf in Resources */,
+				4FEC7B1C1537D35800AA861F /* Inconsolata Licence (Open Font License).txt in Resources */,
+				4FEC7B1E1537D3A800AA861F /* ebundle-license.txt in Resources */,
+				4FB2676A1540F2310086B994 /* HideKeyboardButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,11 +1324,9 @@
 				4F0216E514D1F3850027DF89 /* GNNewFileEntryViewController.m in Sources */,
 				4F21143A14DCF0C8001EE6C9 /* GNTextViewController.m in Sources */,
 				4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */,
-				4F1F04A014E1B128008619C0 /* GNTextInnerView.m in Sources */,
-				4F1F04A114E1B128008619C0 /* GNTextRange.m in Sources */,
+				4F1F04A014E1B128008619C0 /* GNTextTableView.m in Sources */,
 				4F1F04A214E1B128008619C0 /* GNTextView.m in Sources */,
 				4F77E90314E4C500001A69E8 /* GNSyntaxHighlighter.m in Sources */,
-				1F7030BD14EFAF36002FEA32 /* JSONKit.m in Sources */,
 				1FE09E2314F2466A004D6B2B /* AsyncSocket.m in Sources */,
 				1FE09E3214F491B6004D6B2B /* NSData+GNNSDataCategory.m in Sources */,
 				1F7030CE14F04558002FEA32 /* GNNetworkResponse.m in Sources */,
@@ -913,6 +1337,32 @@
 				4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */,
 				1F5997BD14F4C5AD005FE26F /* GNAPIClient.m in Sources */,
 				1FFBE80314F4CB7400FC1DF2 /* GNNetworkConstants.m in Sources */,
+				4F3F0468150740A300AA6E95 /* GNFileRepresentation.m in Sources */,
+				4F3F046D150744ED00AA6E95 /* GNTextTableViewDataSource.m in Sources */,
+				4F3F0471150745D300AA6E95 /* GNTextTableViewCell.m in Sources */,
+				4F3F047D15074E4700AA6E95 /* GNTextTableViewDelegate.m in Sources */,
+				4F3F04821507519F00AA6E95 /* GNLineNumberTableView.m in Sources */,
+				4F3F0486150752A600AA6E95 /* GNLineNumberTableViewDataSource.m in Sources */,
+				4FFF7D5E151A106E00C986A1 /* GNTextInputManagerView.m in Sources */,
+				4FFF7D63151A2D1600C986A1 /* GNTextGeometry.m in Sources */,
+				4FBD8B8515324BD9006D510E /* GNTextLineView.m in Sources */,
+				4FA4FF381533ADD70054482A /* GNTextAttributer.m in Sources */,
+				4F0601721533D69A0022187D /* GNTheme.m in Sources */,
+				4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */,
+				4FD1C2DA153C889100DD4A3D /* GNTextInputAccessoryView.m in Sources */,
+				4FD1C2DF153C891300DD4A3D /* GNTextInputAccessoryViewButton.m in Sources */,
+				4FA2C3B0153CECBE00D7B5B2 /* GNTextInputAccessoryViewHideKeyboardButton.m in Sources */,
+				4F984ED8153D24DF00B5FB3B /* GNAutocompleteDictionary.m in Sources */,
+				4F806FF5153D44910072AED2 /* GNTextInputAccessoryViewAutocompleteButton.m in Sources */,
+				4F806FF9153DFDFB0072AED2 /* GNTextAlternateInputView.m in Sources */,
+				4F806FFD153E04AE0072AED2 /* GNTextAutocompleteInputView.m in Sources */,
+				4F921DCE153FC940004C8B3B /* GNTextAutocompleteSuggestionCell.m in Sources */,
+				4FB2674F154093730086B994 /* GNInsertionPointManager.m in Sources */,
+				4FB267531540A43F0086B994 /* GNFileText.m in Sources */,
+				4FB267571540A4690086B994 /* GNHorizontalOffsetManager.m in Sources */,
+				4FB2675B1540AC550086B994 /* GNAttributedFileText.m in Sources */,
+				4FE4278E154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m in Sources */,
+				4F04814415413C3400467E06 /* GNTabArrowGlyphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,6 +1371,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F293BA714CCE88100020A09 /* GenesisTests.m in Sources */,
+				4FFF7D5F151A106E00C986A1 /* GNTextInputManagerView.m in Sources */,
+				4FFF7D64151A2D1600C986A1 /* GNTextGeometry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,6 +1412,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -986,6 +1439,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1073,6 +1527,66 @@
 			};
 			name = Release;
 		};
+		4FD614A81536577700D6E859 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Peter Hajas (96U34VVBWG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "1B3A005E-ED9C-483F-8B79-F11FA1252027";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		4FD614A91536577700D6E859 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Genesis/Genesis-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../DTCoreText/**",
+					/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = "Genesis/Genesis-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
+		4FD614AA1536577700D6E859 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Genesis.app/Genesis";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Genesis/Genesis-Prefix.pch";
+				INFOPLIST_FILE = "GenesisTests/GenesisTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1081,6 +1595,7 @@
 			buildConfigurations = (
 				4F293BA814CCE88100020A09 /* Debug */,
 				4F293BA914CCE88100020A09 /* Release */,
+				4FD614A81536577700D6E859 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1090,6 +1605,7 @@
 			buildConfigurations = (
 				4F293BAB14CCE88100020A09 /* Debug */,
 				4F293BAC14CCE88100020A09 /* Release */,
+				4FD614A91536577700D6E859 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1099,6 +1615,7 @@
 			buildConfigurations = (
 				4F293BAE14CCE88100020A09 /* Debug */,
 				4F293BAF14CCE88100020A09 /* Release */,
+				4FD614AA1536577700D6E859 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,24 +14,32 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "GNTextInnerView.h"
+#import "GNTextTableView.h"
+#import "GNTextTableViewDataSource.h"
+#import "GNTextTableViewDelegate.h"
 
-@protocol GNTextViewDataDelegate
+#import "GNTextInputManagerView.h"
 
--(void)textChanged;
+#import "GNLineNumberTableView.h"
 
-@end
+#import "GNFileRepresentation.h"
 
-@interface GNTextView : UIScrollView <GNTextInnerViewContainerProtocol>
-
+@interface GNTextView : UIView <GNTextInputManagerViewDelegate,
+                                GNScrollViewDelegate,
+                                UIScrollViewDelegate>
 {
-    GNTextInnerView* innerView;
-    id<GNTextViewDataDelegate> dataDelegate;
+    GNTextTableView* textTableView;
+    GNTextTableViewDataSource* textTableViewDataSource;
+    GNTextTableViewDelegate* textTableViewDelegate;
+    
+    GNTextInputManagerView* textInputManagerView;
+    
+    GNLineNumberTableView* lineNumberTableView;
+    
+    GNFileRepresentation* fileRepresentation;
 }
 
--(void)keyboardWillChange:(id)object;
-
-@property(nonatomic,retain) NSString* text;
-@property(nonatomic,retain) id<GNTextViewDataDelegate> dataDelegate;
+-(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame;
+-(void)cleanUp;
 
 @end

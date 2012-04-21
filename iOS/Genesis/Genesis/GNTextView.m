@@ -14,95 +14,142 @@
  */
 
 #import "GNTextView.h"
+#import "GNTextTableViewCell.h"
+#import "GNFileRepresentation.h"
 
 @implementation GNTextView
 
-@synthesize dataDelegate;
-
--(void)awakeFromNib
+-(id)initWithBackingPath:(NSString*)path andFrame:(CGRect)_frame
 {
-    innerView = [[GNTextInnerView alloc] init];
-    [innerView setContainerDelegate:self];
-    
-    [self addSubview:innerView];
-    
-    [innerView fitFrameToText];
-    CGSize sizeForTextview = [innerView frame].size;
-    
-    [self setContentSize:sizeForTextview];
-    
-    // Subscribe to keyboard notifications
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillChange:)
-                                                 name:UIKeyboardWillChangeFrameNotification
-                                               object:nil];
-
+    self = [super initWithFrame:_frame];
+    if(self)
+    {
+        // Set file representation
+        fileRepresentation = [[GNFileRepresentation alloc] initWithRelativePath:path];
+        
+        // Register for insertion point changes
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(insertionPointChanged:)
+                                                     name:GNInsertionPointChangedNotification
+                                                   object:nil];
+        
+        // Set our autoresizing mask
+        [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+    }
+    return self;
 }
 
--(void)requiresSize:(CGSize)size
+-(void)didMoveToSuperview
 {
-    [self setContentSize:size];
+    // Create the text table view
+    
+    textTableView = [[GNTextTableView alloc] initWithFrame:CGRectMake([self frame].origin.x + kGNLineNumberTableViewWidth,
+                                                                      [self frame].origin.y,
+                                                                      [self frame].size.width - kGNLineNumberTableViewWidth,
+                                                                      [self frame].size.height)];
+    
+    // Set up its data source
+    textTableViewDataSource = [[GNTextTableViewDataSource alloc] initWithFileRepresentation:fileRepresentation];
+    [textTableView setDataSource:textTableViewDataSource];
+    
+    // Set up its delegate
+    textTableViewDelegate = [[GNTextTableViewDelegate alloc] init];
+    [textTableViewDelegate setScrollDelegate:self];
+    [textTableView setDelegate:textTableViewDelegate];
+    
+    // Add it as a subview
+    
+    [self addSubview:textTableView];
+    
+    // Create the text input manager view
+    textInputManagerView = [[GNTextInputManagerView alloc] initWithFileRepresentation:fileRepresentation];
+    [textInputManagerView setDelegate:self];
+    
+    // Add it as a subview
+    
+    [self addSubview:textInputManagerView];
+    
+    // Create the line number view
+    
+    lineNumberTableView = [[GNLineNumberTableView alloc] initWithFileRepresentation:fileRepresentation
+                                                                             height:[self frame].size.height];
+    [lineNumberTableView setScrollDelegate:self];
+    
+    // Add it as a subview
+    [self addSubview:lineNumberTableView];
+        
+    [textTableView reloadData];
 }
 
--(BOOL)resignFirstResponder
+-(void)insertionPointChanged:(id)object
 {
-    [innerView resignFirstResponder];
-    return [super resignFirstResponder];
+    NSUInteger insertionLine = [[fileRepresentation insertionPointManager] insertionLine];
+    
+    if(insertionLine < [textTableView numberOfRowsInSection:0])
+    {
+        NSIndexPath* insertionPath = [NSIndexPath indexPathForRow:insertionLine inSection:0];
+        
+        [textTableView scrollToRowAtIndexPath:insertionPath
+                             atScrollPosition:UITableViewScrollPositionMiddle
+                                     animated:YES];
+    }
 }
 
-#pragma mark GNTextInnerViewContainerProtocol methods
+#pragma mark GNTextInputManagerViewDelegate methods
 
--(void)requireSize:(CGSize)size
+-(CGFloat)verticalScrollOffset
 {
-    [self setContentSize:size];
+    return [textTableView contentOffset].y;
 }
 
--(void)textChanged
-{
-    [dataDelegate textChanged];
+#pragma mark UIScrollViewDelegate methods
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{    
+    // Match the scroll position between textTableView and lineNumberTableView
+    
+    CGFloat verticalContentOffset = [scrollView contentOffset].y;
+    UIScrollView* otherScrollView;
+    
+    if([scrollView isEqual:textTableView])
+    {
+        otherScrollView = lineNumberTableView;
+    }
+    else if([scrollView isEqual:lineNumberTableView])
+    {
+        otherScrollView = textTableView;
+    }
+    
+    CGPoint otherScrollViewContentOffset = [otherScrollView contentOffset];
+    [otherScrollView setContentOffset:CGPointMake(otherScrollViewContentOffset.x,
+                                                  verticalContentOffset)];
+    
+    [textInputManagerView didScrollToVerticalOffset:verticalContentOffset];
+    
+    // Scroll all table view cells that do not represent the current line to their starting offsets
+    
+    NSArray* tableViewIndexPaths = [textTableView indexPathsForVisibleRows];
+    for(NSIndexPath* tableViewCellPath in tableViewIndexPaths)
+    {
+        GNTextTableViewCell* cell = (GNTextTableViewCell*)[textTableView cellForRowAtIndexPath:tableViewCellPath];
+        if([cell lineNumber] != [[fileRepresentation insertionPointManager] insertionLine])
+        {
+            [cell resetScrollPosition];
+        }
+    }
 }
 
-#pragma mark Keyboard Notification Handling
-
--(void)keyboardWillChange:(id)object
+-(void)cleanUp
 {
-    // Grab the dictionary out of the object
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [fileRepresentation cleanUp];
+    [textTableView cleanUp];
+    [textInputManagerView cleanUp];
+    [lineNumberTableView cleanUp];
     
-    NSDictionary* keyboardGeometry = [object userInfo];
-    
-    // Get the end frame rectangle of the keyboard
-    
-    NSValue* endFrameValue = [keyboardGeometry valueForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect endFrame = [endFrameValue CGRectValue];
-    
-    // Convert the rect into view coordinates from the window, this accounts for rotation
-    
-    UIWindow* appWindow = [[[UIApplication sharedApplication] delegate] window];
-    
-    CGRect keyboardFrame = [self convertRect:endFrame fromView:appWindow];
-    
-    // Our new view frame will have an origin of (0,0), a width the same as the keyboard,
-    // and a height that goes until the keyboard starts (same as its y origin)
-    
-    CGRect newFrameForView = CGRectMake(0,
-                                        0,
-                                        keyboardFrame.size.width,
-                                        keyboardFrame.origin.y);
-    
-    [self setFrame:newFrameForView];
-}
-
-#pragma mark Text Handling
-
--(void)setText:(NSString*)text
-{
-    [innerView setShownText:text];
-}
-
--(NSString*)text
-{
-    return [innerView shownText];
+    [textTableView removeFromSuperview];
+    [textInputManagerView removeFromSuperview];
+    [lineNumberTableView removeFromSuperview];
 }
 
 @end

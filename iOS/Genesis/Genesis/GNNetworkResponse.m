@@ -80,7 +80,7 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<GNNetworkResponse(id=%@, result=%@, error=%@)>",
-            self.identifier, self.result, self.error, nil];
+            self.identifier, self.result, self.error];
 }
 
 @end

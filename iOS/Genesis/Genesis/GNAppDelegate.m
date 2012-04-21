@@ -24,6 +24,8 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
+@synthesize theme;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -42,6 +44,9 @@
     [[UINavigationBar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
+    
+    // Load the default theme
+    theme = [[GNTheme alloc] initWthThemeName:defaultTheme];
     
     return YES;
 }

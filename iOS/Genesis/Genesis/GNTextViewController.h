@@ -16,9 +16,10 @@
 #import <UIKit/UIKit.h>
 #import "GNTextView.h"
 
-@interface GNTextViewController : UIViewController <GNTextViewDataDelegate>
+@interface GNTextViewController : UIViewController
 {
-    IBOutlet GNTextView* textView;
+    IBOutlet UIView* textViewContainerView;
+    GNTextView* textView;
     NSString* backingPath;
 }
 

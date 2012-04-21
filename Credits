@@ -1,0 +1,8 @@
+Genesis uses the following outside components:
+
+JSONKit - https://github.com/johnezang/JSONKit
+ - License found in iOS/Genesis/Genesis/JSONKit.h
+ebundles - http://code.google.com/p/ebundles/
+ - License found in iOS/Genesis/Genesis/languages/ebundle-license.txt and Genesis/iOS/Genesis/Genesis/themes/ebundle-license.txt
+Inconsolata - http://levien.com/type/myfonts/inconsolata.html
+ - License found in iOS/Genesis/Genesis/Fonts/Inconsolata Licence (Open Font License).txt

@@ -26,6 +26,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [textField resignFirstResponder];
     // If the text of the text field isn't blank
     if(![[textField text] isEqualToString:@""])
     {
