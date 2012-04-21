@@ -89,6 +89,7 @@ const NSInteger GNErrorBadProtocol = 2;
     self.serverVersion = *value;
     
     NSLog(@"Server API Version: %@ = %hu", data, self.serverVersion);
+    
     return SUPPORTED_VERSION == self.serverVersion;
 }
 

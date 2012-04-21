@@ -20,6 +20,5 @@
 @interface GNProject : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * remoteRootPath;
 
 @end

@@ -2,10 +2,9 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="GNProject" representedClassName="GNProject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="remoteRootPath" attributeType="String" syncable="YES"/>
     </entity>
     <fetchRequest name="GNAllProjectsFetchRequest" entity="GNProject" predicateString="name != &quot;&quot;"/>
     <elements>
-        <element name="GNProject" positionX="-144" positionY="-54" width="128" height="75"/>
+        <element name="GNProject" positionX="-144" positionY="-54" width="128" height="60"/>
     </elements>
 </model>

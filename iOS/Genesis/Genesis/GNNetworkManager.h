@@ -14,21 +14,19 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "GNAPIClient.h"
 
-@interface GNFileManager : NSObject
+@interface GNNetworkManager : NSObject
+{
+    GNAPIClient* apiClient;
+    NSMutableArray* builders;
+    NSString* currentBuilder;
+}
 
-+(NSString*)absolutePathForRelativePath:(NSString*)relativePath;
-+(NSString*)projectNameForRelativePath:(NSString*)relativePath;
+-(id)initWithHost:(NSString*)host andPort:(uint16_t)port;
+-(void)loginWithUsername:(NSString*)username password:(NSString*)password;
 
-+(NSData*)fileContentsAtRelativePath:(NSString*)relativePath;
-+(void)setFileContentsAtRelativePath:(NSString*)relativePath toContent:(NSData*)content;
-
-+(NSArray*)directoryContentsAtRelativePath:(NSString*)relativePath;
-+(NSArray*)directoryFileContentsAtRelativePath:(NSString*)relativePath;
-+(NSArray*)directoryDirectoryContentsAtRelativePath:(NSString*)relativePath;
-+(BOOL)entryExistsAtRelativePath:(NSString*)relativePath isDirectory:(BOOL)isDirectory;
-
-+(BOOL)createFilesystemEntryAtRelativePath:(NSString*)relativePath withName:(NSString*)name isDirectory:(BOOL)isDirectory;
-+(void)removeContentAtRelativePath:(NSString*)relativePath;
+@property(readonly) GNAPIClient* apiClient;
+@property(readonly) NSMutableArray* builders;
 
 @end

@@ -14,11 +14,19 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "GNNetworkManager.h"
 #import "GNTheme.h"
+
+#define GNSharedAppDelegate (GNAppDelegate*)[[UIApplication sharedApplication] delegate]
+#define GNSharedAppDelegateNetworkManager [GNSharedAppDelegate networkManager]
+#define GNSharedAppDelegateAPIClient [[GNSharedAppDelegate networkManager] apiClient]
+
 
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController* navigationController;
+    
+    GNNetworkManager* networkManager;
     GNTheme* theme;
 }
 @property (strong, nonatomic) UIWindow *window;
@@ -27,6 +35,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (readonly) GNNetworkManager* networkManager;
 @property (readonly) GNTheme* theme;
 
 - (void)saveContext;

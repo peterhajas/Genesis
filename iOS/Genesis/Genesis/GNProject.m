@@ -19,6 +19,5 @@
 @implementation GNProject
 
 @dynamic name;
-@dynamic remoteRootPath;
 
 @end

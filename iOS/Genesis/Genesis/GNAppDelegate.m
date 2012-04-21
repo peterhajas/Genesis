@@ -24,6 +24,7 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
+@synthesize networkManager;
 @synthesize theme;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -44,6 +45,11 @@
     [[UINavigationBar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
+    
+    // Create our network manager
+    networkManager = [[GNNetworkManager alloc] initWithHost:@"localhost"
+                                                    andPort:7331];
+    [networkManager loginWithUsername:@"peterhajas" password:@"zaq12wsx"];
     
     // Load the default theme
     theme = [[GNTheme alloc] initWthThemeName:defaultTheme];

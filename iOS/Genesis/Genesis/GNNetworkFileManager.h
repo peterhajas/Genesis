@@ -15,20 +15,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GNFileManager : NSObject
+@interface GNNetworkFileManager : NSObject
 
-+(NSString*)absolutePathForRelativePath:(NSString*)relativePath;
-+(NSString*)projectNameForRelativePath:(NSString*)relativePath;
++(void)pullAllFilesInRelativePath:(NSString*)relativePath;
++(void)pullFileAtRelativePath:(NSString*)relativePath project:(NSString*)project;
 
-+(NSData*)fileContentsAtRelativePath:(NSString*)relativePath;
-+(void)setFileContentsAtRelativePath:(NSString*)relativePath toContent:(NSData*)content;
-
-+(NSArray*)directoryContentsAtRelativePath:(NSString*)relativePath;
-+(NSArray*)directoryFileContentsAtRelativePath:(NSString*)relativePath;
-+(NSArray*)directoryDirectoryContentsAtRelativePath:(NSString*)relativePath;
-+(BOOL)entryExistsAtRelativePath:(NSString*)relativePath isDirectory:(BOOL)isDirectory;
-
-+(BOOL)createFilesystemEntryAtRelativePath:(NSString*)relativePath withName:(NSString*)name isDirectory:(BOOL)isDirectory;
-+(void)removeContentAtRelativePath:(NSString*)relativePath;
++(void)pushFileAtRelativePath:(NSString*)relativePath project:(NSString*)project;
 
 @end
