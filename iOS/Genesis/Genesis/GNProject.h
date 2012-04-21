@@ -13,7 +13,6 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
@@ -21,6 +20,5 @@
 @interface GNProject : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSManagedObject *rootFolder;
 
 @end

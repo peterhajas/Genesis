@@ -26,6 +26,11 @@
     return absolutePath;
 }
 
++(NSString*)projectNameForRelativePath:(NSString*)relativePath
+{
+    return [[relativePath pathComponents] objectAtIndex:0];
+}
+
 #pragma mark -
 #pragma mark Enumerating contents
 
@@ -136,7 +141,7 @@ return fileContents;
     if(isDirectory)
     {
         [[NSFileManager defaultManager] createDirectoryAtPath:absolutePath
-                                  withIntermediateDirectories:NO
+                                  withIntermediateDirectories:YES
                                                    attributes:nil
                                                         error:&error];
         if(error)
