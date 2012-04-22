@@ -41,12 +41,19 @@
         
         // Create our button
         button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setBackgroundColor:[UIColor clearColor]];
         [button setFrame:[self frame]];
         [button setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         [self addSubview:button];
     }
     
     return self;
+}
+
+-(void)layoutSubviews
+{
+    [gradientLayer setFrame:[self bounds]];
+    [button setFrame:[self bounds]];
 }
 
 -(void)setHorizontalPosition:(CGFloat)horizontalPosition

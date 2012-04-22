@@ -27,20 +27,22 @@
     {
         [self setFrame:CGRectMake([self frame].origin.x,
                                   [self frame].origin.y,
-                                  2 * kGNTextInputAccessoryViewButtonWidth,
+                                  kGNTextInputAccessoryViewAutocompleteButtonWidth,
                                   [self frame].size.height)];
-        [button setFrame:[self frame]];
-                
+        
+        [button setFrame:CGRectMake([button frame].origin.x + kGNTextInputAccessoryViewButtonWidth,
+                                    [button frame].origin.y,
+                                    [button frame].size.width,
+                                    [button frame].size.height)];
+        
+        
         topAutocompleteSuggestion = @"";
         
         isShowingAlternateView = NO;
         multipleSuggestions = NO;
         
         // Create the top suggestion label
-        topAutocompleteSuggestionLabel = [[UILabel alloc] initWithFrame:CGRectMake([self frame].origin.x + kGNTextInputAccessoryViewButtonMargin,
-                                                                                   [self frame].origin.y,
-                                                                                   [self frame].size.width - (0.5 * kGNTextInputAccessoryViewButtonWidth) - kGNTextInputAccessoryViewButtonMargin,
-                                                                                   [self frame].size.height)];
+        topAutocompleteSuggestionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
         [topAutocompleteSuggestionLabel setBackgroundColor:[UIColor clearColor]];
         [topAutocompleteSuggestionLabel setFont:[GNTextGeometry font]];
         [topAutocompleteSuggestionLabel setTextAlignment:UITextAlignmentLeft];
@@ -49,12 +51,8 @@
         [self insertSubview:topAutocompleteSuggestionLabel belowSubview:button];
         
         // Create the "number of suggestions" view
-        numberOfSuggestions = [[UIView alloc] initWithFrame:CGRectMake([self frame].origin.x + 0.75 * kGNTextInputAccessoryViewButtonWidth,
-                                                                       [self frame].origin.y,
-                                                                       0.5 * kGNTextInputAccessoryViewButtonWidth,
-                                                                       [self frame].size.height)];
-        
-        CAGradientLayer* numberOfSuggestionsGradient = [CAGradientLayer layer];
+        numberOfSuggestions = [[UIView alloc] initWithFrame:CGRectMake(0,0,0,0)];
+        numberOfSuggestionsGradient = [CAGradientLayer layer];
         [numberOfSuggestionsGradient setFrame:[numberOfSuggestions frame]];
         [numberOfSuggestionsGradient setColors:[NSArray arrayWithObjects:(id)[[UIColor darkGrayColor] CGColor],
                                                                          (id)[[UIColor blackColor] CGColor],
@@ -67,7 +65,11 @@
         [numberOfSuggestionsLabel setTextAlignment:UITextAlignmentCenter];
         [numberOfSuggestionsLabel setTextColor:[UIColor whiteColor]];
         [numberOfSuggestionsLabel setText:@"1"];
+        [numberOfSuggestionsLabel setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         [numberOfSuggestions addSubview:numberOfSuggestionsLabel];
+        
+        // Size our views to fit
+        [self setHorizontalPosition:0];
         
         // Configure our button to point to us
         [button addTarget:self
@@ -77,23 +79,20 @@
     return self;
 }
 
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-    [gradientLayer setFrame:[self frame]];
-}
-
 -(void)setHorizontalPosition:(CGFloat)horizontalPosition
 {
     [super setHorizontalPosition:horizontalPosition];
-    [topAutocompleteSuggestionLabel setFrame:CGRectMake([self frame].origin.x + kGNTextInputAccessoryViewButtonMargin,
+    
+    [topAutocompleteSuggestionLabel setFrame:CGRectMake([self bounds].origin.x + kGNTextInputAccessoryViewButtonMargin,
                                                         [self frame].origin.y,
-                                                        [self frame].size.width - (0.5 * kGNTextInputAccessoryViewButtonWidth) - kGNTextInputAccessoryViewButtonMargin,
+                                                        0.75 * kGNTextInputAccessoryViewAutocompleteButtonWidth - kGNTextInputAccessoryViewButtonMargin,
                                                         [self frame].size.height)];
-    [numberOfSuggestions setFrame:CGRectMake([self frame].origin.x + 0.75 * kGNTextInputAccessoryViewButtonWidth,
+    
+    [numberOfSuggestions setFrame:CGRectMake(0.75 * kGNTextInputAccessoryViewAutocompleteButtonWidth,
                                              [self frame].origin.y,
-                                             0.5 * kGNTextInputAccessoryViewButtonWidth,
+                                             0.25 * kGNTextInputAccessoryViewAutocompleteButtonWidth,
                                              [self frame].size.height)];
+    [numberOfSuggestionsGradient setFrame:[numberOfSuggestions bounds]];
 }
 
 -(void)buttonPushed
