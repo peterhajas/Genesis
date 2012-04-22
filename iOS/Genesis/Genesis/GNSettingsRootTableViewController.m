@@ -66,7 +66,7 @@
 
 -(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -76,9 +76,17 @@
         // It's an appearance setting
         switch([indexPath row])
         {
+                // It's the font row
             case 0:
                 return [[GNFontCell alloc] initWithFontWithName:[[GNSharedSettings sharedSettings] valueForKey:GNSettingsFontFaceKey]
                                                            size:[GNTextGeometry fontSize]];
+                // It's the theme row
+            case 1:
+            {
+                UITableViewCell* cell = [[UITableViewCell alloc] init];
+                [[cell textLabel] setText:[[GNSharedSettings sharedSettings] valueForKey:GNSettingsThemeKey]];
+                return cell;
+            }
         }
     }
     
