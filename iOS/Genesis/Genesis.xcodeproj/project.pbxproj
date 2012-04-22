@@ -71,6 +71,11 @@
 		4F293B9C14CCE88100020A09 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B8114CCE88100020A09 /* CoreData.framework */; };
 		4F293BA414CCE88100020A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F293BA214CCE88100020A09 /* InfoPlist.strings */; };
 		4F293BA714CCE88100020A09 /* GenesisTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F293BA614CCE88100020A09 /* GenesisTests.m */; };
+		4F387FE31544530500F490F1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030CC14F0406A002FEA32 /* libz.dylib */; };
+		4F387FE51544530D00F490F1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7030C914F04036002FEA32 /* CFNetwork.framework */; };
+		4F387FE61544532900F490F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7F14CCE88100020A09 /* CoreGraphics.framework */; };
+		4F387FE71544533400F490F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
+		4F387FE8154453B600F490F1 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F21143514DCF096001EE6C9 /* CoreText.framework */; };
 		4F3E372014CFA90D00E91A1A /* GNDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E371E14CFA90D00E91A1A /* GNDirectoryViewController.m */; };
 		4F3E372114CFA90D00E91A1A /* GNDirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E371F14CFA90D00E91A1A /* GNDirectoryViewController.xib */; };
 		4F3E372614CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E372514CFAC1100E91A1A /* GNDirectoryContentsTableViewController.m */; };
@@ -549,10 +554,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F293B9914CCE88100020A09 /* SenTestingKit.framework in Frameworks */,
+				4F387FE31544530500F490F1 /* libz.dylib in Frameworks */,
+				4F387FE51544530D00F490F1 /* CFNetwork.framework in Frameworks */,
+				4F387FE61544532900F490F1 /* CoreGraphics.framework in Frameworks */,
+				4F387FE71544533400F490F1 /* QuartzCore.framework in Frameworks */,
 				4F293B9A14CCE88100020A09 /* UIKit.framework in Frameworks */,
 				4F293B9B14CCE88100020A09 /* Foundation.framework in Frameworks */,
 				4F293B9C14CCE88100020A09 /* CoreData.framework in Frameworks */,
+				4F387FE8154453B600F490F1 /* CoreText.framework in Frameworks */,
+				4F293B9914CCE88100020A09 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
