@@ -48,9 +48,9 @@
     
     // Create our network manager
     networkManager = [[GNNetworkManager alloc] initWithHost:@"localhost"
-                                                    andPort:7331];
-    [networkManager loginWithUsername:@"peterhajas" password:@"zaq12wsx"];
-    
+                                                    andPort:7331
+                                                   username:@"jeff"
+                                                   password:@"password"];
     // Load the default theme
     theme = [[GNTheme alloc] initWthThemeName:defaultTheme];
     

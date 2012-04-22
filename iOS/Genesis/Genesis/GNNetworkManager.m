@@ -20,20 +20,20 @@
 @synthesize apiClient;
 @synthesize builders;
 
--(id)initWithHost:(NSString*)host andPort:(uint16_t)port
+-(id)initWithHost:(NSString*)host andPort:(uint16_t)port username:(NSString*)username password:(NSString*)password
 {
     self = [super init];
     if(self)
     {
         apiClient = [[GNAPIClient alloc] initWithHost:host andPort:port];
-        [self connect];
+        [self connectWithUsername:username password:password];
         builders = [[NSMutableArray alloc] init];
         currentBuilder = nil;
     }
     return self;
 }
 
--(void)connect
+-(void)connectWithUsername:(NSString*)username password:(NSString*)password
 {
     [apiClient connectWithSSL:NO
                  withCallback:^(NSError* error)
@@ -41,6 +41,10 @@
          if(error)
          {
              NSLog(@"error connecting: %@", error);
+         }
+         else
+         {
+             [self loginWithUsername:username password:password];
          }
      }];
 }

@@ -23,8 +23,7 @@
     NSString* currentBuilder;
 }
 
--(id)initWithHost:(NSString*)host andPort:(uint16_t)port;
--(void)loginWithUsername:(NSString*)username password:(NSString*)password;
+-(id)initWithHost:(NSString*)host andPort:(uint16_t)port username:(NSString*)username password:(NSString*)password;
 
 @property(readonly) GNAPIClient* apiClient;
 @property(readonly) NSMutableArray* builders;
