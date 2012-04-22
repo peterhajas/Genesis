@@ -20,6 +20,4 @@
     UINavigationController* navigationController;
 }
 
--(IBAction)donePushed:(id)sender;
-
 @end

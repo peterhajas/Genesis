@@ -34,11 +34,6 @@
     return self;
 }
 
--(IBAction)donePushed:(id)sender
-{
-    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
-}
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];
