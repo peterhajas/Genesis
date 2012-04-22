@@ -35,6 +35,7 @@
         
         [gradientLayer setBorderColor:[[UIColor darkGrayColor] CGColor]];
         [gradientLayer setBorderWidth:1.0];
+        [gradientLayer setCornerRadius:5.0];
         
         [[self layer] addSublayer:gradientLayer];
         
