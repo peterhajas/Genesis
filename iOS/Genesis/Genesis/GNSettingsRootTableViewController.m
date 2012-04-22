@@ -81,7 +81,9 @@
                                                            size:[GNTextGeometry fontSize]];
         }
     }
-    return nil;
+    
+    NSLog(@"Can't find a cell for settings at section %d row %d", [indexPath section], [indexPath row]);
+    return [[UITableViewCell alloc] init];
 }
 
 -(NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
