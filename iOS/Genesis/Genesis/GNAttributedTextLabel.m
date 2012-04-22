@@ -28,8 +28,6 @@
     {
         attributedString = [[NSMutableAttributedString alloc] initWithString:text];
         
-        NSLog(@"attributedString: %@", attributedString);
-        
         CTFontRef ctfont = CTFontCreateWithName((__bridge CFStringRef)[font fontName],
                                                 [font pointSize],
                                                 NULL);
