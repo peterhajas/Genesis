@@ -15,6 +15,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GNSettingsRootTableViewControllerDelegate <NSObject>
+
+-(void)dismiss;
+
+@end
+
 @interface GNSettingsRootTableViewController : UITableViewController
+{
+    NSObject<GNSettingsRootTableViewControllerDelegate>* delegate;
+}
+
+@property(nonatomic,retain)NSObject<GNSettingsRootTableViewControllerDelegate>* delegate;
 
 @end

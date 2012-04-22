@@ -14,7 +14,6 @@
  */
 
 #import "GNSettingsViewController.h"
-#import "GNSettingsRootTableViewController.h"
 
 @implementation GNSettingsViewController
 
@@ -25,6 +24,7 @@
     if(self)
     {
         GNSettingsRootTableViewController* rootTableViewController = [[GNSettingsRootTableViewController alloc] init];
+        [rootTableViewController setDelegate:self];
         navigationController = [[UINavigationController alloc] initWithRootViewController:rootTableViewController];
         
         [[self view] addSubview:[navigationController view]];
@@ -47,6 +47,12 @@
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+#pragma mark GNSettingsRootTableViewControllerDelegate methods
+-(void)dismiss
+{
+    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -19,6 +19,8 @@
 
 @implementation GNSettingsRootTableViewController
 
+@synthesize delegate;
+
 -(id)init
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -49,7 +51,7 @@
 
 -(void)donePushed:(id)sender
 {
-    
+    [delegate dismiss];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -14,8 +14,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "GNSettingsRootTableViewController.h"
 
-@interface GNSettingsViewController : UIViewController
+@interface GNSettingsViewController : UIViewController <GNSettingsRootTableViewControllerDelegate>
 {
     UINavigationController* navigationController;
 }
