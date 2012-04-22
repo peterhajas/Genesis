@@ -13,20 +13,17 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-
 #import <UIKit/UIKit.h>
-#import "GNProjectBrowserTableViewController.h"
-#import "GNNewProjectViewController.h"
+#import "GNAttributedTextLabel.h"
+#define GNFontCellReuseIdentifier @"GNFontCellReuseIdentifier"
 
-@interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate,
-                                                              GNNewProjectViewControllerDelegate>
+@interface GNFontCell : UITableViewCell
 {
-    IBOutlet UITableView* tableView;
-    GNProjectBrowserTableViewController* tableViewController;
+    NSMutableAttributedString* attributedString;
+    
+    GNAttributedTextLabel* label;
 }
 
--(IBAction)addProjectButtonPressed:(id)sender;
--(IBAction)editButtonPressed:(id)sender;
--(IBAction)settingsButtonPushed:(id)sender;
+-(id)initWithFontWithName:(NSString*)name size:(CGFloat)size;
 
 @end

@@ -13,20 +13,13 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-
 #import <UIKit/UIKit.h>
-#import "GNProjectBrowserTableViewController.h"
-#import "GNNewProjectViewController.h"
 
-@interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate,
-                                                              GNNewProjectViewControllerDelegate>
+@interface GNAttributedTextLabel : UIView
 {
-    IBOutlet UITableView* tableView;
-    GNProjectBrowserTableViewController* tableViewController;
+    NSMutableAttributedString* attributedString;
 }
 
--(IBAction)addProjectButtonPressed:(id)sender;
--(IBAction)editButtonPressed:(id)sender;
--(IBAction)settingsButtonPushed:(id)sender;
+-(id)initWithText:(NSString*)text font:(UIFont*)font;
 
 @end

@@ -13,20 +13,13 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-
 #import <UIKit/UIKit.h>
-#import "GNProjectBrowserTableViewController.h"
-#import "GNNewProjectViewController.h"
 
-@interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate,
-                                                              GNNewProjectViewControllerDelegate>
+@interface GNSettingsViewController : UIViewController
 {
-    IBOutlet UITableView* tableView;
-    GNProjectBrowserTableViewController* tableViewController;
+    UINavigationController* navigationController;
 }
 
--(IBAction)addProjectButtonPressed:(id)sender;
--(IBAction)editButtonPressed:(id)sender;
--(IBAction)settingsButtonPushed:(id)sender;
+-(IBAction)donePushed:(id)sender;
 
 @end

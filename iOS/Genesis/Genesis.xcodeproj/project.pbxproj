@@ -57,6 +57,9 @@
 		4F21143614DCF097001EE6C9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F21143514DCF096001EE6C9 /* CoreText.framework */; };
 		4F21143A14DCF0C8001EE6C9 /* GNTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */; };
 		4F21143B14DCF0C8001EE6C9 /* GNTextViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */; };
+		4F27872F15447E8600B8E752 /* GNSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27872D15447E8600B8E752 /* GNSettingsViewController.m */; };
+		4F27873015447E8600B8E752 /* GNSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F27872E15447E8600B8E752 /* GNSettingsViewController.xib */; };
+		4F2787331544803100B8E752 /* GNSettingsRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2787321544803100B8E752 /* GNSettingsRootTableViewController.m */; };
 		4F293B7C14CCE88100020A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7B14CCE88100020A09 /* UIKit.framework */; };
 		4F293B7E14CCE88100020A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7D14CCE88100020A09 /* Foundation.framework */; };
 		4F293B8014CCE88100020A09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F293B7F14CCE88100020A09 /* CoreGraphics.framework */; };
@@ -87,6 +90,8 @@
 		4F3F047D15074E4700AA6E95 /* GNTextTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F047C15074E4700AA6E95 /* GNTextTableViewDelegate.m */; };
 		4F3F04821507519F00AA6E95 /* GNLineNumberTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F04811507519F00AA6E95 /* GNLineNumberTableView.m */; };
 		4F3F0486150752A600AA6E95 /* GNLineNumberTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0485150752A600AA6E95 /* GNLineNumberTableViewDataSource.m */; };
+		4F41CB961544853D00AE3ED0 /* GNFontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F41CB951544853D00AE3ED0 /* GNFontCell.m */; };
+		4F544F3D154489AE00035A30 /* GNAttributedTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F544F3C154489AE00035A30 /* GNAttributedTextLabel.m */; };
 		4F72EA0915445A1B008A27C7 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F72EA0815445A1B008A27C7 /* DefaultSettings.plist */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
@@ -378,6 +383,11 @@
 		4F21143714DCF0C8001EE6C9 /* GNTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextViewController.h; sourceTree = "<group>"; };
 		4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextViewController.m; sourceTree = "<group>"; };
 		4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iphone.xib"; sourceTree = "<group>"; };
+		4F27872C15447E8600B8E752 /* GNSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSettingsViewController.h; sourceTree = "<group>"; };
+		4F27872D15447E8600B8E752 /* GNSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNSettingsViewController.m; sourceTree = "<group>"; };
+		4F27872E15447E8600B8E752 /* GNSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNSettingsViewController.xib; sourceTree = "<group>"; };
+		4F2787311544803100B8E752 /* GNSettingsRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSettingsRootTableViewController.h; sourceTree = "<group>"; };
+		4F2787321544803100B8E752 /* GNSettingsRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNSettingsRootTableViewController.m; sourceTree = "<group>"; };
 		4F293B7714CCE88100020A09 /* Genesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F293B7B14CCE88100020A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F293B7D14CCE88100020A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -417,6 +427,10 @@
 		4F3F04811507519F00AA6E95 /* GNLineNumberTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNLineNumberTableView.m; sourceTree = "<group>"; };
 		4F3F0484150752A600AA6E95 /* GNLineNumberTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNLineNumberTableViewDataSource.h; sourceTree = "<group>"; };
 		4F3F0485150752A600AA6E95 /* GNLineNumberTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNLineNumberTableViewDataSource.m; sourceTree = "<group>"; };
+		4F41CB941544853D00AE3ED0 /* GNFontCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFontCell.h; sourceTree = "<group>"; };
+		4F41CB951544853D00AE3ED0 /* GNFontCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFontCell.m; sourceTree = "<group>"; };
+		4F544F3B154489AE00035A30 /* GNAttributedTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAttributedTextLabel.h; sourceTree = "<group>"; };
+		4F544F3C154489AE00035A30 /* GNAttributedTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAttributedTextLabel.m; sourceTree = "<group>"; };
 		4F72EA0815445A1B008A27C7 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		4F72EA0B15445EE9008A27C7 /* GNSettingsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSettingsKeys.h; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
@@ -763,6 +777,15 @@
 			name = "Text Editing";
 			sourceTree = "<group>";
 		};
+		4F2787341544803500B8E752 /* Root Table View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4F2787311544803100B8E752 /* GNSettingsRootTableViewController.h */,
+				4F2787321544803100B8E752 /* GNSettingsRootTableViewController.m */,
+			);
+			name = "Root Table View Controller";
+			sourceTree = "<group>";
+		};
 		4F293B6C14CCE88100020A09 = {
 			isa = PBXGroup;
 			children = (
@@ -813,6 +836,7 @@
 				4F3F046A150740AE00AA6E95 /* File Representation */,
 				4F1E6ACC14F2167700583852 /* File Manager */,
 				4F387FEF1544569400F490F1 /* Settings */,
+				4F72EA1815447647008A27C7 /* Settings Configuration UI */,
 			);
 			path = Genesis;
 			sourceTree = "<group>";
@@ -931,6 +955,45 @@
 				4F3F0485150752A600AA6E95 /* GNLineNumberTableViewDataSource.m */,
 			);
 			name = "Line Numbers";
+			sourceTree = "<group>";
+		};
+		4F41CB981544854100AE3ED0 /* Font Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4F41CB941544853D00AE3ED0 /* GNFontCell.h */,
+				4F41CB951544853D00AE3ED0 /* GNFontCell.m */,
+				4F544F3F154489B200035A30 /* Attributed Text Label */,
+			);
+			name = "Font Cell";
+			sourceTree = "<group>";
+		};
+		4F41CB991544854700AE3ED0 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4F41CB981544854100AE3ED0 /* Font Cell */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		4F544F3F154489B200035A30 /* Attributed Text Label */ = {
+			isa = PBXGroup;
+			children = (
+				4F544F3B154489AE00035A30 /* GNAttributedTextLabel.h */,
+				4F544F3C154489AE00035A30 /* GNAttributedTextLabel.m */,
+			);
+			name = "Attributed Text Label";
+			sourceTree = "<group>";
+		};
+		4F72EA1815447647008A27C7 /* Settings Configuration UI */ = {
+			isa = PBXGroup;
+			children = (
+				4F27872C15447E8600B8E752 /* GNSettingsViewController.h */,
+				4F27872D15447E8600B8E752 /* GNSettingsViewController.m */,
+				4F27872E15447E8600B8E752 /* GNSettingsViewController.xib */,
+				4F41CB991544854700AE3ED0 /* Custom Cells */,
+				4F2787341544803500B8E752 /* Root Table View Controller */,
+			);
+			name = "Settings Configuration UI";
 			sourceTree = "<group>";
 		};
 		4F73FA7014CF294000976824 /* Model */ = {
@@ -1306,6 +1369,7 @@
 				4FEC7B1E1537D3A800AA861F /* ebundle-license.txt in Resources */,
 				4FB2676A1540F2310086B994 /* HideKeyboardButton.png in Resources */,
 				4F72EA0915445A1B008A27C7 /* DefaultSettings.plist in Resources */,
+				4F27873015447E8600B8E752 /* GNSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,6 +1457,10 @@
 				4FE4278E154133A100E843F0 /* GNTextInputAccessoryViewTabButton.m in Sources */,
 				4F04814415413C3400467E06 /* GNTabArrowGlyphView.m in Sources */,
 				4F387FEE1544567400F490F1 /* GNSharedSettings.m in Sources */,
+				4F27872F15447E8600B8E752 /* GNSettingsViewController.m in Sources */,
+				4F2787331544803100B8E752 /* GNSettingsRootTableViewController.m in Sources */,
+				4F41CB961544853D00AE3ED0 /* GNFontCell.m in Sources */,
+				4F544F3D154489AE00035A30 /* GNAttributedTextLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
