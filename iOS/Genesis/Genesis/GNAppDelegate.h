@@ -15,17 +15,19 @@
 
 #import <UIKit/UIKit.h>
 #import "GNNetworkManager.h"
+#import "GNProjectManager.h"
 #import "GNTheme.h"
 
 #define GNSharedAppDelegate (GNAppDelegate*)[[UIApplication sharedApplication] delegate]
+#define GNSharedAppDelegateProjectManager [GNSharedAppDelegate projectManager]
 #define GNSharedAppDelegateNetworkManager [GNSharedAppDelegate networkManager]
 #define GNSharedAppDelegateAPIClient [[GNSharedAppDelegate networkManager] apiClient]
-
 
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 {
     UINavigationController* navigationController;
     
+    GNProjectManager* projectManager;
     GNNetworkManager* networkManager;
     GNTheme* theme;
 }
@@ -35,6 +37,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (readonly) GNProjectManager* projectManager;
 @property (readonly) GNNetworkManager* networkManager;
 @property (readonly) GNTheme* theme;
 

@@ -14,6 +14,7 @@
  */
 
 #import "GNNetworkManager.h"
+#import "GNAppDelegate.h"
 
 @implementation GNNetworkManager
 
@@ -77,6 +78,9 @@
              {
                  [builders addObject:builder];
              }
+             
+             // Now that we have all the builders, refresh
+             [GNSharedAppDelegateProjectManager refresh];
          }
          else
          {

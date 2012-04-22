@@ -22,7 +22,7 @@
 +(void)pullAllFilesInRelativePath:(NSString*)relativePath
 {
     NSString* projectName = [GNFileManager projectNameForRelativePath:relativePath];
-        [GNSharedAppDelegateAPIClient getFilesFromBuilder:@""
+        [GNSharedAppDelegateAPIClient getFilesFromBuilder:[[GNSharedAppDelegateNetworkManager builders] objectAtIndex:0]
                                            forProject:projectName
                                              withCallback:^(BOOL succeeded, NSDictionary* info)
      {
@@ -43,7 +43,7 @@
 +(void)pullFileAtRelativePath:(NSString*)relativePath project:(NSString*)project
 {
     [GNSharedAppDelegateAPIClient downloadFile:relativePath
-                                   fromBuilder:@""
+                                   fromBuilder:[[GNSharedAppDelegateNetworkManager builders] objectAtIndex:0]
                                     andProject:project
                                   withCallback:^(BOOL succeded, NSDictionary* info)
      {
@@ -69,7 +69,7 @@
     NSString* fileContents = [[NSString alloc] initWithData:[GNFileManager fileContentsAtRelativePath:[project stringByAppendingPathComponent:relativePath]]
                                                    encoding:NSUTF8StringEncoding];
     [GNSharedAppDelegateAPIClient uploadFile:relativePath
-                                   toBuilder:@""
+                                   toBuilder:[[GNSharedAppDelegateNetworkManager builders] objectAtIndex:0]
                                   andProject:project
                                 withContents:fileContents
                                 withCallback:^(BOOL succeeded, NSDictionary* info)

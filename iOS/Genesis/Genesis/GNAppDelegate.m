@@ -24,6 +24,7 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
+@synthesize projectManager;
 @synthesize networkManager;
 @synthesize theme;
 
@@ -45,6 +46,11 @@
     [[UINavigationBar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
+    
+    // Create our project manager
+    projectManager = [[GNProjectManager alloc] init];
+    
+    // Network manager will call project manager methods asynchronously
     
     // Create our network manager
     networkManager = [[GNNetworkManager alloc] initWithHost:@"localhost"

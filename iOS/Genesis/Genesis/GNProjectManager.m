@@ -24,7 +24,7 @@
 
 -(void)refresh
 {
-    [GNSharedAppDelegateAPIClient getProjectsFromBuilder:@"asdf"
+    [GNSharedAppDelegateAPIClient getProjectsFromBuilder:[[GNSharedAppDelegateNetworkManager builders] objectAtIndex:0]
                                             withCallback:^(BOOL succeeded, NSDictionary* info)
      {
          if(succeeded)
