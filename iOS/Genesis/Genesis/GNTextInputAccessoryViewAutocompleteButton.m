@@ -42,7 +42,7 @@
                                                                                    [self frame].size.width - (0.5 * kGNTextInputAccessoryViewButtonWidth) - kGNTextInputAccessoryViewButtonMargin,
                                                                                    [self frame].size.height)];
         [topAutocompleteSuggestionLabel setBackgroundColor:[UIColor clearColor]];
-        [topAutocompleteSuggestionLabel setFont:[GNTextGeometry defaultUIFont]];
+        [topAutocompleteSuggestionLabel setFont:[GNTextGeometry font]];
         [topAutocompleteSuggestionLabel setTextAlignment:UITextAlignmentLeft];
         [topAutocompleteSuggestionLabel setTextColor:[UIColor blackColor]];
         [topAutocompleteSuggestionLabel setText:@""];

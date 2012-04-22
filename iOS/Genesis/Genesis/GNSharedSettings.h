@@ -13,30 +13,20 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-//
-// Prefix header for all source files of the 'Genesis' target in the 'Genesis' project
-//
+#import <Foundation/Foundation.h>
+#import "GNSettingsKeys.h"
 
-#import <Availability.h>
+#define GNSharedSettingsPlistPath @"Genesis Settings"
+#define GNSharedSettingsDefaultsPlistPath @"DefaultSettings"
 
-#ifndef __IPHONE_3_0
-#warning "This project uses features only available in iOS SDK 3.0 and later."
-#endif
+@interface GNSharedSettings : NSObject
+{
+    NSMutableDictionary* settings;
+}
 
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-    #import <CoreData/CoreData.h>
-    #import <CoreText/CoreText.h>
-    #import <CoreGraphics/CoreGraphics.h>
++(GNSharedSettings*)sharedSettings;
+-(id)valueForKey:(NSString*)key;
+-(void)setValue:(id)value forKey:(NSString*)key;
+-(void)resetToDefaults;
 
-    #import "GNScrollViewDelegate.h"
-    #import "GNNotificationNames.h"
-    #import "GNSharedSettings.h"
-#endif
-
-#define kGNTintColor [UIColor colorWithRed:.451 green:.231 blue:.702 alpha:1.0]
-#define kGNAlternateTintColor [UIColor colorWithRed:.451 green:0.0 blue:.671 alpha:1.0]
-
-#define DEFAULT_FONT_FAMILY @"Inconsolata"
-#define DEFAULT_SIZE 24
+@end

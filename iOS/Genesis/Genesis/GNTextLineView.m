@@ -21,8 +21,6 @@
 
 @synthesize line,staleContext;
 
-static CTFontRef defaultFont = nil;
-
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation lineNumber:(NSUInteger)number frame:(CGRect)frame andSizingDelegate:(NSObject<GNTextLineViewSizingDelegate>*)sizingDelegate
 {
     self = [super initWithFrame:frame];
@@ -44,10 +42,7 @@ static CTFontRef defaultFont = nil;
         
         // Re-evaluate our size, in case we need to be larger
         [self setFrame:frame];
-        
-        // Create the default font (later should be done in preferences)
-        defaultFont = [GNTextGeometry defaultFont];
-        
+                
         [self setBackgroundColor:[UIColor clearColor]];
         
         // Set our autoresizing mask
@@ -73,13 +68,14 @@ static CTFontRef defaultFont = nil;
     {
         CFRelease(line);
     }
+    
     line = CTLineCreateWithAttributedString(attributedString);
     
     // Account for Cocoa coordinate system
     CGContextScaleCTM(staleContext, 1, -1);
     CGContextTranslateCTM(staleContext, 0, -[self frame].size.height);
     
-    CGContextSetTextPosition(staleContext, 0.0, DEFAULT_SIZE * 0.25);
+    CGContextSetTextPosition(staleContext, 0.0, [GNTextGeometry fontSize] * 0.25);
     CTLineDraw(line, staleContext);
 }
 
@@ -91,7 +87,7 @@ static CTFontRef defaultFont = nil;
 
 -(void)fitSizeToText
 {
-    UIFont* defaultUIFont = [GNTextGeometry defaultUIFont];
+    UIFont* defaultUIFont = [GNTextGeometry font];
     
     CGFloat widthRequiredForText = [[highlightedLine string] sizeWithFont:defaultUIFont].width;
     

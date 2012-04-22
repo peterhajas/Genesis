@@ -22,23 +22,28 @@
     return [GNTextGeometry heightOfCharacter] * 1.25;
 }
 
-+(CGFloat)heightOfCharacter
++(CGFloat)fontSize
 {
-    return (CGFloat)DEFAULT_SIZE;
+    return (CGFloat)[[[GNSharedSettings sharedSettings] valueForKey:GNSettingsFontSizeKey] floatValue];
 }
 
-+(CTFontRef)defaultFont
++(CGFloat)heightOfCharacter
 {
-    CTFontRef defaultFont = CTFontCreateWithName((CFStringRef)DEFAULT_FONT_FAMILY,
-                                                 DEFAULT_SIZE,
+    return [self fontSize];
+}
+
++(CTFontRef)coreTextFont
+{
+    CTFontRef defaultFont = CTFontCreateWithName((__bridge CFStringRef)[[GNSharedSettings sharedSettings] valueForKey:GNSettingsFontFaceKey],
+                                                 [self fontSize],
                                                  NULL);
     return defaultFont;
 }
 
-+(UIFont*)defaultUIFont
++(UIFont*)font
 {
-    return [UIFont fontWithName:DEFAULT_FONT_FAMILY
-                           size:DEFAULT_SIZE];
+    return [UIFont fontWithName:[[GNSharedSettings sharedSettings] valueForKey:GNSettingsFontFaceKey]
+                           size:[self fontSize]];
 }
 
 +(NSAttributedString*)attributedStringWithDefaultFontApplied:(NSAttributedString*)attributedString
@@ -46,7 +51,7 @@
     NSMutableAttributedString* fontAppliedMutableString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
     
     // Apply the default font to the entire string
-    [fontAppliedMutableString addAttributes:[NSDictionary dictionaryWithObject:(id)[GNTextGeometry defaultFont]
+    [fontAppliedMutableString addAttributes:[NSDictionary dictionaryWithObject:(id)[GNTextGeometry coreTextFont]
                                                                         forKey:(NSString*)kCTFontAttributeName]
                                       range:NSMakeRange(0, [attributedString length])];
     

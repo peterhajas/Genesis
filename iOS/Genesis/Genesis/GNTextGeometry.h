@@ -18,9 +18,10 @@
 @interface GNTextGeometry : NSObject
 
 +(CGFloat)lineHeight;
++(CGFloat)fontSize;
 +(CGFloat)heightOfCharacter;
-+(CTFontRef)defaultFont;
-+(UIFont*)defaultUIFont;
++(CTFontRef)coreTextFont;
++(UIFont*)font;
 +(NSAttributedString*)attributedStringWithDefaultFontApplied:(NSAttributedString*)attributedString;
 +(NSUInteger)tabWidth;
 +(NSString*)tabString;
