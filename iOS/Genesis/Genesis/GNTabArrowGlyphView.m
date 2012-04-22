@@ -104,18 +104,6 @@
     [trianglePath addLineToPoint:lowerTrianglePoint];
     [trianglePath addLineToPoint:middleTrianglePoint];
     [trianglePath fill];
-    /*
-    CGContextSaveGState(context);
-    CGMutablePathRef trianglePath = CGPathCreateMutable();
-    CGPathMoveToPoint(trianglePath, NULL, horizontalLineEnd.x, horizontalLineEnd.y);
-    CGPathAddLineToPoint(trianglePath, NULL, upperTrianglePoint.x, upperTrianglePoint.y);
-    CGPathAddLineToPoint(trianglePath, NULL, lowerTrianglePoint.x, lowerTrianglePoint.y);
-    CGPathAddLineToPoint(trianglePath, NULL, horizontalLineEnd.x, horizontalLineEnd.y);
-    CGContextSetFillColor(context, CGColorGetComponents(glyphColor));
-    CGContextAddPath(context, trianglePath);
-    CGContextFillPath(context);
-    CGContextRestoreGState(context);
-     */
 }
 
 -(BOOL)canBecomeFirstResponder
