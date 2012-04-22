@@ -73,9 +73,9 @@
          if(succeeded)
          {
              NSArray* buildersFromCall = [info valueForKey:@"builders"];
-             for(NSDictionary* builderDict in buildersFromCall)
+             for(NSString* builder in buildersFromCall)
              {
-                 [builders addObject:[[builderDict allKeys] objectAtIndex:0]];
+                 [builders addObject:builder];
              }
          }
          else
