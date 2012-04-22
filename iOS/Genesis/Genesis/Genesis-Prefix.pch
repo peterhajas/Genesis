@@ -37,6 +37,3 @@
 
 #define kGNTintColor [UIColor colorWithRed:.451 green:.231 blue:.702 alpha:1.0]
 #define kGNAlternateTintColor [UIColor colorWithRed:.451 green:0.0 blue:.671 alpha:1.0]
-
-#define DEFAULT_FONT_FAMILY @"Inconsolata"
-#define DEFAULT_SIZE 24
