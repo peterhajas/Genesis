@@ -17,6 +17,7 @@
 
 @implementation GNSelectionPointManager
 
+@synthesize stringLength;
 @synthesize selectionRange;
 
 -(id)init

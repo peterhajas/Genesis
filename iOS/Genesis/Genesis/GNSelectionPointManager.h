@@ -26,6 +26,7 @@
 -(NSUInteger)rightSelectionIndex;
 
 @property(readonly) NSRange selectionRange;
+@property(readwrite) NSUInteger stringLength;
 @property(readwrite) NSUInteger leftSelectionIndex;
 @property(readwrite) NSUInteger rightSelectionIndex;
 
