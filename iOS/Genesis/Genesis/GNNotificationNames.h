@@ -16,11 +16,12 @@
 #ifndef Genesis_GNNotificationNames_h
 #define Genesis_GNNotificationNames_h
 
-// Text / Insertion Point Changes
+// Text / Insertion / Selection Point Changes
 
 #define GNTextChangedNotification @"GNTextChangedNotification"
 #define GNInsertionPointChangedNotification @"GNInsertionPointChangedNotification"
 #define GNInsertTabAtInsertionPointNotification @"GNInsertTabAtInsertionPointNotification"
+#define GNSelectionPointsChangedNotification @"GNSelectionPointsChangedNotification"
 
 // Keyboard management
 
