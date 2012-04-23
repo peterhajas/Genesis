@@ -23,6 +23,7 @@
 @synthesize fileText;
 @synthesize horizontalOffsetManager;
 @synthesize insertionPointManager;
+@synthesize selectionPointManager;
 @synthesize attributedFileText;
 @synthesize autoCompleteDictionary;
 
@@ -46,6 +47,8 @@
         [insertionPointManager setDelegate:fileText];
         [insertionPointManager setAnnouncerDelegate:self];
         
+        selectionPointManager = [[GNSelectionPointManager alloc] init];
+        
         attributedFileText = [[GNAttributedFileText alloc] initWithText:[fileText fileText]
                                                                fileText:fileText
                                                        andFileExtension:[path pathExtension]];
@@ -66,6 +69,7 @@
 -(void)textDidChange
 {
     [insertionPointManager setStringLength:[[fileText fileText] length]];
+    [selectionPointManager setStringLength:[[fileText fileText] length]];
     
     [GNFileManager setFileContentsAtRelativePath:relativePath
                                        toContent:[[fileText fileText] dataUsingEncoding:NSUTF8StringEncoding]];

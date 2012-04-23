@@ -18,6 +18,7 @@
 #import "GNFileText.h"
 #import "GNHorizontalOffsetManager.h"
 #import "GNInsertionPointManager.h"
+#import "GNSelectionPointManager.h"
 #import "GNAttributedFileText.h"
 #import "GNAutocompleteDictionary.h"
 
@@ -29,6 +30,7 @@
     GNFileText* fileText;
     GNHorizontalOffsetManager* horizontalOffsetManager;
     GNInsertionPointManager* insertionPointManager;
+    GNSelectionPointManager* selectionPointManager;
     GNAttributedFileText* attributedFileText;
     GNAutocompleteDictionary* autoCompleteDictionary;
 }
@@ -45,6 +47,7 @@
 @property(readonly) GNFileText* fileText;
 @property(readonly) GNHorizontalOffsetManager* horizontalOffsetManager;
 @property(readonly) GNInsertionPointManager* insertionPointManager;
+@property(readonly) GNSelectionPointManager* selectionPointManager;
 @property(readonly) GNAttributedFileText* attributedFileText;
 @property(readonly) GNAutocompleteDictionary* autoCompleteDictionary;
 
