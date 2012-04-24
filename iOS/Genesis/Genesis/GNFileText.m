@@ -222,14 +222,21 @@
     return [fileLines objectAtIndex:index];
 }
 
-
--(NSString*)lineToInsertionPoint
+-(NSString*)lineAtIndex:(NSUInteger)line toIndexInLine:(NSUInteger)indexInLine
 {
-    if([[self currentLine] isEqualToString:@""])
+    NSString* lineAtIndex = [self lineAtIndex:line];
+    if([lineAtIndex isEqualToString:@""])
     {
         return @"";
     }
-    return [[self currentLine] substringToIndex:[insertionPointManager insertionIndexInLine]];
+    
+    return [lineAtIndex substringToIndex:indexInLine];
+}
+
+-(NSString*)lineToInsertionPoint
+{
+    return [self lineAtIndex:[insertionPointManager insertionLine]
+               toIndexInLine:[insertionPointManager insertionIndexInLine]];
 }
 
 -(NSRange)rangeOfLineAtIndex:(NSUInteger)index

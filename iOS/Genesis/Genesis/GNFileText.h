@@ -51,6 +51,7 @@
 -(NSString*)currentLine;
 -(NSUInteger)lineCount;
 -(NSString*)lineAtIndex:(NSUInteger)index;
+-(NSString*)lineAtIndex:(NSUInteger)line toIndexInLine:(NSUInteger)indexInLine;
 -(NSString*)lineToInsertionPoint;
 -(NSRange)rangeOfLineAtIndex:(NSUInteger)index;
 -(void)indentLineAtIndex:(NSUInteger)index;
