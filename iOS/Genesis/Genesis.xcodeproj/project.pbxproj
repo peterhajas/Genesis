@@ -49,6 +49,7 @@
 		4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
 		4F0601721533D69A0022187D /* GNTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601711533D69A0022187D /* GNTheme.m */; };
 		4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */; };
+		4F17D84C1547129300D5F251 /* GNTextOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17D84B1547129300D5F251 /* GNTextOverlayView.m */; };
 		4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
@@ -348,6 +349,8 @@
 		4F0601711533D69A0022187D /* GNTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTheme.m; sourceTree = "<group>"; };
 		4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTMBundleAttributeNameTransformer.h; sourceTree = "<group>"; };
 		4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTMBundleAttributeNameTransformer.m; sourceTree = "<group>"; };
+		4F17D84A1547129300D5F251 /* GNTextOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextOverlayView.h; sourceTree = "<group>"; };
+		4F17D84B1547129300D5F251 /* GNTextOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextOverlayView.m; sourceTree = "<group>"; };
 		4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iPad.xib"; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
@@ -669,6 +672,15 @@
 			name = "TM Bundle Attribute Name Transformer";
 			sourceTree = "<group>";
 		};
+		4F17D84D154712AA00D5F251 /* Caret View */ = {
+			isa = PBXGroup;
+			children = (
+				4F1F049714E1B127008619C0 /* GNTextCaretView.h */,
+				4F1F049814E1B127008619C0 /* GNTextCaretView.m */,
+			);
+			name = "Caret View";
+			sourceTree = "<group>";
+		};
 		4F1E6ACC14F2167700583852 /* File Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,13 +690,14 @@
 			name = "File Manager";
 			sourceTree = "<group>";
 		};
-		4F1F04A314E1B35D008619C0 /* Caret View */ = {
+		4F1F04A314E1B35D008619C0 /* Overlay Views */ = {
 			isa = PBXGroup;
 			children = (
-				4F1F049714E1B127008619C0 /* GNTextCaretView.h */,
-				4F1F049814E1B127008619C0 /* GNTextCaretView.m */,
+				4F17D84A1547129300D5F251 /* GNTextOverlayView.h */,
+				4F17D84B1547129300D5F251 /* GNTextOverlayView.m */,
+				4F17D84D154712AA00D5F251 /* Caret View */,
 			);
-			name = "Caret View";
+			name = "Overlay Views";
 			sourceTree = "<group>";
 		};
 		4F1F04A414E1B37E008619C0 /* Text View */ = {
@@ -726,7 +739,7 @@
 				4F21143814DCF0C8001EE6C9 /* GNTextViewController.m */,
 				4F21143914DCF0C8001EE6C9 /* GNTextViewController~iphone.xib */,
 				4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */,
-				4F1F04A314E1B35D008619C0 /* Caret View */,
+				4F1F04A314E1B35D008619C0 /* Overlay Views */,
 				4F1F04A414E1B37E008619C0 /* Text View */,
 				4F1F04A514E1B3A8008619C0 /* Text View TableView */,
 				4F3F0483150751A200AA6E95 /* Line Numbers */,
@@ -1366,6 +1379,7 @@
 				4F41CB961544853D00AE3ED0 /* GNFontCell.m in Sources */,
 				4F544F3D154489AE00035A30 /* GNAttributedTextLabel.m in Sources */,
 				4FBBFDCF1544E9400019FAEE /* GNSelectionPointManager.m in Sources */,
+				4F17D84C1547129300D5F251 /* GNTextOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

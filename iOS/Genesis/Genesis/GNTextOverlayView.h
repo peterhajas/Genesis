@@ -14,13 +14,18 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "GNTextOverlayView.h"
-#define kGNTextCaretViewWidth 3.0
 
-@interface GNTextCaretView : GNTextOverlayView
+// An abstract class for a view that follows the current scroll position
+
+@interface GNTextOverlayView : UIView
 {
-    CABasicAnimation* animation;
+    CGPoint contentOffset;
+    CGRect nonOffsetFrame;
 }
+
+-(void)cleanUp;
+
+@property(nonatomic) CGFloat horizontalOffset;
+@property(nonatomic) CGFloat verticalOffset;
 
 @end
