@@ -20,10 +20,11 @@
 
 -(id)init
 {
-    self = [super initWithFrame:CGRectMake(0,
-                                           0,
-                                           kGNTextCaretViewWidth,
-                                           [GNTextGeometry heightOfCharacter])];
+    self = [super init];
+    [self setFrame:CGRectMake(0,
+                              0,
+                              kGNTextCaretViewWidth,
+                              [GNTextGeometry heightOfCharacter])];
     return self;
 }
 
