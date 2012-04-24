@@ -50,6 +50,7 @@
 		4F0601721533D69A0022187D /* GNTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601711533D69A0022187D /* GNTheme.m */; };
 		4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */; };
 		4F17D84C1547129300D5F251 /* GNTextOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17D84B1547129300D5F251 /* GNTextOverlayView.m */; };
+		4F17D86015471EE800D5F251 /* GNTextSelectionHandleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17D85F15471EE800D5F251 /* GNTextSelectionHandleView.m */; };
 		4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
@@ -351,6 +352,8 @@
 		4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTMBundleAttributeNameTransformer.m; sourceTree = "<group>"; };
 		4F17D84A1547129300D5F251 /* GNTextOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextOverlayView.h; sourceTree = "<group>"; };
 		4F17D84B1547129300D5F251 /* GNTextOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextOverlayView.m; sourceTree = "<group>"; };
+		4F17D85E15471EE800D5F251 /* GNTextSelectionHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextSelectionHandleView.h; sourceTree = "<group>"; };
+		4F17D85F15471EE800D5F251 /* GNTextSelectionHandleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextSelectionHandleView.m; sourceTree = "<group>"; };
 		4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iPad.xib"; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
@@ -681,6 +684,15 @@
 			name = "Caret View";
 			sourceTree = "<group>";
 		};
+		4F17D86215471EEB00D5F251 /* Selection Handle View */ = {
+			isa = PBXGroup;
+			children = (
+				4F17D85E15471EE800D5F251 /* GNTextSelectionHandleView.h */,
+				4F17D85F15471EE800D5F251 /* GNTextSelectionHandleView.m */,
+			);
+			name = "Selection Handle View";
+			sourceTree = "<group>";
+		};
 		4F1E6ACC14F2167700583852 /* File Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +708,7 @@
 				4F17D84A1547129300D5F251 /* GNTextOverlayView.h */,
 				4F17D84B1547129300D5F251 /* GNTextOverlayView.m */,
 				4F17D84D154712AA00D5F251 /* Caret View */,
+				4F17D86215471EEB00D5F251 /* Selection Handle View */,
 			);
 			name = "Overlay Views";
 			sourceTree = "<group>";
@@ -1380,6 +1393,7 @@
 				4F544F3D154489AE00035A30 /* GNAttributedTextLabel.m in Sources */,
 				4FBBFDCF1544E9400019FAEE /* GNSelectionPointManager.m in Sources */,
 				4F17D84C1547129300D5F251 /* GNTextOverlayView.m in Sources */,
+				4F17D86015471EE800D5F251 /* GNTextSelectionHandleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
