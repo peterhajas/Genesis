@@ -37,6 +37,11 @@
                                                  selector:@selector(insertionPointChanged:)
                                                      name:GNInsertionPointChangedNotification
                                                    object:nil];
+        // Subscribe to selection point changes
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(selectionPointsChanged:)
+                                                     name:GNSelectionPointsChangedNotification
+                                                   object:nil];
         
         // Subscribe to keyboard command changes
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -79,31 +84,45 @@
     NSUInteger insertionLine = [[fileRepresentation insertionPointManager] insertionLine];
     NSUInteger insertionIndexInLine = [[fileRepresentation insertionPointManager] insertionIndexInLine];
     
+    [self moveOverlayView:caretView
+                   toLine:insertionLine
+              atLineIndex:insertionIndexInLine];
+    
+    [self becomeFirstResponder];
+    [self toggleMinimalView:YES];
+}
+
+-(void)selectionPointsChanged:(NSNotification*)notification
+{
+    
+}
+
+-(void)moveOverlayView:(GNTextOverlayView*)overlayView toLine:(NSUInteger)line atLineIndex:(NSUInteger)lineIndex
+{
     CGFloat lineHeight = [GNTextGeometry lineHeight];
     
-    NSString* lineToInsertionIndex = [[fileRepresentation fileText] lineToInsertionPoint];
-    CGSize sizeOfLineToInsertionIndex = [lineToInsertionIndex sizeWithFont:[GNTextGeometry font]];
+    NSString* lineToLineIndex = [[fileRepresentation fileText] lineAtIndex:line
+                                                             toIndexInLine:lineIndex];
     
-    CGFloat newCaretViewXLocation = sizeOfLineToInsertionIndex.width + kGNLineNumberTableViewWidth;
+    CGSize sizeOfLineToIndex = [lineToLineIndex sizeWithFont:[GNTextGeometry font]];
     
-    if(insertionIndexInLine != 0)
+    CGFloat newOverlayViewXLocation = sizeOfLineToIndex.width + kGNLineNumberTableViewWidth;
+    
+    if(line != 0)
     {
-        [caretView setFrame:CGRectMake(newCaretViewXLocation,
-                                       lineHeight * insertionLine,
-                                       kGNTextCaretViewWidth,
-                                       lineHeight)];
+        [overlayView setFrame:CGRectMake(newOverlayViewXLocation,
+                                         lineHeight * line,
+                                         [overlayView frame].size.width,
+                                         lineHeight)];
     }
     else
     {
-        [caretView setHorizontalOffset:0.0];
-        [caretView setFrame:CGRectMake(newCaretViewXLocation,
-                                       lineHeight * insertionLine,
-                                       kGNTextCaretViewWidth,
-                                       lineHeight)];
+        [overlayView setHorizontalOffset:0.0];
+        [overlayView setFrame:CGRectMake(newOverlayViewXLocation,
+                                         lineHeight * line,
+                                         [overlayView frame].size.width,
+                                         lineHeight)];
     }
-        
-    [self becomeFirstResponder];
-    [self toggleMinimalView:YES];
 }
 
 -(void)didScrollToVerticalOffset:(CGFloat)offset
