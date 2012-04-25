@@ -77,6 +77,12 @@
     
     // Add it as a subview
     [self addSubview:lineNumberTableView];
+    
+    // Create the loupe view
+    
+    loupeView = [[GNLoupeView alloc] init];
+    [loupeView setDelegate:self];
+    [self addSubview:loupeView];
         
     [textTableView reloadData];
 }
@@ -93,6 +99,17 @@
                              atScrollPosition:UITableViewScrollPositionMiddle
                                      animated:YES];
     }
+}
+
+#pragma mark GNLoupeViewDelegate methods
+-(UIImage*)imageForCurrentText
+{
+    UIGraphicsBeginImageContext([textTableView frame].size);
+    [[textTableView layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage* imageForCurrentText = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageForCurrentText;
 }
 
 #pragma mark GNTextInputManagerViewDelegate methods
@@ -146,10 +163,12 @@
     [textTableView cleanUp];
     [textInputManagerView cleanUp];
     [lineNumberTableView cleanUp];
+    [loupeView cleanUp];
     
     [textTableView removeFromSuperview];
     [textInputManagerView removeFromSuperview];
     [lineNumberTableView removeFromSuperview];
+    [loupeView removeFromSuperview];
 }
 
 @end

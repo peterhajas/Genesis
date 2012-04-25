@@ -28,6 +28,7 @@
     GNFileRepresentation* fileRepresentation;
     
     UITapGestureRecognizer* tapGestureRecognizer;
+    UILongPressGestureRecognizer* longPressGestureRecognizer;
     
     UISwipeGestureRecognizer* swipeRightGestureRecognizer;
     UISwipeGestureRecognizer* swipeLeftGestureRecognizer;

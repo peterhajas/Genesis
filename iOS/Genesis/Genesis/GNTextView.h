@@ -22,9 +22,12 @@
 
 #import "GNLineNumberTableView.h"
 
+#import "GNLoupeView.h"
+
 #import "GNFileRepresentation.h"
 
 @interface GNTextView : UIView <GNTextInputManagerViewDelegate,
+                                GNLoupeViewDelegate,
                                 GNScrollViewDelegate,
                                 UIScrollViewDelegate>
 {
@@ -35,6 +38,8 @@
     GNTextInputManagerView* textInputManagerView;
     
     GNLineNumberTableView* lineNumberTableView;
+    
+    GNLoupeView* loupeView;
     
     GNFileRepresentation* fileRepresentation;
 }

@@ -173,6 +173,7 @@
 		4FEC7B1A1537D34000AA861F /* Inconsolata.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B181537D34000AA861F /* Inconsolata.otf */; };
 		4FEC7B1C1537D35800AA861F /* Inconsolata Licence (Open Font License).txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */; };
 		4FEC7B1E1537D3A800AA861F /* ebundle-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FEC7B1D1537D3A800AA861F /* ebundle-license.txt */; };
+		4FFAA7B31547884400D97EF3 /* GNLoupeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAA7B21547884400D97EF3 /* GNLoupeView.m */; };
 		4FFDA03A14CCEB3500422FF5 /* GNProjectBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */; };
 		4FFDA03B14CCEB3500422FF5 /* GNProjectBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */; };
 		4FFDA04014CCEC4500422FF5 /* GNProjectBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDA03F14CCEC4500422FF5 /* GNProjectBrowserTableViewController.m */; };
@@ -521,6 +522,8 @@
 		4FEC7B181537D34000AA861F /* Inconsolata.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inconsolata.otf; sourceTree = "<group>"; };
 		4FEC7B1B1537D35800AA861F /* Inconsolata Licence (Open Font License).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Inconsolata Licence (Open Font License).txt"; sourceTree = "<group>"; };
 		4FEC7B1D1537D3A800AA861F /* ebundle-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ebundle-license.txt"; sourceTree = "<group>"; };
+		4FFAA7B11547884400D97EF3 /* GNLoupeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNLoupeView.h; sourceTree = "<group>"; };
+		4FFAA7B21547884400D97EF3 /* GNLoupeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNLoupeView.m; sourceTree = "<group>"; };
 		4FFDA03714CCEB3500422FF5 /* GNProjectBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProjectBrowserViewController.h; sourceTree = "<group>"; };
 		4FFDA03814CCEB3500422FF5 /* GNProjectBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNProjectBrowserViewController.m; sourceTree = "<group>"; };
 		4FFDA03914CCEB3500422FF5 /* GNProjectBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNProjectBrowserViewController.xib; sourceTree = "<group>"; };
@@ -719,6 +722,7 @@
 				4F1F049D14E1B128008619C0 /* GNTextView.h */,
 				4F1F049E14E1B128008619C0 /* GNTextView.m */,
 				4FFF7D60151A107200C986A1 /* Input */,
+				4FFAA7B51547884700D97EF3 /* Loupe */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -1221,6 +1225,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		4FFAA7B51547884700D97EF3 /* Loupe */ = {
+			isa = PBXGroup;
+			children = (
+				4FFAA7B11547884400D97EF3 /* GNLoupeView.h */,
+				4FFAA7B21547884400D97EF3 /* GNLoupeView.m */,
+			);
+			name = Loupe;
+			sourceTree = "<group>";
+		};
 		4FFDA03D14CCEB3C00422FF5 /* Project Browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1394,6 +1407,7 @@
 				4FBBFDCF1544E9400019FAEE /* GNSelectionPointManager.m in Sources */,
 				4F17D84C1547129300D5F251 /* GNTextOverlayView.m in Sources */,
 				4F17D86015471EE800D5F251 /* GNTextSelectionHandleView.m in Sources */,
+				4FFAA7B31547884400D97EF3 /* GNLoupeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

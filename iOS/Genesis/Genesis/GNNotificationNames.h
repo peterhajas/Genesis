@@ -41,4 +41,10 @@
 
 #define GNHorizontalOffsetChangedNotification @"GNHorizontalOffsetChangedNotification"
 
+// Loupe Changes
+
+#define GNLoupeShouldShowNotification @"GNLoupeShouldShowNotification"
+#define GNLoupeShouldMoveNotification @"GNLoupeShouldMoveNotification"
+#define GNLoupeShouldFinishNotification @"GNLoupeShouldFinishNotification"
+
 #endif

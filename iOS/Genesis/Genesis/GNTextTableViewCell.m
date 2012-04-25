@@ -46,6 +46,10 @@
                                                                        action:@selector(handleTap:)];
         [self addGestureRecognizer:tapGestureRecognizer];
         
+        longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                   action:@selector(handleLongPress:)];
+        [self addGestureRecognizer:longPressGestureRecognizer];
+        
         // Create our swipe gesture recognizers
         swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(didSwipeRight:)];
@@ -118,6 +122,28 @@
         
         [self resignFirstResponder];
     }
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer*)sender
+{
+    NSLog(@"long press!");
+    NSString* notificationName = nil;
+    if([sender state] == UIGestureRecognizerStateBegan)
+    {
+        notificationName = GNLoupeShouldShowNotification;
+    }
+    else if([sender state] == UIGestureRecognizerStateChanged)
+    {
+        notificationName = GNLoupeShouldMoveNotification;
+    }
+    else
+    {
+        notificationName = GNLoupeShouldFinishNotification;
+    }
+    
+    CGPoint location = [sender locationInView:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName
+                                                        object:[NSValue valueWithCGPoint:location]];
 }
 
 -(void)didSwipeRight:(UISwipeGestureRecognizer*)sender
