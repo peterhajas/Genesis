@@ -17,7 +17,8 @@
 #import "GNAPIClient.h"
 #import "GNNetworkManagerDelegate.h"
 
-@interface GNNetworkManager {
+@interface GNNetworkManager : NSObject
+{
     BOOL useSSL;
     GNAPIClient *client;
 }
@@ -31,7 +32,6 @@
 // When trying to log in, try to register.
 @property (nonatomic, assign) BOOL autoregister;
 
-- (id)initWithHost:(NSString *)theHost onPort:(uint16_t)port;
 - (id)initWithHost:(NSString *)theHost onPort:(uint16_t)port withSSL:(BOOL)useSSL;
 
 // initiate connection
