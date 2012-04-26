@@ -131,7 +131,7 @@ All these commands return responses.
 * diff_stats(project) - Returns a SCM diff of the files modified to the
   current branch.
 
-* index(project, filepath) - Adds a given file to the SCM's index, cache, or
+* stage_file(project, filepath) - Adds a given file to the SCM's index, cache, or
   staging for commiting to the SCM.
 
 * commit(project, message) - Commits the indexed files with a given commit
