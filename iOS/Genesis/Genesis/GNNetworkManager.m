@@ -68,11 +68,17 @@
 {
     [client getBuildersWithCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
-        NSMutableArray *builders = nil;
+        NSArray *builders = nil;
         if (error != nil)
         {
             builders = [NSMutableArray new];
         }
+        else
+        {
+            builders = [[info objectForKey:@"builders"] allKeys];
+            NSLog(@"builders: %@", builders);
+        }
+        
         if ([delegate respondsToSelector:@selector(selectFromBuilders:error:)])
         {
             self.builder = [delegate selectFromBuilders:builders error:error];
@@ -81,6 +87,12 @@
         {
             self.builder = [builders objectAtIndex:0];
         }
+        else
+        {
+            NSLog(@"No builders found!");
+            return;
+        }
+        [self requestProjects];
     }];
 }
 
@@ -89,7 +101,10 @@
 - (id)connectInBackground
 {
     [client connectWithSSL:useSSL withCallback:^(NSError *error) {
-        [delegate didConnectToMediatorWithError:error];
+        if ([delegate respondsToSelector:@selector(didConnectToMediatorWithError:)])
+        {
+            [delegate didConnectToMediatorWithError:error];
+        }
     }];
     return self;
 }
@@ -97,8 +112,11 @@
 - (id)connectInBackgroundWithUsername:(NSString *)username andPassword:(NSString *)password
 {
     [client connectWithSSL:useSSL withCallback:^(NSError *error) {
-        [delegate didConnectToMediatorWithError:error];
-        if (error != nil)
+        if ([delegate respondsToSelector:@selector(didConnectToMediatorWithError:)])
+        {
+            [delegate didConnectToMediatorWithError:error];
+        }
+        if (!error)
         {
             [self loginWithUsername:username andPassword:password];
         }
@@ -112,7 +130,10 @@
                      andPassword:password
                     withCallback:^(BOOL succeeded, NSDictionary *info) {
                         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
-                        [delegate didRegisterWithError:error];
+                        if ([delegate respondsToSelector:@selector(didRegisterWithError:error:)])
+                        {
+                            [delegate didRegisterWithError:error];
+                        }
                     }];
 }
 
@@ -120,16 +141,23 @@
 {
     if (self.autoregister)
     {
+        NSLog(@"Registering - %@ %@", username, password);
         [client registerWithUsername:username
                          andPassword:password
                         withCallback:^(BOOL succeeded, NSDictionary *info) {
                             NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
-                            [delegate didRegisterWithError:error];
-                            [client loginWithPassword:username
-                                          forUsername:password
+                            if ([delegate respondsToSelector:@selector(didReceiveProjects:error:)])
+                            {
+                                [delegate didRegisterWithError:error];
+                            }
+                            [client loginWithPassword:password
+                                          forUsername:username
                                          withCallback:^(BOOL succeeded, NSDictionary *info) {
                                              NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
-                                             [delegate didAuthenticateWithError:error];
+                                             if ([delegate respondsToSelector:@selector(didAuthenticateWithError:)])
+                                             {
+                                                 [delegate didAuthenticateWithError:error];
+                                             }
                                              [self getBuilders];
                             }];
         }];
@@ -138,7 +166,10 @@
     {
         [client loginWithPassword:password forUsername:username withCallback:^(BOOL succeeded, NSDictionary *info) {
             NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
-            [delegate didAuthenticateWithError:error];
+            if ([delegate respondsToSelector:@selector(didAuthenticateWithError:)])
+            {
+                [delegate didAuthenticateWithError:error];
+            }
             [self getBuilders];
         }];
     }
@@ -160,7 +191,10 @@
         {
             projects = [info objectForKey:@"projects"];
         }
-        [delegate didReceiveProjects:projects error:error];
+        if ([delegate respondsToSelector:@selector(didReceiveProjects:error:)])
+        {
+            [delegate didReceiveProjects:projects error:error];
+        }
     }];
 }
 
@@ -176,7 +210,10 @@
             files = [info objectForKey:@"files"];
             branch = [info objectForKey:@"branch"];
         }
-        [delegate didReceiveFiles:files forBranch:branch forProject:project error:error];
+        if ([delegate respondsToSelector:@selector(didReceiveFiles:forBranch:forProject:error:)])
+        {
+            [delegate didReceiveFiles:files forBranch:branch forProject:project error:error];
+        }
     }];
 }
 
@@ -191,7 +228,10 @@
             branches = [info objectForKey:@"branches"];
             head = [info objectForKey:@"head"];
         }
-        [delegate didReceiveBranches:branches headBranch:head forProject:project error:error];
+        if ([delegate respondsToSelector:@selector(didReceiveBranches:headBranch:forProject:error:)])
+        {
+            [delegate didReceiveBranches:branches headBranch:head forProject:project error:error];
+        }
     }];
 }
 
@@ -200,7 +240,10 @@
     [self assertBuilder];
     [client uploadFile:filepath toBuilder:self.builder andProject:project withContents:contents withCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
-        [delegate didUploadFile:filepath forProject:project error:error];
+        if ([delegate respondsToSelector:@selector(didUploadFile:forProject:error:)])
+        {
+            [delegate didUploadFile:filepath forProject:project error:error];
+        }
     }];
 }
 
@@ -214,7 +257,10 @@
         {
             contents = [info objectForKey:@"contents"];
         }
-        [delegate didDownloadFile:filepath withContents:contents forProject:project error:error];
+        if ([delegate respondsToSelector:@selector(didDownloadFile:withContents:forProject:error:)])
+        {
+            [delegate didDownloadFile:filepath withContents:contents forProject:project error:error];
+        }
     }];
 }
 
