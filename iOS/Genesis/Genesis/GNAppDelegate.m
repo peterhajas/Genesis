@@ -46,6 +46,11 @@
     
     [self.window setRootViewController:navigationController];
     
+    networkManager = [[GNNetworkManager alloc] initWithHost:@"localhost" onPort:8080 withSSL:NO];
+    networkManager.delegate = self;
+    // can be anything
+    [networkManager connectInBackgroundWithUsername:@"jeff" andPassword:@"password"];
+    
     // Load the default theme
     theme = [[GNTheme alloc] initWthThemeName:defaultTheme];
     
@@ -174,6 +179,75 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Network Manager Delegate
+
+- (void)didAuthenticateWithError:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Failed to authenticate: %@", error);
+    }
+}
+
+- (void)didRegisterWithError:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Failed to register: %@", error);
+    }
+}
+
+- (void)didReceiveProjects:(NSArray *)projects error:(NSError *)error
+{
+    if (!error)
+    {
+        // list projects? select projects?
+    }
+    else
+    {
+        NSLog(@"Failed to get projects: %@", error);
+    }
+}
+
+- (void)didReceiveFiles:(NSArray *)files forProject:(NSString *)projectName error:(NSError *)error
+{
+    if (!error)
+    {
+        // list files
+    }
+    else
+    {
+        NSLog(@"Failed to get files: %@", error);
+    }
+}
+
+- (void)didUploadFile:(NSString *)filepath forProject:(NSString *)project error:(NSError *)error
+{
+    if (!error)
+    {
+        // handle file upload ?
+    }
+    else
+    {
+        NSLog(@"Failed to upload file: %@", error);
+    }
+}
+
+- (void)didDownloadFile:(NSString *)filepath
+           withContents:(NSString *)contents
+             forProject:(NSString *)projectName
+                  error:(NSError *)error
+{
+    if (!error)
+    {
+        // handle downloaded file
+    }
+    else
+    {
+        NSLog(@"Failed to download file: %@", error);
+    }
 }
 
 @end
