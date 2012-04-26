@@ -18,7 +18,6 @@
 @interface GNFileManager : NSObject
 
 +(NSString*)absolutePathForRelativePath:(NSString*)relativePath;
-+(NSString*)projectNameForRelativePath:(NSString*)relativePath;
 
 +(NSData*)fileContentsAtRelativePath:(NSString*)relativePath;
 +(void)setFileContentsAtRelativePath:(NSString*)relativePath toContent:(NSData*)content;

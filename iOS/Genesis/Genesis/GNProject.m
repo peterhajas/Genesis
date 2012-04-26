@@ -13,11 +13,13 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+
 #import "GNProject.h"
 
 
 @implementation GNProject
 
 @dynamic name;
+@dynamic rootFolder;
 
 @end
