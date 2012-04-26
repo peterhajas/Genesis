@@ -31,8 +31,8 @@
 // When trying to log in, try to register.
 @property (nonatomic, assign) BOOL autoregister;
 
-- (id)initWithHost:(NSString *)theHost andPort:(uint16_t)port;
-- (id)initWithHost:(NSString *)theHost andPort:(uint16_t)port withSSL:(BOOL)useSSL;
+- (id)initWithHost:(NSString *)theHost onPort:(uint16_t)port;
+- (id)initWithHost:(NSString *)theHost onPort:(uint16_t)port withSSL:(BOOL)useSSL;
 
 // initiate connection
 - (id)connectInBackground;

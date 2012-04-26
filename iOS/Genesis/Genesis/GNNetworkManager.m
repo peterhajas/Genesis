@@ -23,17 +23,17 @@
 
 #pragma mark - Constructors
 
-- (id)initWithHost:(NSString *)theHost andPort:(uint16_t)port
+- (id)initWithHost:(NSString *)theHost onPort:(uint16_t)port
 {
-    return [self initWithHost:theHost andPort:port withSSL:NO];
+    return [self initWithHost:theHost onPort:port withSSL:NO];
 }
 
-- (id)initWithHost:(NSString *)theHost andPort:(uint16_t)port withSSL:(BOOL)secure
+- (id)initWithHost:(NSString *)theHost onPort:(uint16_t)port withSSL:(BOOL)secure
 {
-    self = [self initWithHost:theHost andPort:port];
+    self = [self initWithHost:theHost onPort:port];
     if (self)
     {
-        client = [[GNAPIClient alloc] initWithHost:theHost andPort:port];
+        client = [[GNAPIClient alloc] initWithHost:theHost onPort:port];
         useSSL = secure;
         self.autoregister = YES;
     }
