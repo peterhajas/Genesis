@@ -56,7 +56,7 @@ class ProtocolSerializer(object):
 
     def offer_handshake(self):
         "When the server accepts a client."
-        return struct.pack('!H', self.version)
+        return struct.pack('!h', self.version)
 
     def accept_handshake(self, stream, callback):
         "When the client connects to the server. Gives callback the metadata."

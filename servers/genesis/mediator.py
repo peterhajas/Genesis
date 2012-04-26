@@ -10,13 +10,14 @@ from genesis.data import (
 
 class ClientHandler(object):
     "Handles the management of a client's incoming messages."
-    def __init__(self, message_stream, address, tracker):
+    def __init__(self, message_stream, address, tracker, auth):
         self.namespace = self.machine = self.type = None
         self.stream = message_stream
         self.address = address
         self.tracker = tracker
         self.account = None
         self.reroute = []
+        self.auth = auth
 
     def __repr__(self):
         return "ClientHandler<%s @ %s>" % (self.id, self.address)
@@ -50,17 +51,22 @@ class ClientHandler(object):
     @gen.engine
     def handle_register(self, request):
         "Register a new user account fo this client."
-        # TODO: use real db?
-        if request['user'] == 'jeff' and request['pwd'] == 'pass':
-            pass
+        error = self.auth.create(request['username'], request['password'])
+        if not error:
+            msg = ResponseMessage.success(request.id)
+            print self.id, '<-', msg
+            yield gen.Task(self.stream.write, msg)
+        else:
+            msg = ResponseMessage.error(request.id, **error)
+            print self.id, '<-', msg
+            yield gen.Task(self.stream.write, msg)
 
     @gen.engine
     def handle_login(self, request):
         "Log this client in."
         request = request.cast_to(LoginMessage)
-        self.account = Account(request['username'], request['password'])
-        # TODO: use real db?
-        if self.account == Account.create('jeff', 'password'):
+        self.account = Account.create(request['username'], request['password'])
+        if self.auth.verify(self.account):
             # TODO: verify machine & type values
             self.machine, self.type = request['machine'], request['type']
             self.namespace = request['username']
@@ -78,7 +84,10 @@ class ClientHandler(object):
             print self.id, '<-', msg
             self.process_request()
         else:
-            self.fail(request.id, code=ErrorCodes.BAD_AUTH, close_stream=False)
+            self.fail(request.id,
+                reason='Invalid username or password',
+                code=ErrorCodes.BAD_AUTH,
+                close_stream=False)
 
     @gen.engine
     def handshake(self):
@@ -234,10 +243,11 @@ class ClientsTracker(object):
 
 class Mediator(object):
     "Manages the accepting incoming connections."
-    def __init__(self, serializer, io_loop=None):
+    def __init__(self, serializer, auth, io_loop=None):
         self.serializer = serializer
         self.io_loop = io_loop or IOLoop.instance()
         self.tracker = ClientsTracker()
+        self.auth = auth
 
     def on_close(self, address):
         self.tracker.remove_by_addr(address)
@@ -253,7 +263,7 @@ class Mediator(object):
         yield gen.Task(self.send_version, stream)
 
         msg_stream = MessageStream(stream, self.serializer, self.io_loop)
-        client = ClientHandler(msg_stream, address, self.tracker)
+        client = ClientHandler(msg_stream, address, self.tracker, self.auth)
         self.tracker.add(client)
         client.handshake()
 

@@ -61,6 +61,9 @@ class Account(object):
         self.username = username
         self.password_hash = password_hash
 
+    def __repr__(self):
+        return '<Account: %s>' % self.username
+
     @classmethod
     def create(cls, username, password):
         "Creates an instance with a raw password, hashing it in the process."
@@ -164,7 +167,8 @@ class InvocationMessage(object):
             instance.name = dictionary['method']
             instance.sender = sender
             return instance
-        except (KeyError, AssertionError):
+        except (KeyError, AssertionError) as e:
+            print e
             return None
 
     def to_network(self):
@@ -360,6 +364,7 @@ messages = [
     DownloadMessage, UploadMessage, PerformMessage, SendMessage,
     RequestMessage, StreamNotification, StreamEOFNotification,
     BranchesMessage, ReturnCodeNotification, ClientsMessage,
+    DiffStatsMessage, StageFileMessage, CommitMessage,
 ]
 
 def get_message_class(dictionary):

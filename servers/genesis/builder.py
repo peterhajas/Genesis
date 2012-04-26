@@ -160,6 +160,15 @@ class Builder(object):
                 self.config,
                 get_scm(self.config.get_location(name)))
 
+    def diff_stats(self, project):
+        return self.projects[project].diff_stats()
+
+    def add_to_index(self, project, filepath):
+        return self.projects[project].add_file(filepath)
+
+    def commit(self, project, message):
+        return self.projects[project].commit(message)
+
     @classmethod
     def from_file(cls, filename):
         return cls(BuilderConfig(load_yaml(expand(filename))))

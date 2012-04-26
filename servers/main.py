@@ -9,7 +9,8 @@ from tornado.ioloop import IOLoop
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from genesis.clients import (
-    EditorDelegate, BuilderDelegate, MediatorClient, sample_handler
+    EditorDelegate, BuilderDelegate, MediatorClient,
+    sample_handler, sample_repo_handler
 )
 from genesis.builder import Builder, BuilderConfig
 from genesis.mediator import Mediator
@@ -17,6 +18,7 @@ from genesis.config import load_settings
 from genesis.serializers import ProtocolSerializer, NetworkSerializer
 from genesis.networking import Server, Client
 from genesis.data import Account
+from genesis.auth import MemoryAuth
 
 
 def main(progn, *arguments):
@@ -64,7 +66,7 @@ def create_client(type, config):
         delegate = EditorDelegate(
             Account.create(config['username'], config['password']),
             machine='TestiOSClient' + str(random.random()),
-            delegate=sample_handler,
+            delegate=sample_repo_handler,#sample_handler,
         )
     elif type == 'builder':
         builder = Builder(BuilderConfig(config, config['__filepath__']))
@@ -78,13 +80,16 @@ def create_client(type, config):
 
     client = Client(port, addr)
     mediator_client = MediatorClient(
-        client, ProtocolSerializer(NetworkSerializer()), delegate)
+        client,
+        ProtocolSerializer(NetworkSerializer()),
+        delegate
+    )
     mediator_client.create()
 
 def create_mediator(addr, port):
     print "Running MEDIATOR on", address_to_str(addr, port), "..."
 
-    mediator = Mediator(ProtocolSerializer(NetworkSerializer()))
+    mediator = Mediator(ProtocolSerializer(NetworkSerializer()), MemoryAuth())
     server = Server(mediator, port=port, host=addr)
     server.start()
 

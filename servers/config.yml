@@ -5,6 +5,18 @@ mediator:
   host: localhost
   port: 7331
 projects:
+  Sample:
+    location: ~/Documents/projects/sample
+    ignore:
+      - "*.pyc"
+      - "/.git/*"
+      - "/.DS_Store"
+    shell: /bin/bash
+    source:
+      - $HOME/.bash_profile
+    actions:
+      - cat: cat sample.txt
+
   YACS:
     location: ~/Documents/projects/yacs
     ignore:
