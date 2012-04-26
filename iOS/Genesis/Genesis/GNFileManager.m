@@ -147,6 +147,40 @@ return fileContents;
     }
     else 
     {
+        /*
+         In order to create whatever files we may need to, we need to create intermediate directories to the
+         path. Split relativePath by path components, and iterate through all of them but the last one, to
+         form the directory to create.
+         */
+        
+        NSArray* relativePathComponents = [relativePath pathComponents];
+        NSString* runningPath = @"";
+        
+        for(NSString* relativePathComponent in relativePathComponents)
+        {
+            if([relativePathComponent isEqual:[relativePathComponents lastObject]])
+            {
+                break;
+            }
+            runningPath = [runningPath stringByAppendingString:relativePathComponent];
+        }
+        
+        if(![runningPath isEqualToString:@""])
+        {
+            NSString* absoluteRunningPath = [GNFileManager absolutePathForRelativePath:runningPath];
+            
+            [[NSFileManager defaultManager] createDirectoryAtPath:absoluteRunningPath
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:&error];
+            if(error)
+            {
+                NSLog(@"Encountered an error creating directory at path %@ : %@", relativePath, [error localizedDescription]);
+                return NO;
+            }
+        }
+        
+        
         [[NSFileManager defaultManager] createFileAtPath:absolutePath
                                                 contents:nil
                                               attributes:nil];
