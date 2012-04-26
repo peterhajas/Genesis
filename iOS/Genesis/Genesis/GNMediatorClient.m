@@ -35,10 +35,6 @@ const NSInteger GNErrorBadProtocol = 2;
 @synthesize serverVersion;
 @synthesize compress;
 
-- (id)init
-{
-    return [self initWithHost:GN_MEDIATOR_HOST onPort:GN_MEDIATOR_PORT];
-}
 
 - (id)initWithHost:(NSString *)hostAddr onPort:(uint16_t)portNum
 {

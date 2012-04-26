@@ -28,7 +28,6 @@ typedef void(^GNClientCallback)(BOOL succeeded, NSDictionary *info);
 @property (nonatomic, readonly) NSString *machineType;
 @property (nonatomic, strong) NSString *machineName;
 
-- (id)init;
 - (id)initWithHost:(NSString*)Host andPort:(uint16_t)port;
 - (id)initWithMediatorClient:(GNMediatorClient*)client;
 

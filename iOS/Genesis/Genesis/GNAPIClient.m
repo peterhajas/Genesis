@@ -50,11 +50,6 @@
     return [self initWithMediatorClient:[[GNMediatorClient alloc] initWithHost:host onPort:port]];
 }
 
-- (id)init
-{
-    return [self initWithMediatorClient:[[GNMediatorClient alloc] init]];
-}
-
 #pragma mark - Private Methods
 - (GNNetworkRequest *)newSendRequestTo:(NSString *)machine command:(id<GNNetworkMessageProtocol>)command
 {

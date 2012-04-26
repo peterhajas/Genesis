@@ -20,10 +20,6 @@
 #import "GNNetworkRequest.h"
 #import "GNNetworkMessageProtocol.h"
 
-#define GN_MEDIATOR_HOST @"localhost"
-#define GN_MEDIATOR_PORT 8080
-
-
 extern NSString * const GN_NETWORK_ERROR_DOMAIN;
 
 extern const NSInteger GNErrorBadVersion;
@@ -52,7 +48,6 @@ typedef void(^MediatorMessageHandler)(id<GNNetworkMessageProtocol>msg);
 @property (nonatomic) BOOL compress;
 @property (nonatomic, readonly) BOOL isConnected;
 
-- (id)init;
 - (id)initWithHost:(NSString *)ipAddress onPort:(uint16_t)portNum;
 
 - (void)setDisconnectBlock:(MediatorClientCallback)onDisconnectBlock;
