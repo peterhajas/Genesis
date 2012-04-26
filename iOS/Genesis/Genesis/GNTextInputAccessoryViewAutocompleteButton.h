@@ -19,6 +19,7 @@
 #define kGNTextInputAccessoryViewAutocompleteButtonCancelEndingColor [UIColor colorWithRed:0.6 green:0.0 blue:0.0 alpha:1.0]
 #define kGNTextInputAccessoryViewAutocompleteButtonCancelColors [NSArray arrayWithObjects:(id)[kGNTextInputAccessoryViewAutocompleteButtonCancelStartingColor CGColor], (id)[kGNTextInputAccessoryViewAutocompleteButtonCancelEndingColor CGColor], nil]
 #define kGNTextInputAccessoryViewAutocompleteButtonCancelText @"Cancel"
+#define kGNTextInputAccessoryViewAutocompleteButtonWidth kGNTextInputAccessoryViewButtonWidth*2
 
 @interface GNTextInputAccessoryViewAutocompleteButton : GNTextInputAccessoryViewButton
 {
@@ -27,6 +28,7 @@
     BOOL multipleSuggestions;
     
     UIView* numberOfSuggestions;
+    CAGradientLayer* numberOfSuggestionsGradient;
     UILabel* numberOfSuggestionsLabel;
     
     BOOL isShowingAlternateView;

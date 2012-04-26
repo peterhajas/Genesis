@@ -65,8 +65,8 @@
         
         // Subscribe to insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(insertionPointChanged:)
-                                                     name:GNInsertionPointChangedNotification
+                                                 selector:@selector(textChanged:)
+                                                     name:GNTextChangedNotification
                                                    object:nil];
     }
     
@@ -146,7 +146,7 @@
     [textLineView setLineNumber:line];
 }
 
--(void)insertionPointChanged:(id)object
+-(void)textChanged:(id)object
 {
     // If the insertion point is on our line
     if([[fileRepresentation insertionPointManager] insertionLine] == lineNumber)
@@ -158,14 +158,13 @@
         
         if([textLineView line] != NULL)
         {
-            CGRect lineBounds = CTLineGetImageBounds([textLineView line],
-                                                     [textLineView staleContext]);
+            CGRect lineBounds = [textLineView frame];
             
             CGFloat horizontalOffset = lineBounds.size.width + lineBounds.origin.x;
                     
-            if(horizontalOffset > [self frame].size.width * (5.0/6.0))
+            if(horizontalOffset > [self frame].size.width * (0.8))
             {
-                CGFloat newHorizontalPosition = (horizontalOffset - [self frame].size.width * (5.0/6.0));
+                CGFloat newHorizontalPosition = (horizontalOffset - [self frame].size.width * (0.8));
                 [textContainerScrollView setContentOffset:CGPointMake(newHorizontalPosition,
                                                                       [textContainerScrollView contentOffset].y)];
             }

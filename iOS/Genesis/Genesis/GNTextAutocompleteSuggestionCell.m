@@ -41,7 +41,8 @@
                                                                        [self frame].size.width - 2 * kGNTextAutocompleteCellLabelMargin,
                                                                        [self frame].size.height - 2 * kGNTextAutocompleteCellLabelMargin)];
         [textLabel setText:text];
-        [textLabel setFont:[UIFont fontWithName:DEFAULT_FONT_FAMILY size:20]];
+        [textLabel setFont:[UIFont fontWithName:[[GNSharedSettings sharedSettings] valueForKey:GNSettingsFontFaceKey]
+                                           size:20]];
         [textLabel setBackgroundColor:[UIColor clearColor]];
         [textLabel setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin)];
         

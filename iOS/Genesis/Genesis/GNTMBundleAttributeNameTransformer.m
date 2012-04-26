@@ -62,7 +62,7 @@
     if([fontStyle isEqualToString:@"bold"])
     {
         // Bold the font
-        return (__bridge id)CTFontCreateCopyWithSymbolicTraits([GNTextGeometry defaultFont],
+        return (__bridge id)CTFontCreateCopyWithSymbolicTraits([GNTextGeometry coreTextFont],
                                                                0.0,
                                                                NULL,
                                                                kCTFontBoldTrait,
@@ -71,7 +71,7 @@
     else if([fontStyle isEqualToString:@"italic"])
     {
         // Italicize the font
-        return (__bridge id)CTFontCreateCopyWithSymbolicTraits([GNTextGeometry defaultFont],
+        return (__bridge id)CTFontCreateCopyWithSymbolicTraits([GNTextGeometry coreTextFont],
                                                                0.0,
                                                                NULL,
                                                                kCTFontItalicTrait,
@@ -80,7 +80,7 @@
     else
     {
         // Just return the font
-        return (__bridge id)[GNTextGeometry defaultFont];
+        return (__bridge id)[GNTextGeometry coreTextFont];
     }
 }
 

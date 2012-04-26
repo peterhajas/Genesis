@@ -48,7 +48,7 @@
         
         attributedFileText = [[GNAttributedFileText alloc] initWithText:[fileText fileText]
                                                                fileText:fileText
-                                                       andFileExtension:[path lastPathComponent]];
+                                                       andFileExtension:[path pathExtension]];
         
         autoCompleteDictionary = [[GNAutocompleteDictionary alloc] init];
         

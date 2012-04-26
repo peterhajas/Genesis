@@ -43,6 +43,7 @@
     
     // Set global appearance settings
     [[UINavigationBar appearance] setTintColor:kGNTintColor];
+    [[UIToolbar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
     

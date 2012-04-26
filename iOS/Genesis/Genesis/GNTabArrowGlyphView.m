@@ -48,22 +48,25 @@
     // The color we'll use
     CGColorRef glyphColor = [[UIColor blackColor] CGColor];
     
-    // The thickness of our lines
-    CGFloat lineThickness = 2.0;
+    // The thickness of our horizontal line
+    CGFloat horizontalLineThickness = 4.0;
+    
+    // The thickness of our vertical line
+    CGFloat verticalLineThickness = 2.0;
     
     // Draw the horizontal line
     
     CGContextRef context = UIGraphicsGetCurrentContext();
         
-    CGPoint horizontalLineStart = CGPointMake(kGNTextInputAccessoryViewButtonMargin * 4,
+    CGPoint horizontalLineStart = CGPointMake(kGNTextInputAccessoryViewButtonMargin * 6,
                                               kGNTextInputAccessoryViewHeight/2);
-    CGPoint horizontalLineEnd = CGPointMake(kGNTextInputAccessoryViewButtonWidth - 7 * kGNTextInputAccessoryViewButtonMargin,
+    CGPoint horizontalLineEnd = CGPointMake(kGNTextInputAccessoryViewButtonWidth - 10 * kGNTextInputAccessoryViewButtonMargin,
                                             horizontalLineStart.y);
     
     CGContextSaveGState(context);
     CGContextSetLineCap(context, kCGLineCapSquare);
     CGContextSetStrokeColorWithColor(context, glyphColor);
-    CGContextSetLineWidth(context, lineThickness);
+    CGContextSetLineWidth(context, horizontalLineThickness);
     CGContextMoveToPoint(context, horizontalLineStart.x, horizontalLineStart.y);
     CGContextAddLineToPoint(context, horizontalLineEnd.x, horizontalLineEnd.y);
     CGContextStrokePath(context);
@@ -72,51 +75,35 @@
     // Draw the vertical line
     
     CGPoint verticalLineStart = CGPointMake(horizontalLineEnd.x + 3 * kGNTextInputAccessoryViewButtonMargin,
-                                            [self frame].size.height - kGNTextInputAccessoryViewButtonMargin * 3);
+                                            [self frame].size.height - kGNTextInputAccessoryViewButtonMargin * 3.5);
     
     CGPoint verticalLineEnd = CGPointMake(verticalLineStart.x,
-                                          kGNTextInputAccessoryViewButtonMargin * 3);
+                                          ([self frame].size.height - verticalLineStart.y));
     
     CGContextSaveGState(context);
     CGContextSetLineCap(context, kCGLineCapSquare);
     CGContextSetStrokeColorWithColor(context, glyphColor);
-    CGContextSetLineWidth(context, lineThickness);
+    CGContextSetLineWidth(context, verticalLineThickness);
     CGContextMoveToPoint(context, verticalLineStart.x, verticalLineStart.y);
     CGContextAddLineToPoint(context, verticalLineEnd.x, verticalLineEnd.y);
     CGContextStrokePath(context);
     CGContextRestoreGState(context);
+        
+    // Draw the triangle pointing right
     
-    // Draw the upper-left to lower-right portion of the diagonal
+    CGPoint upperTrianglePoint = CGPointMake(kGNTextInputAccessoryViewButtonMargin * 9.5,
+                                             verticalLineEnd.y - kGNTextInputAccessoryViewButtonMargin * 0.25);
+    CGPoint lowerTrianglePoint = CGPointMake(upperTrianglePoint.x,
+                                             horizontalLineStart.y + (horizontalLineStart.y - upperTrianglePoint.y));
+    CGPoint middleTrianglePoint = CGPointMake(upperTrianglePoint.x + 3 * kGNTextInputAccessoryViewButtonMargin,
+                                              horizontalLineEnd.y);
     
-    CGPoint upperLeftLineStart = CGPointMake(verticalLineStart.x - kGNTextInputAccessoryViewButtonMargin * 6,
-                                             horizontalLineStart.y - kGNTextInputAccessoryViewButtonMargin * 2);
-    CGPoint upperLeftLineEnd = CGPointMake(verticalLineStart.x - kGNTextInputAccessoryViewButtonMargin * 2,
-                                           kGNTextInputAccessoryViewHeight/2);
-    
-    CGContextSaveGState(context);
-    CGContextSetLineCap(context, kCGLineCapSquare);
-    CGContextSetStrokeColorWithColor(context, glyphColor);
-    CGContextSetLineWidth(context, lineThickness);
-    CGContextMoveToPoint(context, upperLeftLineStart.x, upperLeftLineStart.y);
-    CGContextAddLineToPoint(context, upperLeftLineEnd.x, upperLeftLineEnd.y);
-    CGContextStrokePath(context);
-    CGContextRestoreGState(context);
-    
-    // Draw the lower-left to upper-right portion of the diagonal
-    
-    CGPoint lowerLeftStart = CGPointMake(upperLeftLineStart.x,
-                                         horizontalLineStart.y + (horizontalLineStart.y - upperLeftLineStart.y));
-    CGPoint lowerLeftEnd = CGPointMake(upperLeftLineEnd.x,
-                                       upperLeftLineEnd.y);
-    
-    CGContextSaveGState(context);
-    CGContextSetLineCap(context, kCGLineCapSquare);
-    CGContextSetStrokeColorWithColor(context, glyphColor);
-    CGContextSetLineWidth(context, lineThickness);
-    CGContextMoveToPoint(context, lowerLeftStart.x, lowerLeftStart.y);
-    CGContextAddLineToPoint(context, lowerLeftEnd.x, lowerLeftEnd.y);
-    CGContextStrokePath(context);
-    CGContextRestoreGState(context);
+    UIBezierPath* trianglePath = [UIBezierPath bezierPath];
+    [trianglePath moveToPoint:middleTrianglePoint];
+    [trianglePath addLineToPoint:upperTrianglePoint];
+    [trianglePath addLineToPoint:lowerTrianglePoint];
+    [trianglePath addLineToPoint:middleTrianglePoint];
+    [trianglePath fill];
 }
 
 -(BOOL)canBecomeFirstResponder

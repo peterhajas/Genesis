@@ -43,7 +43,7 @@
         
         // Auto complete button
         autoCompleteButton = [[GNTextInputAccessoryViewAutocompleteButton alloc] init];
-        [autoCompleteButton setHorizontalPosition:kGNTextInputAccessoryViewButtonWidth/2];
+        [autoCompleteButton setHorizontalPosition:kGNTextInputAccessoryViewButtonWidth];
         [self addSubview:autoCompleteButton];
         
         // Hide keyboard button

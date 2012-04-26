@@ -13,27 +13,19 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-//
-// Prefix header for all source files of the 'Genesis' target in the 'Genesis' project
-//
+#import <UIKit/UIKit.h>
 
-#import <Availability.h>
+@protocol GNSettingsRootTableViewControllerDelegate <NSObject>
 
-#ifndef __IPHONE_3_0
-#warning "This project uses features only available in iOS SDK 3.0 and later."
-#endif
+-(void)dismiss;
 
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-    #import <CoreData/CoreData.h>
-    #import <CoreText/CoreText.h>
-    #import <CoreGraphics/CoreGraphics.h>
+@end
 
-    #import "GNScrollViewDelegate.h"
-    #import "GNNotificationNames.h"
-    #import "GNSharedSettings.h"
-#endif
+@interface GNSettingsRootTableViewController : UITableViewController
+{
+    NSObject<GNSettingsRootTableViewControllerDelegate>* delegate;
+}
 
-#define kGNTintColor [UIColor colorWithRed:.451 green:.231 blue:.702 alpha:1.0]
-#define kGNAlternateTintColor [UIColor colorWithRed:.451 green:0.0 blue:.671 alpha:1.0]
+@property(nonatomic,retain)NSObject<GNSettingsRootTableViewControllerDelegate>* delegate;
+
+@end
