@@ -35,9 +35,9 @@
         self.machineName = [[UIDevice currentDevice] name];
 #elif TARGET_OS_MAC
         // Dunno. Use SCDynamicStoreCopyComputerName?
-        self.machineName = @"Unnamed Mac";
+        self.machineName = @"My Mac";
 #else
-        self.machineName = @"Unnamed Machine";
+        self.machineName = @"My Machine";
 #endif
         client = theClient;
         sender = [NSNumber numberWithInt:0];
