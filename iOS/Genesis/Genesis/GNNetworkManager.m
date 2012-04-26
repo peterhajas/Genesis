@@ -169,16 +169,14 @@
     [self assertBuilder];
     [client getFilesFromBuilder:self.builder forProject:project withCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
-        NSArray *files = nil;
-        if (error)
-        {
-            files = [NSArray array];
-        }
-        else
+        NSArray *files = [NSArray array];
+        NSString *branch = nil;
+        if (!error)
         {
             files = [info objectForKey:@"files"];
+            branch = [info objectForKey:@"branch"];
         }
-        [delegate didReceiveFiles:files forProject:project error:error];
+        [delegate didReceiveFiles:files forBranch:branch forProject:project error:error];
     }];
 }
 

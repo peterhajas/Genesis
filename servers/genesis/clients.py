@@ -488,7 +488,8 @@ class BuilderDelegate(MediatorClientDelegateBase):
         else:
             yield gen.Task(mclient.write_response, ResponseMessage.success(
                 request.id,
-                files=files
+                files=files,
+                branch=self.builder.get_current_branch(request['project'])
             ))
 
     @gen.engine

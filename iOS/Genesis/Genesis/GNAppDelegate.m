@@ -204,6 +204,7 @@
     if (!error)
     {
         // list projects? select projects?
+        NSLog(@"Projects: %@", projects);
     }
     else
     {
@@ -211,11 +212,12 @@
     }
 }
 
-- (void)didReceiveFiles:(NSArray *)files forProject:(NSString *)projectName error:(NSError *)error
+- (void)didReceiveFiles:(NSArray *)files forBranch:(NSString *)branch forProject:(NSString *)projectName error:(NSError *)error
 {
     if (!error)
     {
         // list files
+        NSLog(@"Files: %@", files);
     }
     else
     {
@@ -228,6 +230,7 @@
     if (!error)
     {
         // handle file upload ?
+        NSLog(@"Uploaded file: %@", filepath);
     }
     else
     {
@@ -243,6 +246,7 @@
     if (!error)
     {
         // handle downloaded file
+        NSLog(@"Downloaded file: %@", filepath);
     }
     else
     {

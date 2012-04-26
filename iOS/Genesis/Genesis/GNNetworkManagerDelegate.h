@@ -50,7 +50,7 @@ typedef enum {
 - (NSString *)selectFromBuilders:(NSArray *)builders error:(NSError *)error;
 
 - (void)didReceiveProjects:(NSArray *)projects error:(NSError *)error;
-- (void)didReceiveFiles:(NSArray *)files forProject:(NSString *)projectName error:(NSError *)error;
+- (void)didReceiveFiles:(NSArray *)files forBranch:(NSString *)branch forProject:(NSString *)projectName error:(NSError *)error;
 - (void)didReceiveBranches:(NSArray *)branches headBranch:(NSString *)headBranch forProject:(NSString *)projectName error:(NSError *)error;
 - (void)didDownloadFile:(NSString *)filepath withContents:(NSString *)contents forProject:(NSString *)projectName error:(NSError *)error;
 - (void)didReceiveStatus:(NSString *)currentActivity error:(NSError *)error;
