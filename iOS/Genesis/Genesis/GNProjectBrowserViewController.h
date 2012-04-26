@@ -21,9 +21,10 @@
 @interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate,
                                                               GNNewProjectViewControllerDelegate>
 {
-    IBOutlet UITableView* tableView;
     GNProjectBrowserTableViewController* tableViewController;
 }
+
+@property (nonatomic, readonly) IBOutlet UITableView* tableView;
 
 -(IBAction)addProjectButtonPressed:(id)sender;
 -(IBAction)editButtonPressed:(id)sender;
