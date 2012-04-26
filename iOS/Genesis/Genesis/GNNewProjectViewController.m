@@ -30,7 +30,19 @@
     // If the text of the text field isn't blank
     if(![[textField text] isEqualToString:@""])
     {
-        // TODO: Make sure this isn't a project that's already been made! Check for unique names!
+        if([GNFileManager entryExistsAtRelativePath:[textField text]
+                                        isDirectory:YES])
+        {
+            // A project exists at this directory!
+            UIAlertView* duplicateAlert = [[UIAlertView alloc] initWithTitle:@"Duplicate Project Name!"
+                                                                     message:@"A project with that name already exists. Pick a new name."
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"Got it."
+                                                           otherButtonTitles:nil];
+            [duplicateAlert show];
+            return YES;
+        }
+        
         
         // Create the new project
         GNAppDelegate* appDelegate = (GNAppDelegate*)[[UIApplication sharedApplication] delegate];
