@@ -136,7 +136,7 @@ return fileContents;
     if(isDirectory)
     {
         [[NSFileManager defaultManager] createDirectoryAtPath:absolutePath
-                                  withIntermediateDirectories:NO
+                                  withIntermediateDirectories:YES
                                                    attributes:nil
                                                         error:&error];
         if(error)
