@@ -42,13 +42,11 @@ typedef enum {
 
 @protocol GNNetworkManagerDelegate <NSObject>
 
+@optional
 // initialization phase
-@required
 - (void)didConnectToMediatorWithError:(NSError *)error;
 - (void)didAuthenticateWithError:(NSError *)error;
 - (void)didRegisterWithError:(NSError *)error;
-
-@optional
 - (NSString *)selectFromBuilders:(NSArray *)builders error:(NSError *)error;
 
 - (void)didReceiveProjects:(NSArray *)projects error:(NSError *)error;
