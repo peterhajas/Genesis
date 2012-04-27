@@ -18,9 +18,11 @@
 #import "GNDirectoryViewController.h"
 #import "GNSettingsViewController.h"
 
-@implementation GNProjectBrowserViewController
+#import "GNNetworkNotificationKeys.h"
+#import "GNAppDelegate.h"
+#import "GNNetworkManager.h"
 
-@synthesize tableView;
+@implementation GNProjectBrowserViewController
 
 -(IBAction)addProjectButtonPressed:(id)sender
 {
@@ -28,6 +30,12 @@
                                                                                                         bundle:[NSBundle mainBundle]];
     [newProjectViewController setDelegate:self];
     [self presentModalViewController:newProjectViewController animated:YES];
+    
+    // listen to what the GNNetworkSync will broadcast over NSNotificationCenter
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadTableFromNotification:)
+                                                 name:GNProjectsUpdatedNotification
+                                               object:nil];
 }
 
 -(IBAction)editButtonPressed:(id)sender
@@ -56,12 +64,20 @@
                             animated:YES];
 }
 
+-(void)reloadTableFromNotification:(NSNotification *)notification
+{
+    [tableView reloadData];
+}
+
 -(void)didSelectProject:(GNProject*)project
 {
     // Create a new GNDirectoryViewController for this project, and push it onto the stack
     GNDirectoryViewController* directoryViewController = [[GNDirectoryViewController alloc] initWithBackingPath:[project valueForKey:@"name"] 
                                                                                         andNavigationController:[self navigationController]];
     [[self navigationController] pushViewController:directoryViewController animated:YES];
+    // TODO: fixme
+    GNNetworkManager *networkManager = [(GNAppDelegate*)[[UIApplication sharedApplication] delegate] networkManager];
+    [networkManager requestFilesForProject:[project valueForKey:@"name"]];
 }
 
 #pragma mark - GNNewProjectViewControllerDelegate methods

@@ -213,7 +213,7 @@
                    onBranch:(NSString *)branch
                withCallback:(GNClientCallback)callback
 {
-    NSArray *params = [NSArray arrayWithObjects:project, branch || @"", sender, nil];
+    NSArray *params = [NSArray arrayWithObjects:project, branch != nil ? branch : @"", sender, nil];
     GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_FILES andParameters:params];
     GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
     [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {

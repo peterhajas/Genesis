@@ -153,21 +153,9 @@ return fileContents;
          form the directory to create.
          */
         
-        NSArray* relativePathComponents = [relativePath pathComponents];
-        NSString* runningPath = @"";
-        
-        for(NSString* relativePathComponent in relativePathComponents)
+        if(![relativePath isEqualToString:@""])
         {
-            if([relativePathComponent isEqual:[relativePathComponents lastObject]])
-            {
-                break;
-            }
-            runningPath = [runningPath stringByAppendingString:relativePathComponent];
-        }
-        
-        if(![runningPath isEqualToString:@""])
-        {
-            NSString* absoluteRunningPath = [GNFileManager absolutePathForRelativePath:runningPath];
+            NSString* absoluteRunningPath = [GNFileManager absolutePathForRelativePath:relativePath];
             
             [[NSFileManager defaultManager] createDirectoryAtPath:absoluteRunningPath
                                       withIntermediateDirectories:YES

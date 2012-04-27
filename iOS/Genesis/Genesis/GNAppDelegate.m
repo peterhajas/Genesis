@@ -15,10 +15,11 @@
 
 
 #import "GNAppDelegate.h"
-#import "GNProjectBrowserViewController.h"
+#import "GNNetworkSync.h"
 
 @implementation GNAppDelegate
 
+@synthesize networkManager;
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
@@ -34,8 +35,8 @@
     [self.window makeKeyAndVisible];
     
     // Create a project browser table view
-    GNProjectBrowserViewController* projectBrowser = [[GNProjectBrowserViewController alloc] initWithNibName:@"GNProjectBrowserViewController" 
-                                                                                                      bundle:[NSBundle mainBundle]];
+    projectBrowser = [[GNProjectBrowserViewController alloc] initWithNibName:@"GNProjectBrowserViewController"
+                                                                      bundle:[NSBundle mainBundle]];
     
     // Create the navigation controller
     navigationController = [[UINavigationController alloc] initWithRootViewController:projectBrowser];
@@ -47,8 +48,9 @@
     [self.window setRootViewController:navigationController];
     
     networkManager = [[GNNetworkManager alloc] initWithHost:@"localhost" onPort:8080 withSSL:NO];
-    networkManager.delegate = self;
-    // can be anything
+    networkManager.delegate = [[GNNetworkSync alloc] init];
+    networkManager.autoregister = YES;
+    // can be anything, autoregister flag will register if the username does not exist.
     [networkManager connectInBackgroundWithUsername:@"jeff" andPassword:@"password"];
     
     // Load the default theme
@@ -181,77 +183,6 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-#pragma mark - Network Manager Delegate
-
-- (void)didAuthenticateWithError:(NSError *)error
-{
-    if (error)
-    {
-        NSLog(@"Failed to authenticate: %@", error);
-    }
-}
-
-- (void)didRegisterWithError:(NSError *)error
-{
-    if (error)
-    {
-        NSLog(@"Failed to register: %@", error);
-    }
-}
-
-- (void)didReceiveProjects:(NSArray *)projects error:(NSError *)error
-{
-    if (!error)
-    {
-        // list projects? select projects?
-        NSLog(@"Projects: %@", projects);
-    }
-    else
-    {
-        NSLog(@"Failed to get projects: %@", error);
-    }
-}
-
-- (void)didReceiveFiles:(NSArray *)files forBranch:(NSString *)branch forProject:(NSString *)projectName error:(NSError *)error
-{
-    if (!error)
-    {
-        // list files
-        NSLog(@"Files: %@", files);
-    }
-    else
-    {
-        NSLog(@"Failed to get files: %@", error);
-    }
-}
-
-- (void)didUploadFile:(NSString *)filepath forProject:(NSString *)project error:(NSError *)error
-{
-    if (!error)
-    {
-        // handle file upload ?
-        NSLog(@"Uploaded file: %@", filepath);
-    }
-    else
-    {
-        NSLog(@"Failed to upload file: %@", error);
-    }
-}
-
-- (void)didDownloadFile:(NSString *)filepath
-           withContents:(NSString *)contents
-             forProject:(NSString *)projectName
-                  error:(NSError *)error
-{
-    if (!error)
-    {
-        // handle downloaded file
-        NSLog(@"Downloaded file: %@", filepath);
-    }
-    else
-    {
-        NSLog(@"Failed to download file: %@", error);
-    }
-}
+#pragma mark - Listen to notifications
 
 @end

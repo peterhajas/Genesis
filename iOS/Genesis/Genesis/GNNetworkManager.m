@@ -30,11 +30,24 @@
         client = [[GNAPIClient alloc] initWithHost:theHost andPort:port];
         useSSL = secure;
         self.autoregister = YES;
+        networkActivityCounter = 0;
     }
     return self;
 }
 
 #pragma mark - Helper methods
+
+- (void)incrementNetworkActivityCounter
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = (++networkActivityCounter > 0);
+    NSLog(@"inc %d", networkActivityCounter);
+}
+
+- (void)decrementNetworkActivityCounter
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = (--networkActivityCounter > 0);
+    NSLog(@"dec %d - %d", networkActivityCounter, [UIApplication sharedApplication].networkActivityIndicatorVisible);
+}
 
 - (NSError *)errorFromDictionary:(NSDictionary *)info
 {
@@ -66,6 +79,7 @@
 
 - (void)getBuilders
 {
+    [self incrementNetworkActivityCounter];
     [client getBuildersWithCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
         NSArray *builders = nil;
@@ -93,6 +107,7 @@
             return;
         }
         [self requestProjects];
+        [self decrementNetworkActivityCounter];
     }];
 }
 
@@ -100,17 +115,20 @@
 
 - (id)connectInBackground
 {
+    [self incrementNetworkActivityCounter];
     [client connectWithSSL:useSSL withCallback:^(NSError *error) {
         if ([delegate respondsToSelector:@selector(didConnectToMediatorWithError:)])
         {
             [delegate didConnectToMediatorWithError:error];
         }
+        [self decrementNetworkActivityCounter];
     }];
     return self;
 }
 
 - (id)connectInBackgroundWithUsername:(NSString *)username andPassword:(NSString *)password
 {
+    [self incrementNetworkActivityCounter];
     [client connectWithSSL:useSSL withCallback:^(NSError *error) {
         if ([delegate respondsToSelector:@selector(didConnectToMediatorWithError:)])
         {
@@ -120,12 +138,14 @@
         {
             [self loginWithUsername:username andPassword:password];
         }
+        [self decrementNetworkActivityCounter];
     }];
     return self;
 }
 
 - (void)registerWithUsername:(NSString *)username andPassword:(NSString *)password
 {
+    [self incrementNetworkActivityCounter];
     [client registerWithUsername:username
                      andPassword:password
                     withCallback:^(BOOL succeeded, NSDictionary *info) {
@@ -134,11 +154,13 @@
                         {
                             [delegate didRegisterWithError:error];
                         }
+                        [self decrementNetworkActivityCounter];
                     }];
 }
 
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password
 {
+    [self incrementNetworkActivityCounter];
     if (self.autoregister)
     {
         NSLog(@"Registering - %@ %@", username, password);
@@ -150,6 +172,7 @@
                             {
                                 [delegate didRegisterWithError:error];
                             }
+                            [self incrementNetworkActivityCounter];
                             [client loginWithPassword:password
                                           forUsername:username
                                          withCallback:^(BOOL succeeded, NSDictionary *info) {
@@ -159,7 +182,9 @@
                                                  [delegate didAuthenticateWithError:error];
                                              }
                                              [self getBuilders];
+                                             [self decrementNetworkActivityCounter];
                             }];
+                            [self decrementNetworkActivityCounter];
         }];
     }
     else
@@ -171,6 +196,7 @@
                 [delegate didAuthenticateWithError:error];
             }
             [self getBuilders];
+            [self decrementNetworkActivityCounter];
         }];
     }
 }
@@ -180,6 +206,7 @@
 - (void)requestProjects
 {
     [self assertBuilder];
+    [self incrementNetworkActivityCounter];
     [client getProjectsFromBuilder:self.builder withCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
         NSArray *projects = nil;
@@ -195,12 +222,14 @@
         {
             [delegate didReceiveProjects:projects error:error];
         }
+        [self decrementNetworkActivityCounter];
     }];
 }
 
 - (void)requestFilesForProject:(NSString *)project
 {
     [self assertBuilder];
+    [self incrementNetworkActivityCounter];
     [client getFilesFromBuilder:self.builder forProject:project withCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
         NSArray *files = [NSArray array];
@@ -214,11 +243,13 @@
         {
             [delegate didReceiveFiles:files forBranch:branch forProject:project error:error];
         }
+        [self decrementNetworkActivityCounter];
     }];
 }
 
 - (void)requestBranchesForProject:(NSString *)project
 {
+    [self incrementNetworkActivityCounter];
     [client getBranchesFromBuilder:self.builder forProject:project withCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
         NSArray *branches = [NSArray array];
@@ -232,24 +263,28 @@
         {
             [delegate didReceiveBranches:branches headBranch:head forProject:project error:error];
         }
+        [self decrementNetworkActivityCounter];
     }];
 }
 
 - (void)uploadFile:(NSString *)filepath withContents:(NSString *)contents forProject:(NSString *)project
 {
     [self assertBuilder];
+    [self incrementNetworkActivityCounter];
     [client uploadFile:filepath toBuilder:self.builder andProject:project withContents:contents withCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
         if ([delegate respondsToSelector:@selector(didUploadFile:forProject:error:)])
         {
             [delegate didUploadFile:filepath forProject:project error:error];
         }
+        [self decrementNetworkActivityCounter];
     }];
 }
 
 - (void)downloadFile:(NSString *)filepath forProject:(NSString *)project
 {
     [self assertBuilder];
+    [self incrementNetworkActivityCounter];
     [client downloadFile:filepath fromBuilder:self.builder andProject:project withCallback:^(BOOL succeeded, NSDictionary *info) {
         NSError *error = [self errorUnlessSucceeded:succeeded withDictionary:info];
         NSString *contents = nil;
@@ -261,6 +296,7 @@
         {
             [delegate didDownloadFile:filepath withContents:contents forProject:project error:error];
         }
+        [self decrementNetworkActivityCounter];
     }];
 }
 

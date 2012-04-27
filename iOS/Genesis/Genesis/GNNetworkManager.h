@@ -21,6 +21,7 @@
 {
     BOOL useSSL;
     GNAPIClient *client;
+    int networkActivityCounter;
 }
 
 // the object that handles all the responses
