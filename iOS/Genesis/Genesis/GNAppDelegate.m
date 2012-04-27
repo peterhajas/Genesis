@@ -56,7 +56,7 @@
     NSNumber *portNumber = [[GNSharedSettings sharedSettings] valueForKey:GNSettingsPort];
     if (portNumber == nil)
     {
-        portNumber = [NSNumber numberWithInt:8080];
+        portNumber = [NSNumber numberWithInt:7331];
     }
     
     networkManager = [[GNNetworkManager alloc] initWithHost:hostname
@@ -65,7 +65,7 @@
     networkManager.delegate = [[GNNetworkSync alloc] initWithNetworkManager:networkManager];
     networkManager.autoregister = YES;
     // can be anything, autoregister flag will register if the username does not exist.
-    [networkManager connectInBackgroundWithUsername:@"jeff" andPassword:@"password"];
+    [networkManager connectInBackgroundWithUsername:@"peterhajas" andPassword:@"zaq12wsx"];
     
     // Load the default theme
     theme = [[GNTheme alloc] initWthThemeName:defaultTheme];
