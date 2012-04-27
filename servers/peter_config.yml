@@ -1,0 +1,18 @@
+name: Peter Mac Pro
+username: peterhajas
+password: zaq12wsx
+mediator:
+  host: localhost
+  port: 7331
+projects:
+  LOL:
+    location: ~/Source/lol
+    ignore:
+      - "*.pyc"
+      - "*/.DS_Store"
+      - "*/.git/*"
+    shell: /bin/bash
+    source:
+      - $HOME/.bash_profile
+    actions:
+      test: ls
