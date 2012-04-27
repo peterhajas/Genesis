@@ -58,6 +58,12 @@
         
         [horizontalOffsetManager clearHorizontalOffsets];
         
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(refreshFileContents:)
+                                                     name:GNRefreshFileContentsNotification
+                                                   object:nil];
+        
         [self textDidChange];
     }
     return self;
@@ -96,6 +102,15 @@
 -(void)cleanUp
 {
     [fileText cleanUp];
+}
+
+-(void)refreshFileContents:(NSNotification*)notification
+{
+    // Currently, just naively refresh us regardless of the notification's intent
+    [fileText setFileText:[NSString stringWithContentsOfFile:[GNFileManager absolutePathForRelativePath:relativePath]
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:nil]];
+    [fileText textChanged];
 }
 
 #pragma mark File extension property

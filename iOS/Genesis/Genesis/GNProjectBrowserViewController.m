@@ -117,7 +117,13 @@
         tableViewController = [[GNProjectBrowserTableViewController alloc] initWithStyle:UITableViewStylePlain];
         [tableViewController setDelegate:self];
         
-        [self setTitle:@"Projects"];        
+        [self setTitle:@"Projects"];
+        
+        // Register for project listing refresh notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(refreshProjects:)
+                                                     name:GNRefreshProjectsNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -143,6 +149,11 @@
 {
     // Return YES for supported orientations
     return YES;
+}
+
+-(void)refreshProjects:(NSNotification*)notification
+{
+    [tableView reloadData];
 }
 
 @end

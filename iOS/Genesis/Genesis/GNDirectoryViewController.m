@@ -38,7 +38,7 @@
     return self;
 }
 
--(void)reloadFilesForNotification:(NSNotification *)notification
+-(void)reloadFilesForNotification:(NSNotification*)notification
 {
     [tableView reloadData];
 }
@@ -85,6 +85,11 @@
     UIBarButtonItem* addButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFilesystemEntryButtonPressed:)];
     
     [[self navigationItem] setRightBarButtonItem:addButtonItem animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
