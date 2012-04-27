@@ -148,7 +148,6 @@
         NSLog(@"Files Queue: %@", fileDownloadQueue);
         if ([fileDownloadQueue count] > 1)
         {
-            NSLog(@"Starting download: %@", [fileDownloadQueue lastObject]);
             [self.networkManager downloadFile:[[fileDownloadQueue lastObject] objectForKey:@"path"]
                                    forProject:projectName];
             [fileDownloadQueue removeLastObject];
@@ -196,7 +195,6 @@
         
         if ([fileDownloadQueue count] > 1)
         {
-            NSLog(@"Starting download: %@", [fileDownloadQueue lastObject]);
             [self.networkManager downloadFile:[[fileDownloadQueue lastObject] objectForKey:@"path"]
                                    forProject:projectName];
             [fileDownloadQueue removeLastObject];
