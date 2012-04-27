@@ -18,6 +18,9 @@
 #import "GNNetworkManager.h"
 
 @interface GNNetworkSync : NSObject <GNNetworkManagerDelegate>
+{
+    NSMutableArray *fileDownloadQueue;
+}
 
 @property (nonatomic, strong) GNNetworkManager *networkManager;
 

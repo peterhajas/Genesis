@@ -62,7 +62,7 @@
     networkManager = [[GNNetworkManager alloc] initWithHost:hostname
                                                      onPort:[portNumber intValue]
                                                     withSSL:NO];
-    networkManager.delegate = [[GNNetworkSync alloc] init];
+    networkManager.delegate = [[GNNetworkSync alloc] initWithNetworkManager:networkManager];
     networkManager.autoregister = YES;
     // can be anything, autoregister flag will register if the username does not exist.
     [networkManager connectInBackgroundWithUsername:@"jeff" andPassword:@"password"];

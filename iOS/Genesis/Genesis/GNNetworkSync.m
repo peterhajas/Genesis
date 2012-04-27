@@ -26,6 +26,7 @@
     if (self = [super init])
     {
         self.networkManager = theNetworkManager;
+        fileDownloadQueue = [NSMutableArray new];
     }
     return self;
 }
@@ -129,7 +130,17 @@
                                                        isDirectory:NO];
                 // TODO: should we be handling error for creation attempt?
              }
-            [self.networkManager downloadFile:filepath forProject:projectName];
+            //[self.networkManager downloadFile:filepath forProject:projectName];
+        }
+        fileDownloadQueue = [NSMutableArray arrayWithObject:projectName];
+        [fileDownloadQueue addObjectsFromArray:files];
+        NSLog(@"Files Queue: %@", fileDownloadQueue);
+        if ([fileDownloadQueue count] > 1)
+        {
+            NSLog(@"Starting download: %@", [fileDownloadQueue lastObject]);
+            [self.networkManager downloadFile:[[fileDownloadQueue lastObject] objectForKey:@"path"]
+                                   forProject:projectName];
+            [fileDownloadQueue removeLastObject];
         }
         
         NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:files, @"files",
@@ -169,6 +180,16 @@
         // handle downloaded file
         NSLog(@"Downloaded file: %@", filepath);
         // TODO: write file contents here
+        NSString *fullPath = [projectName stringByAppendingPathComponent:filepath];
+        [GNFileManager setFileContentsAtRelativePath:fullPath toContent:[contents dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        if ([fileDownloadQueue count] > 1)
+        {
+            NSLog(@"Starting download: %@", [fileDownloadQueue lastObject]);
+            [self.networkManager downloadFile:[[fileDownloadQueue lastObject] objectForKey:@"path"]
+                                   forProject:projectName];
+            [fileDownloadQueue removeLastObject];
+        }
         
         NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:filepath, @"filepath",
                               projectName, @"project",

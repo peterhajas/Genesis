@@ -292,6 +292,11 @@
         {
             contents = [info objectForKey:@"contents"];
         }
+        else
+        {
+            NSLog(@"Failed to download file: %@", error);
+        }
+        
         if ([delegate respondsToSelector:@selector(didDownloadFile:withContents:forProject:error:)])
         {
             [delegate didDownloadFile:filepath withContents:contents forProject:project error:error];
