@@ -20,6 +20,9 @@ class IgnoreList(object):
         matches = fnmatch.fnmatch if is_windows() else fnmatch.fnmatchcase
         return any(matches(filepath, i) for i in self.ignored)
 
+    def __repr__(self):
+        return "<IgnoreList(%r)>" % self.ignored
+
 
 class BuilderConfig(object):
     def __init__(self, config, filepath=None):
@@ -41,19 +44,21 @@ class BuilderConfig(object):
 
     def get_files(self, project):
         ignored = self.get_ignored(project)
+        print 'ignored:', ignored
         location = expand(self.get_location(project))
         all_files = []
 
         for root, dirs, files in os.walk(location):
             for f in files:
                 filepath = os.path.join(root, f)
-                if filepath in ignored:
+                relative_path = filepath[len(location) + 1:]
+                if relative_path in ignored:
                     continue
 
                 s = os.stat(filepath)
                 all_files.append({
                     'name': os.path.basename(filepath),
-                    'path': filepath,
+                    'path': relative_path,
                     'size': s.st_size,
                     'modified_time': s.st_mtime,
                     'kind': '',

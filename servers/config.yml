@@ -9,8 +9,8 @@ projects:
     location: ~/Documents/projects/sample
     ignore:
       - "*.pyc"
-      - "/.git/*"
-      - "/.DS_Store"
+      - ".git/*"
+      - ".DS_Store"
     shell: /bin/bash
     source:
       - $HOME/.bash_profile
@@ -21,8 +21,8 @@ projects:
     location: ~/Documents/projects/yacs
     ignore:
       - "*.pyc"
-      - "*/.DS_Store"
-      - "*/.git/*"
+      - ".DS_Store"
+      - ".git/*"
     shell: /bin/bash
     source:
       - $HOME/.bash_profile
@@ -33,9 +33,9 @@ projects:
     location: ~/Documents/projects/describe
     ignore:
       - "*.pyc"
-      - "*/.DS_Store"
+      - ".DS_Store"
       - "*.js"
-      - "*/.git/*"
+      - ".git/*"
     shell: /bin/bash
     source:
       - $HOME/.bash_profile
