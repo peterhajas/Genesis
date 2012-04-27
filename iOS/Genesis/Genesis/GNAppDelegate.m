@@ -20,7 +20,6 @@
 
 @implementation GNAppDelegate
 
-@synthesize networkManager;
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
@@ -47,26 +46,7 @@
     [[UIToolbar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
-    
-    NSString *hostname = [[GNSharedSettings sharedSettings] valueForKey:GNSettingsHost];
-    if (hostname == nil)
-    {
-        hostname = @"localhost";
-    }
-    NSNumber *portNumber = [[GNSharedSettings sharedSettings] valueForKey:GNSettingsPort];
-    if (portNumber == nil)
-    {
-        portNumber = [NSNumber numberWithInt:7331];
-    }
-    
-    networkManager = [[GNNetworkManager alloc] initWithHost:hostname
-                                                     onPort:[portNumber intValue]
-                                                    withSSL:NO];
-    networkManager.delegate = [[GNNetworkSync alloc] initWithNetworkManager:networkManager];
-    networkManager.autoregister = YES;
-    // can be anything, autoregister flag will register if the username does not exist.
-    [networkManager connectInBackgroundWithUsername:@"peterhajas" andPassword:@"zaq12wsx"];
-    
+        
     // Load the default theme
     theme = [[GNTheme alloc] initWthThemeName:defaultTheme];
     
