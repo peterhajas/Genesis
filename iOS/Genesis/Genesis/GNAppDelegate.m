@@ -16,6 +16,7 @@
 
 #import "GNAppDelegate.h"
 #import "GNNetworkSync.h"
+#import "GNSharedSettings.h"
 
 @implementation GNAppDelegate
 
@@ -47,7 +48,20 @@
     
     [self.window setRootViewController:navigationController];
     
-    networkManager = [[GNNetworkManager alloc] initWithHost:@"localhost" onPort:8080 withSSL:NO];
+    NSString *hostname = [[GNSharedSettings sharedSettings] valueForKey:GNSettingsHost];
+    if (hostname == nil)
+    {
+        hostname = @"localhost";
+    }
+    NSNumber *portNumber = [[GNSharedSettings sharedSettings] valueForKey:GNSettingsPort];
+    if (portNumber == nil)
+    {
+        portNumber = [NSNumber numberWithInt:8080];
+    }
+    
+    networkManager = [[GNNetworkManager alloc] initWithHost:hostname
+                                                     onPort:[portNumber intValue]
+                                                    withSSL:NO];
     networkManager.delegate = [[GNNetworkSync alloc] init];
     networkManager.autoregister = YES;
     // can be anything, autoregister flag will register if the username does not exist.
