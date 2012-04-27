@@ -49,7 +49,7 @@ class ProtocolSerializer(object):
 
     If no delegate is provided, it simply closes the stream.
     """
-    version = 1
+    version = 2
     def __init__(self, serializer=None, delegate=None):
         self.serializer = serializer or NetworkSerializer()
         self.delegate = delegate
@@ -83,7 +83,7 @@ class ProtocolSerializer(object):
         data = self.serializer.serialize(obj)
         #net_data = struct.pack('!%dc' % len(data), *list(data))
         net_data = str(data)
-        return struct.pack('!H', len(net_data)) + net_data
+        return struct.pack('!L', len(net_data)) + net_data
 
     def _error_on_stream(self, stream):
         if callable(self.delegate):
@@ -104,7 +104,7 @@ class ProtocolSerializer(object):
 
         def _consume_length(data):
             try:
-                length = struct.unpack('!H', data)[0]
+                length = struct.unpack('!L', data)[0]
             except struct.error:
                 self._error_on_stream(stream)
                 return
@@ -112,6 +112,6 @@ class ProtocolSerializer(object):
             stream.read_bytes(length, with_args(_consume_data, length))
 
         # 4 bytes => 8-bit
-        stream.read_bytes(2, _consume_length)
+        stream.read_bytes(4, _consume_length)
 
 

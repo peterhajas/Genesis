@@ -56,13 +56,14 @@ class BuilderConfig(object):
                     continue
 
                 s = os.stat(filepath)
+                mimetype, encoding = mimetypes.guess_type(f, strict=False)
                 all_files.append({
                     'name': os.path.basename(filepath),
                     'path': relative_path,
                     'size': s.st_size,
                     'modified_time': s.st_mtime,
                     'kind': '',
-                    'mimetype': mimetypes.guess_type(f, strict=False),
+                    'mimetype': mimetype or '',
                 })
         return all_files
 

@@ -55,7 +55,7 @@ Each message is in the form:
 
     <len><data>
 
-Where len is the number of bytes of data, represented as an unsigned short in
+Where len is the number of bytes of data, represented as an unsigned long in
 network byte-order. Data is zlibbed JSON data. Data is in the JSON-RPC version
 1 format:
 

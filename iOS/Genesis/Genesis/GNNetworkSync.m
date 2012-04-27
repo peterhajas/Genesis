@@ -16,6 +16,7 @@
 #import "GNNetworkSync.h"
 #import "GNFileManager.h"
 #import "GNAppDelegate.h"
+#import "GNNotificationNames.h"
 
 @implementation GNNetworkSync
 
@@ -116,6 +117,7 @@
         // list files
         NSLog(@"Files: %@", files);
         
+        fileDownloadQueue = [NSMutableArray arrayWithObject:projectName];
         for (NSDictionary *file in files)
         {
             NSString *filepath = [file objectForKey:@"path"];
@@ -131,9 +133,18 @@
                 // TODO: should we be handling error for creation attempt?
              }
             //[self.networkManager downloadFile:filepath forProject:projectName];
+            // we only support text right now
+            NSLog(@"File: %@", file);
+            NSString *mimetype = [file objectForKey:@"mimetype"];
+            NSLog(@"mimetype: %@", mimetype);
+            if ([mimetype isEqualToString:@""])
+                continue;
+            NSRange range = [mimetype rangeOfString:@"text/"];
+            if (range.location == 0)
+            {
+                [fileDownloadQueue addObject:file];
+            }
         }
-        fileDownloadQueue = [NSMutableArray arrayWithObject:projectName];
-        [fileDownloadQueue addObjectsFromArray:files];
         NSLog(@"Files Queue: %@", fileDownloadQueue);
         if ([fileDownloadQueue count] > 1)
         {
@@ -195,6 +206,9 @@
                               projectName, @"project",
                               nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:GNDownloadedFileNotification
+                                                            object:self
+                                                          userInfo:info];
+        [[NSNotificationCenter defaultCenter] postNotificationName:GNRefreshFileContentsNotification
                                                             object:self
                                                           userInfo:info];
     }
