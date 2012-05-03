@@ -143,7 +143,7 @@
 {
     NSUInteger start, end;
     NSString* lineSubstring;
-    NSString *leadingSpaces;
+    NSString* leadingSpaces;
     NSRange leadingSpacesRange;
     
     [fileText getLineStart:&start 
