@@ -20,7 +20,7 @@
 #define TAG_MESSAGE_LENGTH 2
 #define TAG_MESSAGE_BODY 3
 
-#define SUPPORTED_VERSION 1
+#define SUPPORTED_VERSION 2
 
 NSString * const GN_NETWORK_ERROR_DOMAIN = @"genesis";
 const NSInteger GNErrorBadVersion = 1;
@@ -35,10 +35,6 @@ const NSInteger GNErrorBadProtocol = 2;
 @synthesize serverVersion;
 @synthesize compress;
 
-- (id)init
-{
-    return [self initWithHost:GN_MEDIATOR_HOST onPort:GN_MEDIATOR_PORT];
-}
 
 - (id)initWithHost:(NSString *)hostAddr onPort:(uint16_t)portNum
 {
@@ -92,16 +88,16 @@ const NSInteger GNErrorBadProtocol = 2;
     return SUPPORTED_VERSION == self.serverVersion;
 }
 
-- (uint16_t)readMessageLengthFromData:(NSData *)data
+- (uint32_t)readMessageLengthFromData:(NSData *)data
 {
-    if([data length] != sizeof(uint16_t))
+    if([data length] != sizeof(uint32_t))
     {
         NSLog(@"Invalid message length");
         return 0;
     }
     
-    uint16_t *value = (uint16_t *)[data bytes];
-    *value = ntohs(*value);
+    uint32_t *value = (uint32_t *)[data bytes];
+    *value = ntohl(*value);
     
     return *value;
 }
@@ -151,10 +147,10 @@ const NSInteger GNErrorBadProtocol = 2;
 
 - (void)startReadMessage
 {
-    [socket readDataToLength:sizeof(uint16_t) withTimeout:-1 tag:TAG_MESSAGE_LENGTH];
+    [socket readDataToLength:sizeof(uint32_t) withTimeout:-1 tag:TAG_MESSAGE_LENGTH];
 }
 
-- (void)startReadMessageBodyWithLength:(uint16_t)messageLength
+- (void)startReadMessageBodyWithLength:(uint32_t)messageLength
 {
     [socket readDataToLength:messageLength withTimeout:-1 tag:TAG_MESSAGE_BODY];
 }
@@ -273,8 +269,8 @@ const NSInteger GNErrorBadProtocol = 2;
 {
     NSLog(@"Request ID: %@", [request identifier]);
     NSData *msgData = [self dataFromDictionary:[request jsonRPCObject]];
-    uint16_t size = htons(msgData.length);
-    NSData *sizeData = [[NSData alloc] initWithBytes:&size length:sizeof(uint16_t)];
+    uint32_t size = htonl(msgData.length);
+    NSData *sizeData = [[NSData alloc] initWithBytes:&size length:sizeof(uint32_t)];
     [socket writeData:sizeData withTimeout:-1 tag:0];
     [socket writeData:msgData withTimeout:-1 tag:0];
 }
@@ -332,7 +328,7 @@ const NSInteger GNErrorBadProtocol = 2;
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
     id<GNNetworkMessageProtocol> msg = nil;
-    uint16_t size = 0;
+    uint32_t size = 0;
     switch(tag)
     {
         case TAG_VERSION:

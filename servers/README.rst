@@ -55,7 +55,7 @@ Each message is in the form:
 
     <len><data>
 
-Where len is the number of bytes of data, represented as an unsigned short in
+Where len is the number of bytes of data, represented as an unsigned long in
 network byte-order. Data is zlibbed JSON data. Data is in the JSON-RPC version
 1 format:
 
@@ -127,6 +127,15 @@ All these commands return responses.
 
 * input(from_machine, project, input_string) - Sends standard input data.
   Newlines are NOT automatically append.
+
+* diff_stats(project) - Returns a SCM diff of the files modified to the
+  current branch.
+
+* stage_file(project, filepath) - Adds a given file to the SCM's index, cache, or
+  staging for commiting to the SCM.
+
+* commit(project, message) - Commits the indexed files with a given commit
+  message.
 
 Commands Supported by Mediator
 ------------------------------

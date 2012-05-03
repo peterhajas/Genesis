@@ -11,9 +11,135 @@ from genesis.data import (
     UploadMessage, DownloadMessage, PerformMessage, StreamNotification,
     StreamEOFNotification, ReturnCodeNotification, ResponseMessage,
     RequestMessage, RegisterMessage, ClientsMessage, CancelMessage,
+    DiffStatsMessage, StageFileMessage, CommitMessage,
     BranchesMessage, SendMessage, ErrorCodes
 )
 
+@gen.engine
+def sample_repo_handler(ios, mediator):
+    response = yield gen.Task(mediator.clients)
+    if response.is_error:
+        print "Failed to get clients connected"
+        mediator.close()
+        raise StopIteration
+
+    # get a builder
+    builders = [name for name, kind in response['clients'].items() if kind.startswith('builder')]
+    if not builders:
+        print "No builders!"
+        mediator.close()
+        raise StopIteration
+    non_self_builders = [name for name in builders if name != ios.machine]
+    builder = non_self_builders[0]
+
+    print "Clients:", response['clients']
+
+    print "Using builder", builder
+
+    # get builder's projects
+    response = yield gen.Task(mediator.request, builder, ProjectsMessage())
+    if not response['projects']:
+        print "No projects found... quitting."
+        mediator.close()
+        raise StopIteration
+
+    # just use the first project
+    target_project = 'sample'
+    project_name = None
+    for p in response['projects']:
+        if p.lower() == target_project:
+            project_name = p
+
+    if project_name is None:
+        print "Could not find project:", target_project
+        mediator.close()
+        raise StopIteration
+
+    # get files for that project
+    response = yield gen.Task(
+            mediator.request, builder, FilesMessage(project=project_name))
+    if not response['files'] or len(response['files']) < 1:
+        print "No files. Can't download anything."
+        mediator.close()
+        raise StopIteration
+
+    target_file = 'sample.txt'
+    filepath = None
+    for f in response['files']:
+        if f['name'] == target_file:
+            filepath = f['name']
+
+    if filepath is None:
+        print "Could not find file:", target_file
+        mediator.close()
+        raise StopIteration
+
+    print "Download file", filepath
+
+    # download it
+    response = yield gen.Task(
+            mediator.request, builder, DownloadMessage(project_name, filepath))
+    if response.is_error:
+        print "Failed to download file!"
+        mediator.close()
+        raise StopIteration
+
+    contents = response['contents']
+    parts = contents.split(' ')
+    count = int(parts[-1]) + 1
+    parts = parts[:-1] + [str(count)]
+    contents = ' '.join(parts)
+
+    print 'uploading file'
+    # upload changes
+    response = yield gen.Task(
+            mediator.request, builder,
+            UploadMessage(project_name, filepath, contents=contents))
+    if response.is_error:
+        print "Failed to upload file!"
+        mediator.close()
+        raise StopIteration
+
+    # verify changes
+    print 'verifying upload (re-downloading)'
+    response = yield gen.Task(
+            mediator.request, builder, DownloadMessage(project_name, filepath))
+    if response.is_error:
+        print "Failed to re-download file!"
+        mediator.close()
+        raise StopIteration
+
+    assert response['contents'] == contents, 'Downloaded file does not match: %r != %r' % (
+        response['contents'], contents
+    )
+
+    # show diff
+    response = yield gen.Task(
+            mediator.request, builder, DiffStatsMessage(project_name))
+    print '=============== diff'
+    print response['stats']
+    print '=============== end'
+
+    # add to index
+    print 'add to index'
+    response = yield gen.Task(
+            mediator.request, builder, StageFileMessage(project_name, filepath))
+    if response.is_error:
+        print "Failed to add file to index!"
+        mediator.close()
+        raise StopIteration
+
+    # commit
+    print 'commit'
+    response = yield gen.Task(
+            mediator.request, builder, CommitMessage(project_name, "Increased count to %d" % count))
+    if response.is_error:
+        print "Failed to commit!"
+        mediator.close()
+        raise StopIteration
+
+    print 'done'
+    mediator.close()
 
 # an example set of commands an iOS client would send
 @gen.engine
@@ -124,10 +250,13 @@ def sample_handler(ios, mediator):
 
 
 class MediatorClientDelegateBase(object):
-    def __init__(self, account, machine, kind, autoregister=False, io_loop=None):
+    def __init__(self, account, machine, kind, autoregister=None, io_loop=None):
         self.account = account
         self.machine = machine
-        self.should_register = autoregister
+        if autoregister is None:
+            self.should_register = True
+        else:
+            self.should_register = autoregister
         self.kind = kind
         self.io_loop = io_loop or IOLoop.instance()
 
@@ -144,11 +273,18 @@ class MediatorClientDelegateBase(object):
                 raise StopIteration
 
         # login
-        response = yield gen.Task(mclient.login, self.account, self.machine, type=self.kind)
-        if response.is_error:
-            print "Failed to login:", response['reason']
-            mclient.close()
-            raise StopIteration
+        while 1:
+            response = yield gen.Task(mclient.login, self.account, self.machine, type=self.kind)
+            if response.is_error:
+                print "Failed to login:", response['reason']
+                if self.should_register:
+                    print "Registering..."
+                    yield gen.Task(mclient.register, self.account)
+                    print "Retrying..."
+                else:
+                    mclient.close()
+                    raise StopIteration
+            break
 
         self.handle(mclient)
 
@@ -185,7 +321,7 @@ def request_requires(key, reason, code, mclient_index=0, request_index=1, valida
 
 class EditorDelegate(MediatorClientDelegateBase):
     "Simulates the protocol that the iOS client would use."
-    def __init__(self, account, machine, autoregister=False, delegate=None, io_loop=None):
+    def __init__(self, account, machine, autoregister=None, delegate=None, io_loop=None):
         kind = 'editor.genesis.test.%s' % platform()
         super(EditorDelegate, self).__init__(account, machine, kind, autoregister, io_loop=io_loop)
         self.delegate = delegate
@@ -220,7 +356,7 @@ class EditorDelegate(MediatorClientDelegateBase):
 
 class BuilderDelegate(MediatorClientDelegateBase):
     "Handles the system commands to run"
-    def __init__(self, account, builder, machine=None, autoregister=False, io_loop=None):
+    def __init__(self, account, builder, machine=None, autoregister=None, io_loop=None):
         self.builder = builder
         self.process_query = None
         kind = 'builder.genesis.%s' % platform()
@@ -300,6 +436,16 @@ class BuilderDelegate(MediatorClientDelegateBase):
         ))
 
     @gen.engine
+    def do_diff_stats(self, mclient, request):
+        if self._invalid_project(mclient, request):
+            raise StopIteration
+
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
+            request.id,
+            stats=self.builder.diff_stats(request['project'])
+        ))
+
+    @gen.engine
     def do_upload(self, mclient, request):
         if self._invalid_project(mclient, request):
             raise StopIteration
@@ -342,7 +488,8 @@ class BuilderDelegate(MediatorClientDelegateBase):
         else:
             yield gen.Task(mclient.write_response, ResponseMessage.success(
                 request.id,
-                files=files
+                files=files,
+                branch=self.builder.get_current_branch(request['project']),
             ))
 
     @gen.engine
@@ -364,11 +511,23 @@ class BuilderDelegate(MediatorClientDelegateBase):
         ))
 
     @gen.engine
-    def do_git(self, mclient, request):
-        yield gen.Task(mclient.write_response, ResponseMessage.error(
+    def do_stage_file(self, mclient, request):
+        if self._invalid_project(mclient, request):
+            raise StopIteration
+
+        self.builder.add_to_index(request['project'], request['filepath'])
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
             request.id,
-            reason="Not yet supported.",
-            code=ErrorCodes.INTERNAL_ERROR,
+        ))
+
+    @gen.engine
+    def do_commit(self, mclient, request):
+        if self._invalid_project(mclient, request):
+            raise StopIteration
+
+        self.builder.commit(request['project'], request['message'])
+        yield gen.Task(mclient.write_response, ResponseMessage.success(
+            request.id,
         ))
 
     @gen.engine
@@ -495,7 +654,7 @@ class MediatorClient(object):
 
     def register(self, account, callback=None):
         "Registers an account with the mediator server."
-        cmd = RegisterMessage(account.username, account.password)
+        cmd = RegisterMessage(account.username, account.password_hash)
         self.stream.write_and_read(cmd, callback=callback)
 
     def send(self, machine, command, callback=None):

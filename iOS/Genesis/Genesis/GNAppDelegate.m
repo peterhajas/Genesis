@@ -15,10 +15,12 @@
 
 
 #import "GNAppDelegate.h"
-#import "GNProjectBrowserViewController.h"
+#import "GNNetworkSync.h"
+#import "GNSharedSettings.h"
 
 @implementation GNAppDelegate
 
+@synthesize networkManager;
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
@@ -34,8 +36,8 @@
     [self.window makeKeyAndVisible];
     
     // Create a project browser table view
-    GNProjectBrowserViewController* projectBrowser = [[GNProjectBrowserViewController alloc] initWithNibName:@"GNProjectBrowserViewController" 
-                                                                                                      bundle:[NSBundle mainBundle]];
+    projectBrowser = [[GNProjectBrowserViewController alloc] initWithNibName:@"GNProjectBrowserViewController"
+                                                                      bundle:[NSBundle mainBundle]];
     
     // Create the navigation controller
     navigationController = [[UINavigationController alloc] initWithRootViewController:projectBrowser];
@@ -45,6 +47,25 @@
     [[UIToolbar appearance] setTintColor:kGNTintColor];
     
     [self.window setRootViewController:navigationController];
+    
+    NSString *hostname = [[GNSharedSettings sharedSettings] valueForKey:GNSettingsHost];
+    if (hostname == nil)
+    {
+        hostname = @"localhost";
+    }
+    NSNumber *portNumber = [[GNSharedSettings sharedSettings] valueForKey:GNSettingsPort];
+    if (portNumber == nil)
+    {
+        portNumber = [NSNumber numberWithInt:8080];
+    }
+    
+    networkManager = [[GNNetworkManager alloc] initWithHost:hostname
+                                                     onPort:[portNumber intValue]
+                                                    withSSL:NO];
+    networkManager.delegate = [[GNNetworkSync alloc] initWithNetworkManager:networkManager];
+    networkManager.autoregister = YES;
+    // can be anything, autoregister flag will register if the username does not exist.
+    [networkManager connectInBackgroundWithUsername:@"jeff" andPassword:@"password"];
     
     // Load the default theme
     theme = [[GNTheme alloc] initWthThemeName:defaultTheme];
@@ -175,5 +196,7 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+#pragma mark - Listen to notifications
 
 @end

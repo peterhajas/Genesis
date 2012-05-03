@@ -15,6 +15,7 @@
 
 #import "GNDirectoryViewController.h"
 #import "GNTextViewController.h"
+#import "GNNetworkNotificationKeys.h"
 
 @implementation GNDirectoryViewController
 
@@ -28,8 +29,18 @@
         directoryContentsTableViewController = [[GNDirectoryContentsTableViewController alloc] initWithBackingPath:path];
         [directoryContentsTableViewController setDelegate:self];
         pushableNavigationController = navigationController;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reloadFilesForNotification:)
+                                                     name:GNFilesForProjectNotification
+                                                   object:nil];
     }
     return self;
+}
+
+-(void)reloadFilesForNotification:(NSNotification*)notification
+{
+    [tableView reloadData];
 }
 
 #pragma mark - Navigation bar buttons
@@ -74,6 +85,11 @@
     UIBarButtonItem* addButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFilesystemEntryButtonPressed:)];
     
     [[self navigationItem] setRightBarButtonItem:addButtonItem animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -20,6 +20,9 @@ class IgnoreList(object):
         matches = fnmatch.fnmatch if is_windows() else fnmatch.fnmatchcase
         return any(matches(filepath, i) for i in self.ignored)
 
+    def __repr__(self):
+        return "<IgnoreList(%r)>" % self.ignored
+
 
 class BuilderConfig(object):
     def __init__(self, config, filepath=None):
@@ -41,23 +44,26 @@ class BuilderConfig(object):
 
     def get_files(self, project):
         ignored = self.get_ignored(project)
+        print 'ignored:', ignored
         location = expand(self.get_location(project))
         all_files = []
 
         for root, dirs, files in os.walk(location):
             for f in files:
                 filepath = os.path.join(root, f)
-                if filepath in ignored:
+                relative_path = filepath[len(location) + 1:]
+                if relative_path in ignored:
                     continue
 
                 s = os.stat(filepath)
+                mimetype, encoding = mimetypes.guess_type(f, strict=False)
                 all_files.append({
                     'name': os.path.basename(filepath),
-                    'path': filepath,
+                    'path': relative_path,
                     'size': s.st_size,
                     'modified_time': s.st_mtime,
                     'kind': '',
-                    'mimetype': mimetypes.guess_type(f, strict=False),
+                    'mimetype': mimetype or '',
                 })
         return all_files
 
@@ -140,6 +146,15 @@ class Project(object):
         assert not self.is_busy, "Cannot perform checkout, busy running %r" % self._last_action
         self.scm.checkout(branch)
 
+    def diff_stats(self):
+        return self.scm.diff_stats()
+
+    def add_file(self, filename):
+        self.scm.add_to_index(filename)
+
+    def commit(self, message):
+        self.scm.commit(message)
+
 
 class Builder(object):
     def __init__(self, config):
@@ -150,6 +165,15 @@ class Builder(object):
                 name,
                 self.config,
                 get_scm(self.config.get_location(name)))
+
+    def diff_stats(self, project):
+        return self.projects[project].diff_stats()
+
+    def add_to_index(self, project, filepath):
+        return self.projects[project].add_file(filepath)
+
+    def commit(self, project, message):
+        return self.projects[project].commit(message)
 
     @classmethod
     def from_file(cls, filename):

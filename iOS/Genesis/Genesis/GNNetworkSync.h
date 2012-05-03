@@ -13,20 +13,18 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#import <Foundation/Foundation.h>
+#import "GNNetworkNotificationKeys.h"
+#import "GNNetworkManager.h"
 
-#import <UIKit/UIKit.h>
-#import "GNProjectBrowserTableViewController.h"
-#import "GNNewProjectViewController.h"
-
-@interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate,
-                                                              GNNewProjectViewControllerDelegate>
+@interface GNNetworkSync : NSObject <GNNetworkManagerDelegate>
 {
-    IBOutlet UITableView *tableView;
-    GNProjectBrowserTableViewController* tableViewController;
+    NSMutableArray *fileDownloadQueue;
 }
 
--(IBAction)addProjectButtonPressed:(id)sender;
--(IBAction)editButtonPressed:(id)sender;
--(IBAction)settingsButtonPushed:(id)sender;
+@property (nonatomic, strong) GNNetworkManager *networkManager;
+
+- (id)initWithNetworkManager:(GNNetworkManager *)theNetworkManager;
+
 
 @end

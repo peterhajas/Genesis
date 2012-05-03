@@ -136,7 +136,7 @@ return fileContents;
     if(isDirectory)
     {
         [[NSFileManager defaultManager] createDirectoryAtPath:absolutePath
-                                  withIntermediateDirectories:NO
+                                  withIntermediateDirectories:YES
                                                    attributes:nil
                                                         error:&error];
         if(error)
@@ -147,6 +147,28 @@ return fileContents;
     }
     else 
     {
+        /*
+         In order to create whatever files we may need to, we need to create intermediate directories to the
+         path. Split relativePath by path components, and iterate through all of them but the last one, to
+         form the directory to create.
+         */
+        
+        if(![relativePath isEqualToString:@""])
+        {
+            NSString* absoluteRunningPath = [GNFileManager absolutePathForRelativePath:relativePath];
+            
+            [[NSFileManager defaultManager] createDirectoryAtPath:absoluteRunningPath
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:&error];
+            if(error)
+            {
+                NSLog(@"Encountered an error creating directory at path %@ : %@", relativePath, [error localizedDescription]);
+                return NO;
+            }
+        }
+        
+        
         [[NSFileManager defaultManager] createFileAtPath:absolutePath
                                                 contents:nil
                                               attributes:nil];

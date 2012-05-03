@@ -16,7 +16,12 @@
 #ifndef Genesis_GNNotificationNames_h
 #define Genesis_GNNotificationNames_h
 
-// Text / Insertion / Selection Point Changes
+// Refreshing views
+#define GNRefreshProjectsNotification @"GNRefreshProjectsNotification"
+#define GNRefreshDirectoryListingNotification @"GNRefreshDirectoryListingNotification"
+#define GNRefreshFileContentsNotification @"GNRefreshFileContentsNotification"
+
+// Text / Insertion Point Changes
 
 #define GNTextChangedNotification @"GNTextChangedNotification"
 #define GNInsertionPointChangedNotification @"GNInsertionPointChangedNotification"

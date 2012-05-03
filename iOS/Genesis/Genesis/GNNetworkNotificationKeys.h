@@ -13,20 +13,13 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+// constants used by GNNetworkSync to send notifications through notification center
 
-#import <UIKit/UIKit.h>
-#import "GNProjectBrowserTableViewController.h"
-#import "GNNewProjectViewController.h"
+#ifndef Genesis_GNNetworkNotificationKeys_h
+#define Genesis_GNNetworkNotificationKeys_h
 
-@interface GNProjectBrowserViewController : UIViewController <GNProjectBrowserTableViewControllerDelegate,
-                                                              GNNewProjectViewControllerDelegate>
-{
-    IBOutlet UITableView *tableView;
-    GNProjectBrowserTableViewController* tableViewController;
-}
+#define GNProjectsUpdatedNotification @"GNProjectsUpdated"
+#define GNFilesForProjectNotification @"GNFilesForProject"
+#define GNDownloadedFileNotification @"GNDownloadedFile"
 
--(IBAction)addProjectButtonPressed:(id)sender;
--(IBAction)editButtonPressed:(id)sender;
--(IBAction)settingsButtonPushed:(id)sender;
-
-@end
+#endif

@@ -72,7 +72,7 @@
 -(void)decrementToPreviousLineWithOldLineLength:(NSUInteger)oldLineLength newLineLength:(NSUInteger)newLineLength
 {
     insertionLine--;
-    insertionIndexInLine = newLineLength - oldLineLength;
+    insertionIndexInLine = newLineLength;
     
     [self insertionPointChanged];
 }

@@ -34,6 +34,8 @@ class ErrorCodes(object):
     # general purpose
     INTERNAL_ERROR = 0
     BAD_REQUEST = 1
+    MISSING_PROJECT = 10
+    MISSING_FILEPATH = 11
     # for register
     USERNAME_TAKEN = 100
     INVALID_USERNAME = 101
@@ -45,14 +47,11 @@ class ErrorCodes(object):
     INVALID_TYPE = 106
     # for send / request
     UNKNOWN_MACHINE = 107
-    # for download
-    MISSING_PROJECT = 108
-    MISSING_FILEPATH = 109
     # for perform
-    MISSING_ACTION = 110
-    ACTION_CONFLICT = 111
+    MISSING_ACTION = 108
+    ACTION_CONFLICT = 109
     # for input and cancel
-    NO_ACTIVITY = 112
+    NO_ACTIVITY = 110
 
 class Account(object):
     "Represents a username and hashed password."
@@ -60,6 +59,9 @@ class Account(object):
     def __init__(self, username, password_hash):
         self.username = username
         self.password_hash = password_hash
+
+    def __repr__(self):
+        return '<Account: %s>' % self.username
 
     @classmethod
     def create(cls, username, password):
@@ -164,7 +166,8 @@ class InvocationMessage(object):
             instance.name = dictionary['method']
             instance.sender = sender
             return instance
-        except (KeyError, AssertionError):
+        except (KeyError, AssertionError) as e:
+            print e
             return None
 
     def to_network(self):
@@ -206,9 +209,17 @@ class PerformMessage(InvocationMessage):
     name = 'perform'
     MAPPING = ('project', 'action')
 
-class GitMessage(InvocationMessage):
-    name = 'git',
-    MAPPING = ('project', 'action')
+class DiffStatsMessage(InvocationMessage):
+    name = 'diff_stats'
+    MAPPING = ('project',)
+
+class StageFileMessage(InvocationMessage):
+    name = 'stage_file'
+    MAPPING = ('project', 'filepath')
+
+class CommitMessage(InvocationMessage):
+    name = 'commit'
+    MAPPING = ('project', 'message')
 
 class SendMessage(InvocationMessage):
     name = 'send'
@@ -352,6 +363,7 @@ messages = [
     DownloadMessage, UploadMessage, PerformMessage, SendMessage,
     RequestMessage, StreamNotification, StreamEOFNotification,
     BranchesMessage, ReturnCodeNotification, ClientsMessage,
+    DiffStatsMessage, StageFileMessage, CommitMessage,
 ]
 
 def get_message_class(dictionary):

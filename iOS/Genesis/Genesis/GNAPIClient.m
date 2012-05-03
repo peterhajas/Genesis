@@ -35,9 +35,9 @@
         self.machineName = [[UIDevice currentDevice] name];
 #elif TARGET_OS_MAC
         // Dunno. Use SCDynamicStoreCopyComputerName?
-        self.machineName = @"Unnamed Mac";
+        self.machineName = @"My Mac";
 #else
-        self.machineName = @"Unnamed Machine";
+        self.machineName = @"My Machine";
 #endif
         client = theClient;
         sender = [NSNumber numberWithInt:0];
@@ -48,11 +48,6 @@
 - (id)initWithHost:(NSString *)host andPort:(uint16_t)port
 {
     return [self initWithMediatorClient:[[GNMediatorClient alloc] initWithHost:host onPort:port]];
-}
-
-- (id)init
-{
-    return [self initWithMediatorClient:[[GNMediatorClient alloc] init]];
 }
 
 #pragma mark - Private Methods
@@ -218,7 +213,7 @@
                    onBranch:(NSString *)branch
                withCallback:(GNClientCallback)callback
 {
-    NSArray *params = [NSArray arrayWithObjects:project, branch || @"", sender, nil];
+    NSArray *params = [NSArray arrayWithObjects:project, branch != nil ? branch : @"", sender, nil];
     GNNetworkRequest *request = [[GNNetworkRequest alloc] initWithName:GN_FILES andParameters:params];
     GNNetworkRequest *sendRequest = [self newRequestTo:builder command:request];
     [client request:sendRequest withCallback:^(id<GNNetworkMessageProtocol> msg) {

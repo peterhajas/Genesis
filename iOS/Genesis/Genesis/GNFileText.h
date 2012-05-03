@@ -64,7 +64,7 @@
 // NSNotificationCenter management
 -(void)cleanUp;
 
-@property(readonly) NSString* fileText;
+@property(nonatomic, retain) NSString* fileText;
 @property(readonly) NSArray* fileLines;
 
 @property(nonatomic,retain) GNInsertionPointManager* insertionPointManager;

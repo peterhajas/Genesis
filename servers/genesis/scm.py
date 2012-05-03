@@ -32,9 +32,17 @@ class SCM(object):
     def diff_stats(self):
         raise NotImplemented
 
+    def add_to_index(self, file):
+        raise NotImplemented
+
+    def remove_from_index(self, file):
+        raise NotImplemented
+
+    def commit(self, message):
+        raise NotImplemented
 
 def _diff_stats(filediff):
-    data = {'additions': 0, 'deletions': 0, 'old_file': None, 'new_file': None}
+    data = {'additions': 0, 'deletions': 0, 'old': None, 'new': None}
     lines = filediff.split('\n')
     state = 'filename'
     for i, line in enumerate(lines):
@@ -42,18 +50,18 @@ def _diff_stats(filediff):
             state = 'diff'
         if state == 'filename':
             if line.startswith('---'):
-                data['old_file'] = line[len('--- a/'):]
+                data['old'] = line[len('--- a/'):]
             if line.startswith('+++'):
-                data['new_file'] = line[len('+++ b/'):]
-                if data['old_file'] is None:
-                    data['old_file'] = data['new_file']
+                data['new'] = line[len('+++ b/'):]
+                if data['old'] is None:
+                    data['old'] = data['new']
         elif state == 'diff':
             if line.startswith('-'):
                 data['deletions'] += 1
             elif line.startswith('+'):
                 data['additions'] += 1
-    if not data['new_file']:
-        data['new_file'] = data['old_file']
+    if not data['new']:
+        data['new'] = data['old']
     return data
 
 
@@ -67,6 +75,7 @@ def _diff_folder(stats):
                 "old_file": "path/to/old_file",
                 "additions": 10,
                 "deletions": 10,
+                "total": 100,
             },
             ...
         }
@@ -76,36 +85,40 @@ def _diff_folder(stats):
         new_stats = {
             "path": {
                 "type": "folder",
-                "children": [
-                    {
-                        "to": {
-                            "type": "folder",
-                            "children": [
-                                {
-                                    "file": "file",
-                                    "new_file": "file",
-                                    "old_file": "file",
-                                    "additions": 10,
-                                    "deletions": 10,
-                                },
-                                ...
-                            ],
-                            "additions": 10,
-                            "deletions": 10,
-                        }
-                    },
-                    ...
-                ],
+                "new_file": "path",
+                "old_file": "path",
                 "additions": 10,
                 "deletions": 10,
+                "total": 100,
             }
             ...
         }
     """
     newstats = {}
     for filepath, fstat in stats.items():
-        pass # TODO: implement
+        name = filepath.split(os.sep, 1)[0]
+        stat = newstats.setdefault(name, {})
+        if name != filepath:
+            stat['type'] = 'file'
+            stat['new'] = stat['old'] = name
+        else:
+            stat['type'] = 'folder'
+            stat['new'], stat['old'] = fstat['new'], fstat['old']
+        stat['additions'] = stat.get('additions', 0) + fstat['additions']
+        stat['deletions'] = stat.get('deletions', 0) + fstat['deletions']
+        stat['total'] = stat.get('total', 0) + fstat['total']
     return newstats
+
+
+def _line_count(filepath):
+    with open(filepath, 'rb') as h:
+        return h.read().count('\n')
+
+
+def _add_line_counts(stats, root_dir='.'):
+    for filepath, fstat in stats.items():
+        fstat['total'] = _line_count(os.path.join(root_dir, filepath))
+    return stats
 
 
 class Git(SCM):
@@ -131,22 +144,19 @@ class Git(SCM):
     def diff_stats(self):
         "Diff the working tree."
         stats = {} # file => stat
-        diff_index = self.repo.head.index.diff(None, create_patch=True)
+        diff_index = self.repo.index.diff(None, create_patch=True)
         # files added
-        for diff_add in diff_index.iter_change_type('A'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
-        # files deleted
-        for diff_rm in diff_index.iter_change_type('D'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
-        # files moved / renamed
-        for diff_mv in diff_index.iter_change_type('R'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
-        # files modified
-        for diff_mod in diff_index.iter_change_type('M'):
-            fstat = _diff_stats(diff_index.diff)
-            stats[fstat['new_file']] = fstat
-        return stats
+        # added, deleted, moved / renamed, modified
+        for chg_type in ('A', 'D', 'R', 'M'):
+            for diff in diff_index.iter_change_type('A'):
+                fstat = _diff_stats(diff.diff)
+                stats[fstat['new']] = fstat
+        stats = _add_line_counts(stats, self.repo.working_dir)
+        return _diff_folder(stats)
+
+    def add_to_index(self, filepath):
+        self.repo.index.add([filepath])
+
+    def commit(self, message):
+        self.repo.index.commit(message)
 

@@ -18,6 +18,10 @@
 #import "GNDirectoryViewController.h"
 #import "GNSettingsViewController.h"
 
+#import "GNNetworkNotificationKeys.h"
+#import "GNAppDelegate.h"
+#import "GNNetworkManager.h"
+
 @implementation GNProjectBrowserViewController
 
 -(IBAction)addProjectButtonPressed:(id)sender
@@ -26,6 +30,12 @@
                                                                                                         bundle:[NSBundle mainBundle]];
     [newProjectViewController setDelegate:self];
     [self presentModalViewController:newProjectViewController animated:YES];
+    
+    // listen to what the GNNetworkSync will broadcast over NSNotificationCenter
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadTableFromNotification:)
+                                                 name:GNProjectsUpdatedNotification
+                                               object:nil];
 }
 
 -(IBAction)editButtonPressed:(id)sender
@@ -54,12 +64,20 @@
                             animated:YES];
 }
 
+-(void)reloadTableFromNotification:(NSNotification *)notification
+{
+    [tableView reloadData];
+}
+
 -(void)didSelectProject:(GNProject*)project
 {
     // Create a new GNDirectoryViewController for this project, and push it onto the stack
     GNDirectoryViewController* directoryViewController = [[GNDirectoryViewController alloc] initWithBackingPath:[project valueForKey:@"name"] 
                                                                                         andNavigationController:[self navigationController]];
     [[self navigationController] pushViewController:directoryViewController animated:YES];
+    // TODO: fixme
+    GNNetworkManager *networkManager = [(GNAppDelegate*)[[UIApplication sharedApplication] delegate] networkManager];
+    [networkManager requestFilesForProject:[project valueForKey:@"name"]];
 }
 
 #pragma mark - GNNewProjectViewControllerDelegate methods
@@ -99,7 +117,13 @@
         tableViewController = [[GNProjectBrowserTableViewController alloc] initWithStyle:UITableViewStylePlain];
         [tableViewController setDelegate:self];
         
-        [self setTitle:@"Projects"];        
+        [self setTitle:@"Projects"];
+        
+        // Register for project listing refresh notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(refreshProjects:)
+                                                     name:GNRefreshProjectsNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -125,6 +149,11 @@
 {
     // Return YES for supported orientations
     return YES;
+}
+
+-(void)refreshProjects:(NSNotification*)notification
+{
+    [tableView reloadData];
 }
 
 @end

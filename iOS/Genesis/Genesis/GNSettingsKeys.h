@@ -20,5 +20,7 @@
 #define GNSettingsThemeKey @"GNSettingsThemeKey"
 #define GNSettingsFontFaceKey @"GNSettingsFontFaceKey"
 #define GNSettingsFontSizeKey @"GNSettingsFontSizeKey"
+#define GNSettingsHost @"GNSettingsHostName"
+#define GNSettingsPort @"GNSettingsHostPort"
 
 #endif
