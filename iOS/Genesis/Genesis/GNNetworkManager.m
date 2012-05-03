@@ -68,6 +68,8 @@
 
 - (void)assertBuilder
 {
+    return;
+    // Do nothing for now.
     assert(self.builder != nil);
     /*
     if (self.builder == nil)
