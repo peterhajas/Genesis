@@ -46,11 +46,14 @@
         [autoCompleteButton setHorizontalPosition:[GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth]];
         [self addSubview:autoCompleteButton];
         
-        // Hide keyboard button
-        hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
-        [hideKeyboardButton setHorizontalPosition:[self frame].size.width - [GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth]];
-        [hideKeyboardButton addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:hideKeyboardButton];
+        if([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad)
+        {
+            // Hide keyboard button
+            hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
+            [hideKeyboardButton setHorizontalPosition:[self frame].size.width - [GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth]];
+            [hideKeyboardButton addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:hideKeyboardButton];
+        }
     }
     
     return self;
