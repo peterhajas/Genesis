@@ -58,7 +58,11 @@
                                                      name:GNReplaceCurrentWordNotification
                                                    object:nil];
         
-        
+        // Subscribe to keyboard hide notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(dismissKeyboard)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
         
         caretView = [[GNTextCaretView alloc] init];
         [self addSubview:caretView];
