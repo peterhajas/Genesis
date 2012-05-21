@@ -16,6 +16,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "GNTextInputAccessoryViewButton.h"
+#import "GNTextInputAccessoryViewGeometry.h"
 
 // Types of buttons
 
@@ -23,7 +24,6 @@
 #import "GNTextInputAccessoryViewAutocompleteButton.h"
 #import "GNTextInputAccessoryViewHideKeyboardButton.h"
 
-#define kGNTextInputAccessoryViewHeight 35
 #define kGNTextInputAccessoryStartingGradientColor [[UIColor colorWithRed:143/255.0 green:150/255.0 blue:159/255.0 alpha:1.0] CGColor]
 #define kGNTextInputAccessoryEndingGradientColor [[UIColor colorWithRed:153/255.0 green:160/255.0 blue:169/255.0 alpha:1.0] CGColor]
 #define kGNTextInputAccessoryGradientColors [NSArray arrayWithObjects:(__bridge id)kGNTextInputAccessoryStartingGradientColor, (__bridge id)kGNTextInputAccessoryEndingGradientColor, nil]

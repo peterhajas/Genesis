@@ -13,20 +13,22 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "GNTextInputAccessoryViewGeometry.h"
+#import <Foundation/Foundation.h>
 
-#define kGNTextInputAccessoryViewButtonDefaultColors [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor lightGrayColor] CGColor], nil]
+// Accessory View
 
-@interface GNTextInputAccessoryViewButton : UIView
-{
-    UIButton* button;
-    CAGradientLayer* gradientLayer;
-}
+#define kGNTextInputAccessoryViewHeightiPhoneiPod 35
+#define kGNTextInputAccessoryViewHeightiPad 70
 
--(void)setHorizontalPosition:(CGFloat)horizontalPosition;
--(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
--(void)setTitle:(NSString*)title forState:(UIControlState)state;
+// Buttons
+
+#define kGNTextInputAccessoryViewButtonWidthiPhoneiPod 60.0
+#define kGNTextInputAccessoryViewButtonWidthiPad 90.0
+#define kGNTextInputAccessoryViewButtonMargin 3.0
+
+@interface GNTextInputAccessoryViewGeometry : NSObject
+
++(CGFloat)appropriateViewHeight;
++(CGFloat)appropriateStandardButtonWidth;
 
 @end

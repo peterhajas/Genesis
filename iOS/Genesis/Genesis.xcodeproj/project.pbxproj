@@ -83,6 +83,7 @@
 		4F3F0486150752A600AA6E95 /* GNLineNumberTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F0485150752A600AA6E95 /* GNLineNumberTableViewDataSource.m */; };
 		4F41CB961544853D00AE3ED0 /* GNFontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F41CB951544853D00AE3ED0 /* GNFontCell.m */; };
 		4F544F3D154489AE00035A30 /* GNAttributedTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F544F3C154489AE00035A30 /* GNAttributedTextLabel.m */; };
+		4F57CC45156967C00037189F /* GNTextInputAccessoryViewGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F57CC44156967C00037189F /* GNTextInputAccessoryViewGeometry.m */; };
 		4F72EA0915445A1B008A27C7 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F72EA0815445A1B008A27C7 /* DefaultSettings.plist */; };
 		4F73FA6E14CF293A00976824 /* GNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F73FA6D14CF293A00976824 /* GNProject.m */; };
 		4F77E8BC14E4B8C0001A69E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F77E8BB14E4B8C0001A69E8 /* QuartzCore.framework */; };
@@ -312,7 +313,7 @@
 		1FE09E3114F4823D004D6B2B /* GNNetworkConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNNetworkConstants.h; sourceTree = "<group>"; };
 		1FE48D22154A0E9400CCD875 /* GNNetworkSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkSync.h; sourceTree = "<group>"; };
 		1FE48D23154A0E9400CCD875 /* GNNetworkSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNNetworkSync.m; sourceTree = "<group>"; };
-		1FE48D25154A117D00CCD875 /* GNNetworkNotificationKeys.h */ = {isa = PBXFileReference; path = GNNetworkNotificationKeys.h; sourceTree = "<group>"; };
+		1FE48D25154A117D00CCD875 /* GNNetworkNotificationKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNNetworkNotificationKeys.h; sourceTree = "<group>"; };
 		1FEC6E5214F08258008E2277 /* GNNetworkMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNNetworkMessageProtocol.h; sourceTree = "<group>"; };
 		1FEEBE9714EEC92200C6E099 /* GNMediatorClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNMediatorClient.h; sourceTree = "<group>"; };
 		1FEEBE9814EEC92200C6E099 /* GNMediatorClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNMediatorClient.m; sourceTree = "<group>"; };
@@ -411,6 +412,8 @@
 		4F41CB951544853D00AE3ED0 /* GNFontCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFontCell.m; sourceTree = "<group>"; };
 		4F544F3B154489AE00035A30 /* GNAttributedTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAttributedTextLabel.h; sourceTree = "<group>"; };
 		4F544F3C154489AE00035A30 /* GNAttributedTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAttributedTextLabel.m; sourceTree = "<group>"; };
+		4F57CC43156967C00037189F /* GNTextInputAccessoryViewGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextInputAccessoryViewGeometry.h; sourceTree = "<group>"; };
+		4F57CC44156967C00037189F /* GNTextInputAccessoryViewGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextInputAccessoryViewGeometry.m; sourceTree = "<group>"; };
 		4F72EA0815445A1B008A27C7 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		4F72EA0B15445EE9008A27C7 /* GNSettingsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSettingsKeys.h; sourceTree = "<group>"; };
 		4F73FA6C14CF293A00976824 /* GNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNProject.h; sourceTree = "<group>"; };
@@ -935,6 +938,15 @@
 			name = "Attributed Text Label";
 			sourceTree = "<group>";
 		};
+		4F57CC47156967C50037189F /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				4F57CC43156967C00037189F /* GNTextInputAccessoryViewGeometry.h */,
+				4F57CC44156967C00037189F /* GNTextInputAccessoryViewGeometry.m */,
+			);
+			name = Geometry;
+			sourceTree = "<group>";
+		};
 		4F72EA1815447647008A27C7 /* Settings Configuration UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1173,6 +1185,7 @@
 				4FD1C2D8153C889100DD4A3D /* GNTextInputAccessoryView.h */,
 				4FD1C2D9153C889100DD4A3D /* GNTextInputAccessoryView.m */,
 				4FD1C2E0153C891600DD4A3D /* Buttons */,
+				4F57CC47156967C50037189F /* Geometry */,
 			);
 			name = "Input Accessory View";
 			sourceTree = "<group>";
@@ -1380,6 +1393,7 @@
 				4F544F3D154489AE00035A30 /* GNAttributedTextLabel.m in Sources */,
 				1FEFCFA11549461A00304265 /* GNNetworkManager.m in Sources */,
 				1FE48D24154A0E9400CCD875 /* GNNetworkSync.m in Sources */,
+				4F57CC45156967C00037189F /* GNTextInputAccessoryViewGeometry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

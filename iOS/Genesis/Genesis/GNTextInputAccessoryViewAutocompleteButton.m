@@ -30,7 +30,7 @@
                                   kGNTextInputAccessoryViewAutocompleteButtonWidth,
                                   [self frame].size.height)];
         
-        [button setFrame:CGRectMake([button frame].origin.x + kGNTextInputAccessoryViewButtonWidth,
+        [button setFrame:CGRectMake([button frame].origin.x + [GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth],
                                     [button frame].origin.y,
                                     [button frame].size.width,
                                     [button frame].size.height)];

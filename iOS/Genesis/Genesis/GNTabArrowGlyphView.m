@@ -59,8 +59,9 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
         
     CGPoint horizontalLineStart = CGPointMake(kGNTextInputAccessoryViewButtonMargin * 6,
-                                              kGNTextInputAccessoryViewHeight/2);
-    CGPoint horizontalLineEnd = CGPointMake(kGNTextInputAccessoryViewButtonWidth - 10 * kGNTextInputAccessoryViewButtonMargin,
+                                              [GNTextInputAccessoryViewGeometry appropriateViewHeight]/2);
+
+    CGPoint horizontalLineEnd = CGPointMake([GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth] - 10 * kGNTextInputAccessoryViewButtonMargin,
                                             horizontalLineStart.y);
     
     CGContextSaveGState(context);

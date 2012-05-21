@@ -25,8 +25,8 @@
     {
         [self setFrame:CGRectMake(0,
                                   0,
-                                  kGNTextInputAccessoryViewButtonWidth,
-                                  kGNTextInputAccessoryViewHeight)];
+                                  [GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth],
+                                  [GNTextInputAccessoryViewGeometry appropriateViewHeight])];
 
         // Create our gradient layer
         gradientLayer = [CAGradientLayer layer];

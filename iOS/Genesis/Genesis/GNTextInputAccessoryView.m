@@ -23,7 +23,7 @@
     self = [super initWithFrame:CGRectMake(0,
                                            0,
                                            [[UIScreen mainScreen] bounds].size.width,
-                                           kGNTextInputAccessoryViewHeight)];
+                                           [GNTextInputAccessoryViewGeometry appropriateViewHeight])];
     if(self)
     {
         // Set our autoresize mask
@@ -43,12 +43,12 @@
         
         // Auto complete button
         autoCompleteButton = [[GNTextInputAccessoryViewAutocompleteButton alloc] init];
-        [autoCompleteButton setHorizontalPosition:kGNTextInputAccessoryViewButtonWidth];
+        [autoCompleteButton setHorizontalPosition:[GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth]];
         [self addSubview:autoCompleteButton];
         
         // Hide keyboard button
         hideKeyboardButton = [[GNTextInputAccessoryViewHideKeyboardButton alloc] init];
-        [hideKeyboardButton setHorizontalPosition:[self frame].size.width - kGNTextInputAccessoryViewButtonWidth];
+        [hideKeyboardButton setHorizontalPosition:[self frame].size.width - [GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth]];
         [hideKeyboardButton addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:hideKeyboardButton];
     }
