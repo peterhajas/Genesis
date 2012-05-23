@@ -73,6 +73,12 @@
     return YES;
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [self saveContext];
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNApplicationWillEnterForegroundNotification object:nil];
+}
+
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     [[self managedObjectContext] save:nil]; //TODO: handle managed object context save errors

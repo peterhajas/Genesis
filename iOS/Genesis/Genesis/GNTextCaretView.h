@@ -24,6 +24,7 @@
     CGRect nonOffsetFrame;
 }
 
+-(void)blink;
 -(void)cleanUp;
 
 @property(nonatomic) CGFloat horizontalOffset;

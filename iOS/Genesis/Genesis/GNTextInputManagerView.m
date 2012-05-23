@@ -193,6 +193,7 @@
 -(BOOL)becomeFirstResponder
 {
     [caretView setHidden:NO];
+    [caretView blink];
     return [super becomeFirstResponder];
 }
 

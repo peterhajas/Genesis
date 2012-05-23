@@ -45,4 +45,8 @@
 
 #define GNHorizontalOffsetChangedNotification @"GNHorizontalOffsetChangedNotification"
 
+// Application state changes
+
+#define GNApplicationWillEnterForegroundNotification @"GNApplicationWillEnterForegroundNotification"
+
 #endif

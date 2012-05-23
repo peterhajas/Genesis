@@ -32,13 +32,22 @@
                                                  name:GNHorizontalOffsetChangedNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(blink)
+                                                 name:GNApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
     return self;
 }
 
 -(void)didMoveToSuperview
 {
     [self setBackgroundColor:kGNAlternateTintColor];
-    
+    [self blink];
+}
+
+-(void)blink
+{
     animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     [animation setFromValue:[NSNumber numberWithFloat:1.0]];
     [animation setToValue:[NSNumber numberWithFloat:0.0]];
