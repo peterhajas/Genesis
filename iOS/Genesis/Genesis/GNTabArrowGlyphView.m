@@ -49,10 +49,10 @@
     CGColorRef glyphColor = [[UIColor blackColor] CGColor];
     
     // The thickness of our horizontal line
-    CGFloat horizontalLineThickness = 4.0;
+    CGFloat horizontalLineThickness = [GNTextInputAccessoryViewGeometry appropriateViewHeight] / 10.0;
     
     // The thickness of our vertical line
-    CGFloat verticalLineThickness = 2.0;
+    CGFloat verticalLineThickness = horizontalLineThickness / 2;
     
     // Draw the horizontal line
     
@@ -92,11 +92,11 @@
         
     // Draw the triangle pointing right
     
-    CGPoint upperTrianglePoint = CGPointMake(kGNTextInputAccessoryViewButtonMargin * 9.5,
+    CGPoint upperTrianglePoint = CGPointMake(0.5 * [GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth],
                                              verticalLineEnd.y - kGNTextInputAccessoryViewButtonMargin * 0.25);
     CGPoint lowerTrianglePoint = CGPointMake(upperTrianglePoint.x,
                                              horizontalLineStart.y + (horizontalLineStart.y - upperTrianglePoint.y));
-    CGPoint middleTrianglePoint = CGPointMake(upperTrianglePoint.x + 3 * kGNTextInputAccessoryViewButtonMargin,
+    CGPoint middleTrianglePoint = CGPointMake(horizontalLineEnd.x + 0.12 * [GNTextInputAccessoryViewGeometry appropriateStandardButtonWidth],
                                               horizontalLineEnd.y);
     
     UIBezierPath* trianglePath = [UIBezierPath bezierPath];
