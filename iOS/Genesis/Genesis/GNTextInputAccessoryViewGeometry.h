@@ -18,12 +18,12 @@
 // Accessory View
 
 #define kGNTextInputAccessoryViewHeightiPhoneiPod 35
-#define kGNTextInputAccessoryViewHeightiPad 70
+#define kGNTextInputAccessoryViewHeightiPad 50
 
 // Buttons
 
 #define kGNTextInputAccessoryViewButtonWidthiPhoneiPod 60.0
-#define kGNTextInputAccessoryViewButtonWidthiPad 90.0
+#define kGNTextInputAccessoryViewButtonWidthiPad 80.0
 #define kGNTextInputAccessoryViewButtonMargin 3.0
 
 @interface GNTextInputAccessoryViewGeometry : NSObject
