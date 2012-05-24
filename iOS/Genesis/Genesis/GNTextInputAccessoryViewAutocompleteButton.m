@@ -200,7 +200,7 @@
     // Subscribe to the text changed notification
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(insertionPointChanged:)
-                                                 name:GNInsertionPointChangedNotification
+                                                 name:GNSelectionDidChangeNotification
                                                object:nil];
 }
 

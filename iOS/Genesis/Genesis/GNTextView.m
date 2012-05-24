@@ -30,7 +30,7 @@
         // Register for insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(insertionPointChanged:)
-                                                     name:GNInsertionPointChangedNotification
+                                                     name:GNSelectionDidChangeNotification
                                                    object:nil];
         
         // Set our autoresizing mask
@@ -100,6 +100,11 @@
 -(CGFloat)verticalScrollOffset
 {
     return [textTableView contentOffset].y;
+}
+
+-(GNTextTableViewCell*)cellAtPoint:(CGPoint)point
+{
+    return [textTableView cellAtPoint:point];
 }
 
 #pragma mark UIScrollViewDelegate methods

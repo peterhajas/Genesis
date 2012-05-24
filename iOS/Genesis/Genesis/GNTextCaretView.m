@@ -97,11 +97,17 @@
 -(void)recalculateFrame
 {
     CGRect frame = nonOffsetFrame;
-    CGRect newFrame = CGRectMake(frame.origin.x - contentOffset.x,
-                                 frame.origin.y - contentOffset.y,
-                                 frame.size.width,
-                                 frame.size.height);
+    CGRect newFrame = [self calculatedFrameForFrame:frame];
     [super setFrame:newFrame];
+}
+
+-(CGRect)calculatedFrameForFrame:(CGRect)frame
+{
+    CGRect calculatedFrame = CGRectMake(frame.origin.x - contentOffset.x,
+                                        frame.origin.y - contentOffset.y,
+                                        frame.size.width,
+                                        frame.size.height);
+    return calculatedFrame;
 }
 
 #pragma mark Lifecycle cleanup methods

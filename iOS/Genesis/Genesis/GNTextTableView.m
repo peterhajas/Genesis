@@ -32,7 +32,7 @@
         // Subscribe to notifications about text changing
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged:) 
-                                                     name:GNTextChangedNotification
+                                                     name:GNTextDidChangeNotification
                                                    object:nil];
         
         // Set our autoresizing mask
@@ -41,6 +41,18 @@
                                    UIViewAutoresizingFlexibleRightMargin)];
     }
     return self;
+}
+
+-(GNTextTableViewCell*)cellAtPoint:(CGPoint)point
+{
+    for(GNTextTableViewCell* cell in [self visibleCells])
+    {
+        if([cell pointInside:point withEvent:nil])
+        {
+            return cell;
+        }
+    }
+    return nil;
 }
 
 -(void)textChanged:(NSNotification*)notification

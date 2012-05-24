@@ -51,6 +51,8 @@
 		4F06016B1533D3480022187D /* Zenburnesque.tmTheme in Copy "themes" files */ = {isa = PBXBuildFile; fileRef = 4F0601351533D2740022187D /* Zenburnesque.tmTheme */; };
 		4F0601721533D69A0022187D /* GNTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601711533D69A0022187D /* GNTheme.m */; };
 		4F0601751533F15B0022187D /* GNTMBundleAttributeNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */; };
+		4F110945156D27D400C74758 /* GNTextRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F110944156D27D400C74758 /* GNTextRange.m */; };
+		4F11094A156D282300C74758 /* GNTextPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F110949156D282300C74758 /* GNTextPosition.m */; };
 		4F1DDE781537B3F400A70529 /* GNTextViewController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */; };
 		4F1E6ACA14F2166C00583852 /* GNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E6AC914F2166C00583852 /* GNFileManager.m */; };
 		4F1F049F14E1B128008619C0 /* GNTextCaretView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F049814E1B127008619C0 /* GNTextCaretView.m */; };
@@ -356,6 +358,10 @@
 		4F0601711533D69A0022187D /* GNTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTheme.m; sourceTree = "<group>"; };
 		4F0601731533F15B0022187D /* GNTMBundleAttributeNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTMBundleAttributeNameTransformer.h; sourceTree = "<group>"; };
 		4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTMBundleAttributeNameTransformer.m; sourceTree = "<group>"; };
+		4F110943156D27D400C74758 /* GNTextRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextRange.h; sourceTree = "<group>"; };
+		4F110944156D27D400C74758 /* GNTextRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextRange.m; sourceTree = "<group>"; };
+		4F110948156D282300C74758 /* GNTextPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTextPosition.h; sourceTree = "<group>"; };
+		4F110949156D282300C74758 /* GNTextPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTextPosition.m; sourceTree = "<group>"; };
 		4F1DDE771537B3F400A70529 /* GNTextViewController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GNTextViewController~iPad.xib"; sourceTree = "<group>"; };
 		4F1E6AC814F2166C00583852 /* GNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNFileManager.h; sourceTree = "<group>"; };
 		4F1E6AC914F2166C00583852 /* GNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNFileManager.m; sourceTree = "<group>"; };
@@ -683,6 +689,33 @@
 				4F0601741533F15B0022187D /* GNTMBundleAttributeNameTransformer.m */,
 			);
 			name = "TM Bundle Attribute Name Transformer";
+			sourceTree = "<group>";
+		};
+		4F110947156D27D800C74758 /* Text Positioning */ = {
+			isa = PBXGroup;
+			children = (
+				4F11094B156D285A00C74758 /* Range */,
+				4F11094C156D286000C74758 /* Position */,
+			);
+			name = "Text Positioning";
+			sourceTree = "<group>";
+		};
+		4F11094B156D285A00C74758 /* Range */ = {
+			isa = PBXGroup;
+			children = (
+				4F110943156D27D400C74758 /* GNTextRange.h */,
+				4F110944156D27D400C74758 /* GNTextRange.m */,
+			);
+			name = Range;
+			sourceTree = "<group>";
+		};
+		4F11094C156D286000C74758 /* Position */ = {
+			isa = PBXGroup;
+			children = (
+				4F110948156D282300C74758 /* GNTextPosition.h */,
+				4F110949156D282300C74758 /* GNTextPosition.m */,
+			);
+			name = Position;
 			sourceTree = "<group>";
 		};
 		4F1E6ACC14F2167700583852 /* File Manager */ = {
@@ -1249,6 +1282,7 @@
 			children = (
 				4FFF7D5C151A106E00C986A1 /* GNTextInputManagerView.h */,
 				4FFF7D5D151A106E00C986A1 /* GNTextInputManagerView.m */,
+				4F110947156D27D800C74758 /* Text Positioning */,
 				4F806FFA153DFE0B0072AED2 /* Alternate Input Views */,
 				4FD1C2DC153C889800DD4A3D /* Input Accessory View */,
 			);
@@ -1394,6 +1428,8 @@
 				1FEFCFA11549461A00304265 /* GNNetworkManager.m in Sources */,
 				1FE48D24154A0E9400CCD875 /* GNNetworkSync.m in Sources */,
 				4F57CC45156967C00037189F /* GNTextInputAccessoryViewGeometry.m in Sources */,
+				4F110945156D27D400C74758 /* GNTextRange.m in Sources */,
+				4F11094A156D282300C74758 /* GNTextPosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

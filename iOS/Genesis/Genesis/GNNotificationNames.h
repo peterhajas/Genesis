@@ -23,8 +23,13 @@
 
 // Text / Insertion Point Changes
 
-#define GNTextChangedNotification @"GNTextChangedNotification"
-#define GNInsertionPointChangedNotification @"GNInsertionPointChangedNotification"
+#define GNTextWillChangeNotification @"GNTextWillChangeNotification"
+#define GNTextDidChangeNotification @"GNTextDidChangeNotification"
+#define GNSelectionWillChangeNotification @"GNSelectionWillChangeNotification"
+#define GNSelectionDidChangeNotification @"GNSelectionDidChangeNotification"
+
+// Special insertion notifications
+
 #define GNInsertTabAtInsertionPointNotification @"GNInsertTabAtInsertionPointNotification"
 
 // Keyboard management

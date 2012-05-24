@@ -51,6 +51,11 @@
     return [fileText length] > 0;
 }
 
+-(NSUInteger)textLength
+{
+    return [fileText length];
+}
+
 -(void)insertText:(NSString*)text
 {    
     if(![text isEqualToString:@"\n"])
@@ -85,6 +90,11 @@
 {
     [self insertText:text];
     [insertionPointManager incrementInsertionByLength:delta isNewLine:NO];
+}
+
+-(NSString*)textInRange:(NSRange)range
+{
+    return [fileText substringWithRange:range];
 }
 
 -(void)replaceTextInRange:(NSRange)range withText:(NSString*)text
@@ -203,6 +213,7 @@
 
 -(void)textChanged
 {
+    [fileTextDelegate textWillChange];
     [self refreshFileLines];
     [fileTextDelegate textDidChange];
 }
@@ -217,11 +228,40 @@
     return [fileLines count];
 }
 
+-(NSUInteger)lineIndexForStringIndex:(NSUInteger)index
+{
+    NSUInteger characterCount = 0;
+    for(NSUInteger i = 0; i < [fileLines count]; i++)
+    {
+        NSString* currentLine = [fileLines objectAtIndex:i];
+        characterCount += [currentLine length];
+        characterCount++;
+        if(characterCount > index + i + 1)
+        {
+            return i;
+        }
+    }
+    NSLog(@"Didn't find line index for string index %d", index);
+    return 0;
+}
+
 -(NSString*)lineAtIndex:(NSUInteger)index
 {
     return [fileLines objectAtIndex:index];
 }
 
+-(NSUInteger)indexInLineForAbsoluteStringIndex:(NSUInteger)index
+{
+    NSRange lineAtIndexRange = [self rangeOfLineAtStringIndex:index];
+    NSLog(@"line at index range: %d, %d", lineAtIndexRange.location, lineAtIndexRange.length);
+    return index - lineAtIndexRange.location;
+}
+
+-(NSString*)lineAtIndex:(NSUInteger)lineIndex toIndexInLine:(NSUInteger)index
+{
+    NSString* lineAtIndex = [fileLines objectAtIndex:lineIndex];
+    return [lineAtIndex substringToIndex:index];
+}
 
 -(NSString*)lineToInsertionPoint
 {
@@ -247,6 +287,12 @@
     location += index;
     
     return NSMakeRange(location, length);
+}
+
+-(NSRange)rangeOfLineAtStringIndex:(NSUInteger)stringIndex
+{
+    NSUInteger lineIndex = [self lineIndexForStringIndex:stringIndex];
+    return [self rangeOfLineAtIndex:lineIndex];
 }
 
 -(void)indentLineAtIndex:(NSUInteger)index

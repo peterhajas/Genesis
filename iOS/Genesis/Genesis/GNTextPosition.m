@@ -13,22 +13,30 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#define kGNTextCaretViewWidth 3.0
+#import "GNTextPosition.h"
 
-@interface GNTextCaretView : UIView
+@implementation GNTextPosition
+
+@synthesize index;
+
+-(id)initWithIndex:(NSInteger)idx
 {
-    CABasicAnimation* animation;
-    CGPoint contentOffset;
-    CGRect nonOffsetFrame;
+    self = [self init];
+    if(self)
+    {
+        index = idx;
+    }
+    return self;
 }
 
--(void)blink;
--(CGRect)calculatedFrameForFrame:(CGRect)frame;
--(void)cleanUp;
-
-@property(nonatomic) CGFloat horizontalOffset;
-@property(nonatomic) CGFloat verticalOffset;
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        index = 0;
+    }
+    return self;
+}
 
 @end

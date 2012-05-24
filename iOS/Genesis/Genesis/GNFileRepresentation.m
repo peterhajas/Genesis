@@ -69,6 +69,12 @@
     return self;
 }
 
+-(void)textWillChange
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNTextWillChangeNotification
+                                                        object:self];
+}
+
 -(void)textDidChange
 {
     [insertionPointManager setStringLength:[[fileText fileText] length]];
@@ -80,13 +86,19 @@
     
     [autoCompleteDictionary addTextToBackingStore:[fileText fileLines]];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:GNTextChangedNotification
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNTextDidChangeNotification
+                                                        object:self];
+}
+
+-(void)insertionPointWillChange
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNSelectionWillChangeNotification
                                                         object:self];
 }
 
 -(void)insertionPointDidChange
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:GNInsertionPointChangedNotification
+    [[NSNotificationCenter defaultCenter] postNotificationName:GNSelectionDidChangeNotification
                                                         object:self];
 }
 

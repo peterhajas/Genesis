@@ -15,11 +15,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
+#import "GNTextTableViewCell.h"
 
 @interface GNTextTableView : UITableView
 {
     NSUInteger lastLineCount;
 }
+
+-(GNTextTableViewCell*)cellAtPoint:(CGPoint)point;
 -(void)cleanUp;
 
 @end

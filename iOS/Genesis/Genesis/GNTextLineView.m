@@ -51,7 +51,7 @@
         // Subscribe to text notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged)
-                                                     name:GNTextChangedNotification
+                                                     name:GNTextDidChangeNotification
                                                    object:nil];
     }
     

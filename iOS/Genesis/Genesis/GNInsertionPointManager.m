@@ -36,6 +36,7 @@
 
 -(void)incrementInsertionByLength:(NSUInteger)length isNewLine:(BOOL)isNewLine
 {
+    [self insertionPointWillChange];
     insertionIndex+=length;
     insertionIndexInLine+=length;
     if(isNewLine)
@@ -49,6 +50,7 @@
 
 -(void)decrement
 {
+    [self insertionPointWillChange];
     if(insertionIndexInLine >= 1)
     {
         insertionIndex--;
@@ -60,6 +62,7 @@
 
 -(void)decrementByCount:(NSUInteger)count
 {
+    [self insertionPointWillChange];
     if(insertionIndexInLine >= count)
     {
         insertionIndex-=count;
@@ -71,6 +74,7 @@
 
 -(void)decrementToPreviousLineWithOldLineLength:(NSUInteger)oldLineLength newLineLength:(NSUInteger)newLineLength
 {
+    [self insertionPointWillChange];
     insertionLine--;
     insertionIndexInLine = newLineLength;
     
@@ -84,6 +88,7 @@
 
 -(void)setInsertionToLineAtIndex:(NSUInteger)lineIndex characterIndexInLine:(NSUInteger)characterIndex
 {
+    [self insertionPointWillChange];
     insertionIndex = [delegate characterCountToLineAtIndex:lineIndex];
     
     insertionLine = lineIndex;
@@ -108,6 +113,7 @@
 
 -(void)setInsertionIndex:(NSUInteger)index
 {
+    [self insertionPointWillChange];
     insertionIndex = index;
     [self insertionPointChanged];
 }
@@ -119,6 +125,7 @@
 
 -(void)setInsertionIndexInLine:(NSUInteger)index
 {
+    [self insertionPointWillChange];
     insertionIndexInLine = index;
     [self insertionPointChanged];
 }
@@ -130,6 +137,7 @@
 
 -(void)setInsertionLine:(NSUInteger)index
 {
+    [self insertionPointWillChange];
     insertionLine = index;
     [self insertionPointChanged];
 }
@@ -137,6 +145,11 @@
 -(NSUInteger)absoluteInsertionIndex
 {
     return insertionIndex + insertionLine;
+}
+
+-(void)insertionPointWillChange
+{
+    [announcerDelegate insertionPointWillChange];
 }
 
 -(void)insertionPointChanged

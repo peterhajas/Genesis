@@ -19,6 +19,7 @@
 
 @protocol GNFileTextDelegate <NSObject>
 
+-(void)textWillChange;
 -(void)textDidChange;
 -(void)horizontalOffsetManagerShouldInsertLineAtIndex:(NSUInteger)index;
 -(void)horizontalOffsetManagerShouldRemoveLineAtIndex:(NSUInteger)index;
@@ -41,8 +42,10 @@
 
 // Text
 -(BOOL)hasText;
+-(NSUInteger)textLength;
 -(void)insertText:(NSString*)text;
 -(void)insertText:(NSString *)text indexDelta:(NSInteger)delta;
+-(NSString*)textInRange:(NSRange)range;
 -(void)replaceTextInRange:(NSRange)range withText:(NSString*)text;
 -(void)deleteBackwards;
 -(void)textChanged;
@@ -50,9 +53,13 @@
 // Lines
 -(NSString*)currentLine;
 -(NSUInteger)lineCount;
+-(NSUInteger)lineIndexForStringIndex:(NSUInteger)index;
 -(NSString*)lineAtIndex:(NSUInteger)index;
+-(NSUInteger)indexInLineForAbsoluteStringIndex:(NSUInteger)index;
+-(NSString*)lineAtIndex:(NSUInteger)lineIndex toIndexInLine:(NSUInteger)index;
 -(NSString*)lineToInsertionPoint;
 -(NSRange)rangeOfLineAtIndex:(NSUInteger)index;
+-(NSRange)rangeOfLineAtStringIndex:(NSUInteger)stringIndex;
 -(void)indentLineAtIndex:(NSUInteger)index;
 -(void)unindentLineAtIndex:(NSUInteger)index;
 

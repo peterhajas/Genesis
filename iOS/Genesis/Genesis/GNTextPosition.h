@@ -14,21 +14,14 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#define kGNTextCaretViewWidth 3.0
 
-@interface GNTextCaretView : UIView
+@interface GNTextPosition : UITextPosition
 {
-    CABasicAnimation* animation;
-    CGPoint contentOffset;
-    CGRect nonOffsetFrame;
+    NSInteger index;
 }
 
--(void)blink;
--(CGRect)calculatedFrameForFrame:(CGRect)frame;
--(void)cleanUp;
+-(id)initWithIndex:(NSInteger)idx;
 
-@property(nonatomic) CGFloat horizontalOffset;
-@property(nonatomic) CGFloat verticalOffset;
+@property(readwrite) NSInteger index;
 
 @end

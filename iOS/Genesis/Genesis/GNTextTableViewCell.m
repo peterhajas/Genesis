@@ -66,11 +66,19 @@
         // Subscribe to insertion point changes
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged:)
-                                                     name:GNTextChangedNotification
+                                                     name:GNTextDidChangeNotification
                                                    object:nil];
     }
     
     return self;
+}
+
+-(NSUInteger)stringIndexAtPoint:(CGPoint)point
+{
+    point.x += [textContainerScrollView contentOffset].x;
+    CFIndex indexIntoString = [textLineView indexForTappedPoint:point];
+        
+    return indexIntoString;
 }
 
 -(void)prepareForReuse
@@ -105,11 +113,10 @@
     if([sender state] == UIGestureRecognizerStateEnded)
     {
         CGPoint touchLocation = [sender locationInView:self];
-        touchLocation.x += [textContainerScrollView contentOffset].x;
-        CFIndex indexIntoString = [textLineView indexForTappedPoint:touchLocation];
-                
+        NSUInteger indexOfTouch = [self stringIndexAtPoint:touchLocation];
+        
         [[fileRepresentation insertionPointManager] setInsertionToLineAtIndex:lineNumber
-                                                         characterIndexInLine:indexIntoString];
+                                                         characterIndexInLine:indexOfTouch];
         
         CGFloat horizontalOffset = [textContainerScrollView contentOffset].x;
         NSNumber* horizontalOffsetNumber = [NSNumber numberWithFloat:horizontalOffset];

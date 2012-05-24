@@ -36,6 +36,7 @@
 }
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation andIndex:(NSUInteger)index;
+-(NSUInteger)stringIndexAtPoint:(CGPoint)point;
 -(void)resetScrollPosition;
 -(void)setLineNumber:(NSUInteger)line;
 

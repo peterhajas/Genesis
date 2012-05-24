@@ -18,16 +18,19 @@
 #import "GNTextCaretView.h"
 #import "GNTextInputAccessoryView.h"
 #import "GNTextAlternateInputView.h"
+#import "GNTextTableViewCell.h"
 
 #import "GNTextAutocompleteInputView.h"
 
 @protocol GNTextInputManagerViewDelegate
 
 -(CGFloat)verticalScrollOffset;
+-(GNTextTableViewCell*)cellAtPoint:(CGPoint)point;
 
 @end
 
-@interface GNTextInputManagerView : UIView <UIKeyInput,
+@interface GNTextInputManagerView : UIView <UITextInput,
+                                            UIKeyInput,
                                             UITextInputTraits,
                                             GNTextAlternateInputViewDelegate>
 {
@@ -43,7 +46,6 @@
 }
 
 -(id)initWithFileRepresentation:(GNFileRepresentation*)representation;
--(void)insertionPointChanged:(NSNotification*)notification;
 -(void)didScrollToVerticalOffset:(CGFloat)offset;
 -(void)cleanUp;
 

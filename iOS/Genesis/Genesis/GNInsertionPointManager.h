@@ -17,6 +17,7 @@
 
 @protocol GNInsertionPointAnnouncerDelegate <NSObject>
 
+-(void)insertionPointWillChange;
 -(void)insertionPointDidChange;
 
 @end
