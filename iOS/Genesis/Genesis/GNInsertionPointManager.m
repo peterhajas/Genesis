@@ -143,7 +143,7 @@
 
 -(NSUInteger)absoluteInsertionIndex
 {
-    return insertionIndex + insertionLine;
+    return insertionIndex;
 }
 
 -(void)insertionPointWillChange
