@@ -41,7 +41,6 @@
     insertionIndexInLine+=length;
     if(isNewLine)
     {
-        insertionIndex--;
         insertionIndexInLine = length - 1;
         insertionLine++;
     }
