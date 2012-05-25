@@ -237,7 +237,7 @@
     {
         NSString* currentLine = [fileLines objectAtIndex:i];
         characterCount += [currentLine length];
-        if(characterCount > index)
+        if(characterCount >= index)
         {
             return i;
         }
