@@ -41,7 +41,6 @@
     insertionIndexInLine+=length;
     if(isNewLine)
     {
-        insertionIndex--;
         insertionIndexInLine = length - 1;
         insertionLine++;
     }
@@ -75,7 +74,9 @@
 -(void)decrementToPreviousLineWithOldLineLength:(NSUInteger)oldLineLength newLineLength:(NSUInteger)newLineLength
 {
     [self insertionPointWillChange];
+    
     insertionLine--;
+    insertionIndex--;
     insertionIndexInLine = newLineLength;
     
     [self insertionPointChanged];
@@ -144,7 +145,7 @@
 
 -(NSUInteger)absoluteInsertionIndex
 {
-    return insertionIndex + insertionLine;
+    return insertionIndex;
 }
 
 -(void)insertionPointWillChange

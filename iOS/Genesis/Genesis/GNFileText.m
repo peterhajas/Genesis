@@ -34,6 +34,8 @@
         fileText = [[NSString alloc] initWithData:contents
                                          encoding:NSUTF8StringEncoding];
         
+        fileLines = [[NSMutableArray alloc] init];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(insertTabAtInsertionPoint)
                                                      name:GNInsertTabAtInsertionPointNotification
@@ -235,8 +237,7 @@
     {
         NSString* currentLine = [fileLines objectAtIndex:i];
         characterCount += [currentLine length];
-        characterCount++;
-        if(characterCount > index + i)
+        if(characterCount >= index)
         {
             return i;
         }
@@ -342,7 +343,27 @@
 
 -(void)refreshFileLines
 {
-    fileLines = [NSMutableArray arrayWithArray:[fileText componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]];
+    // Separate fileText by the newline character set
+    NSArray* lines = [fileText componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    // Empty fileLines
+    [fileLines removeAllObjects];
+    
+    NSUInteger characterCount = 0;
+    
+    for(NSString* line in lines)
+    {
+        characterCount+=[line length];
+        NSString* completeLine = line;
+        if(![line isEqual:[lines lastObject]])
+        {
+            unichar newlineCharAfterLine = [fileText characterAtIndex:characterCount];
+            completeLine = [NSString stringWithFormat:@"%@%c", line, newlineCharAfterLine];
+            characterCount++;
+        }
+        [fileLines addObject:completeLine];
+    }
+    
 }
 
 -(NSString*)currentWord
