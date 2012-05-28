@@ -55,7 +55,7 @@
     [textViewContainerView addSubview:textView];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+-(void)viewDidDisappear:(BOOL)animated
 {
     [textView cleanUp];
 }
