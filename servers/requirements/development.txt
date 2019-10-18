@@ -1,5 +1,5 @@
 GitPython==0.3.2.RC1
-PyYAML==3.10
+PyYAML==5.1
 async==0.6.1
 byteplay==0.2
 describe==1.0.0beta1
