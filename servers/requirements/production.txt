@@ -1,5 +1,5 @@
 GitPython==0.3.2.RC1
-PyYAML==3.10
+PyYAML==5.1
 async==0.6.1
 gitdb==0.5.4
 smmap==0.8.2
