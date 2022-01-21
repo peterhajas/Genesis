@@ -4,7 +4,7 @@ async==0.6.1
 byteplay==0.2
 describe==1.0.0beta1
 gitdb==0.5.4
-ipython==0.12
+ipython==7.16.3
 nose==1.1.2
 smmap==0.8.2
 tornado==2.2
